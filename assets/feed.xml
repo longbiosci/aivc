@@ -6,10 +6,10 @@
 <description>以科学文献为第一情报源的 AI 虚拟细胞领域情报刊物。</description>
 <language>zh-cn</language>
 <atom:link href="https://aivc.news/assets/feed.xml" rel="self" type="application/rss+xml"/>
-<item><title>insitro × 阿斯利康达成约 15 亿美元合作</title><link>https://aivc.news/companies.html</link><guid>https://aivc.news/companies.html</guid><pubDate>Thu, 15 Oct 2026 00:00:00 +0800</pubDate><description>4000 万美元首付 + 最高 14.6 亿美元里程碑，聚焦 MASH 与心肌病 AI 靶点发现。</description></item>
-<item><title>GenBio AI 发布 AIDO.Cell 全细胞世界模型</title><link>https://aivc.news/papers.html</link><guid>https://aivc.news/papers.html</guid><pubDate>Tue, 18 Aug 2026 00:00:00 +0800</pubDate><description>多尺度有状态仿真，可串行运行干预序列观察累积效应，Cell 2026 正式论文。</description></item>
-<item><title>Xaira 发布 X-Cell 与 X-Automate：端到端 AI 制药闭环</title><link>https://aivc.news/companies.html</link><guid>https://aivc.news/companies.html</guid><pubDate>Wed, 18 Mar 2026 00:00:00 +0800</pubDate><description>49 亿参数扩散语言模型找靶点，实验室机器人做验证。</description></item>
+<item><title>insitro × 阿斯利康达成约 15 亿美元合作</title><link>https://aivc.news/companies.html#insitro</link><guid>https://aivc.news/companies.html#insitro-2026-10</guid><pubDate>Thu, 15 Oct 2026 00:00:00 +0800</pubDate><description>4000 万美元首付 + 最高 14.6 亿美元里程碑，聚焦 MASH 与心肌病 AI 靶点发现。</description></item>
+<item><title>GenBio AI 发布 AIDO.Cell 全细胞世界模型</title><link>https://aivc.news/papers.html</link><guid>https://aivc.news/papers.html#aido-cell-2026-08</guid><pubDate>Tue, 18 Aug 2026 00:00:00 +0800</pubDate><description>多尺度有状态仿真，可串行运行干预序列观察累积效应，Cell 2026 正式论文。</description></item>
+<item><title>Xaira 发布 X-Cell 与 X-Automate：端到端 AI 制药闭环</title><link>https://aivc.news/companies.html#xaira</link><guid>https://aivc.news/companies.html#xaira-xcell-2026-03</guid><pubDate>Wed, 18 Mar 2026 00:00:00 +0800</pubDate><description>49 亿参数扩散语言模型找靶点，实验室机器人做验证。</description></item>
 <item><title>Virtual Cell Challenge 2025 结果揭晓</title><link>https://aivc.news/benchmarks.html</link><guid>https://aivc.news/benchmarks.html</guid><pubDate>Fri, 12 Dec 2025 00:00:00 +0800</pubDate><description>百图生科 xTrimoSCPerturb 夺冠；官方承认无模型在所有指标上稳定超越简单基线。</description></item>
-<item><title>深度学习扰动预测尚不优于简单线性基线</title><link>https://aivc.news/papers.html</link><guid>https://aivc.news/papers.html</guid><pubDate>Mon, 18 Aug 2025 00:00:00 +0800</pubDate><description>Nature Methods 系统评测五大基础模型，对领域默认假设提出最重要质疑。</description></item>
+<item><title>深度学习扰动预测尚不优于简单线性基线</title><link>https://aivc.news/papers.html</link><guid>https://aivc.news/papers.html#linear-baseline-2025-08</guid><pubDate>Mon, 18 Aug 2025 00:00:00 +0800</pubDate><description>Nature Methods 系统评测五大基础模型，对领域默认假设提出最重要质疑。</description></item>
 </channel>
 </rss>

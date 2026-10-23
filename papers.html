@@ -153,7 +153,8 @@ function apply(){
     });
     gr.classList.toggle('hide',vis===0);
   });
-  count.textContent='显示 '+n+' / 40 篇';
+  var total=document.querySelectorAll('.paper').length;
+  count.textContent='显示 '+n+' / '+total+' 篇';
 }
 q.addEventListener('input',apply);
 btns.forEach(b=>b.addEventListener('click',()=>{btns.forEach(x=>x.classList.remove('on'));b.classList.add('on');g=b.dataset.g;apply();}));
