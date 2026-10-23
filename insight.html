@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>深度解读 · AIVC Insight</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <div class="brand">AIVC <em>Insight</em><small>AI 虚拟细胞情报站</small></div>
+  <div style="font-size:12px;color:var(--dim)">2026 年 10 月 · 第 1 期</div>
+</div></div>
+<nav class="main"><div class="wrap">
+  <a href="index.html">首页</a>
+  <a href="papers.html">文献库</a>
+  <a href="models.html">模型谱系</a>
+  <a href="companies.html">企业解剖</a>
+  <a href="china.html">中国生态</a>
+  <a href="news.html">前沿速递</a>
+  <a href="benchmarks.html">数据与基准</a>
+  <a href="insight.html" class="active">深度解读</a>
+  <a href="search.html">搜索</a>
+  <a href="about.html">关于</a>
+</div></nav>
+
+<div class="pagehead"><div class="wrap">
+  <div class="crumb">栏目 05 · ANALYSIS</div>
+  <h1>虚拟细胞的「AlphaFold 时刻」还有多远？</h1>
+  <p class="lede">主编观察 · 2026 年 10 月 24 日——冷水与热钱之间，对 AIVC 赛道的四点判断。文中所有事实均可追溯至本站<a href="papers.html">文献库</a>与<a href="companies.html">企业解剖</a>。</p>
+</div></div>
+
+<section><div class="wrap"><div class="article">
+
+  <h3>一、冷水与热钱的拉锯</h3>
+  <p>一边是 Xaira 超十亿美元的种子轮、insitro 与阿斯利康十五亿美元的合作，资本以前所未有的密度涌入；另一边是 Nature Methods 的基准泼冷水——五个明星基础模型在扰动预测上竟不优于简单线性基线。VCC 2025 官方复盘同样承认：没有模型在所有指标上稳定超越基线，胜出的是"深度学习 + 统计特征"的混合方案。</p>
+  <p>这种撕裂并非坏事。它意味着领域正在从「叙事驱动」进入「证据驱动」阶段——正如 CASP 之于蛋白质结构预测，严格的第三方评测是任何"AlphaFold 时刻"的必要前奏。</p>
+
+  <h3>二、争议的核心：相关 ≠ 因果</h3>
+  <blockquote>"观测数据学相关，干预数据学因果。"——行业新共识</blockquote>
+  <p>预训练语料以观测性单细胞图谱为主，模型学到的更多是细胞类型间的相关性，而非扰动下的因果响应。这正是 Tahoe-100M、Billion Cells、X-Atlas 等大规模 Perturb-seq 数据军备赛的根本动机。批评者还指出：细胞是动态系统，静态转录组快照难以覆盖时间与空间维度——陈润生院士所谓"虚拟细胞首先要活起来"，指向的正是这一层。</p>
+
+  <h3>三、乐观者的路线图</h3>
+  <p>Arc CTO David Burke 给出的标尺是：扰动预测准确率约 75% 才能让生物学家免于湿实验验证，当前 STATE 约 40–60%——"阈值在接近但尚未到达"。架构创新（扩散语言模型 X-Cell、图结构先验 GREmLN、流匹配、推理 LLM + 软验证 rbio1）正在替代纯堆参数；VCC 的 CASP 化则为领域提供了可复现的度量衡。X-Cell 报告的幂律 scaling 若被独立复现，将是"大力出奇迹"路线最有力的证据。</p>
+
+  <h3>四、企业解剖的启示：三种生存策略</h3>
+  <p>从七家企业的解剖中可以看到路线分化：<b>Xaira 的全栈闭环</b>（数据—模型—管线—机器人，赌的是垂直整合的效率）；<b>insitro 的因果数据资产</b>（20+ PB 自有湿实验数据 + 药企合作变现，赌的是数据的不可复制性）；<b>GenBio 的标准卡位</b>（开源世界模型 + 生态绑定，赌的是成为基础设施）。中国阵营则走出"学术源头 + 国资背书"的差异化路线（百曜、百图）。</p>
+  <p>我们的判断：短期（1-2 年）不应高估成熟度——零样本泛化、组合扰动、时空维度仍是硬骨头；长期（5 年）不应低估科学价值。数据、评测与算力三要素均已就位，剩下的问题是：谁能第一个跨过 75% 的阈值，谁就定义下一个十年。</p>
+
+</div></div></section>
+
+<footer><div class="wrap">
+  <div>AIVC Insight · 观点基于公开文献与公开信源</div>
+  <div>© 2026 AIVC Insight Team</div>
+</div></footer>
+
+</body>
+</html>

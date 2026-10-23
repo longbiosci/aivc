@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据与基准 · AIVC Insight</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <div class="brand">AIVC <em>Insight</em><small>AI 虚拟细胞情报站</small></div>
+  <div style="font-size:12px;color:var(--dim)">2026 年 10 月 · 第 1 期</div>
+</div></div>
+<nav class="main"><div class="wrap">
+  <a href="index.html">首页</a>
+  <a href="papers.html">文献库</a>
+  <a href="models.html">模型谱系</a>
+  <a href="companies.html">企业解剖</a>
+  <a href="china.html">中国生态</a>
+  <a href="news.html">前沿速递</a>
+  <a href="benchmarks.html" class="active">数据与基准</a>
+  <a href="insight.html">深度解读</a>
+  <a href="search.html">搜索</a>
+  <a href="about.html">关于</a>
+</div></nav>
+
+<div class="pagehead"><div class="wrap">
+  <div class="crumb">栏目 04 · DATA & BENCHMARKS</div>
+  <h1>数据与基准</h1>
+  <p class="lede">「观测数据学相关，干预数据学因果」——数据军备赛已全面转向大规模扰动数据。本栏目追踪关键数据集与评测体系，相关论文见<a href="papers.html">文献库第五组</a>。</p>
+</div></div>
+
+<section><div class="wrap">
+  <h2 class="sec">关键数据集<small>DATASETS</small></h2>
+  <div class="grid c3">
+    <div class="card"><span class="badge b-data">数据集</span><h3>Tahoe-100M</h3><p>1 亿细胞 × 1100 药物 × 50 细胞系，CC0 开源、数月下载近 10 万次；正迈向 10 亿细胞专有数据集（单一合作伙伴模式）。</p><div class="date">2025-02 · Tahoe Therapeutics</div></div>
+    <div class="card"><span class="badge b-data">数据集</span><h3>Arc Virtual Cell Atlas</h3><p>汇集超 3.5 亿细胞，含 Tahoe-100M 与 AI 策展的 scBaseCamp（2.3 亿细胞、21 物种、72 组织）。</p><div class="date">2025-02 · Arc Institute</div></div>
+    <div class="card"><span class="badge b-data">数据集</span><h3>CZI Billion Cells Project</h3><p>联合 10x Genomics 与 Ultima 生产 10 亿细胞扰动数据；与 NVIDIA 合作 PB 级 GPU 加速；CZI 五年 5 亿美元承诺。</p><div class="date">2025-02 启动 · CZI</div></div>
+    <div class="card"><span class="badge b-data">数据集</span><h3>X-Atlas / Pisces</h3><p>Xaira 自建扰动图谱：2560 万细胞、16 种生物背景的全基因组 CRISPRi Perturb-seq，X-Cell 模型的训练基座。</p><div class="date">2025-06 / 2026 · Xaira</div></div>
+    <div class="card"><span class="badge b-data">数据集</span><h3>Replogle Perturb-seq</h3><p>首个全基因组 CRISPRi Perturb-seq（>250 万细胞），K562/RPE1 数据成为扰动预测模型事实标准评测集。</p><div class="date">2022-07 · Cell</div></div>
+    <div class="card"><span class="badge b-data">数据集</span><h3>Emerald Bay</h3><p>Tahoe 2026-06 发布的约 200 万细胞表型 + 转录组联合数据集，配套 Rhaister 扰动响应模型。</p><div class="date">2026-06 · Tahoe</div></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <h2 class="sec">评测体系<small>BENCHMARKS</small></h2>
+  <div class="grid c3">
+    <div class="card"><span class="badge b-paper">基准</span><h3>Virtual Cell Challenge（VCC）</h3><p>Arc Institute 主办，对标 CASP。2025 首届：预测 H1 人胚胎干细胞 300 个 CRISPRi 扰动响应，指标 DES / PDS / MAE；114 国 1200+ 团队，计划每年举办。</p><div class="date">Arc Institute · 每年一届</div></div>
+    <div class="card"><span class="badge b-paper">基准</span><h3>PerturbQA</h3><p>衡量模型扰动知识推理能力的问答基准；CZI 推理模型 rbio1 达 F1 0.74–0.79，超越 SUMMER 等基线。</p><div class="date">2025 · CZI</div></div>
+    <div class="card"><span class="badge b-paper">基准</span><h3>Cell-Eval</h3><p>Arc 随 STATE 发布的生物学导向评估框架，强调以生物学家关心的指标（差异基因、通路）而非纯统计指标评判模型。</p><div class="date">2025-06 · Arc Institute</div></div>
+    <div class="card"><span class="badge b-crit">批评性基准</span><h3>线性基线对照（Nature Methods 2025）</h3><p>EMBL 团队的基准设计：任何扰动预测模型必须先证明优于「预测训练集均值」与简单可加线性模型——目前无模型在所有指标上稳定达标。</p><div class="date">2025-08 · Nature Methods</div></div>
+    <div class="card"><span class="badge b-crit">批评性基准</span><h3>零样本评测（Genome Biology 2025）</h3><p>Microsoft Research 团队的严格零样本协议：Geneformer / scGPT 在聚类与批次校正上常不如高变基因 + scVI / Harmony 传统流程。</p><div class="date">2025-04 · Genome Biology</div></div>
+    <div class="card"><span class="badge b-paper">观察</span><h3>75% 阈值说</h3><p>Arc CTO David Burke：扰动预测准确率约 75% 才能让生物学家免于湿实验验证；当前 STATE 约 40–60%——"阈值在接近但尚未到达"。</p><div class="date">Arc Institute 官方复盘</div></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div>AIVC Insight · 数据与基准信息来自论文与官方公告</div>
+  <div>© 2026 AIVC Insight Team</div>
+</div></footer>
+
+</body>
+</html>

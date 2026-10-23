@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全站搜索 · AIVC Insight</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.sbox{display:flex;gap:10px;margin-bottom:26px}
+.sbox input{flex:1;padding:11px 16px;border:1px solid var(--line);border-radius:3px;font-size:15px;background:var(--paper);color:var(--ink);outline:none}
+.sbox input:focus{border-color:var(--accent)}
+.hit{background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:14px 20px;margin-bottom:10px}
+.hit:hover{border-color:#c8c4ba}
+.hit a{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--ink)}
+.hit .s{font-size:11px;color:var(--accent);letter-spacing:1px;margin-bottom:2px}
+.hit p{font-size:13px;color:var(--sub);margin-top:4px}
+.hit.hide{display:none}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <div class="brand">AIVC <em>Insight</em><small>AI 虚拟细胞情报站</small></div>
+  <div style="font-size:12px;color:var(--dim)">2026 年 10 月 · 第 1 期</div>
+</div></div>
+<nav class="main"><div class="wrap">
+  <a href="index.html">首页</a>
+  <a href="papers.html">文献库</a>
+  <a href="models.html">模型谱系</a>
+  <a href="companies.html">企业解剖</a>
+  <a href="china.html">中国生态</a>
+  <a href="news.html">前沿速递</a>
+  <a href="benchmarks.html">数据与基准</a>
+  <a href="insight.html">深度解读</a>
+  <a href="search.html" class="active">搜索</a>
+  <a href="about.html">关于</a>
+</div></nav>
+
+<div class="pagehead"><div class="wrap">
+  <div class="crumb">SEARCH</div>
+  <h1>全站搜索</h1>
+  <p class="lede">检索文献、企业、数据集与动态。试试：scGPT、Xaira、扰动、融资、Nature Methods。</p>
+</div></div>
+
+<section><div class="wrap">
+  <div class="sbox"><input id="q" type="search" placeholder="输入关键词检索全站内容…" autofocus></div>
+  <div id="results"></div>
+  <div id="hint" style="font-size:13px;color:var(--dim)"></div>
+</div></section>
+
+<footer><div class="wrap">
+  <div>AIVC Insight · 客户端检索，索引随站点更新</div>
+  <div>© 2026 AIVC Insight Team</div>
+</div></footer>
+
+<script>
+const IDX=[
+// 文献（节选关键条目，文献库页内另有精细检索）
+{s:"文献库",t:"How to Build the Virtual Cell with Artificial Intelligence（AIVC 纲领）",d:"Cell 2024，Bunne/Regev/Quake/Leskovec 等 40+ 作者，确立 AIVC 愿景框架",u:"papers.html",k:"纲领 Cell Bunne Regev Quake Leskovec 虚拟细胞"},
+{s:"文献库",t:"scBERT",d:"腾讯 AI Lab，2022，Nature Machine Intelligence，首个 BERT 式单细胞模型",u:"papers.html",k:"腾讯 scBERT 注释"},
+{s:"文献库",t:"Geneformer",d:"Broad/MGH，2023，Nature，3000 万细胞预训练，in silico 扰动发现心肌病靶点",u:"papers.html",k:"Geneformer Theodoris 心肌病"},
+{s:"文献库",t:"scGPT",d:"多伦多大学 Bo Wang 团队，2024，Nature Methods，3300 万细胞生成式预训练",u:"papers.html",k:"scGPT Bo Wang 多组学"},
+{s:"文献库",t:"scFoundation",d:"清华×百图生科，2024，Nature Methods，1 亿参数 5000 万细胞，VCC 冠军模型骨干",u:"papers.html",k:"scFoundation 清华 百图 郝敏升"},
+{s:"文献库",t:"UCE（Universal Cell Embeddings）",d:"Stanford，2023，6.5 亿参数 8 物种跨物种零样本",u:"papers.html",k:"UCE Quake Leskovec 跨物种"},
+{s:"文献库",t:"GeneCompass",d:"中科院李鑫团队，2024，Cell Research 封面，1.26 亿细胞知识增强",u:"papers.html",k:"GeneCompass 李鑫 指南针"},
+{s:"文献库",t:"TranscriptFormer",d:"CZI，2025，12 物种 1.12 亿细胞跨物种生成式模型",u:"papers.html",k:"TranscriptFormer CZI"},
+{s:"文献库",t:"GREmLN",d:"CZI×哥大，2025，仅 1030 万参数，图调控网络注入注意力",u:"papers.html",k:"GREmLN Califano 图网络"},
+{s:"文献库",t:"Cell2Sentence / C2S-Scale 27B",d:"耶鲁×Google，LLM 读细胞语言，27B 假设获湿实验验证",u:"papers.html",k:"Cell2Sentence Gemma 耶鲁"},
+{s:"文献库",t:"rbio1",d:"CZI 2025，软验证器 + GRPO 训练科学推理 LLM，PerturbQA 领先",u:"papers.html",k:"rbio1 推理 软验证"},
+{s:"文献库",t:"X-Cell",d:"Xaira 2026，49 亿参数扩散语言模型，Pearson Δ 提升 5 倍，幂律 scaling",u:"papers.html",k:"X-Cell 扩散 Xaira"},
+{s:"文献库",t:"AIDO.RNA / GB.Cell / AIDO Cell",d:"GenBio AI 模型家族；AIDO Cell 世界模型 Cell 2026 正式论文",u:"papers.html",k:"AIDO GenBio 世界模型 邢波"},
+{s:"文献库",t:"GEARS / CPA / scGen / STATE",d:"扰动预测模型谱系：组合扰动外推、可组合潜因子、Arc 状态转移模型",u:"papers.html",k:"GEARS CPA scGen STATE 扰动"},
+{s:"文献库",t:"线性基线批评（Nature Methods 2025）",d:"EMBL：深度模型扰动预测尚不优于简单线性基线，被引 80+",u:"papers.html",k:"线性基线 批评 EMBL Ahlmann-Eltze"},
+{s:"文献库",t:"零样本评测（Genome Biology 2025）",d:"Microsoft Research：Geneformer/scGPT 零样本不如 scVI/Harmony",u:"papers.html",k:"零样本 Kedzierska scVI Harmony"},
+{s:"文献库",t:"注意力可解释性批评（BMC Genomics 2026）",d:"37 项分析 153 检验：注意力≠调控",u:"papers.html",k:"注意力 可解释性"},
+{s:"文献库",t:"scVI / Harmony / totalVI / Mixscape",d:"经典基线方法组——评判大模型的标尺",u:"papers.html",k:"scVI Harmony totalVI Mixscape 基线"},
+{s:"文献库",t:"Nicheformer",d:"Theis 团队 2025，空间转录组基础模型",u:"papers.html",k:"Nicheformer 空间"},
+// 企业
+{s:"企业解剖",t:"Xaira Therapeutics",d:"$10亿+ 种子轮，估值 $27亿；X-Cell/X-Design/X-Automate 全栈；Tessier-Lavigne + David Baker",u:"companies.html",k:"Xaira 融资 种子 Baker"},
+{s:"企业解剖",t:"insitro",d:"阿斯利康 $15亿合作；20+ PB 湿实验数据；Daphne Koller；9 个管线 2027 进临床",u:"companies.html",k:"insitro Koller 阿斯利康 MASH"},
+{s:"企业解剖",t:"GenBio AI",d:"AIDO 数字有机体；邢波+Baker+胡祖六；开源世界模型卡位",u:"companies.html",k:"GenBio AIDO 邢波 胡祖六"},
+{s:"企业解剖",t:"Tahoe Therapeutics",d:"Tahoe-100M 生产者；Mosaic 平台；累计 $4200万；10 亿细胞计划",u:"companies.html",k:"Tahoe 数据 Mosaic"},
+{s:"企业解剖",t:"Nomic Bio",d:"nELISA 蛋白组学 $50 蛋白组；分泌组数据层；累计 $5900万",u:"companies.html",k:"Nomic nELISA 蛋白"},
+{s:"企业解剖",t:"百图生科 BioMap",d:"xTrimo V4 2680 亿参数；VCC 冠军；赛诺菲合作；秘密递表港交所",u:"companies.html",k:"百图 BioMap xTrimo 李彦宏 IPO"},
+{s:"企业解剖",t:"百曜科技",d:"中科院系；AURA CellOS 3.9 亿细胞；一年内三轮融资，国新领投",u:"companies.html",k:"百曜 CellOS 李鑫 国新"},
+// 中国生态
+{s:"中国生态",t:"清华张学工/马剑竹团队",d:"scFoundation 通讯单位，生命基础模型实验室",u:"china.html",k:"清华 张学工 马剑竹"},
+{s:"中国生态",t:"北大深研院 scProtoTransformer / scTransMIL",d:"与腾讯合作，泛癌图谱 400 万细胞",u:"china.html",k:"北大 scTransMIL 腾讯"},
+{s:"中国生态",t:"CellFM（中山大学×华为）",d:"8 亿参数，天河星逸超算 + 昇腾国产算力",u:"china.html",k:"CellFM 华为 昇腾"},
+{s:"中国生态",t:"晶泰 / 剂泰 / 英矽智能",d:"AI 制药港股阵营：18C 第一股、21 亿港元 IPO、首家半年盈利",u:"china.html",k:"晶泰 剂泰 英矽 IPO"},
+{s:"中国生态",t:"华大智造",d:"DNBelab C 无人单细胞平台 + Stereo-seq 时空组学；与百图共建细胞大模型",u:"china.html",k:"华大 DNBelab Stereo-seq"},
+{s:"中国生态",t:"「人工智能+」行动与 AI4S 政策",d:"国发〔2025〕11 号将 AI+科学技术列首位；京沪浙地方行动",u:"china.html",k:"政策 人工智能+ AI4S"},
+// 数据与基准
+{s:"数据与基准",t:"Tahoe-100M",d:"1 亿细胞 × 1100 药物 × 50 细胞系，CC0 开源",u:"benchmarks.html",k:"Tahoe-100M 数据集"},
+{s:"数据与基准",t:"Arc Virtual Cell Atlas / scBaseCamp",d:"3.5 亿细胞图谱；2.3 亿细胞 AI 策展库",u:"benchmarks.html",k:"Atlas scBaseCamp Arc"},
+{s:"数据与基准",t:"CZI Billion Cells Project",d:"10 亿细胞扰动数据计划，联手 10x 与 Ultima",u:"benchmarks.html",k:"Billion Cells CZI 十亿"},
+{s:"数据与基准",t:"Virtual Cell Challenge（VCC）",d:"Arc 主办的年度评测，对标 CASP；2025 首届冠军百图生科",u:"benchmarks.html",k:"VCC 挑战赛 CASP"},
+{s:"数据与基准",t:"75% 阈值说",d:"Arc CTO：准确率约 75% 才可免于湿实验验证，当前 40-60%",u:"benchmarks.html",k:"75% 阈值 Burke"},
+// 速递与解读
+{s:"前沿速递",t:"insitro × 阿斯利康 15 亿美元合作（2026-10）",d:"4000 万首付 + 14.6 亿里程碑，MASH 与心肌病",u:"news.html",k:"阿斯利康 insitro 合作"},
+{s:"前沿速递",t:"Xaira X-Automate 实验室机器人（2026-10）",d:"物理 AI 落子，AI 科学家+自动化湿实验闭环",u:"news.html",k:"X-Automate 机器人"},
+{s:"深度解读",t:"虚拟细胞的 AlphaFold 时刻还有多远？",d:"主编长文：冷水与热钱、相关≠因果、三种企业生存策略",u:"insight.html",k:"AlphaFold 主编 解读"}
+];
+const q=document.getElementById('q'),box=document.getElementById('results'),hint=document.getElementById('hint');
+function render(){
+  const kw=q.value.trim().toLowerCase();
+  box.innerHTML='';
+  if(!kw){hint.textContent='索引共 '+IDX.length+' 条，输入关键词开始检索。';return}
+  const hits=IDX.filter(e=>(e.t+e.d+e.k+e.s).toLowerCase().includes(kw));
+  hint.textContent='找到 '+hits.length+' 条结果';
+  hits.forEach(e=>{
+    const d=document.createElement('div');d.className='hit';
+    d.innerHTML='<div class="s">'+e.s+'</div><a href="'+e.u+'">'+e.t+'</a><p>'+e.d+'</p>';
+    box.appendChild(d);
+  });
+}
+q.addEventListener('input',render);render();
+</script>
+
+</body>
+</html>

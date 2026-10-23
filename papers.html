@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文献库 · AIVC Insight</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:26px}
+.toolbar input{flex:1;min-width:220px;padding:9px 14px;border:1px solid var(--line);border-radius:3px;font-size:14px;background:var(--paper);color:var(--ink);outline:none}
+.toolbar input:focus{border-color:var(--accent)}
+.filters{display:flex;flex-wrap:wrap;gap:6px}
+.filters button{border:1px solid var(--line);background:var(--paper);color:var(--sub);font-size:12.5px;padding:5px 12px;border-radius:2px;cursor:pointer}
+.filters button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.count{font-size:12.5px;color:var(--dim);margin-left:auto}
+.paper.hide{display:none}
+.pgroup.hide{display:none}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <div class="brand">AIVC <em>Insight</em><small>AI 虚拟细胞情报站</small></div>
+  <div style="font-size:12px;color:var(--dim)">2026 年 10 月 · 第 1 期</div>
+</div></div>
+<nav class="main"><div class="wrap">
+  <a href="index.html">首页</a>
+  <a href="papers.html" class="active">文献库</a>
+  <a href="models.html">模型谱系</a>
+  <a href="companies.html">企业解剖</a>
+  <a href="china.html">中国生态</a>
+  <a href="news.html">前沿速递</a>
+  <a href="benchmarks.html">数据与基准</a>
+  <a href="insight.html">深度解读</a>
+  <a href="search.html">搜索</a>
+  <a href="about.html">关于</a>
+</div></nav>
+
+<div class="pagehead"><div class="wrap">
+  <div class="crumb">栏目 01 · LIBRARY</div>
+  <h1>文献库</h1>
+  <p class="lede">以科学文献为第一情报源。40 篇文献的 DOI / arXiv 号均经检索核对，点击标识可直达原文。未经同行评议的预印本与待核实项已如实标注。支持关键词检索与分组筛选。</p>
+</div></div>
+
+<section><div class="wrap">
+
+<div class="toolbar">
+  <input id="q" type="search" placeholder="检索标题 / 作者 / 机构 / 关键词，如：scGPT、Theis、扰动…">
+  <div class="filters">
+    <button data-g="all" class="on">全部</button>
+    <button data-g="g1">纲领</button>
+    <button data-g="g2">基础模型</button>
+    <button data-g="g3">扰动预测</button>
+    <button data-g="g4">批评与基准</button>
+    <button data-g="g5">数据集</button>
+    <button data-g="g6">经典基线</button>
+    <button data-g="g7">空间与多组学</button>
+  </div>
+  <span class="count" id="count"></span>
+</div>
+
+<div class="pgroup" data-g="g1">
+  <h3 class="g">一、纲领与路线图</h3>
+  <div class="paper"><div class="t">How to Build the Virtual Cell with Artificial Intelligence: Priorities and Opportunities</div><div class="m"><b>Bunne, Roohani, Rosen … Regev, Lundberg, Leskovec, Quake</b> · Cell · 2024-12 · <a class="doi" href="https://doi.org/10.1016/j.cell.2024.11.015" target="_blank">10.1016/j.cell.2024.11.015</a></div><div class="c">领域纲领：提出 AIVC 愿景——多尺度跨模态基础模型直接学习细胞行为，以「虚拟仪器」实现可解释的 in silico 实验，阐述数据需求、评估策略与开放科学协作模式。</div></div>
+  <div class="paper"><div class="t">Towards Universal Cell Embeddings: Integrating Single-Cell RNA-seq Datasets Across Species with SATURN</div><div class="m"><b>Rosen, Brbić … Leskovec（Stanford）</b> · Nature Methods · 2024-08 · <a class="doi" href="https://doi.org/10.1038/s41592-024-02191-z" target="_blank">10.1038/s41592-024-02191-z</a></div><div class="c">以蛋白语言模型嵌入基因实现跨物种图谱整合，是「通用细胞嵌入」的方法学铺垫，为 UCE 与 AIVC 路线图奠基。</div></div>
+  <div class="paper"><div class="t">An AI-Driven Digital Organism: The AIDO Framework（GenBio AI 框架文）</div><div class="m"><b>Song, Segal, Xing 等（GenBio AI / CMU / MBZUAI）</b> · Nature Medicine · 2026 · <a class="doi" href="https://doi.org/10.1038/s41591-026-04595-0" target="_blank">10.1038/s41591-026-04595-0</a></div><div class="c">提出 AI 驱动数字有机体（AIDO）框架：多尺度基础模型家族拼接为"生物学世界模型"，是 Cell 纲领文之后产业界给出的最完整路线回应。</div></div>
+  <div class="paper"><div class="t">The Virtual Cell Challenge: A Turing Test for Cell Biology（VCC 官方评论）</div><div class="m"><b>Roohani, Goodarzi 等（Arc Institute）</b> · Cell · 2025-06 · <a class="doi" href="https://doi.org/10.1016/j.cell.2025.06.008" target="_blank">10.1016/j.cell.2025.06.008</a></div><div class="c">宣布设立虚拟细胞挑战赛，对标 CASP，称之为"虚拟细胞的图灵测试"，确立年度公开评测的制度化路线。</div></div>
+</div>
+
+<div class="pgroup" data-g="g2">
+  <h3 class="g">二、单细胞基础模型</h3>
+  <div class="paper"><div class="t">scBERT as a Large-scale Pretrained Deep Language Model for Cell Type Annotation</div><div class="m"><b>Fan Yang 等（腾讯 AI Lab；通讯：Hui Lu / Jianhua Yao）</b> · Nature Machine Intelligence · 2022-09 · <a class="doi" href="https://doi.org/10.1038/s42256-022-00534-z" target="_blank">10.1038/s42256-022-00534-z</a></div><div class="c">首个 BERT 式掩码预训练大规模应用于 scRNA-seq 的模型，开创单细胞语言模型范式。</div></div>
+  <div class="paper"><div class="t">Transfer Learning Enables Predictions in Network Biology（Geneformer）</div><div class="m"><b>Theodoris 等；通讯：X. Shirley Liu / Ellinor（Broad / MGH）</b> · Nature · 2023-05 · <a class="doi" href="https://doi.org/10.1038/s41586-023-06139-9" target="_blank">10.1038/s41586-023-06139-9</a></div><div class="c">约 3000 万细胞上「基因秩次序列」掩码预训练，自监督编码基因网络层级；in silico 扰动筛出心肌病候选靶点并经实验验证。</div></div>
+  <div class="paper"><div class="t">scGPT: Toward Building a Foundation Model for Single-cell Multi-omics Using Generative AI</div><div class="m"><b>Haotian Cui 等；通讯：Bo Wang（多伦多大学，现 Xaira）</b> · Nature Methods · 2024-02 · <a class="doi" href="https://doi.org/10.1038/s41592-024-02201-0" target="_blank">10.1038/s41592-024-02201-0</a></div><div class="c">3300 万细胞 GPT 式生成预训练，零样本嵌入即可聚类与批次校正，微调后注释 / 整合 / 扰动预测领先。</div></div>
+  <div class="paper"><div class="t">Large-scale Foundation Model on Single-cell Transcriptomics（scFoundation）</div><div class="m"><b>郝敏升等；通讯：张学工 / 马剑竹（清华）、宋乐（百图生科）</b> · Nature Methods · 2024-06 · <a class="doi" href="https://doi.org/10.1038/s41592-024-02305-7" target="_blank">10.1038/s41592-024-02305-7</a></div><div class="c">1 亿参数、5000 万+细胞，非对称 Transformer + 测序深度感知预训练；其骨干后被改造赢得 2025 虚拟细胞挑战赛冠军。</div></div>
+  <div class="paper"><div class="t">Universal Cell Embeddings: A Foundation Model for Cell Biology（UCE）</div><div class="m"><b>Rosen, Roohani；通讯：Quake / Leskovec（Stanford）</b> · bioRxiv · 2023-11 · <a class="doi" href="https://doi.org/10.1101/2023.11.28.568918" target="_blank">10.1101/2023.11.28.568918</a></div><div class="c">33 层 6.5 亿参数，8 物种 3600 万细胞自监督训练，ESM2 蛋白嵌入 token 化基因，支持跨物种零样本嵌入。</div></div>
+  <div class="paper"><div class="t">GeneCompass: Deciphering Universal Gene Regulatory Mechanisms with Knowledge-informed Cross-species Foundation Model</div><div class="m"><b>中科院动物所李鑫团队等「指南针联盟」</b> · Cell Research（封面） · 2024-10 · <a class="doi" href="https://doi.org/10.1038/s41422-024-01034-y" target="_blank">10.1038/s41422-024-01034-y</a></div><div class="c">将启动子序列、共表达、调控网络等先验知识注入 1.26 亿人/小鼠细胞语料预训练，「知识增强」路线代表；后孵化百曜科技。</div></div>
+  <div class="paper"><div class="t">A Cross-Species Generative Cell Atlas: The TranscriptFormer Single-cell Model</div><div class="m"><b>Pearce 等；通讯：Quake / Karaletsos（CZI）</b> · bioRxiv · 2025-04 · <a class="doi" href="https://doi.org/10.1101/2025.04.25.650731" target="_blank">10.1101/2025.04.25.650731</a></div><div class="c">跨 12 物种 1.12 亿细胞的自回归生成式模型，零样本分类跨 6.85 亿年进化距离仍稳健，可 prompt 出细胞类型特异性转录因子。</div></div>
+  <div class="paper"><div class="t">GREmLN: A Cellular Graph Structure Aware Transcriptomics Foundation Model</div><div class="m"><b>Mingxuan Zhang 等；通讯：Califano（哥大）/ Karaletsos（CZI）</b> · bioRxiv · 2025-07 · <a class="doi" href="https://doi.org/10.1101/2025.07.03.663009" target="_blank">10.1101/2025.07.03.663009</a></div><div class="c">将基因调控网络图结构经图信号处理注入注意力，仅 1030 万参数即在细胞分类等任务超越大一个数量级的模型——结构先验换取参数效率。</div></div>
+  <div class="paper"><div class="t">Cell2Sentence: Teaching Large Language Models the Language of Biology</div><div class="m"><b>Levine 等；通讯：David van Dijk（耶鲁）</b> · ICML 2024 · PMLR 235（arXiv 号待核实）</div><div class="c">将细胞写成「基因名句子」使现成 LLM 直接对细胞做自然语言推理，打通单细胞数据与通用语言模型的接口。</div></div>
+  <div class="paper"><div class="t">Cell2Sentence-Scale 27B（C2S-Scale）</div><div class="m"><b>Google DeepMind × 耶鲁 van Dijk 实验室</b> · bioRxiv · 2025-04 · <a class="doi" href="https://doi.org/10.1101/2025.04.14.648850" target="_blank">10.1101/2025.04.14.648850</a></div><div class="c">基于 Gemma-2 扩展至 27B，验证生物任务 Scaling Law；模型提出的 CK2 抑制剂新假设经耶鲁湿实验验证（抗原呈递提升约 50%）——AI 假设获实验确证的标志性案例。</div></div>
+  <div class="paper"><div class="t">rbio1 — Training Scientific Reasoning LLMs with Biological World Models as Soft Verifiers</div><div class="m"><b>Ana-Maria Istrate 等；通讯：Karaletsos（CZI）</b> · bioRxiv · 2025-08 · <a class="doi" href="https://doi.org/10.1101/2025.08.18.670981" target="_blank">10.1101/2025.08.18.670981</a></div><div class="c">用虚拟细胞模型 / GO 知识库作「软验证器」GRPO 后训练 Qwen2.5-3B，PerturbQA 领先并可零样本迁移——「用模拟数据训练科学推理模型」新范式。</div></div>
+  <div class="paper"><div class="t">X-Cell: Scaling Causal Perturbation Prediction Across Diverse Cellular Contexts via Diffusion Language Models</div><div class="m"><b>Chloe Wang 等；资深作者 Bo Wang（Xaira）</b> · bioRxiv · 2026-03 · <a class="doi" href="https://doi.org/10.64898/2026.03.18.712807" target="_blank">10.64898/2026.03.18.712807</a></div><div class="c">基于 X-Atlas/Pisces（2560 万扰动细胞）训练 49 亿参数扩散语言模型，Pearson Δ 最高提升约 5 倍，首次展示扰动预测的幂律 scaling。</div></div>
+  <div class="paper"><div class="t">AIDO.RNA: A Large-scale RNA Foundation Model</div><div class="m"><b>Zou, Tao 等（GenBio AI）</b> · bioRxiv · 2024-11 · <a class="doi" href="https://doi.org/10.1101/2024.11.28.625345" target="_blank">10.1101/2024.11.28.625345</a></div><div class="c">16 亿参数 RNA 基础模型，同类规模最大之一，是 AIDO 多尺度模型家族的关键一层。</div></div>
+  <div class="paper"><div class="t">GB.Cell: A Single-cell Foundation Model in the AIDO Family（原 AIDO.Cell-100M）</div><div class="m"><b>Ho 等（GenBio AI）</b> · bioRxiv · 2024-11 · <a class="doi" href="https://doi.org/10.1101/2024.11.28.625303" target="_blank">10.1101/2024.11.28.625303</a></div><div class="c">AIDO 家族的单细胞基座模型（约 5000 万细胞训练），经 CZI 虚拟细胞平台开源分发。</div></div>
+  <div class="paper"><div class="t">AIDO Cell: A Stateful World Model of the Whole Cell</div><div class="m"><b>Xing, Song 等（GenBio AI）</b> · Cell · 2026-08 · <a class="doi" href="https://doi.org/10.1016/j.cell.2026.08.042" target="_blank">10.1016/j.cell.2026.08.042</a></div><div class="c">全球首个通用"全细胞世界模型"正式论文：多尺度有状态仿真，可串行运行干预序列观察累积效应，复现伊马替尼机制级联。</div></div>
+  <div class="paper"><div class="t">LangCell: Language-Cell Pre-training for Cell Identity Understanding</div><div class="m"><b>清华 AIR 聂再清团队</b> · ICML 2024 · <a class="doi" href="https://arxiv.org/abs/2405.06708" target="_blank">arXiv:2405.06708</a></div><div class="c">将单细胞数据与自然语言描述联合预训练，实现文本-细胞跨模态检索与零样本注释，中国团队多模态路线代表。</div></div>
+  <div class="paper"><div class="t">scMulan: A Multitask Generative Pre-trained Language Model for Single-cell Analysis</div><div class="m"><b>清华张学工 / 魏磊团队</b> · RECOMB 2024 · <a class="doi" href="https://doi.org/10.1101/2024.01.25.577152" target="_blank">10.1101/2024.01.25.577152</a></div><div class="c">多任务生成式单细胞语言模型，统一注释、批次校正、供体预测等任务于单一指令框架。</div></div>
+  <div class="paper"><div class="t">CellPLM: Pre-training of Cell Language Model Beyond Single Cells</div><div class="m"><b>Wen, Tang 等</b> · ICLR 2024 · <a class="doi" href="https://doi.org/10.1101/2023.10.03.560734" target="_blank">10.1101/2023.10.03.560734</a></div><div class="c">将细胞间关系纳入预训练目标（"超越单细胞"），在空间转录组与扰动任务上验证有效。</div></div>
+</div>
+
+<div class="pgroup" data-g="g3">
+  <h3 class="g">三、扰动响应预测</h3>
+  <div class="paper"><div class="t">GEARS: Predicting Transcriptional Outcomes of Novel Multigene Perturbations</div><div class="m"><b>Roohani；通讯：Leskovec / Altman（Stanford）</b> · Nature Biotechnology · 2023/24 · <a class="doi" href="https://doi.org/10.1038/s41587-023-01905-6" target="_blank">10.1038/s41587-023-01905-6</a></div><div class="c">在基因知识图谱上做 GNN 推理，可预测从未单独扰动过的基因及其组合的转录组结局，组合扰动外推代表作。</div></div>
+  <div class="paper"><div class="t">Predicting Cellular Responses to Complex Perturbations in High-throughput Screens（CPA）</div><div class="m"><b>Lotfollahi；通讯：Theis（Helmholtz Munich）</b> · Molecular Systems Biology · 2023 · <a class="doi" href="https://doi.org/10.15252/msb.202211517" target="_blank">10.15252/msb.202211517</a></div><div class="c">对抗训练将基底状态、扰动、剂量解耦为可组合潜因子，可预测未见药物组合与剂量-反应曲线。</div></div>
+  <div class="paper"><div class="t">scGen Predicts Single-cell Perturbation Responses（奠基文献）</div><div class="m"><b>Lotfollahi；通讯：Theis</b> · Nature Methods · 2019 · <a class="doi" href="https://doi.org/10.1038/s41592-019-0494-8" target="_blank">10.1038/s41592-019-0494-8</a></div><div class="c">VAE 潜空间「扰动向量算术」，首次系统验证深度学习可跨细胞类型外推扰动响应。</div></div>
+  <div class="paper"><div class="t">Predicting Cellular Responses to Perturbation Across Diverse Contexts with STATE</div><div class="m"><b>Adduri 等；通讯：Roohani / Goodarzi（Arc Institute）</b> · bioRxiv · 2025-06 · <a class="doi" href="https://doi.org/10.1101/2025.06.26.661135" target="_blank">10.1101/2025.06.26.661135</a></div><div class="c">1 亿+扰动细胞训练的状态转移模型 + 1.67 亿观测细胞嵌入模型；扰动效应判别提升 >50%，差异基因识别精度 >2 倍。</div></div>
+</div>
+
+<div class="pgroup" data-g="g4">
+  <h3 class="g">四、批评与基准</h3>
+  <div class="paper"><div class="t">Deep-learning-based Gene Perturbation Effect Prediction Does Not Yet Outperform Simple Linear Baselines</div><div class="m"><b>Ahlmann-Eltze；通讯：Huber / Anders（EMBL / 海德堡大学）</b> · Nature Methods · 2025-08 · <a class="doi" href="https://doi.org/10.1038/s41592-025-02772-6" target="_blank">10.1038/s41592-025-02772-6</a></div><div class="c">系统评测表明现有深度模型（含 GEARS）整体尚不能稳定超越简单线性基线，对「深度模型默认更优」的假设提出最重要质疑。被引 80+。</div></div>
+  <div class="paper"><div class="t">Zero-shot Evaluation Reveals Limitations of Single-cell Foundation Models</div><div class="m"><b>Kedzierska；通讯：Crawford / Amini（Microsoft Research）</b> · Genome Biology · 2025-04 · <a class="doi" href="https://doi.org/10.1186/s13059-025-03574-x" target="_blank">10.1186/s13059-025-03574-x</a></div><div class="c">严格零样本评测：Geneformer 与 scGPT 在聚类与批次校正上不稳定，常不如高变基因选择 + scVI/Harmony。</div></div>
+  <div class="paper"><div class="t">A Deep Dive into Single-cell RNA Sequencing Foundation Models</div><div class="m"><b>Boiarsky 等；通讯：Getz（Broad）/ Sontag（MIT）</b> · bioRxiv · 2023-10 · <a class="doi" href="https://doi.org/10.1101/2023.10.19.563100" target="_blank">10.1101/2023.10.19.563100</a></div><div class="c">25 个数据集多任务深评：模型性能高度依赖任务与预处理，许多改进可归因于简单统计结构而非深层表示。</div></div>
+  <div class="paper"><div class="t">A Systematic Comparison of Single-cell Perturbation Response Prediction Models</div><div class="m"><b>中国团队</b> · Science Advances · 2024/25 · <a class="doi" href="https://doi.org/10.1126/sciadv.aed3414" target="_blank">10.1126/sciadv.aed3414</a></div><div class="c">10 种扰动预测模型统一比较：无单一模型全面占优，泛化与「保守坍缩」是共性难题。</div></div>
+  <div class="paper"><div class="t">Attention Is Not Regulation: A Systematic Analysis of Interpretability in Single-cell Foundation Models</div><div class="m"><b>Kendiukhov</b> · BMC Genomics · 2026 · <a class="doi" href="https://doi.org/10.1186/s12864-026-12965-8" target="_blank">10.1186/s12864-026-12965-8</a></div><div class="c">37 项分析、153 个统计检验：注意力权重在扰动靶点预测上不优于基因水平简单特征，"注意力=调控"的流行解释不成立。</div></div>
+  <div class="paper"><div class="t">Rethinking Perturbation Discrimination Metrics: Lessons from the Virtual Cell Challenge（TransPert 团队复盘）</div><div class="m"><b>Du, Wang 等（芝加哥大学 / 达特茅斯 / 港大）</b> · arXiv · 2025 · arXiv 编号待核实</div><div class="c">VCC 季军团队对 PDS 等指标的技术复盘：纯统计框架何以进入前三，揭示当前评测指标的盲区。</div></div>
+</div>
+
+<div class="pgroup" data-g="g5">
+  <h3 class="g">五、关键数据集论文</h3>
+  <div class="paper"><div class="t">Tahoe-100M: A Giga-Scale Single-Cell Perturbation Atlas for Context-Dependent Gene Function and Cellular Modeling</div><div class="m"><b>Jesse Zhang 等；通讯：Yu / Goodarzi（Tahoe Therapeutics）</b> · bioRxiv · 2025-02 · <a class="doi" href="https://doi.org/10.1101/2025.02.20.639398" target="_blank">10.1101/2025.02.20.639398</a></div><div class="c">1 亿细胞 × 1100 种小分子 × 50 种癌细胞系，当时最大公开单细胞扰动数据集，VCC 2025 核心基准资源。</div></div>
+  <div class="paper"><div class="t">Mapping Information-rich Genotype-Phenotype Landscapes with Genome-scale Perturb-seq</div><div class="m"><b>Replogle 等；通讯：Weissman（MIT / Whitehead / UCSF）</b> · Cell · 2022-07 · <a class="doi" href="https://doi.org/10.1016/j.cell.2022.05.013" target="_blank">10.1016/j.cell.2022.05.013</a></div><div class="c">首个全基因组 CRISPRi Perturb-seq（>250 万细胞），其 K562/RPE1 数据成为扰动预测模型事实标准评测集。</div></div>
+  <div class="paper"><div class="t">scBaseCamp: An AI Agent-curated, Uniformly Processed, and Continually Expanding Single Cell Data Repository</div><div class="m"><b>Youngblut 等；通讯：Goodarzi / Roohani（Arc）</b> · bioRxiv · 2025-02 · <a class="doi" href="https://doi.org/10.1101/2025.02.27.640494" target="_blank">10.1101/2025.02.27.640494</a></div><div class="c">AI agent 自动策展 SRA 公开 10x 数据，形成 2.3 亿细胞、21 物种最大公开单细胞库，消除处理不一致引入的伪差。</div></div>
+</div>
+
+<div class="pgroup" data-g="g6">
+  <h3 class="g">六、经典基线方法（评判大模型的标尺）</h3>
+  <div class="paper"><div class="t">Deep Generative Modeling for Single-cell Transcriptomics（scVI）</div><div class="m"><b>Lopez 等；通讯：Yosef（UC Berkeley / UCSF）</b> · Nature Methods · 2018 · <a class="doi" href="https://doi.org/10.1038/s41592-018-0229-2" target="_blank">10.1038/s41592-018-0229-2</a></div><div class="c">基于 VAE 的单细胞概率建模框架，至今仍是零样本评测中大模型必须击败的经典基线。</div></div>
+  <div class="paper"><div class="t">Fast, Sensitive and Accurate Integration of Single-cell Data with Harmony</div><div class="m"><b>Korsunsky 等；通讯：Raychaudhuri（Broad / Harvard）</b> · Nature Methods · 2019 · <a class="doi" href="https://doi.org/10.1038/s41592-019-0619-0" target="_blank">10.1038/s41592-019-0619-0</a></div><div class="c">高效数据整合方法，多项评测显示其在批次校正上仍优于大模型零样本嵌入。</div></div>
+  <div class="paper"><div class="t">totalVI: Integrated Analysis of Multi-modal Single-cell Data</div><div class="m"><b>Gayoso 等（Yosef 组）</b> · Nature Methods · 2021 · <a class="doi" href="https://doi.org/10.1038/s41592-020-01050-x" target="_blank">10.1038/s41592-020-01050-x</a></div><div class="c">RNA + 蛋白联合建模的概率模型，多组学整合的经典参照系。</div></div>
+  <div class="paper"><div class="t">Mixscape / ECCITE-seq: Multimodal Analysis of CRISPR Screens with Protein and Transcriptome Readout</div><div class="m"><b>Papalexi 等；通讯：Satija（NYGC）</b> · Nature Genetics · 2021 · <a class="doi" href="https://doi.org/10.1038/s41588-021-00778-2" target="_blank">10.1038/s41588-021-00778-2</a></div><div class="c">CRISPR 筛选与单细胞多组学读出的统计分析方法，扰动效应定量的常用基线工具。</div></div>
+</div>
+
+<div class="pgroup" data-g="g7">
+  <h3 class="g">七、空间与多组学延伸</h3>
+  <div class="paper"><div class="t">Nicheformer: A Foundation Model for Single-cell and Spatial Transcriptomics</div><div class="m"><b>Theis 团队（Helmholtz Munich）</b> · Nature Methods · 2025 · <a class="doi" href="https://doi.org/10.1038/s41592-025-02814-z" target="_blank">10.1038/s41592-025-02814-z</a></div><div class="c">将空间上下文纳入基础模型预训练，弥补单细胞快照缺失的组织空间维度，指向"会呼吸的虚拟细胞"的下一步。</div></div>
+</div>
+
+</div></section>
+
+<footer><div class="wrap">
+  <div>AIVC Insight · 文献库共 40 篇，DOI/arXiv 均经核对，待核实项已标注</div>
+  <div>© 2026 AIVC Insight Team</div>
+</div></footer>
+
+<script>
+const q=document.getElementById('q'),btns=document.querySelectorAll('.filters button'),count=document.getElementById('count');
+let g='all';
+function apply(){
+  const kw=q.value.trim().toLowerCase();let n=0;
+  document.querySelectorAll('.pgroup').forEach(gr=>{
+    let vis=0;const ok=(g==='all'||gr.dataset.g===g);
+    gr.querySelectorAll('.paper').forEach(p=>{
+      const hit=ok&&(!kw||p.textContent.toLowerCase().includes(kw));
+      p.classList.toggle('hide',!hit);if(hit){vis++;n++}
+    });
+    gr.classList.toggle('hide',vis===0);
+  });
+  count.textContent='显示 '+n+' / 40 篇';
+}
+q.addEventListener('input',apply);
+btns.forEach(b=>b.addEventListener('click',()=>{btns.forEach(x=>x.classList.remove('on'));b.classList.add('on');g=b.dataset.g;apply();}));
+apply();
+</script>
+
+</body>
+</html>

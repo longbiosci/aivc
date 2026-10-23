@@ -1,0 +1,119 @@
+/* AIVC Insight — 学术期刊式版式 */
+:root{
+  --bg:#fbfaf7;
+  --paper:#ffffff;
+  --ink:#1a2332;
+  --body:#37404f;
+  --sub:#6b7686;
+  --dim:#98a1af;
+  --line:#e4e1da;
+  --accent:#0f5e68;      /* 深青，主强调色 */
+  --accent-soft:#e8f1f1;
+  --amber:#9a6b1f;
+  --red:#a03d3d;
+  --serif:"Source Han Serif SC","Noto Serif SC","Songti SC",Georgia,"Times New Roman",serif;
+  --sans:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--body);font-family:var(--sans);font-size:15.5px;line-height:1.85}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+
+/* ===== 顶部 ===== */
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar .wrap{display:flex;align-items:baseline;justify-content:space-between;padding:18px 28px 14px}
+.brand{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--ink);letter-spacing:.5px}
+.brand em{font-style:normal;color:var(--accent)}
+.brand small{display:block;font-family:var(--sans);font-size:11.5px;color:var(--dim);letter-spacing:2px;margin-top:2px}
+nav.main{border-bottom:2px solid var(--ink);background:var(--paper);position:sticky;top:0;z-index:50}
+nav.main .wrap{display:flex;gap:2px}
+nav.main a{font-size:14px;color:var(--body);padding:10px 18px;border-bottom:2px solid transparent;margin-bottom:-2px}
+nav.main a:hover{color:var(--accent);text-decoration:none}
+nav.main a.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+
+/* ===== 页头 ===== */
+.pagehead{border-bottom:1px solid var(--line);padding:44px 0 30px}
+.pagehead .crumb{font-size:12.5px;color:var(--dim);letter-spacing:1px;margin-bottom:10px}
+.pagehead h1{font-family:var(--serif);font-size:32px;font-weight:700;color:var(--ink);line-height:1.35}
+.pagehead .lede{max-width:720px;color:var(--sub);font-size:15px;margin-top:12px}
+
+/* ===== 正文区块 ===== */
+section{padding:40px 0}
+h2.sec{font-family:var(--serif);font-size:21px;color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:22px}
+h2.sec small{font-family:var(--sans);font-size:12.5px;color:var(--dim);font-weight:400;margin-left:12px}
+h3.g{font-family:var(--serif);font-size:16.5px;color:var(--accent);margin:26px 0 12px}
+
+/* ===== 文献条目 ===== */
+.paper{background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:18px 22px;margin-bottom:14px}
+.paper:hover{border-color:#c8c4ba}
+.paper .t{font-family:var(--serif);font-weight:700;font-size:15.5px;color:var(--ink);line-height:1.55}
+.paper .m{font-size:12.5px;color:var(--dim);margin:5px 0 7px}
+.paper .m b{color:var(--sub);font-weight:600}
+.paper .c{font-size:13.5px;color:var(--body)}
+.paper .c::before{content:"要点：";color:var(--accent);font-weight:600;font-size:12.5px}
+a.doi{font-size:12px;font-family: Georgia,serif}
+
+/* ===== 企业档案 ===== */
+.co{background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:28px 30px;margin-bottom:24px}
+.co .head{border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:16px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.co .head h3{font-family:var(--serif);font-size:20px;color:var(--ink)}
+.co .head .one{color:var(--sub);font-size:13px;margin-top:5px;max-width:640px;font-style:italic}
+.co .money{text-align:right;white-space:nowrap}
+.co .money .v{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--amber)}
+.co .money .k{font-size:11.5px;color:var(--dim)}
+.co dl{display:grid;grid-template-columns:88px 1fr;gap:9px 18px;font-size:14px}
+.co dt{color:var(--accent);font-weight:600}
+.co dd{color:var(--body)}
+.co .verdict{margin-top:16px;background:#faf6ec;border-left:3px solid var(--amber);padding:10px 16px;font-size:13px;color:var(--body)}
+.co .verdict b{color:var(--amber)}
+.src{font-size:11.5px;color:var(--dim);margin-top:10px}
+
+/* ===== 卡片（速递/基准） ===== */
+.grid{display:grid;gap:16px}
+.c3{grid-template-columns:repeat(auto-fill,minmax(310px,1fr))}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:20px 22px}
+.card:hover{border-color:#c8c4ba}
+.badge{display:inline-block;font-size:11px;padding:1px 9px;border-radius:2px;margin-bottom:9px;font-weight:600;letter-spacing:.5px}
+.b-model{background:var(--accent-soft);color:var(--accent)}
+.b-data{background:#eef2f7;color:#33587a}
+.b-fund{background:#f7f0e0;color:var(--amber)}
+.b-paper{background:#f1eef7;color:#5d4e8a}
+.b-crit{background:#f8ecec;color:var(--red)}
+.card h3{font-family:var(--serif);font-size:15px;color:var(--ink);margin-bottom:7px}
+.card p{font-size:13px;color:var(--sub)}
+.card .date{font-size:11.5px;color:var(--dim);margin-top:10px}
+
+/* ===== 深度解读 ===== */
+.article{max-width:760px}
+.article h3{font-family:var(--serif);font-size:17.5px;color:var(--ink);margin:30px 0 8px}
+.article p{font-size:15px;margin-bottom:10px}
+.article blockquote{border-left:3px solid var(--accent);padding:4px 18px;margin:16px 0;color:var(--sub);background:var(--accent-soft);font-size:14px}
+
+/* ===== 首页 ===== */
+.hero{border-bottom:1px solid var(--line);padding:56px 0 44px;background:var(--paper)}
+.hero .kicker{font-size:12.5px;letter-spacing:2.5px;color:var(--accent);font-weight:600;margin-bottom:14px}
+.hero h1{font-family:var(--serif);font-size:34px;font-weight:700;color:var(--ink);line-height:1.4;max-width:760px}
+.hero p{max-width:700px;color:var(--sub);margin-top:16px;font-size:15px}
+.stats{display:flex;flex-wrap:wrap;margin-top:34px;border-top:1px solid var(--line);padding-top:22px}
+.stat{padding:0 34px 0 0;margin-right:34px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:none}
+.stat .n{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--accent)}
+.stat .l{font-size:12px;color:var(--dim)}
+.toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.toc a{display:block;background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:22px 24px;color:var(--body)}
+.toc a:hover{border-color:var(--accent);text-decoration:none}
+.toc .no{font-size:12px;color:var(--dim);letter-spacing:1px}
+.toc h3{font-family:var(--serif);font-size:17px;color:var(--ink);margin:5px 0 7px}
+.toc p{font-size:13px;color:var(--sub)}
+
+footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--dim);font-size:12.5px;background:var(--paper)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media(max-width:720px){
+  nav.main .wrap{overflow-x:auto}
+  nav.main a{padding:10px 12px;font-size:13px;white-space:nowrap}
+  .stat{padding-right:18px;margin-right:18px}
+  .co dl{grid-template-columns:76px 1fr}
+  .pagehead h1{font-size:26px}.hero h1{font-size:26px}
+}

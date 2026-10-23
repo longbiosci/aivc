@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>模型谱系 · AIVC Insight</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.tl{position:relative;margin-top:8px}
+.tl::before{content:"";position:absolute;left:86px;top:0;bottom:0;width:1px;background:var(--line)}
+.tl-item{position:relative;padding:0 0 26px 120px}
+.tl-item .year{position:absolute;left:0;top:2px;width:70px;text-align:right;font-family:var(--serif);font-weight:700;font-size:15px;color:var(--accent)}
+.tl-item::before{content:"";position:absolute;left:82px;top:9px;width:9px;height:9px;border-radius:50%;background:var(--paper);border:2px solid var(--accent)}
+.tl-item .body{background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:14px 18px}
+.tl-item .body h3{font-family:var(--serif);font-size:15.5px;color:var(--ink)}
+.tl-item .body .meta{font-size:12px;color:var(--dim);margin:3px 0 5px}
+.tl-item .body p{font-size:13px;color:var(--sub)}
+.tag2{display:inline-block;font-size:10.5px;padding:1px 8px;border-radius:2px;margin-right:5px;font-weight:600;letter-spacing:.5px}
+.t-acad{background:#eef2f7;color:#33587a}
+.t-czi{background:var(--accent-soft);color:var(--accent)}
+.t-arc{background:#f1eef7;color:#5d4e8a}
+.t-co{background:#f7f0e0;color:var(--amber)}
+.t-cn{background:#f8ecec;color:var(--red)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--sub);margin-bottom:28px}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <div class="brand">AIVC <em>Insight</em><small>AI 虚拟细胞情报站</small></div>
+  <div style="font-size:12px;color:var(--dim)">2026 年 10 月 · 第 1 期</div>
+</div></div>
+<nav class="main"><div class="wrap">
+  <a href="index.html">首页</a>
+  <a href="papers.html">文献库</a>
+  <a href="models.html" class="active">模型谱系</a>
+  <a href="companies.html">企业解剖</a>
+  <a href="china.html">中国生态</a>
+  <a href="news.html">前沿速递</a>
+  <a href="benchmarks.html">数据与基准</a>
+  <a href="insight.html">深度解读</a>
+  <a href="search.html">搜索</a>
+  <a href="about.html">关于</a>
+</div></nav>
+
+<div class="pagehead"><div class="wrap">
+  <div class="crumb">栏目 07 · MODEL TIMELINE</div>
+  <h1>模型谱系</h1>
+  <p class="lede">2022 → 2026 单细胞与虚拟细胞模型演进时间线。训练规模从 3000 万细胞攀升至 3.5 亿图谱时代，架构从 BERT 式掩码走向扩散语言模型与世界模型。论文详情见<a href="papers.html">文献库</a>。</p>
+</div></div>
+
+<section><div class="wrap">
+  <div class="legend">
+    <span><span class="tag2 t-acad">学术机构</span></span>
+    <span><span class="tag2 t-czi">CZI 系</span></span>
+    <span><span class="tag2 t-arc">Arc Institute</span></span>
+    <span><span class="tag2 t-co">企业</span></span>
+    <span><span class="tag2 t-cn">中国团队</span></span>
+  </div>
+
+  <div class="tl">
+    <div class="tl-item"><div class="year">2022</div><div class="body"><h3>scBERT</h3><div class="meta"><span class="tag2 t-cn">中国团队</span>腾讯 AI Lab · Nature Machine Intelligence</div><p>首个 BERT 式单细胞语言模型，开创细胞类型注释的预训练范式。</p></div></div>
+    <div class="tl-item"><div class="year">2023.05</div><div class="body"><h3>Geneformer</h3><div class="meta"><span class="tag2 t-acad">学术机构</span>Broad / MGH · Nature</div><p>约 3000 万细胞预训练，in silico 扰动发现心肌病候选靶点并经湿实验验证——「虚拟实验」概念首次兑现。</p></div></div>
+    <div class="tl-item"><div class="year">2023.11</div><div class="body"><h3>UCE</h3><div class="meta"><span class="tag2 t-acad">学术机构</span>Stanford · bioRxiv</div><p>6.5 亿参数、8 物种，蛋白嵌入 token 化基因，跨物种零样本嵌入。</p></div></div>
+    <div class="tl-item"><div class="year">2024.02</div><div class="body"><h3>scGPT</h3><div class="meta"><span class="tag2 t-acad">学术机构</span>多伦多大学 Bo Wang 团队 · Nature Methods</div><p>3300 万细胞 GPT 式生成预训练，单细胞多组学基础模型代表作；作者后被 Xaira 招致麾下。</p></div></div>
+    <div class="tl-item"><div class="year">2024.06</div><div class="body"><h3>scFoundation</h3><div class="meta"><span class="tag2 t-cn">中国团队</span>清华 × 百图生科 · Nature Methods</div><p>1 亿参数、5000 万细胞、测序深度感知；其骨干改造后赢得 VCC 2025 冠军。</p></div></div>
+    <div class="tl-item"><div class="year">2024.10</div><div class="body"><h3>GeneCompass</h3><div class="meta"><span class="tag2 t-cn">中国团队</span>中科院「指南针联盟」 · Cell Research 封面</div><p>1.26 亿跨物种细胞，知识增强路线；后孵化百曜科技。</p></div></div>
+    <div class="tl-item"><div class="year">2024.11</div><div class="body"><h3>AIDO 家族开源</h3><div class="meta"><span class="tag2 t-co">企业</span>GenBio AI</div><p>AIDO.DNA（70 亿参数/796 物种）、AIDO.RNA（16 亿）、GB.Cell——多尺度「数字有机体」拼图的第一批模块。</p></div></div>
+    <div class="tl-item"><div class="year">2024.12</div><div class="body"><h3>Cell 纲领文发布</h3><div class="meta"><span class="tag2 t-acad">里程碑</span>Bunne / Regev / Quake / Leskovec 等 40+ 作者</div><p>《How to Build the Virtual Cell with AI》确立 AIVC 框架，领域自此有了共同纲领。</p></div></div>
+    <div class="tl-item"><div class="year">2025.04</div><div class="body"><h3>TranscriptFormer / C2S-Scale 27B</h3><div class="meta"><span class="tag2 t-czi">CZI 系</span> + Google × 耶鲁</div><p>CZI 跨 12 物种 1.12 亿细胞生成式模型；Google 把 Cell2Sentence 扩到 270 亿参数，AI 假设首获湿实验确证。</p></div></div>
+    <div class="tl-item"><div class="year">2025.06</div><div class="body"><h3>STATE</h3><div class="meta"><span class="tag2 t-arc">Arc</span>Arc Institute · bioRxiv</div><p>1 亿+扰动细胞训练，扰动判别提升 >50%；同月 Arc 发起 Virtual Cell Challenge。</p></div></div>
+    <div class="tl-item"><div class="year">2025.08</div><div class="body"><h3>GREmLN / rbio1</h3><div class="meta"><span class="tag2 t-czi">CZI 系</span>CZI · bioRxiv</div><p>图调控网络注入注意力（仅 1030 万参数以小博大）+ 软验证训练的科学推理 LLM——架构创新替代堆参数的拐点。</p></div></div>
+    <div class="tl-item"><div class="year">2025.12</div><div class="body"><h3>VCC 2025 揭晓</h3><div class="meta"><span class="tag2 t-arc">Arc</span>冠军：百图生科 xTrimoSCPerturb</div><p>114 国 1200+ 团队；官方坦言无模型全面超越简单基线——领域进入证据驱动阶段。</p></div></div>
+    <div class="tl-item"><div class="year">2026.03</div><div class="body"><h3>X-Cell</h3><div class="meta"><span class="tag2 t-co">企业</span>Xaira · bioRxiv</div><p>49 亿参数扩散语言模型，2560 万扰动细胞训练，Pearson Δ 最高提升 5 倍，首报幂律 scaling。</p></div></div>
+    <div class="tl-item"><div class="year">2026.08</div><div class="body"><h3>AIDO Cell 世界模型</h3><div class="meta"><span class="tag2 t-co">企业</span>GenBio AI · Cell</div><p>全球首个全细胞世界模型：多尺度、有状态，可串行运行干预序列观察累积效应。</p></div></div>
+    <div class="tl-item"><div class="year">→</div><div class="body"><h3>下一站：75% 阈值</h3><div class="meta"><span class="tag2 t-arc">观察</span></div><p>Arc CTO 的标尺：扰动预测准确率达约 75%，生物学家才能免于湿实验验证。当前最优约 40–60%。谁先跨过，谁定义下一个十年。</p></div></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div>AIVC Insight · 谱系节点均可回溯至文献库对应论文</div>
+  <div>© 2026 AIVC Insight Team</div>
+</div></footer>
+
+</body>
+</html>
