@@ -75,6 +75,8 @@ a.doi{font-size:12px;font-family: Georgia,serif}
 .grid{display:grid;gap:16px}
 .c3{grid-template-columns:repeat(auto-fill,minmax(310px,1fr))}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:20px 22px}
+a.card{text-decoration:none}
+a.card:hover h3{color:var(--accent)}
 .card:hover{border-color:#c8c4ba}
 .badge{display:inline-block;font-size:11px;padding:1px 9px;border-radius:2px;margin-bottom:9px;font-weight:600;letter-spacing:.5px}
 .b-model{background:var(--accent-soft);color:var(--accent)}
@@ -108,6 +110,16 @@ a.doi{font-size:12px;font-family: Georgia,serif}
 .toc .no{font-size:12px;color:var(--dim);letter-spacing:1px}
 .toc h3{font-family:var(--serif);font-size:17px;color:var(--ink);margin:5px 0 7px}
 .toc p{font-size:13px;color:var(--sub)}
+/* 头条列表 */
+.hl{list-style:none;margin:0;padding:0}
+.hl li{display:flex;align-items:baseline;gap:14px;padding:13px 2px;border-bottom:1px solid var(--line)}
+.hl li:last-child{border-bottom:none}
+.hl .d{font-size:12px;color:var(--dim);white-space:nowrap;min-width:76px}
+.hl a{font-family:var(--serif);font-size:16.5px;color:var(--ink);line-height:1.5}
+.hl a:hover{color:var(--accent)}
+.hl .badge{margin-bottom:0;flex-shrink:0}
+.hero.slim{padding:34px 0 30px}
+.hero.slim h1{font-size:26px;max-width:820px}
 
 footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--dim);font-size:12.5px;background:var(--paper)}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
@@ -241,4 +253,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
   /* 页脚 */
   footer{padding:24px 0 32px}
   footer .wrap{flex-direction:column;gap:6px}
+
+  /* 首页头条 */
+  .hero.slim{padding:24px 0 22px}
+  .hero.slim h1{font-size:19px;line-height:1.5}
+  .hl a{font-size:15.5px}
+  .hl li{gap:10px;padding:11px 2px}
 }
