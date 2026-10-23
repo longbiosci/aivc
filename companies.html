@@ -23,7 +23,8 @@
   <div style="font-size:12px;color:var(--dim)">2026 年 10 月 · 第 1 期</div>
 </div></div>
 <nav class="main"><div class="wrap">
-  <a href="/index">首页</a>
+  <button class="navtoggle" id="navt" aria-expanded="false" aria-controls="navl">栏目导航</button>
+  <div class="navlinks" id="navl">  <a href="/index">首页</a>
   <a href="/papers">文献库</a>
   <a href="/models">模型谱系</a>
   <a href="/companies" class="active">企业解剖</a>
@@ -32,8 +33,13 @@
   <a href="/benchmarks">数据与基准</a>
   <a href="/insight">深度解读</a>
   <a href="/search">搜索</a>
-  <a href="/about">关于</a>
+  <a href="/about">关于</a></div>
 </div></nav>
+<script>
+(function(){var b=document.getElementById('navt'),n=document.getElementById('navl');
+if(b&&n){b.addEventListener('click',function(){n.classList.toggle('open');b.setAttribute('aria-expanded',n.classList.contains('open')?'true':'false')});
+n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.remove('open')}});}})();
+</script>
 
 <div class="pagehead"><div class="wrap">
   <div class="crumb">栏目 02 · COMPANY PROFILES</div>

@@ -15,17 +15,7 @@
 <meta property="og:url" content="https://aivc.news/search">
 <link rel="canonical" href="https://aivc.news/search">
 
-<style>
-.sbox{display:flex;gap:10px;margin-bottom:26px}
-.sbox input{flex:1;padding:11px 16px;border:1px solid var(--line);border-radius:3px;font-size:15px;background:var(--paper);color:var(--ink);outline:none}
-.sbox input:focus{border-color:var(--accent)}
-.hit{background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:14px 20px;margin-bottom:10px}
-.hit:hover{border-color:#c8c4ba}
-.hit a{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--ink)}
-.hit .s{font-size:11px;color:var(--accent);letter-spacing:1px;margin-bottom:2px}
-.hit p{font-size:13px;color:var(--sub);margin-top:4px}
-.hit.hide{display:none}
-</style>
+<!-- 样式已并入 assets/style.css -->
 </head>
 <body>
 
@@ -34,7 +24,8 @@
   <div style="font-size:12px;color:var(--dim)">2026 年 10 月 · 第 1 期</div>
 </div></div>
 <nav class="main"><div class="wrap">
-  <a href="/index">首页</a>
+  <button class="navtoggle" id="navt" aria-expanded="false" aria-controls="navl">栏目导航</button>
+  <div class="navlinks" id="navl">  <a href="/index">首页</a>
   <a href="/papers">文献库</a>
   <a href="/models">模型谱系</a>
   <a href="/companies">企业解剖</a>
@@ -43,8 +34,13 @@
   <a href="/benchmarks">数据与基准</a>
   <a href="/insight">深度解读</a>
   <a href="/search" class="active">搜索</a>
-  <a href="/about">关于</a>
+  <a href="/about">关于</a></div>
 </div></nav>
+<script>
+(function(){var b=document.getElementById('navt'),n=document.getElementById('navl');
+if(b&&n){b.addEventListener('click',function(){n.classList.toggle('open');b.setAttribute('aria-expanded',n.classList.contains('open')?'true':'false')});
+n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.remove('open')}});}})();
+</script>
 
 <div class="pagehead"><div class="wrap">
   <div class="crumb">SEARCH</div>
