@@ -125,6 +125,9 @@ a.card:hover h3{color:var(--accent)}
 
 footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--dim);font-size:12.5px;background:var(--paper)}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.fnav{display:flex;flex-wrap:wrap;gap:6px 22px;width:100%;padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid var(--line)}
+.fnav a{font-size:13.5px;color:var(--body)}
+.fnav a:hover{color:var(--accent);text-decoration:none}
 /* ===== 移动端适配 ===== */
 .navtoggle{display:none}
 
@@ -186,12 +189,14 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 
   /* 汉堡导航 */
   nav.main .wrap{flex-wrap:wrap;align-items:center}
-  .navtoggle{display:block;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid var(--line);padding:12px 0;font-family:var(--sans);font-size:15px;color:var(--ink);cursor:pointer}
+  .navtoggle{display:inline-block;background:none;border:1px solid var(--line);border-radius:3px;padding:8px 12px;margin:6px 0 10px;font-family:var(--sans);font-size:13px;color:var(--sub);cursor:pointer}
   .navtoggle::after{content:" ▾";color:var(--dim)}
-  .navlinks{display:none;flex-direction:column;width:100%;padding-bottom:6px}
-  .navlinks.open{display:flex}
-  nav.main a{padding:11px 4px;border-bottom:1px solid var(--line);margin-bottom:0;font-size:15px}
-  nav.main a.active{border-bottom-color:var(--line);border-left:3px solid var(--accent);padding-left:12px}
+  .navlinks{display:flex;flex-wrap:wrap;width:100%}
+  .navlinks a{padding:9px 13px 9px 0;border-bottom:none;margin-bottom:0;font-size:14.5px}
+  .navlinks a.active{color:var(--accent);font-weight:600}
+  .navlinks a.x{display:none}
+  .navlinks.open a.x{display:block}
+  .navlinks.open{padding-bottom:6px}
 
   /* 标题与正文 */
   .hero{padding:34px 0 28px}

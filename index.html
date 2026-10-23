@@ -22,17 +22,17 @@
   <div class="brand"><img src="assets/logo.svg" alt="AIVC Insight"><div class="bt">AIVC <em>Insight</em><small>AI 虚拟细胞情报站</small></div></div>
   </div></div>
 <nav class="main"><div class="wrap">
-  <button class="navtoggle" id="navt" aria-expanded="false" aria-controls="navl">栏目导航</button>
+  <button class="navtoggle" id="navt" aria-expanded="false" aria-controls="navl">更多栏目</button>
   <div class="navlinks" id="navl">  <a href="/index" class="active">首页</a>
   <a href="/papers">文献库</a>
   <a href="/models">模型谱系</a>
   <a href="/companies">企业解剖</a>
-  <a href="/china">中国生态</a>
+  <a href="/china" class="x">中国生态</a>
   <a href="/news">前沿速递</a>
-  <a href="/benchmarks">数据与基准</a>
-  <a href="/insight">深度解读</a>
+  <a href="/benchmarks" class="x">数据与基准</a>
+  <a href="/insight" class="x">深度解读</a>
   <a href="/search">搜索</a>
-  <a href="/about">关于</a></div>
+  <a href="/about" class="x">关于</a></div>
 </div></nav>
 <script>
 (function(){var b=document.getElementById('navt'),n=document.getElementById('navl');
@@ -50,8 +50,8 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
     <li><span class="d">10-23</span><span class="badge b-model">模型</span><a href="/news">Xaira 发布 X-Automate 实验室机器人，"AI 科学家 + 自动化湿实验"闭环成型</a></li>
     <li><span class="d">10 月</span><span class="badge b-fund">融资</span><a href="/companies">insitro × 阿斯利康约 15 亿美元合作：20+ PB 自有湿实验数据的真实护城河</a></li>
     <li><span class="d">08 月</span><span class="badge b-model">模型</span><a href="/news">GenBio 发布 AIDO.Cell 世界模型：多尺度有状态仿真，可串联干预观察累积效应</a></li>
-    <li><span class="d">01 月</span><span class="badge b-data">数据</span><a href="/benchmarks">Tahoe × Arc × Biohub 联合造数：1.2 亿+ 单细胞数据点计划开放</a></li>
-    <li><span class="d">2025-12</span><span class="badge b-paper">赛事</span><a href="/benchmarks">VCC 2025 揭晓：百图生科夺冠，官方坦言无模型全面超越简单基线</a></li>
+    <li><span class="d">01 月</span><span class="badge b-data">数据</span><a href="/benchmarks" class="x">Tahoe × Arc × Biohub 联合造数：1.2 亿+ 单细胞数据点计划开放</a></li>
+    <li><span class="d">2025-12</span><span class="badge b-paper">赛事</span><a href="/benchmarks" class="x">VCC 2025 揭晓：百图生科夺冠，官方坦言无模型全面超越简单基线</a></li>
     <li><span class="d">2025-08</span><span class="badge b-crit">争议</span><a href="/papers">Nature Methods 系统评测：深度学习扰动预测尚不优于简单线性基线</a></li>
   </ul>
 </div></section>
@@ -66,6 +66,7 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 </div></section>
 
 <footer><div class="wrap">
+  <div class="fnav"><a href="/index">首页</a><a href="/papers">文献库</a><a href="/models">模型谱系</a><a href="/companies">企业解剖</a><a href="/china">中国生态</a><a href="/news">前沿速递</a><a href="/benchmarks">数据与基准</a><a href="/insight">深度解读</a><a href="/search">搜索</a><a href="/about">关于</a></div>
   <div>AIVC Insight · 文献信息均附 DOI 可追溯，企业情报来自官网与公开报道（待核实项已标注）</div>
   <div>aivc.news · <a href="assets/feed.xml">RSS 订阅</a> · © 2026 AIVC Insight Team</div>
 </div></footer>
