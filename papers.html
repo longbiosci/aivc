@@ -45,7 +45,7 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 <div class="pagehead"><div class="wrap">
   <div class="crumb">栏目 01 · LIBRARY</div>
   <h1>文献库</h1>
-  <p class="lede">以科学文献为第一情报源。40 篇文献的 DOI / arXiv 号均经检索核对，点击标识可直达原文。未经同行评议的预印本与待核实项已如实标注。支持关键词检索与分组筛选。</p>
+  <p class="lede">以科学文献为第一情报源。每篇文献的 DOI / arXiv 号均经检索核对，点击标识可直达原文。未经同行评议的预印本与待核实项已如实标注。支持关键词检索与分组筛选。</p>
 </div></div>
 
 <section><div class="wrap">
@@ -62,7 +62,6 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
     <button data-g="g6">经典基线</button>
     <button data-g="g7">空间与多组学</button>
   </div>
-  <span class="count" id="count"></span>
 </div>
 
 <div class="pgroup" data-g="g1">
@@ -136,25 +135,23 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 </div></section>
 
 <footer><div class="wrap">
-  <div>AIVC Insight · 文献库共 40 篇，DOI/arXiv 均经核对，待核实项已标注</div>
+  <div>AIVC Insight · DOI/arXiv 均经核对，待核实项已标注</div>
   <div>aivc.news · <a href="assets/feed.xml">RSS 订阅</a> · © 2026 AIVC Insight Team</div>
 </div></footer>
 
 <script>
-const q=document.getElementById('q'),btns=document.querySelectorAll('.filters button'),count=document.getElementById('count');
+const q=document.getElementById('q'),btns=document.querySelectorAll('.filters button');
 let g='all';
 function apply(){
-  const kw=q.value.trim().toLowerCase();let n=0;
+  const kw=q.value.trim().toLowerCase();
   document.querySelectorAll('.pgroup').forEach(gr=>{
     let vis=0;const ok=(g==='all'||gr.dataset.g===g);
     gr.querySelectorAll('.paper').forEach(p=>{
       const hit=ok&&(!kw||p.textContent.toLowerCase().includes(kw));
-      p.classList.toggle('hide',!hit);if(hit){vis++;n++}
+      p.classList.toggle('hide',!hit);if(hit){vis++}
     });
     gr.classList.toggle('hide',vis===0);
   });
-  var total=document.querySelectorAll('.paper').length;
-  count.textContent='显示 '+n+' / '+total+' 篇';
 }
 q.addEventListener('input',apply);
 btns.forEach(b=>b.addEventListener('click',()=>{btns.forEach(x=>x.classList.remove('on'));b.classList.add('on');g=b.dataset.g;apply();}));
