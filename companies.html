@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="AIVC Insight">
 <meta property="og:title" content="企业解剖 · AIVC Insight">
 <meta property="og:description" content="AI 虚拟细胞领域情报：可溯源的文献库、企业解剖、数据与基准分析。">
-<meta property="og:url" content="https://aivc.news/companies">
-<link rel="canonical" href="https://aivc.news/companies">
+<meta property="og:url" content="https://aivc.news/companies.html">
+<link rel="canonical" href="https://aivc.news/companies.html">
 
 </head>
 <body>
@@ -23,16 +23,16 @@
   </div></div>
 <nav class="main"><div class="wrap">
   <button class="navtoggle" id="navt" aria-expanded="false" aria-controls="navl">更多栏目</button>
-  <div class="navlinks" id="navl">  <a href="/index">首页</a>
-  <a href="/papers">文献库</a>
-  <a href="/models">模型谱系</a>
-  <a href="/companies" class="active">企业解剖</a>
-  <a href="/china" class="x">中国生态</a>
-  <a href="/news">前沿速递</a>
-  <a href="/benchmarks" class="x">数据与基准</a>
-  <a href="/insight" class="x">深度解读</a>
-  <a href="/search">搜索</a>
-  <a href="/about" class="x">关于</a></div>
+  <div class="navlinks" id="navl">  <a href="index.html">首页</a>
+  <a href="papers.html">文献库</a>
+  <a href="models.html">模型谱系</a>
+  <a href="companies.html" class="active">企业解剖</a>
+  <a href="china.html" class="x">中国生态</a>
+  <a href="news.html">前沿速递</a>
+  <a href="benchmarks.html" class="x">数据与基准</a>
+  <a href="insight.html" class="x">深度解读</a>
+  <a href="search.html">搜索</a>
+  <a href="about.html" class="x">关于</a></div>
 </div></nav>
 <script>
 (function(){var b=document.getElementById('navt'),n=document.getElementById('navl');
@@ -40,7 +40,7 @@ if(b&&n){b.addEventListener('click',function(){n.classList.toggle('open');b.setA
 n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.remove('open')}});}})();
 </script>
 
-<div class="pagehead"><div class="wrap">
+<div class="pagehead" id="top"><div class="wrap">
   <div class="crumb">栏目 02 · COMPANY PROFILES</div>
   <h1>企业解剖室</h1>
   <p class="lede">解剖基于企业官网（Platform / Pipeline / News / Careers）与公开信源，覆盖使命、平台、管线、团队、融资与招聘信号七个维度，重点追踪新融资玩家。</p>
@@ -48,24 +48,32 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 
 <section><div class="wrap">
 
-  <div class="co">
+  <div class="gtoc"><span class="lb">企业跳转</span>
+  <a href="#xaira">Xaira Therapeutics</a>
+  <a href="#insitro">insitro</a>
+  <a href="#genbio">GenBio AI</a>
+  <a href="#tahoe">Tahoe Therapeutics</a>
+  <a href="#nomic">Nomic Bio</a>
+  <a href="#biomap">百图生科 BioMap</a>
+  <a href="#baiyao">百曜科技</a>
+</div>
+<div class="co" id="xaira">
     <div class="head">
       <div><h3>Xaira Therapeutics</h3><div class="one">"从根本上端到端变革药物发现与开发——解码疾病、设计疗法、交付治愈。"</div></div>
       <div class="money"><div class="v">$10亿+</div><div class="k">种子轮 · 估值约 $27亿</div></div>
     </div>
     <dl>
-      <dt>核心平台</dt><dd>三层架构：X-Cell（虚拟细胞找靶点，49 亿参数扩散语言模型）、X-Design（分子设计，2026-10 公布抗体平台）、X-Patient（患者分层）；加速器层 X-Scientist（递归自我改进的 Agentic AI 科学家，2026-10-21 公布）+ X-Automate（实验室自动化系统，2026-10-23 发布，含六自由度机械臂 X-Bot 与移动机器人 Wall-E）。主张直接测量扰动响应、学习因果机制而非统计相关。</dd>
+      <dt>核心平台</dt><dd>三层架构：X-Cell（虚拟细胞找靶点，49 亿参数扩散语言模型）、X-Design（分子设计，2026-10 公布抗体平台）、X-Patient（患者分层）；加速器层 X-Scientist（递归自我改进的 Agentic AI 科学家）+ X-Automate（实验室机器人，2026-10-23 发布）。主张直接测量扰动响应、学习因果机制而非统计相关。</dd>
       <dt>关键人物</dt><dd>CEO Marc Tessier-Lavigne（前斯坦福校长、前 Genentech 首席科学官）；联创 David Baker（2024 诺贝尔化学奖）；董事会含诺奖得主 Bertozzi、前强生 CEO Gorsky、前 FDA 局长 Gottlieb；scGPT 作者 Bo Wang 任 SVP。</dd>
       <dt>融资</dt><dd>2024-04 种子轮超 10 亿美元（当年医疗最大单笔），ARCH 与 Foresite 领投，红杉、NEA、F-Prime、Lux、Lightspeed 等跟投。</dd>
-      <dt>管线动态</dt><dd>2026-10 首次披露抗体平台与管线"初尝"，为公开的前两个候选：<b>XA-1</b>（肿瘤，靶点未披露，公司称 X-Design Vega 模型产出设计序列后仅用 7 周实验工作即到达临床前先导分子）、<b>XA-4</b>（难成药 GPCR 靶点，公司称常规文库筛选与免疫均未能得到功能性结合物）。两者均为临床前。策略以自研管线为主，药企合作尚未公开。</dd>
-      <dt>最新动态</dt><dd><b>2026-10-21</b> 公布 X-Scientist：以视觉语言模型解读实验场景、选择操作并编排工作流的"AI 联合科学家"，公司称下一阶段是把科学推理与自动化实验接通。<b>2026-10-23</b> 公布 X-Automate 首个现场部署：由低成本成品机械臂 + 开源工具自制（自制金属夹爪指 + 3D 打印件），连续 7 天为一台 Agilent HPLC 上样，分析 18 块 96 孔板，仪器占用率 <b>97.2%</b>（对照组为公司建模的 9 到 5 人工排程 <b>53.6%</b>）；单板全程 552 分钟，其中 537 分钟在 HPLC、15 分钟为处理转运上样。<b>下一步目标</b>为板式流式细胞术、nanoDSF 稳定性检测与 ELISA 结合 assay；<b>远景</b>为约 100 台仪器级机械臂 + 移动机器人 + 自研移动平台 Eve 组成的"自动驾驶实验室"，公司自认目前仍是愿景而非已部署系统。</dd>
-      <dt>招聘信号</dt><dd>大规模招聘自动化 / 机器人工程师、Agentic AI 工程师、单细胞基因组学与抗体工程科学家——"AI 科学家 + 自动化湿实验"闭环。新增岗位 2026-10-21「Lab Automation - Robotics Systems &amp; Simulation Engineer」：南旧金山现场全职，年薪 15 万–18.5 万美元，明确要求 Real2Sim / Sim2Real、Isaac Sim / MuJoCo / Gazebo、ROS2 与 6 轴机械臂经验，并支持 H-1B —— 押注明明转向「先在仿真里把机器人训好，再接到真实仪器」。</dd>
+      <dt>管线动态</dt><dd>2026-10 首次披露抗体平台与管线"初尝"；策略以自研管线为主，药企合作尚未公开。</dd>
+      <dt>招聘信号</dt><dd>大规模招聘自动化 / 机器人工程师、Agentic AI 工程师、单细胞基因组学与抗体工程科学家——"AI 科学家 + 自动化湿实验"闭环。</dd>
     </dl>
-    <div class="verdict"><b>情报点评：</b>护城河 = 诺奖级团队 + 资本壕沟 + 自有因果扰动数据飞轮（不可爬取，只能自己造）。X-Automate 是本刊迄今见到的、把「AI 科学家 + 自动化湿实验」真正落地而非停留在概念视频的最具体一步；它的聪明之处恰恰在于不换仪器、只消灭人工等待——把仪器占用率从 53.6% 抬到 97.2% 不需要科学突破，只需要工程。<b>风险要看清三层</b>：一，本次全部数据为公司自述，无预印本、无代码、无第三方审计，97.2% 对应的是一台仪器、一种 assay、18 块板，且 4 次上游储板中断仍需人工恢复；二，「比 9 到 5 排程多 80%」比较的是建模排程而非实测人效，增量可能被高估；三，成立两年多才首露管线，XA-1 / XA-4 均为临床前，10 亿美元尚未换来临床资产，若 2027 年前无 IND，下轮融资定价压力巨大，"端到端全栈"战线过长。</div>
-    <div class="src">来源：xaira.com 官网及 /news（X-Scientist 2026-10-21、X-Automate 2026-10-23）、TSN Media（2026-10-24 独立报道）、Scoutify 招聘信息（2026-10-21）、Insight Brit、Fierce Biotech</div>
+    <div class="verdict"><b>情报点评：</b>护城河 = 诺奖级团队 + 资本壕沟 + 自有因果扰动数据飞轮（不可爬取，只能自己造）。风险：成立两年多首露管线，10 亿美元尚未换来临床资产；若 2027 年前无 IND，下轮融资定价压力巨大；"端到端全栈"战线过长。</div>
+    <div class="src">来源：xaira.com 官网及 /news、Fierce Biotech、猎云网</div>
   </div>
 
-  <div class="co">
+  <div class="co" id="insitro">
     <div class="head">
       <div><h3>insitro</h3><div class="one">"Causal AI for Human Health——20+ PB 自动化细胞实验数据 + 人群规模遗传学，揭示疾病的真正因果驱动因素。"</div></div>
       <div class="money"><div class="v">$15亿</div><div class="k">2026-10 阿斯利康合作总额 · 累计融资 $6.4亿+</div></div>
@@ -81,7 +89,7 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
     <div class="src">来源：insitro.com 官网（首页 / platform / pipeline / join-us / news）、Quartz</div>
   </div>
 
-  <div class="co">
+  <div class="co" id="genbio">
     <div class="head">
       <div><h3>GenBio AI</h3><div class="one">"构建人类生物学的世界模型，打造全球首个 AI 驱动的数字有机体（AIDO）。"</div></div>
       <div class="money"><div class="v">~$7300万</div><div class="k">第三方口径（官方未披露）</div></div>
@@ -96,7 +104,7 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
     <div class="src">来源：genbio.ai 官网及 /careers、BusinessWire 2026-08-18</div>
   </div>
 
-  <div class="co">
+  <div class="co" id="tahoe">
     <div class="head">
       <div><h3>Tahoe Therapeutics</h3><div class="one">以大规模单细胞药物扰动数据为"燃料"训练虚拟细胞模型，聚焦肿瘤药物发现。</div></div>
       <div class="money"><div class="v">$4200万</div><div class="k">累计融资 · A 轮后估值约 $1.2亿</div></div>
@@ -111,7 +119,7 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
     <div class="src">来源：tahoelabs.ai 官网、Contrary Research、BioPharmaTrend、Forbes</div>
   </div>
 
-  <div class="co">
+  <div class="co" id="nomic">
     <div class="head">
       <div><h3>Nomic Bio</h3><div class="one">"The Protein Profiling Company"——AI 生物模型时代的蛋白 / 分泌组数据层。</div></div>
       <div class="money"><div class="v">$5900万</div><div class="k">累计融资 · B 轮 $4200万（2024-09）</div></div>
@@ -126,7 +134,7 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
     <div class="src">来源：nomic.bio 官网、Business Wire、Seedtable</div>
   </div>
 
-  <div class="co">
+  <div class="co" id="biomap">
     <div class="head">
       <div><h3>百图生科 BioMap</h3><div class="one">李彦宏与刘维创立的生命科学基础大模型公司，正冲刺港股 IPO。</div></div>
       <div class="money"><div class="v">$2亿+</div><div class="k">累计融资 · 已秘密递表港交所</div></div>
@@ -141,7 +149,7 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
     <div class="src">来源：biomap.com 官网、智慧芽、网易科技（IPO 为报道口径，待招股书核实）</div>
   </div>
 
-  <div class="co">
+  <div class="co" id="baiyao">
     <div class="head">
       <div><h3>百曜科技</h3><div class="one">中科院系原生 AIVC 平台：知识增强细胞大模型 + CellOS，干湿融合药物发现。</div></div>
       <div class="money"><div class="v">亿元级¥</div><div class="k">一年内三轮（天使 / Pre-A / 战略轮，均数千万元）</div></div>
@@ -159,10 +167,18 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 </div></section>
 
 <footer><div class="wrap">
-  <div class="fnav"><a href="/index">首页</a><a href="/papers">文献库</a><a href="/models">模型谱系</a><a href="/companies">企业解剖</a><a href="/china">中国生态</a><a href="/news">前沿速递</a><a href="/benchmarks">数据与基准</a><a href="/insight">深度解读</a><a href="/search">搜索</a><a href="/about">关于</a></div>
+  <div class="fnav"><a href="index.html">首页</a><a href="papers.html">文献库</a><a href="models.html">模型谱系</a><a href="companies.html">企业解剖</a><a href="china.html">中国生态</a><a href="news.html">前沿速递</a><a href="benchmarks.html">数据与基准</a><a href="insight.html">深度解读</a><a href="search.html">搜索</a><a href="about.html">关于</a></div>
   <div>AIVC Insight · 企业解剖基于官网与公开信源，待核实项已标注</div>
   <div>aivc.news · <a href="assets/feed.xml">RSS 订阅</a> · © 2026 AIVC Insight Team</div>
 </div></footer>
 
+<a class="totop" id="totop" href="#top">↑ 回到顶部</a>
+<script>
+(function(){var t=document.getElementById('totop');
+if(!t)return;
+var on=function(){t.classList.toggle('show',window.scrollY>700);};
+window.addEventListener('scroll',on,{passive:true});on();
+t.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});})();
+</script>
 </body>
 </html>

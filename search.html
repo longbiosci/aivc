@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="AIVC Insight">
 <meta property="og:title" content="全站搜索 · AIVC Insight">
 <meta property="og:description" content="AI 虚拟细胞领域情报：可溯源的文献库、企业解剖、数据与基准分析。">
-<meta property="og:url" content="https://aivc.news/search">
-<link rel="canonical" href="https://aivc.news/search">
+<meta property="og:url" content="https://aivc.news/search.html">
+<link rel="canonical" href="https://aivc.news/search.html">
 
 <!-- 样式已并入 assets/style.css -->
 </head>
@@ -24,16 +24,16 @@
   </div></div>
 <nav class="main"><div class="wrap">
   <button class="navtoggle" id="navt" aria-expanded="false" aria-controls="navl">更多栏目</button>
-  <div class="navlinks" id="navl">  <a href="/index">首页</a>
-  <a href="/papers">文献库</a>
-  <a href="/models">模型谱系</a>
-  <a href="/companies">企业解剖</a>
-  <a href="/china" class="x">中国生态</a>
-  <a href="/news">前沿速递</a>
-  <a href="/benchmarks" class="x">数据与基准</a>
-  <a href="/insight" class="x">深度解读</a>
-  <a href="/search" class="active">搜索</a>
-  <a href="/about" class="x">关于</a></div>
+  <div class="navlinks" id="navl">  <a href="index.html">首页</a>
+  <a href="papers.html">文献库</a>
+  <a href="models.html">模型谱系</a>
+  <a href="companies.html">企业解剖</a>
+  <a href="china.html" class="x">中国生态</a>
+  <a href="news.html">前沿速递</a>
+  <a href="benchmarks.html" class="x">数据与基准</a>
+  <a href="insight.html" class="x">深度解读</a>
+  <a href="search.html" class="active">搜索</a>
+  <a href="about.html" class="x">关于</a></div>
 </div></nav>
 <script>
 (function(){var b=document.getElementById('navt'),n=document.getElementById('navl');
@@ -50,11 +50,11 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 <section><div class="wrap">
   <div class="sbox"><input id="q" type="search" placeholder="输入关键词检索全站内容…" autofocus></div>
   <div id="results"></div>
-  <div id="hint" style="font-size:13px;color:var(--dim)"></div>
+  <div id="hint"></div>
 </div></section>
 
 <footer><div class="wrap">
-  <div class="fnav"><a href="/index">首页</a><a href="/papers">文献库</a><a href="/models">模型谱系</a><a href="/companies">企业解剖</a><a href="/china">中国生态</a><a href="/news">前沿速递</a><a href="/benchmarks">数据与基准</a><a href="/insight">深度解读</a><a href="/search">搜索</a><a href="/about">关于</a></div>
+  <div class="fnav"><a href="index.html">首页</a><a href="papers.html">文献库</a><a href="models.html">模型谱系</a><a href="companies.html">企业解剖</a><a href="china.html">中国生态</a><a href="news.html">前沿速递</a><a href="benchmarks.html">数据与基准</a><a href="insight.html">深度解读</a><a href="search.html">搜索</a><a href="about.html">关于</a></div>
   <div>AIVC Insight · 客户端检索，索引随站点更新</div>
   <div>aivc.news · <a href="assets/feed.xml">RSS 订阅</a> · © 2026 AIVC Insight Team</div>
 </div></footer>
@@ -82,7 +82,7 @@ const IDX=[
 {s:"文献库",t:"scVI / Harmony / totalVI / Mixscape",d:"经典基线方法组——评判大模型的标尺",u:"papers.html",k:"scVI Harmony totalVI Mixscape 基线"},
 {s:"文献库",t:"Nicheformer",d:"Theis 团队 2025，空间转录组基础模型",u:"papers.html",k:"Nicheformer 空间"},
 // 企业
-{s:"企业解剖",t:"Xaira Therapeutics",d:"$10亿+ 种子轮，估值 $27亿；X-Cell/X-Design/X-Scientist/X-Automate 全栈，X-Bot 让 HPLC 占用率 97.2%；管线 XA-1/XA-4；Tessier-Lavigne + David Baker",u:"companies.html",k:"Xaira 融资 种子 Baker X-Automate X-Bot 机械臂 HPLC XA-1 管线"},
+{s:"企业解剖",t:"Xaira Therapeutics",d:"$10亿+ 种子轮，估值 $27亿；X-Cell/X-Design/X-Automate 全栈；Tessier-Lavigne + David Baker",u:"companies.html",k:"Xaira 融资 种子 Baker"},
 {s:"企业解剖",t:"insitro",d:"阿斯利康 $15亿合作；20+ PB 湿实验数据；Daphne Koller；9 个管线 2027 进临床",u:"companies.html",k:"insitro Koller 阿斯利康 MASH"},
 {s:"企业解剖",t:"GenBio AI",d:"AIDO 数字有机体；邢波+Baker+胡祖六；开源世界模型卡位",u:"companies.html",k:"GenBio AIDO 邢波 胡祖六"},
 {s:"企业解剖",t:"Tahoe Therapeutics",d:"Tahoe-100M 生产者；Mosaic 平台；累计 $4200万；10 亿细胞计划",u:"companies.html",k:"Tahoe 数据 Mosaic"},
@@ -104,30 +104,77 @@ const IDX=[
 {s:"数据与基准",t:"75% 阈值说",d:"Arc CTO：准确率约 75% 才可免于湿实验验证，当前 40-60%",u:"benchmarks.html",k:"75% 阈值 Burke"},
 // 速递与解读
 {s:"前沿速递",t:"insitro × 阿斯利康 15 亿美元合作（2026-10）",d:"4000 万首付 + 14.6 亿里程碑，MASH 与心肌病",u:"news.html",k:"阿斯利康 insitro 合作"},
-{s:"前沿速递",t:"Xaira X-Automate 现场部署与 X-Scientist（2026-10）",d:"机械臂 X-Bot 7 天为 HPLC 上样 18 板，占用率 97.2%；首露临床前管线 XA-1/XA-4",u:"news.html",k:"X-Automate 机器人 X-Bot X-Scientist HPLC XA-1 管线"},
+{s:"前沿速递",t:"Xaira X-Automate 实验室机器人（2026-10）",d:"物理 AI 落子，AI 科学家+自动化湿实验闭环",u:"news.html",k:"X-Automate 机器人"},
 {s:"深度解读",t:"虚拟细胞的 AlphaFold 时刻还有多远？",d:"主编长文：冷水与热钱、相关≠因果、三种企业生存策略",u:"insight.html",k:"AlphaFold 主编 解读"},
-{s:"文献库",t:"衰老交叉：衰老时钟与 AIVC",d:"DNAm/iAge/蛋白质组/转录组时钟、IL-11 与二甲双胍干预证据、SenNet 共识、DeepScence——衰老是 AIVC 最成熟的可迁移资产。",u:"/papers",k:"衰老 aging clock 衰老时钟 IL-11 二甲双胍 senolytics SenNet DeepScence"},
-{s:"文献库",t:"Horvath 2013：DNA 甲基化年龄时钟（开山之作）",d:"Genome Biology，353 个 CpG 跨 51 种组织成立，被引 3000+，所有生物学年龄指标的祖先。",u:"/papers",k:"Horvath 甲基化 时钟 表观遗传 aging clock"},
-{s:"文献库",t:"López-Otín 2023：衰老标志物扩展宇宙",d:"Cell，从 9 项扩展到 12 项标志物，新增慢性炎症、菌群失调、心理社会隔离。",u:"/papers",k:"hallmarks 衰老标志物 Lopez-Otin 框架"},
-{s:"文献库",t:"DunedinPACE：衰老速度指标",d:"eLife 2022，从 20 年纵向队列蒸馏的单时点甲基化速率检验，干预研究的正确终点。",u:"/papers",k:"DunedinPACE Belsky 衰老速度 pace of aging"},
-{s:"文献库",t:"Baker 2016：清除衰老细胞延长健康寿命",d:"Nature，INK-ATTAC 小鼠的因果证据，senolytics 产业源头。",u:"/papers",k:"Baker p16 衰老细胞 senolytics INK-ATTAC"},
-{s:"文献库",t:"Smer-Barreto 2023：机器学习发现新 senolytics",d:"Nat Commun，公开数据训练预测器，银杏素/periplocin/夹竹桃苷获实验验证——AI 药物发现样板。",u:"/papers",k:"senolytics 机器学习 药物发现 Smer-Barreto"},
-{s:"文献库",t:"Ximerakis 2019：衰老小鼠脑单细胞图谱",d:"Nat Neurosci，衰老不是统一程序而是细胞类型特异——衰老 AIVC 必须 cell-type-aware。",u:"/papers",k:"Ximerakis 单细胞 脑衰老 图谱 Rubin"},
-{s:"文献库",t:"Lu 2023：跨 127 种哺乳动物的通用甲基化时钟",d:"Nat Aging，跨物种衰老度量，与跨物种 scFM 构成同构路线。",u:"/papers",k:"Lu 通用时钟 哺乳动物 跨物种 Horvath"},
-{s:"文献库",t:"Oh 2023：器官衰老蛋白质组签名",d:"Nature，每个器官按自己节奏衰老，器官年龄加速预测相应器官疾病。",u:"/papers",k:"器官衰老 蛋白质组 Oh Wyss-Coray organ aging"},
-{s:"文献库",t:"Kedzierska & Crawford：零样本评测揭示 scFM 局限",d:"Genome Biology 2025，被引 101：零样本设定下 scFMs 不及调优的简单基线，scFM 价值在微调效率而非通用推理。",u:"/papers",k:"Kedzierska 零样本 zero-shot 批评 Genome Biology"},
-{s:"文献库",t:"Bereket & Leskovec：当前 AIVC 模型对科学发现有用吗",d:"Stanford 对 AIVC 实用性的正面追问，与 Ahlmann-Eltze 线性基线批判并列的两大冷水。",u:"/papers",k:"Bereket Leskovec 批判 Stanford 科学发现"},
-{s:"文献库",t:"Xing & Song：虚拟细胞世界模型（Cell 2026）",d:"VCWM 学习状态演化规律与因果结构，从穷举实验转向对已学习细胞世界的结构化导航。",u:"/papers",k:"世界模型 VCWM Xing Song Cell 2026 因果"},
-{s:"文献库",t:"Qian 等：AIVC 三大数据支柱（Cell Research 2025）",d:"单细胞多组学、扰动组学、时空组学三支柱 + 闭环学习框架。",u:"/papers",k:"Qian 数据支柱 Cell Research 闭环"},
-{s:"文献库",t:"Bolero：Predicting cell-state-specific gene regulation from DNA across species",d:"Arc Institute + 哈佛医学院，2026-10-20 bioRxiv，细胞状态生成 Transformer 每层权重，1070 万细胞跨 6 种哺乳动物。",u:"/paper?id=p81",k:"Bolero Arc Zhou Jingtian Greenberg Buenrostro 序列 细胞状态 调控"},
-{s:"文献库",t:"扰动基准平均化掩盖扰动强度差异（Rutgers）",d:"2026-10-23 bioRxiv，guide 丰度作强度代理，STATE 与 Cell2Sentence 预测无法恢复扰动身份。",u:"/paper?id=p82",k:"扰动 基准 平均化 强度 Szegedy Rutgers STATE Cell2Sentence 批评"},
-{s:"文献库",t:"Foundation Models Improve Perturbation Response Prediction（GenBio AI）",d:"2026-10-22 v2 bioRxiv，600+ 嵌入-任务配对，最强嵌入来自先验知识。",u:"/paper?id=p83",k:"GenBio 基础模型 嵌入 扰动预测 先验知识 Cole Xing 基线"},
-{s:"文献库",t:"isCORAL：Virtual lineages 虚拟谱系追踪",d:"北京大学，2026-10-20 bioRxiv，记忆基因推断克隆关系，空间转录组验证。",u:"/paper?id=p84",k:"isCORAL 谱系 克隆 记忆基因 空间转录组 北大 Lin"},
-{s:"文献库",t:"Distributed AI agents（OpenAI × PerturbAI）",d:"2026-10-16 bioRxiv，近 2000 并行智能体 32 分钟读完全脑 CRISPR 图谱，推理图谱。",u:"/paper?id=p85",k:"OpenAI PerturbAI 智能体 GPT-Rosalind 推理图谱 全脑 CRISPR 靶点"},
-{s:"文献库",t:"SIMCO：Single-cell–level digital twins for preterm birth prevention strategies",d:"Stanford Medicine，Science Advances 2026-10-21，单细胞免疫数字孪生筛出阿司匹林+兰索拉唑，FDA 批准进临床",u:"/paper?id=p86",k:"SIMCO 数字孪生 早产 Stanford Gaudilliere Science Advances 阿司匹林 兰索拉唑 mTOR JAKSTAT 临床转化"},
-{s:"文献库",t:"An autoencoder outperforms two transformers（scButterfly-B 基准）",d:"arXiv 2026-10-20，126,604 配对单核 profile 统一基准，自编码器在 60 组比较中全胜 Transformer",u:"/paper?id=p87",k:"scButterfly 自编码器 Transformer Omic Translator Cisformer ATAC RNA 统一基准 Meyer Cedars-Sinai"},
-{s:"文献库",t:"虚拟空间转录组的不确定性被预测均值解释掉",d:"bioRxiv 2026-10-23，Ratsch Lab，三癌种队列：校准良好不等于有信息的不确定性",u:"/paper?id=p88",k:"空间转录组 不确定性 校准 均值 虚拟空间转录组 VST Ratsch ETH 病理基础模型"},
-{s:"产业",t:"元示科技：AI 虚拟细胞初创完成近亿元两轮融资",d:"2026-10-22/23，上海张江，创新工场与 Monolith 领投，自研超高通量细胞扰动产线。",u:"/china",k:"元示科技 融资 天使轮 AIVC 虚拟细胞 创新工场 Monolith 吴佳奇"},
+{s:"文献库",t:"衰老交叉：衰老时钟与 AIVC",d:"DNAm/iAge/蛋白质组/转录组时钟、IL-11 与二甲双胍干预证据、SenNet 共识、DeepScence——衰老是 AIVC 最成熟的可迁移资产。",u:"papers.html",k:"衰老 aging clock 衰老时钟 IL-11 二甲双胍 senolytics SenNet DeepScence"},
+{s:"文献库",t:"Horvath 2013：DNA 甲基化年龄时钟（开山之作）",d:"Genome Biology，353 个 CpG 跨 51 种组织成立，被引 3000+，所有生物学年龄指标的祖先。",u:"papers.html",k:"Horvath 甲基化 时钟 表观遗传 aging clock"},
+{s:"文献库",t:"López-Otín 2023：衰老标志物扩展宇宙",d:"Cell，从 9 项扩展到 12 项标志物，新增慢性炎症、菌群失调、心理社会隔离。",u:"papers.html",k:"hallmarks 衰老标志物 Lopez-Otin 框架"},
+{s:"文献库",t:"DunedinPACE：衰老速度指标",d:"eLife 2022，从 20 年纵向队列蒸馏的单时点甲基化速率检验，干预研究的正确终点。",u:"papers.html",k:"DunedinPACE Belsky 衰老速度 pace of aging"},
+{s:"文献库",t:"Baker 2016：清除衰老细胞延长健康寿命",d:"Nature，INK-ATTAC 小鼠的因果证据，senolytics 产业源头。",u:"papers.html",k:"Baker p16 衰老细胞 senolytics INK-ATTAC"},
+{s:"文献库",t:"Smer-Barreto 2023：机器学习发现新 senolytics",d:"Nat Commun，公开数据训练预测器，银杏素/periplocin/夹竹桃苷获实验验证——AI 药物发现样板。",u:"papers.html",k:"senolytics 机器学习 药物发现 Smer-Barreto"},
+{s:"文献库",t:"Ximerakis 2019：衰老小鼠脑单细胞图谱",d:"Nat Neurosci，衰老不是统一程序而是细胞类型特异——衰老 AIVC 必须 cell-type-aware。",u:"papers.html",k:"Ximerakis 单细胞 脑衰老 图谱 Rubin"},
+{s:"文献库",t:"Lu 2023：跨 127 种哺乳动物的通用甲基化时钟",d:"Nat Aging，跨物种衰老度量，与跨物种 scFM 构成同构路线。",u:"papers.html",k:"Lu 通用时钟 哺乳动物 跨物种 Horvath"},
+{s:"文献库",t:"Oh 2023：器官衰老蛋白质组签名",d:"Nature，每个器官按自己节奏衰老，器官年龄加速预测相应器官疾病。",u:"papers.html",k:"器官衰老 蛋白质组 Oh Wyss-Coray organ aging"},
+{s:"文献库",t:"Kedzierska & Crawford：零样本评测揭示 scFM 局限",d:"Genome Biology 2025，被引 101：零样本设定下 scFMs 不及调优的简单基线，scFM 价值在微调效率而非通用推理。",u:"papers.html",k:"Kedzierska 零样本 zero-shot 批评 Genome Biology"},
+{s:"文献库",t:"Bereket & Leskovec：当前 AIVC 模型对科学发现有用吗",d:"Stanford 对 AIVC 实用性的正面追问，与 Ahlmann-Eltze 线性基线批判并列的两大冷水。",u:"papers.html",k:"Bereket Leskovec 批判 Stanford 科学发现"},
+{s:"文献库",t:"Xing & Song：虚拟细胞世界模型（Cell 2026）",d:"VCWM 学习状态演化规律与因果结构，从穷举实验转向对已学习细胞世界的结构化导航。",u:"papers.html",k:"世界模型 VCWM Xing Song Cell 2026 因果"},
+{s:"文献库",t:"Qian 等：AIVC 三大数据支柱（Cell Research 2025）",d:"单细胞多组学、扰动组学、时空组学三支柱 + 闭环学习框架。",u:"papers.html",k:"Qian 数据支柱 Cell Research 闭环"},
+{s:"文献库",t:"Bolero：Predicting cell-state-specific gene regulation from DNA across species",d:"Arc Institute + 哈佛医学院，2026-10-20 bioRxiv，细胞状态生成 Transformer 每层权重，1070 万细胞跨 6 种哺乳动物。",u:"paper.html?id=p81",k:"Bolero Arc Zhou Jingtian Greenberg Buenrostro 序列 细胞状态 调控"},
+{s:"文献库",t:"扰动基准平均化掩盖扰动强度差异（Rutgers）",d:"2026-10-23 bioRxiv，guide 丰度作强度代理，STATE 与 Cell2Sentence 预测无法恢复扰动身份。",u:"paper.html?id=p82",k:"扰动 基准 平均化 强度 Szegedy Rutgers STATE Cell2Sentence 批评"},
+{s:"文献库",t:"Foundation Models Improve Perturbation Response Prediction（GenBio AI）",d:"2026-10-22 v2 bioRxiv，600+ 嵌入-任务配对，最强嵌入来自先验知识。",u:"paper.html?id=p83",k:"GenBio 基础模型 嵌入 扰动预测 先验知识 Cole Xing 基线"},
+{s:"文献库",t:"isCORAL：Virtual lineages 虚拟谱系追踪",d:"北京大学，2026-10-20 bioRxiv，记忆基因推断克隆关系，空间转录组验证。",u:"paper.html?id=p84",k:"isCORAL 谱系 克隆 记忆基因 空间转录组 北大 Lin"},
+{s:"文献库",t:"Distributed AI agents（OpenAI × PerturbAI）",d:"2026-10-16 bioRxiv，近 2000 并行智能体 32 分钟读完全脑 CRISPR 图谱，推理图谱。",u:"paper.html?id=p85",k:"OpenAI PerturbAI 智能体 GPT-Rosalind 推理图谱 全脑 CRISPR 靶点"},
+{s:"产业",t:"元示科技：AI 虚拟细胞初创完成近亿元两轮融资",d:"2026-10-22/23，上海张江，创新工场与 Monolith 领投，自研超高通量细胞扰动产线。",u:"china.html",k:"元示科技 融资 天使轮 AIVC 虚拟细胞 创新工场 Monolith 吴佳奇"},
+// —— 每日运维补录：模型谱系 / 前沿速递 / 中国生态 / 数据与基准 全覆盖 ——
+{s:"模型谱系",t:"scBERT",d:"2022 · 腾讯 AI Lab · Nature Machine Intelligence，国内最早的单细胞 BERT 式模型。",u:"models.html",k:"scBERT 腾讯 BERT 注释 单细胞 2022"},
+{s:"模型谱系",t:"Geneformer",d:"2023.05 · Broad / MGH · Nature，3000 万细胞预训练，in silico 扰动发现心肌病靶点。",u:"models.html",k:"Geneformer Broad MGH Theodoris 心肌病 迁移学习"},
+{s:"模型谱系",t:"UCE（Universal Cell Embeddings）",d:"2023.11 · Stanford · bioRxiv，6.5 亿参数 8 物种跨物种零样本整合。",u:"models.html",k:"UCE Stanford 跨物种 零样本 通用细胞嵌入"},
+{s:"模型谱系",t:"scGPT",d:"2024.02 · 多伦多大学 Bo Wang 团队 · Nature Methods，3300 万细胞生成式预训练。",u:"models.html",k:"scGPT Bo Wang 多伦多 生成式 多组学"},
+{s:"模型谱系",t:"scFoundation",d:"2024.06 · 清华 × 百图生科 · Nature Methods，1 亿参数 5000 万细胞，VCC 冠军模型骨干。",u:"models.html",k:"scFoundation 清华 百图生科 郝敏升 大模型"},
+{s:"模型谱系",t:"GeneCompass",d:"2024.10 · 中科院「指南针联盟」李鑫团队 · Cell Research 封面，1.26 亿跨物种细胞知识增强。",u:"models.html",k:"GeneCompass 李鑫 指南针 知识增强 Cell Research"},
+{s:"模型谱系",t:"AIDO 家族开源",d:"2024.11 · GenBio AI，多尺度生物基础模型家族首次开源。",u:"models.html",k:"AIDO GenBio AI 开源 多尺度 基础模型"},
+{s:"模型谱系",t:"Cell 纲领文发布",d:"2024.12 · Bunne / Regev / Quake / Leskovec 等 40+ 作者确立 AIVC 框架，领域里程碑。",u:"models.html",k:"Cell 纲领 AIVC 里程碑 2024 路线图"},
+{s:"模型谱系",t:"TranscriptFormer / C2S-Scale 27B",d:"2025.04 · CZI + Google × 耶鲁，12 物种 1.12 亿细胞跨物种生成式模型与细胞语言大模型。",u:"models.html",k:"TranscriptFormer C2S CZI Google 耶鲁 跨物种"},
+{s:"模型谱系",t:"STATE",d:"2025.06 · Arc Institute · bioRxiv，1.67 亿观测 + 1 亿+扰动细胞训练，扰动区分能力约 +50%。",u:"models.html",k:"STATE Arc Institute 扰动预测 2025"},
+{s:"模型谱系",t:"GREmLN / rbio1",d:"2025.08 · CZI，图调控网络注入注意力的轻量模型与软验证科学推理模型双发。",u:"models.html",k:"GREmLN rbio1 CZI 轻量 推理 图网络"},
+{s:"模型谱系",t:"VCC 2025 揭晓",d:"2025.12 · Arc Institute 主办，冠军：百图生科 xTrimoSCPerturb，对标 CASP 的虚拟细胞挑战赛。",u:"models.html",k:"VCC 虚拟细胞挑战 百图生科 xTrimoSCPerturb Arc"},
+{s:"模型谱系",t:"X-Cell",d:"2026.03 · Xaira · bioRxiv，49 亿参数扩散语言模型，Pearson Δ 提升 5 倍，呈现幂律 scaling。",u:"models.html",k:"X-Cell Xaira 扩散 语言模型 幂律 scaling"},
+{s:"模型谱系",t:"AIDO.Cell 世界模型",d:"2026.08 · GenBio AI · Cell，多尺度有状态仿真，可串联多次干预观察累积效应。",u:"models.html",k:"AIDO.Cell GenBio 世界模型 有状态 仿真 伊马替尼"},
+{s:"模型谱系",t:"下一站：75% 阈值",d:"Arc CTO David Burke：扰动预测准确率约 75% 才可免于湿实验验证，当前 STATE 约 40–60%。",u:"models.html",k:"75% 阈值 David Burke 观察 下一站 湿实验"},
+{s:"前沿速递",t:"Arc Institute 发布 Bolero：权重由细胞状态生成",d:"首次把「序列到功能」与「单细胞基础模型」两条路线合流；1070 万细胞、6 种哺乳动物训练。",u:"news.html",k:"Bolero Arc Institute 序列到功能 权重生成 2026"},
+{s:"前沿速递",t:"元示科技连续完成近亿元天使轮及天使+轮",d:"2026-04 成立于上海张江，创新工场、上海未来产业基金、燕缘创投与 Monolith 领投。",u:"news.html",k:"元示科技 融资 天使轮 创新工场 Monolith 张江"},
+{s:"前沿速递",t:"OpenAI × PerturbAI：近 2000 个智能体 32 分钟读完小鼠全脑扰动图谱",d:"每个智能体负责一个基因扰动，检索细胞响应、搜索文献、提出机制，再聚合为推理图谱。",u:"news.html",k:"OpenAI PerturbAI 智能体 推理图谱 全脑 CRISPR"},
+{s:"前沿速递",t:"基准平均化掩盖了什么：STATE 与 Cell2Sentence 连扰动身份都恢复不了",d:"Rutgers 团队以深度校正的 guide 丰度作扰动强度代理，在 X-Atlas/Orion CRISPRi 上发现强扰动下失效。",u:"news.html",k:"STATE Cell2Sentence 基准 争议 Rutgers 扰动身份"},
+{s:"前沿速递",t:"GenBio AI 反击「基础模型无用论」：600+ 配对的规模清扫",d:"结论并非一边倒：部分基础模型确实不优于简单基线，但另一些带来一致改进。",u:"news.html",k:"GenBio 基础模型 无用论 嵌入 先验知识 清扫"},
+{s:"前沿速递",t:"isCORAL：只从转录组快照反推细胞亲缘，为虚拟细胞补上「记忆」",d:"北京大学团队以可遗传「记忆基因」推断概率性克隆关系，并用小鼠肿瘤实验谱系树验证。",u:"news.html",k:"isCORAL 谱系追踪 记忆基因 北大 克隆 空间转录组"},
+{s:"前沿速递",t:"GenBio 发布 AIDO.Cell 世界模型",d:"多尺度有状态仿真，可串联多次干预观察累积效应，复现伊马替尼机制级联；配套 VCHarness 智能体。",u:"news.html",k:"AIDO.Cell 世界模型 VCHarness 伊马替尼 GenBio"},
+{s:"前沿速递",t:"VCC 2025 揭晓：百图生科夺冠",d:"114 国 1200+ 团队；xTrimoSCPerturb 摘冠，Altos Labs 流匹配模型获 Generalist Prize。",u:"news.html",k:"VCC 百图生科 夺冠 xTrimoSCPerturb Altos 流匹配"},
+{s:"前沿速递",t:"Tahoe × Arc × Biohub 联合造数",d:"2026-01 合作生成 1.2 亿+单细胞数据点（22.5 万药物-患者交互），计划开放发布。",u:"news.html",k:"Tahoe Arc Biohub 联合造数 数据 开放"},
+{s:"前沿速递",t:"CZI 双发：推理模型 rbio1 与轻量模型 GREmLN",d:"rbio1 以软验证训练科学推理；GREmLN 仅 1030 万参数，将基因调控网络注入注意力。",u:"news.html",k:"rbio1 GREmLN CZI 推理 轻量 2025"},
+{s:"前沿速递",t:"Arc Institute 发布 STATE 模型",d:"1.67 亿观测 + 1 亿+扰动细胞训练，扰动区分能力提升约 50%，差异基因识别精度约 2 倍。",u:"news.html",k:"STATE Arc Institute 扰动 2025 发布"},
+{s:"前沿速递",t:"Cell 立场文章：如何用 AI 构建虚拟细胞",d:"Bunne、Regev、Quake、Leskovec 等 40 余位作者确立 AIVC 框架：通用表征、虚拟仪器、lab-in-the-loop。",u:"news.html",k:"Cell 立场 AIVC 纲领 2024 lab-in-the-loop"},
+{s:"前沿速递",t:"Nature Methods：不优于线性基线",d:"EMBL 基准测试五大基础模型：双基因扰动不优于简单可加模型，未见扰动不优于预测均值。",u:"news.html",k:"Nature Methods EMBL 线性基线 批评 2025"},
+{s:"中国生态",t:"李鑫团队 ·「指南针联盟」",d:"GeneCompass（1.26 亿跨物种细胞，Cell Research 2024 封面）→ 图结构版 Cell-GraphCompass。",u:"china.html",k:"李鑫 指南针联盟 GeneCompass Cell-GraphCompass 中科院"},
+{s:"中国生态",t:"多智能体系统「元生」",d:"2025-07 发布；2026-03 在 Nature Machine Intelligence 发表虚拟细胞 + 强化学习设计肿瘤序贯治疗方案。",u:"china.html",k:"元生 多智能体 强化学习 肿瘤 序贯治疗 Nature MI"},
+{s:"中国生态",t:"狨猴全脑单细胞多模态图谱",d:"联合完成全球首个狨猴全脑单细胞多模态图谱（Science，2026-04），数据承载于 CNGB。",u:"china.html",k:"狨猴 全脑 图谱 Science CNGB 时空组学"},
+{s:"中国生态",t:"腾讯：触角最广",d:"scBERT（2022）→ CD-GPT（2024 开源，生物中心法则建模）→ UniPert 统一基因与化学扰动；重仓晶泰、英矽。",u:"china.html",k:"腾讯 scBERT CD-GPT UniPert 投资 布局"},
+{s:"中国生态",t:"华为 / 阿里达摩院",d:"华为参与 CellFM，并与昌平实验室发布 NPU 原生全原子模型 TorchX（昇腾）；达摩院 2026-03 发布 Lingshu-Cell。",u:"china.html",k:"华为 达摩院 TorchX 昇腾 Lingshu-Cell 国产算力"},
+{s:"中国生态",t:"华源智因",d:"2026-07 获数千万元种子轮；Wise-Perturb 模型聚焦临床前药效评价，CTO 曾主导 VCC 冠军模型。",u:"china.html",k:"华源智因 Wise-Perturb 种子轮 药效评价 VCC"},
+{s:"中国生态",t:"元示科技",d:"2026-04 成立于上海张江，聚焦 AIVC；2026-10 连续完成近亿元天使轮与天使+轮。",u:"china.html",k:"元示科技 张江 天使轮 AIVC 初创"},
+{s:"中国生态",t:"无界进化 INFevo",d:"晶泰孵化，2026-06 完成数千万元天使轮；OCOO-T 在化学药物、基因、细胞因子三大扰动基准达 SOTA。",u:"china.html",k:"无界进化 INFevo OCOO-T 晶泰孵化 SOTA 天使轮"},
+{s:"中国生态",t:"百图生科 / 百曜科技",d:"xTrimo V4 2680 亿参数、VCC 冠军、秘密递表港交所；百曜 AURA CellOS 与国资三轮融资。",u:"china.html",k:"百图生科 百曜 xTrimo 港交所 AURA CellOS"},
+{s:"中国生态",t:"AI4S 专项与「十五五」",d:"科技部 × 自然科学基金委 2023 年启动 AI4S 专项；「十五五」规划建议提出以 AI 引领科研范式变革。",u:"china.html",k:"AI4S 专项 十五五 科技部 自然科学基金委 科研范式"},
+{s:"中国生态",t:"京 / 沪 / 浙科学智能行动",d:"北京全国首个科学智能专项地方政策（2025—2027）；上海「百团百项」；浙江「AI+科学」三大底座。",u:"china.html",k:"北京 上海 浙江 科学智能 地方政策 百团百项"},
+{s:"中国生态",t:"国家基因库 CNGB / CNGBdb",d:"承载 STOmics 时空组学数据库（含狨猴脑图谱 MCCSTA）；「十四五」布局 AI 生命科学国家重大科技基础设施。",u:"china.html",k:"CNGB CNGBdb STOmics 国家基因库 基础设施"},
+{s:"中国生态",t:"国风投首入 AI 制药",d:"国家级基金国风投创新投资基金首次出手 AI 制药（剂泰基石投资）；产业资本（腾讯、百度风投、峰瑞）跟进。",u:"china.html",k:"国风投 AI 制药 剂泰 产业资本 百度风投 峰瑞"},
+{s:"中国生态",t:"瓶颈研判",d:"行业共识：高质量扰动数据稀缺与标准不统一是核心瓶颈；纯 AI 方法尚不能稳定击败统计基线。",u:"china.html",k:"瓶颈 扰动数据 标准 马太效应 统计基线 研判"},
+{s:"数据与基准",t:"X-Atlas / Pisces",d:"Xaira 自建扰动图谱：2560 万细胞、16 种生物背景的全基因组 CRISPRi Perturb-seq，X-Cell 训练基座。",u:"benchmarks.html",k:"X-Atlas Pisces Xaira CRISPRi Perturb-seq 训练基座"},
+{s:"数据与基准",t:"Replogle Perturb-seq",d:"首个全基因组 CRISPRi Perturb-seq（>250 万细胞），K562/RPE1 成为扰动预测模型事实标准评测集。",u:"benchmarks.html",k:"Replogle Perturb-seq K562 RPE1 评测集 全基因组"},
+{s:"数据与基准",t:"Emerald Bay",d:"Tahoe 2026-06 发布的约 200 万细胞表型 + 转录组联合数据集，配套 Rhaister 扰动响应模型。",u:"benchmarks.html",k:"Emerald Bay Tahoe Rhaister 表型 转录组 数据集"},
+{s:"数据与基准",t:"PerturbQA",d:"衡量模型扰动知识推理能力的问答基准；CZI 推理模型 rbio1 达 F1 0.74–0.79，超越 SUMMER 等基线。",u:"benchmarks.html",k:"PerturbQA rbio1 F1 推理 问答基准 SUMMER"},
+{s:"数据与基准",t:"Cell-Eval",d:"Arc 随 STATE 发布的生物学导向评估框架，强调以差异基因、通路等生物学家关心的指标评判模型。",u:"benchmarks.html",k:"Cell-Eval Arc STATE 评估框架 差异基因 通路"},
+{s:"数据与基准",t:"线性基线对照（Nature Methods 2025）",d:"EMBL 团队基准设计：任何扰动预测模型须先证明优于预测训练集均值与简单可加线性模型。",u:"benchmarks.html",k:"线性基线 EMBL Nature Methods 对照 可加模型"},
+{s:"数据与基准",t:"零样本评测（Genome Biology 2025）",d:"Microsoft Research 严格零样本协议：Geneformer / scGPT 在聚类与批次校正上常不如高变基因 + scVI / Harmony。",u:"benchmarks.html",k:"零样本 Genome Biology Microsoft Geneformer scGPT scVI Harmony"}
 ];
 const q=document.getElementById('q'),box=document.getElementById('results'),hint=document.getElementById('hint');
 function render(){

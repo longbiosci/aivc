@@ -6,7 +6,7 @@
 <title>文献解读 · AIVC Insight</title>
 <link rel="stylesheet" href="assets/style.css?v=2">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="canonical" href="https://aivc.news/paper">
+<link rel="canonical" href="https://aivc.news/paper.html">
 </head>
 <body>
 
@@ -14,17 +14,17 @@
   <div class="brand"><img src="assets/logo.svg" alt="AIVC Insight"><div class="bt">AIVC <em>Insight</em><small>AI 虚拟细胞情报站</small></div></div>
 </div></div>
 <nav class="main"><div class="wrap">
-  <button class="navtoggle" id="navt" aria-expanded="false" aria-controls="navl">栏目导航</button>
-  <div class="navlinks" id="navl">  <a href="/index">首页</a>
-  <a href="/papers">文献库</a>
-  <a href="/models">模型谱系</a>
-  <a href="/companies">企业解剖</a>
-  <a href="/china" class="x">中国生态</a>
-  <a href="/news">前沿速递</a>
-  <a href="/benchmarks" class="x">数据与基准</a>
-  <a href="/insight" class="x">深度解读</a>
-  <a href="/search">搜索</a>
-  <a href="/about" class="x">关于</a></div>
+  <button class="navtoggle" id="navt" aria-expanded="false" aria-controls="navl">更多栏目</button>
+  <div class="navlinks" id="navl">  <a href="index.html">首页</a>
+  <a href="papers.html">文献库</a>
+  <a href="models.html">模型谱系</a>
+  <a href="companies.html">企业解剖</a>
+  <a href="china.html" class="x">中国生态</a>
+  <a href="news.html">前沿速递</a>
+  <a href="benchmarks.html" class="x">数据与基准</a>
+  <a href="insight.html" class="x">深度解读</a>
+  <a href="search.html">搜索</a>
+  <a href="about.html" class="x">关于</a></div>
 </div></nav>
 <script>
 (function(){var b=document.getElementById('navt'),n=document.getElementById('navl');
@@ -33,12 +33,12 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 </script>
 
 <section><div class="wrap">
-  <div class="crumb" style="font-size:12px;color:var(--dim);margin:26px 0 18px"><a href="/papers" style="color:var(--accent)">文献库</a> / <span id="gname"></span></div>
+  <div class="crumb dcrumb"><a href="papers.html">文献库</a> / <span id="gname"></span></div>
   <div id="app"></div>
 </div></section>
 
 <footer><div class="wrap">
-  <div class="fnav"><a href="/index">首页</a><a href="/papers">文献库</a><a href="/models">模型谱系</a><a href="/companies">企业解剖</a><a href="/china">中国生态</a><a href="/news">前沿速递</a><a href="/benchmarks">数据与基准</a><a href="/insight">深度解读</a><a href="/search">搜索</a><a href="/about">关于</a></div>
+  <div class="fnav"><a href="index.html">首页</a><a href="papers.html">文献库</a><a href="models.html">模型谱系</a><a href="companies.html">企业解剖</a><a href="china.html">中国生态</a><a href="news.html">前沿速递</a><a href="benchmarks.html">数据与基准</a><a href="insight.html">深度解读</a><a href="search.html">搜索</a><a href="about.html">关于</a></div>
   <div>AIVC Insight · 文献解读均为编辑部基于公开信息的整理，观点部分已注明</div>
   <div>aivc.news · <a href="assets/feed.xml">RSS 订阅</a> · © 2026 AIVC Insight Team</div>
 </div></footer>
@@ -50,7 +50,7 @@ var G={g1:'纲领与路线图',g2:'单细胞基础模型',g3:'扰动响应预测
 var id=new URLSearchParams(location.search).get('id');
 var i=PAPERS.findIndex(function(p){return p.id===id});
 var app=document.getElementById('app');
-if(i<0){app.innerHTML='<h1>未找到该文献</h1><p><a href="/papers">返回文献库</a></p>';return}
+if(i<0){app.innerHTML='<h1>未找到该文献</h1><p><a href="papers.html">返回文献库</a></p>';return}
 var p=PAPERS[i];
 document.getElementById('gname').textContent=G[p.g]||'';
 document.title=p.t+' · 文献解读 · AIVC Insight';
@@ -60,7 +60,7 @@ var sec=function(h,arr,anchor){return arr&&arr.length?'<h3 id="'+anchor+'">'+h+'
 var TOC=[['bg','背景与脉络'],['me','方法详解'],['rs','关键结果'],['lm','局限与未解问题'],['db','争议与后续'],['tk','情报点评']];
 var toc='<nav class="dtoc"><span>本文导读</span>'+TOC.map(function(t){return '<a href="#'+t[0]+'">'+t[1]+'</a>'}).join('')+'</nav>';
 var byId=function(fid){for(var j=0;j<PAPERS.length;j++){if(PAPERS[j].id===fid)return PAPERS[j]}return null};
-var fw=(p.further||[]).map(function(fid){var q=byId(fid);return q?'<li><a href="/paper?id='+q.id+'">'+q.t+'</a><span>'+q.v+'</span></li>':''}).join('');
+var fw=(p.further||[]).map(function(fid){var q=byId(fid);return q?'<li><a href="paper.html?id='+q.id+'">'+q.t+'</a><span>'+q.v+'</span></li>':''}).join('');
 var html='<article class="detail">'
 +'<div class="dbadge">'+G[p.g]+' · '+p.v+' · '+p.d+'</div>'
 +'<h1>'+p.t+'</h1>'
@@ -77,9 +77,9 @@ var html='<article class="detail">'
 +'</article>';
 if(fw){html+='<div class="drel"><h3>延伸阅读</h3><ul>'+fw+'</ul></div>'}
 var rel=PAPERS.filter(function(q,j){return q.g===p.g&&j!==i}).slice(0,5);
-if(rel.length){html+='<div class="drel"><h3>同组相关文献</h3><ul>'+rel.map(function(q){return '<li><a href="/paper?id='+q.id+'">'+q.t+'</a><span>'+q.v+' · '+q.d+'</span></li>'}).join('')+'</ul></div>'}
+if(rel.length){html+='<div class="drel"><h3>同组相关文献</h3><ul>'+rel.map(function(q){return '<li><a href="paper.html?id='+q.id+'">'+q.t+'</a><span>'+q.v+' · '+q.d+'</span></li>'}).join('')+'</ul></div>'}
 var prev=PAPERS[i-1],next=PAPERS[i+1];
-html+='<div class="dpn">'+(prev?'<a href="/paper?id='+prev.id+'">← 上一篇：'+prev.t.slice(0,30)+'…</a>':'<span></span>')+(next?'<a href="/paper?id='+next.id+'">下一篇：'+next.t.slice(0,30)+'… →</a>':'<span></span>')+'</div>';
+html+='<div class="dpn">'+(prev?'<a href="paper.html?id='+prev.id+'">← 上一篇：'+prev.t.slice(0,30)+'…</a>':'<span></span>')+(next?'<a href="paper.html?id='+next.id+'">下一篇：'+next.t.slice(0,30)+'… →</a>':'<span></span>')+'</div>';
 app.innerHTML=html;
 })();
 </script>
