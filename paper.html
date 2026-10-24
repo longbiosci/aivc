@@ -54,7 +54,7 @@ if(i<0){app.innerHTML='<h1>未找到该文献</h1><p><a href="/papers">返回文
 var p=PAPERS[i];
 document.getElementById('gname').textContent=G[p.g]||'';
 document.title=p.t+' · 文献解读 · AIVC Insight';
-var links='<a class="dbtn" href="https://doi.org/'+p.doi+'" target="_blank">DOI 原文</a>';
+var links=p.doi?'<a class="dbtn" href="https://doi.org/'+p.doi+'" target="_blank">DOI 原文</a>':'<span class="dbtn off">DOI 待核实</span>';
 if(p.pdf)links+='<a class="dbtn" href="'+p.pdf+'" target="_blank">PDF 全文</a>';
 var sec=function(h,arr,anchor){return arr&&arr.length?'<h3 id="'+anchor+'">'+h+'</h3>'+arr.map(function(x){return '<p>'+x+'</p>'}).join(''):''};
 var TOC=[['bg','背景与脉络'],['me','方法详解'],['rs','关键结果'],['lm','局限与未解问题'],['db','争议与后续'],['tk','情报点评']];
