@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>前沿速递 · AIVC Insight</title>
-<link rel="stylesheet" href="assets/style.css?v=2">
+<link rel="stylesheet" href="assets/style.css?v=3">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="AIVC Insight RSS" href="assets/feed.xml">
 <meta name="description" content="AIVC Insight：AI 虚拟细胞领域情报刊物，以科学文献为第一情报源，追踪论文、模型、数据与产业动态。">
@@ -43,11 +43,17 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 <div class="pagehead"><div class="wrap">
   <div class="crumb">栏目 03 · NEWSWIRE</div>
   <h1>前沿速递</h1>
-  <p class="lede">更新至 2026-10-24。本期新增 6 条，含 Bolero、OpenAI 分布式智能体与国内元示科技融资。</p>
+  <p class="lede">更新至 2026-10-24。本期新增 6 条：批评性基准从「模型不如基线」推进到「评测框架本身失效」，叠加约 18 亿美元的数据基础设施扩容与 VCC 2026 零样本升级。</p>
 </div></div>
 
 <section><div class="wrap">
   <div class="grid c3">
+    <div class="card"><span class="badge b-crit">基准</span><h3>EL-PERTURB：20 个扰动预测模型的分层 OOD 压力测试</h3><p>用按转录空间功能分区的<strong>分层 OOD 划分</strong>替代随机划分，检验 6 类架构的 20 个模型。结论：OOD 条件下性能显著退化，且架构复杂度——包括单细胞基础模型嵌入——相对调参良好的简单基线没有可靠优势。作者主张，要成为湿实验筛选的 in silico 替代品，先得跨过这道泛化梯度。</p><div class="date">2026-10-24 收录 · bioRxiv 10.64898/2026.10.16.759604（预印本）</div></div>
+    <div class="card"><span class="badge b-crit">基准审计</span><h3>评测框架的六类失效模式：恒等预测器可拿满分</h3><p>先复现一套「性能 + 不确定性校准」评测框架，再用它从未纳入的零假设基线审计它自身：<strong>把测试细胞本身喂给模型再打分，恒等预测器即可在全部 6 组划分上取得扰动效应相关 1.0</strong>；以常数训练均值为对照，scVI 在 Norman 99.7% 的细胞上胜出、在 Replogle 上仅 0.2%。作者为每类失效模式给出机制、诊断与可迁移的检测流程。</p><div class="date">2026-10-24 收录 · bioRxiv 10.64898/2026.10.12.758706（预印本）</div></div>
+    <div class="card"><span class="badge b-crit">批评</span><h3>Virtual Cells Need Context, Not Just Scale</h3><p>Biohub、芝加哥大学与西北大学团队从评测侧给出结论：差异表达基因的恢复率随<strong>每个扰动的训练情境数</strong>上升，与训练细胞数仅弱相关（r = 0.11）。与 X-Cell 的规模清扫同向——后者显示测试损失在约 16 亿参数之后变化很小。</p><div class="date">2026-10-24 收录 · bioRxiv 10.64898/2026.02.04.703804（预印本）</div></div>
+    <div class="card"><span class="badge b-data">数据</span><h3>Virtual Biology Initiative 扩容：约 18 亿美元投向 AI-ready 生物数据</h3><p>Biohub 联合 DOE、NIH、Google DeepMind、Isomorphic Labs、Meta 与 NVIDIA。构成：Biohub 5 亿（4 亿建测量技术 + 1 亿外部研究）、DOE 五年超 5 亿、NIH 协调既有超 5 亿联邦投资的数据集、三家科技企业合计 3 亿。Wellcome Sanger、人类细胞图谱、Broad、Allen 等参与。约一年出首批数据集、五年内建成预测模型，商业资助方设数据封锁窗口期。</p><div class="date">2026-10-07 宣布 / 10-24 收录 · biohub.org、Reuters</div></div>
+    <div class="card"><span class="badge b-paper">赛事</span><h3>VCC 2026 升级为零样本跨情境泛化</h3><p>Arc Institute 在 Cell 发布本届赛制：不提供任何赛事专属训练集，只给非靶向对照基线表达谱 + 待敲低基因 ID。6 条不同组织来源癌细胞系 CRISPRi + 10x Flex，3 条验证（实时榜单）、3 条测试（真值保密），各 300 扰动 × 约 400 细胞。评分改为 6 项指标参考归一化聚合，以抑制针对单一指标刷分。</p><div class="date">2026-10-24 收录 · Cell，DOI 10.1016/j.cell.2026.08.004</div></div>
+    <div class="card"><span class="badge b-crit">指标陷阱</span><h3>scButterfly-B：自编码器全胜 transformer，同时揭出「常数填充 0.996」</h3><p>126,604 个配对单核 profile、19 项人类研究、70 次训练运行的统一基准上，双变分自编码器在全部 60 组配对 fold 比较中胜过所有受测 transformer 管线，训练时间缩短 3.8 倍。更值得记的是诊断：仅训练均值 profile 即可达 within-cell 相关 0.314，在真实表达基因位置填常数即可达 per-gene 相关 0.996。</p><div class="date">2026-10-24 收录 · arXiv:2610.28853（预印本）</div></div>
     <div class="card"><span class="badge b-model">模型</span><h3>Arc Institute 发布 Bolero：让 Transformer 每层权重都由细胞状态生成</h3><p>首次把「序列到功能」与「单细胞基础模型」两条路线合流。1070 万细胞、6 种哺乳动物训练，只给 DNA 即可预测任意细胞状态——含训练中未见状态——的染色质可及性与表达。与哈佛 Greenberg 实验室合作，用 AP-1 活性作连续条件轴，重建出协同因子间距 4 bp 的调控语法。</p><div class="date">2026-10-20 · bioRxiv 10.64898/2026.10.19.760026</div></div>
     <div class="card"><span class="badge b-fund">融资</span><h3>元示科技连续完成近亿元天使轮及天使+轮</h3><p>成立仅半年（2026-04）的国内 AIVC 公司，天使轮由创新工场、上海未来产业基金与燕缘创投联合领投，天使+轮由 Monolith 砺思资本领投、道彤投资跟投。自研超高通量细胞扰动产线，主打「数据生产—模型预测—湿实验验证」自进化闭环。</p><div class="date">2026-10-22/23 · 上海证券报 / 澎湃新闻</div></div>
     <div class="card"><span class="badge b-model">智能体</span><h3>OpenAI × PerturbAI：近 2000 个智能体 32 分钟读完小鼠全脑扰动图谱</h3><p>每个智能体只负责一个基因扰动，检索细胞响应、搜索文献、提出机制，再聚合为「推理图谱」。在不接触原文的条件下恢复了源论文结论并预测留出扰动效应；单智能体平均引用 11 篇文献，分布式集群引用 700+ 篇；盲法评审中专家 75%（45/60）更偏好分布式报告。</p><div class="date">2026-10-16 预印本 / 10-21 官宣 · bioRxiv 10.64898/2026.10.15.759436</div></div>

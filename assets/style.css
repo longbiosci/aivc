@@ -334,3 +334,31 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
   .stat{padding-right:12px;margin-right:12px}
   .stat .n{font-size:19px}
 }
+/* ===== 深度解读：学术版式扩展（事实/观点分离） ===== */
+.abstract{border:1px solid var(--line);border-left:3px solid var(--accent);background:var(--paper);padding:18px 22px;margin:22px 0 26px;font-size:14px;color:var(--sub);line-height:1.8}
+.abstract b{color:var(--ink);font-weight:600}
+.ameta{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:11.5px;color:var(--dim);letter-spacing:.5px;margin-bottom:14px;font-family:var(--sans)}
+.ameta span{border:1px solid var(--line);padding:2px 9px;border-radius:2px;background:var(--paper)}
+.ftab{width:100%;border-collapse:collapse;font-size:13.5px;margin:6px 0 12px;background:var(--paper)}
+.ftab th{text-align:left;font-family:var(--serif);font-size:12.5px;color:var(--ink);border-bottom:2px solid var(--ink);padding:9px 11px;letter-spacing:.5px;white-space:nowrap}
+.ftab td{border-bottom:1px solid var(--line);padding:9px 11px;vertical-align:top;line-height:1.7}
+.ftab tr:last-child td{border-bottom:none}
+.ftab .k{font-weight:600;color:var(--ink);white-space:nowrap}
+.ftab .src{color:var(--dim);font-size:12px}
+.st{display:inline-block;font-size:10.5px;padding:0 6px;border-radius:2px;letter-spacing:.5px;font-weight:600;vertical-align:1px}
+.st-p{background:#eef2f7;color:#33587a}       /* 预印本 */
+.st-j{background:var(--accent-soft);color:var(--accent)} /* 期刊 */
+.st-n{background:#f7f0e0;color:var(--amber)}  /* 新闻/公告 */
+.opbox{border:1px solid #ddd6c4;background:#fdfaf3;padding:18px 22px;margin:18px 0;border-radius:3px}
+.opbox .oh{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--amber);letter-spacing:.5px;margin-bottom:8px}
+.opbox ol{margin-left:20px}
+.opbox li{font-size:14.5px;color:var(--body);margin-bottom:9px;line-height:1.8}
+.opbox li b{color:var(--ink)}
+.reflist{font-size:13px;color:var(--sub);margin-top:26px;border-top:1px solid var(--line);padding-top:16px}
+.reflist .rh{font-family:var(--serif);font-size:15px;color:var(--ink);margin-bottom:10px}
+.reflist ol{margin-left:20px}
+.reflist li{margin-bottom:7px;line-height:1.7}
+.reflist .doi{color:var(--dim);font-size:12px}
+.unc{border:1px dashed #ccc4b0;background:#fdfcf8;padding:14px 18px;margin:20px 0;font-size:13.5px;color:var(--sub);border-radius:3px}
+.unc b{color:var(--amber)}
+@media(max-width:720px){.ftab{font-size:12.5px}.ftab td,.ftab th{padding:7px 8px}}

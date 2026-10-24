@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>深度解读 · AIVC Insight</title>
-<link rel="stylesheet" href="assets/style.css?v=2">
+<link rel="stylesheet" href="assets/style.css?v=3">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="AIVC Insight RSS" href="assets/feed.xml">
 <meta name="description" content="AIVC Insight：AI 虚拟细胞领域情报刊物，以科学文献为第一情报源，追踪论文、模型、数据与产业动态。">
@@ -42,32 +42,120 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 
 <div class="pagehead"><div class="wrap">
   <div class="crumb">栏目 05 · ANALYSIS</div>
-  <h1>虚拟细胞的「AlphaFold 时刻」还有多远？</h1>
-  <p class="lede">主编观察 · 2026 年 10 月 24 日——冷水与热钱之间，对 AIVC 赛道的四点判断。文中所有事实均可追溯至本站<a href="papers.html">文献库</a>与<a href="companies.html">企业解剖</a>。</p>
+  <h1>当评测本身也需要被评测：虚拟细胞进入「基准审计」阶段</h1>
+  <p class="lede">主编观察 · 2026 年 10 月 24 日。本文严格区分<b>事实</b>与<b>观点</b>：第一、二节为可核验的事实记录与事实性归纳，第三节起为编辑部判断，文末列出全部信源与待核实项。</p>
 </div></div>
 
 <section><div class="wrap"><div class="article">
 
-  <h3>一、冷水与热钱的拉锯</h3>
-  <p>一边是 Xaira 超十亿美元的种子轮、insitro 与阿斯利康十五亿美元的合作，资本以前所未有的密度涌入；另一边是 Nature Methods 的基准泼冷水——五个明星基础模型在扰动预测上竟不优于简单线性基线。VCC 2025 官方复盘同样承认：没有模型在所有指标上稳定超越基线，胜出的是"深度学习 + 统计特征"的混合方案。</p>
-  <p>这种撕裂并非坏事。它意味着领域正在从「叙事驱动」进入「证据驱动」阶段——正如 CASP 之于蛋白质结构预测，严格的第三方评测是任何"AlphaFold 时刻"的必要前奏。</p>
+  <div class="ameta">
+    <span>期次 2026-10-24</span><span>栏目 深度解读</span><span>信源 8 条</span><span>更新 2026-10-24</span>
+  </div>
 
-  <h3>二、争议的核心：相关 ≠ 因果</h3>
-  <blockquote>"观测数据学相关，干预数据学因果。"——行业新共识</blockquote>
-  <p>预训练语料以观测性单细胞图谱为主，模型学到的更多是细胞类型间的相关性，而非扰动下的因果响应。这正是 Tahoe-100M、Billion Cells、X-Atlas 等大规模 Perturb-seq 数据军备赛的根本动机。批评者还指出：细胞是动态系统，静态转录组快照难以覆盖时间与空间维度——陈润生院士所谓"虚拟细胞首先要活起来"，指向的正是这一层。</p>
+  <div class="abstract">
+    <b>摘要。</b>今日值得记录的不是又一个新模型，而是三条在同一时间窗到达、且彼此独立的证据：<b>其一</b>，批评性基准的对象发生了转移——从"模型不如简单基线"推进到"评测框架本身存在系统性失效"；<b>其二</b>，规模路线的边际收益被两项独立工作同时质疑，瓶颈被指向<b>情境（context）的数量</b>而非细胞数或参数量；<b>其三</b>，约 18 亿美元的公共—产业联合体把钱投向了<b>数据基础设施</b>而非模型层。三条线索收敛到同一判断：这个领域的当前瓶颈，正在从"模型能不能做"转移到"我们如何测量它能不能做"。
+  </div>
 
-  <h3>三、乐观者的路线图</h3>
-  <p>Arc CTO David Burke 给出的标尺是：扰动预测准确率约 75% 才能让生物学家免于湿实验验证，当前 STATE 约 40–60%——"阈值在接近但尚未到达"。架构创新（扩散语言模型 X-Cell、图结构先验 GREmLN、流匹配、推理 LLM + 软验证 rbio1）正在替代纯堆参数；VCC 的 CASP 化则为领域提供了可复现的度量衡。X-Cell 报告的幂律 scaling 若被独立复现，将是"大力出奇迹"路线最有力的证据。</p>
+  <h3>一、事实记录<span style="font-size:12px;color:var(--dim);font-weight:400"> · FACTS</span></h3>
+  <p>下表为截至 2026-10-24 可核验的事实条目。信源类型按<b>预印本</b>（未经同行评审）、<b>期刊</b>（已同行评审）、<b>公告/报道</b>（机构或媒体发布）三类区分，读者应据此判断证据强度。</p>
 
-  <h3>四、企业解剖的启示：三种生存策略</h3>
-  <p>从七家企业的解剖中可以看到路线分化：<b>Xaira 的全栈闭环</b>（数据—模型—管线—机器人，赌的是垂直整合的效率）；<b>insitro 的因果数据资产</b>（20+ PB 自有湿实验数据 + 药企合作变现，赌的是数据的不可复制性）；<b>GenBio 的标准卡位</b>（开源世界模型 + 生态绑定，赌的是成为基础设施）。中国阵营则走出"学术源头 + 国资背书"的差异化路线（百曜、百图）。</p>
-  <p>我们的判断：短期（1-2 年）不应高估成熟度——零样本泛化、组合扰动、时空维度仍是硬骨头；长期（5 年）不应低估科学价值。数据、评测与算力三要素均已就位，剩下的问题是：谁能第一个跨过 75% 的阈值，谁就定义下一个十年。</p>
+  <table class="ftab">
+    <thead><tr><th>条目</th><th>关键事实（数字与结论）</th><th>信源类型</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="k">EL-PERTURB<br><span class="src">分层 OOD 基准</span></td>
+        <td>对覆盖 6 类架构的 20 个扰动预测模型做压力测试，采用按转录空间功能分区分层的 OOD 划分（替代随机划分）。结论：OOD 条件下性能显著退化，且<b>架构复杂度——包括单细胞基础模型嵌入——相对调参良好的简单基线没有可靠优势</b>。</td>
+        <td><span class="st st-p">预印本</span><br><span class="src">bioRxiv 10.64898/2026.10.16.759604</span></td>
+      </tr>
+      <tr>
+        <td class="k">评测框架审计<br><span class="src">Auditing harness</span></td>
+        <td>作者先复现一套「预测性能 + 不确定性校准」评测框架（2 个数据集、6 组数据—划分组合、3 个模型、3 种不确定性量化方法），再用它从未纳入的零假设基线去审计它自身。结果：<b>把测试细胞本身喂给模型再打分，恒等预测器即可在全部 6 组划分上取得扰动效应相关 1.0</b>；以常数训练均值为对照，scVI 在 Norman 数据集 99.7% 的细胞上胜出，在 Replogle 上仅 0.2%。作者归纳出<b>六类失效模式</b>。</td>
+        <td><span class="st st-p">预印本</span><br><span class="src">bioRxiv 10.64898/2026.10.12.758706</span></td>
+      </tr>
+      <tr>
+        <td class="k">scButterfly-B<br><span class="src">架构对比基准</span></td>
+        <td>126,604 个配对单核 profile、19 项人类研究、统一词表 50,000 peaks / 3,185 基因、10 组 5×2 交叉验证、70 次训练运行。双变分自编码器管线在<b>全部 60 组配对 fold 比较</b>中按 per-gene 与 within-cell Spearman 相关胜过所有受测 transformer 管线，训练时间缩短 3.8 倍。作者附带给出诊断：<b>在真实表达基因位置填常数即可使 per-gene 相关达 0.996</b>。</td>
+        <td><span class="st st-p">预印本</span><br><span class="src">arXiv:2610.28853</span></td>
+      </tr>
+      <tr>
+        <td class="k">Virtual Cells Need Context, Not Just Scale</td>
+        <td>Biohub、芝加哥大学、西北大学团队从评测侧得出结论：<b>差异表达基因的恢复率随「每个扰动的训练情境数」上升，与训练细胞数仅弱相关（r = 0.11）</b>。</td>
+        <td><span class="st st-p">预印本</span><br><span class="src">bioRxiv 10.64898/2026.02.04.703804</span></td>
+      </tr>
+      <tr>
+        <td class="k">X-Cell 的规模清扫<br><span class="src">站内已收录</span></td>
+        <td>在 2560 万个 CRISPRi 扰动细胞、16 种细胞背景上训练。公开子集的模型规模清扫显示：训练损失随参数量呈幂律下降，但<b>测试损失在约 16 亿参数之后变化很小</b>；作者点名「不同扰动 × 情境配对的数量」——而非细胞数或模型规模——为当前泛化的限制因素。</td>
+        <td><span class="st st-p">预印本</span><br><span class="src">Xaira Therapeutics, 2026</span></td>
+      </tr>
+      <tr>
+        <td class="k">Virtual Cell Challenge 2026</td>
+        <td>任务升级为<b>零样本跨情境泛化</b>：不提供任何赛事专属训练集，只给非靶向对照细胞的基线表达谱 + 待敲低基因 ID。数据为 6 条不同组织来源的癌细胞系 CRISPRi + 10x Flex，验证集 3 条（实时排行榜）、测试集另 3 条（完全独立、真值保密），每条 300 个扰动 × 约 400 个细胞。评分改为<b>6 项指标的参考归一化聚合</b>（Cell-Eval），明确为抑制针对单一指标刷分。</td>
+        <td><span class="st st-j">期刊 Cell</span><br><span class="src">10.1016/j.cell.2026.08.004</span></td>
+      </tr>
+      <tr>
+        <td class="k">Virtual Biology Initiative 扩容</td>
+        <td>2026-10-07 宣布，合计约 <b>18 亿美元</b>的资金、数据、算力与测量技术：Biohub 5 亿（4 亿建测量技术 + 1 亿外部研究）、DOE 五年超 5 亿、NIH 协调既有超 5 亿联邦投资形成的数据集与知识库、Google DeepMind + Isomorphic Labs + Meta 合计 3 亿；NVIDIA 提供加速计算基础设施。Wellcome Sanger、人类细胞图谱、人类蛋白图谱、Allen、Broad、Gladstone 等参与。目标：约一年产出首批大规模数据集，五年内建成有预测能力的模型。商业资助方设数据封锁窗口期，期满后全部公开。</td>
+        <td><span class="st st-n">机构公告</span><br><span class="src">biohub.org 2026-10-07；Reuters 报道</span></td>
+      </tr>
+      <tr>
+        <td class="k">赛事日程</td>
+        <td>VCC 2026 报名人数赛事方自述超 1,800 人；NeurIPS Virtual Embryo Challenge 测试期 2026-10-20 开启、12-02 截止，设人类赛道与智能体赛道。</td>
+        <td><span class="st st-n">赛事公告</span><br><span class="src">实时变动，见文末待核实</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>二、事实性归纳：三条线索如何收敛<span style="font-size:12px;color:var(--dim);font-weight:400"> · SYNTHESIS</span></h3>
+
+  <h3 style="font-size:15.5px;color:var(--sub);margin-top:22px">2.1 批评的靶心从模型移到了评测框架</h3>
+  <p>本站此前记录的批评性基准，逻辑是"给模型找一个更朴素的对手"：Nature Methods 的线性基线、Genome Biology 的零样本协议，以及本站 10-23 收录的 Rutgers 团队工作（DOI 10.64898/2026.10.20.760537，指出 STATE 与 Cell2Sentence 的预测连扰动身份都恢复不了）。今天的两个新预印本把靶心往前推了一步——它们质疑的不是模型的分数，而是<b>分数是怎么算出来的</b>：恒等预测器能拿满分相关、常数填充能拿 0.996 的 per-gene 相关、同一模型在两个常用数据集上的胜率从 99.7% 掉到 0.2%。这类"基准审计"工作在方法论上是二阶的：它不回答"哪个模型更好"，而回答"我们现有的比较是否成立"。</p>
+
+  <h3 style="font-size:15.5px;color:var(--sub);margin-top:22px">2.2 规模的边际收益被两个方向同时质疑</h3>
+  <p>一条来自训练侧（X-Cell：约 16 亿参数之后测试损失几乎不再下降，作者点名"扰动 × 情境配对数"是限制项）；另一条来自评测侧（Context, Not Just Scale：DE 基因恢复随训练情境数上升，与训练细胞数相关性仅 r = 0.11）。两条独立工作指向同一变量——<b>情境的多样性，而非细胞数或参数量</b>。这与 Cell 立场文章把"含扰动、含时空、多模态"列为数据需求的判断是一致的，只是现在有了量化依据。</p>
+
+  <h3 style="font-size:15.5px;color:var(--sub);margin-top:22px">2.3 钱正在流向数据基础设施，而不是模型层</h3>
+  <p>Virtual Biology Initiative 的 18 亿美元中，明确用于"测量技术"与"数据标准化"的部分占绝大部分：冷冻电子断层扫描、可成像数百万至数十亿细胞的显微技术、跨分子到整体水平的工程化扰动工具，以及把 DOE 国家实验室体系的百亿亿次计算、X 射线/中子散射、冷冻电镜与自主实验室纳入同一数据生产链。模型侧的直接投入（DeepMind/Isomorphic/Meta 合计 3 亿）小于基础设施侧。这一结构与 2.2 的证据方向一致：如果瓶颈是情境的多样性，那么最有效的支出就是生产新的情境，而不是训练更大的模型。</p>
+
+  <div class="opbox">
+    <div class="oh">三、编辑部观点（以下为判断，非事实）</div>
+    <ol>
+      <li><b>「基准审计」是领域成熟的标志，不是唱衰。</b>CASP 之前，蛋白质结构预测同样经历过"指标不可比、基线缺失"的阶段。批评的对象从模型下沉到评测框架，说明领域开始有能力讨论"怎么测"——这是任何"AlphaFold 时刻"的必要前奏，而非相反。</li>
+      <li><b>短期内，模型排名的可信度应被打折，而不是被推翻。</b>当恒等预测器能在某个框架里拿满分，正确的反应不是宣布所有模型无效，而是要求每份排行榜同时公布零假设基线的分数。我们倾向于把"是否附带恒等/常数/训练均值基线"当作判断一份评测是否可信的最低门槛。</li>
+      <li><b>「亿级细胞」的叙事已经接近其解释力上限。</b>两项独立工作同时把变量指向情境数，意味着下一轮竞争的计量单位可能从"细胞数"换成"扰动 × 情境配对数"。对做数据战略的机构而言，20 个情境 × 200 万个细胞，可能比 2 个情境 × 2000 万个细胞更有价值。</li>
+      <li><b>18 亿美元的公共数据投入，最大的不确定性不在技术而在治理。</b>数据封锁窗口期的设计是商业参与的合理代价，但窗口期的长度与范围将直接决定这份公共资源的实际开放度。这是未来 12 个月最值得跟踪的一条非技术线。</li>
+    </ol>
+  </div>
+
+  <h3>四、前情提要<span style="font-size:12px;color:var(--dim);font-weight:400"> · 本站既有立场（2026-10-17 及以前）</span></h3>
+  <p>本栏目此前的四点判断仍然成立，并可作为今日观察的背景：<b>冷水与热钱的拉锯</b>——资本密度空前，同时批评性基准持续泼冷水，领域正从叙事驱动进入证据驱动；<b>相关 ≠ 因果</b>——观测性语料学到的是细胞类型间的相关性，这正是大规模 Perturb-seq 数据军备赛的动机；<b>75% 阈值说</b>——Arc CTO David Burke 提出的标尺（扰动预测准确率约 75% 才能让生物学家免于湿实验验证，STATE 当前约 40–60%）依然是最可操作的一把尺；<b>三种生存策略</b>——全栈闭环（Xaira）、因果数据资产（insitro）、标准卡位（GenBio）。详见<a href="companies.html">企业解剖</a>与<a href="benchmarks.html">数据与基准</a>。</p>
+
+  <div class="unc">
+    <b>待核实与不确定性（编辑部主动披露）：</b>
+    <br>· VCC 2026 的奖金总额在不同渠道存在 10 万美元与 17.5 万美元两种口径，报名人数（1,800+ / 1,082 队）为赛事方实时自述，本站未独立核实，按"赛事方自述"处理。
+    <br>· 本文引用的 5 项预印本均<b>未经同行评审</b>，结论可能在正式发表后变化；其中两项（EL-PERTURB、scButterfly-B）的结果尚未见第三方复现。
+    <br>· Virtual Biology Initiative 的金额构成本站依据 Biohub 官方公告与 Reuters 报道整理，其中"NIH 协调的既有超 5 亿美元联邦投资"为既有投入的再对齐，非新增现金。
+    <br>· 赛事日程（VCC 2026 截止日、NeurIPS Virtual Embryo Challenge 测试期）为实时变动信息，请以官方页面为准。
+  </div>
+
+  <div class="reflist">
+    <div class="rh">参考文献 / References</div>
+    <ol>
+      <li>Tiwari K, Mahajan G, Bellad RP, et al. <i>Genetic Perturbation Prediction Models Fail Out-of-Distribution: A Rigorous Benchmark and Systematic Evaluation</i> (EL-PERTURB). bioRxiv, 2026. <span class="doi">DOI: <a href="https://doi.org/10.64898/2026.10.16.759604" target="_blank">10.64898/2026.10.16.759604</a>（预印本）</span></li>
+      <li>Gallone M, Ravidath S, Madireddy S. <i>Auditing Confidence-Calibrated Benchmarking of Single-Cell Perturbation Models</i>. bioRxiv, 2026. <span class="doi">DOI: <a href="https://doi.org/10.64898/2026.10.12.758706" target="_blank">10.64898/2026.10.12.758706</a>（预印本）</span></li>
+      <li>Meyer JG. <i>scButterfly-B</i> 染色质可及性 → 基因表达预测统一基准. arXiv, 2026. <span class="doi">arXiv:2610.28853（预印本）</span></li>
+      <li>Dibaeinia P, Babu S, Knudson M, et al. <i>Virtual Cells Need Context, Not Just Scale</i>. bioRxiv, 2026. <span class="doi">DOI: <a href="https://doi.org/10.64898/2026.02.04.703804" target="_blank">10.64898/2026.02.04.703804</a>（预印本）</span></li>
+      <li>Wang C, Karimzadeh M, Ravindra NG, et al. <i>X-Cell: Scaling Causal Perturbation Prediction Across Diverse Cellular Contexts via Diffusion Language Models</i>. bioRxiv, 2026.（预印本）</li>
+      <li>Arc Virtual Cell Initiative Team, Goodarzi H, et al. <i>Virtual Cell Challenge 2026: Benchmarking zero-shot generalization across cellular contexts</i>. Cell, 2026. <span class="doi">DOI: <a href="https://doi.org/10.1016/j.cell.2026.08.004" target="_blank">10.1016/j.cell.2026.08.004</a></span></li>
+      <li>Biohub. <i>International, cross-sector collaboration commits nearly 2 billion to build foundational data for AI models to predict and treat disease</i>. 2026-10-07. <span class="doi"><a href="https://biohub.org/news/virtual-biology-initiative-expansion/" target="_blank">biohub.org</a>（机构公告）</span></li>
+      <li>Bunne C, Roohani Y, Rosen Y, … Regev A, Leskovec J, Quake SR, et al. <i>How to Build the Virtual Cell with Artificial Intelligence: Priorities and Opportunities</i>. Cell, 2024. <span class="doi">DOI: <a href="https://doi.org/10.1016/j.cell.2024.11.015" target="_blank">10.1016/j.cell.2024.11.015</a></span></li>
+    </ol>
+  </div>
 
 </div></div></section>
 
 <footer><div class="wrap">
   <div class="fnav"><a href="index.html">首页</a><a href="papers.html">文献库</a><a href="models.html">模型谱系</a><a href="companies.html">企业解剖</a><a href="china.html">中国生态</a><a href="news.html">前沿速递</a><a href="benchmarks.html">数据与基准</a><a href="insight.html">深度解读</a><a href="search.html">搜索</a><a href="about.html">关于</a></div>
-  <div>AIVC Insight · 观点基于公开文献与公开信源</div>
+  <div>AIVC Insight · 事实条目均附信源类型，观点段落已单独标注为编辑部判断</div>
   <div>aivc.news · <a href="assets/feed.xml">RSS 订阅</a> · © 2026 AIVC Insight Team</div>
 </div></footer>
 
