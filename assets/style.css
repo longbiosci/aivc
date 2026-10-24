@@ -194,14 +194,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 
   /* 汉堡导航 */
   nav.main .wrap{flex-wrap:wrap;align-items:center}
-  .navtoggle{display:inline-block;background:none;border:1px solid var(--line);border-radius:3px;padding:8px 12px;margin:6px 0 10px;font-family:var(--sans);font-size:13px;color:var(--sub);cursor:pointer}
-  .navtoggle::after{content:" ▾";color:var(--dim)}
-  .navlinks{display:flex;flex-wrap:wrap;width:100%}
-  .navlinks a{padding:9px 13px 9px 0;border-bottom:none;margin-bottom:0;font-size:14.5px}
+  .navtoggle{display:none}
+  .navlinks{display:flex;flex-wrap:nowrap;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .navlinks::-webkit-scrollbar{display:none}
+  .navlinks a{padding:11px 13px 11px 0;border-bottom:none;margin-bottom:0;font-size:14.5px;white-space:nowrap;flex-shrink:0}
   .navlinks a.active{color:var(--accent);font-weight:600}
-  .navlinks a.x{display:none}
-  .navlinks.open a.x{display:block}
-  .navlinks.open{padding-bottom:6px}
 
   /* 标题与正文 */
   .hero{padding:34px 0 28px}
