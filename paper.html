@@ -56,20 +56,27 @@ document.getElementById('gname').textContent=G[p.g]||'';
 document.title=p.t+' · 文献解读 · AIVC Insight';
 var links='<a class="dbtn" href="https://doi.org/'+p.doi+'" target="_blank">DOI 原文</a>';
 if(p.pdf)links+='<a class="dbtn" href="'+p.pdf+'" target="_blank">PDF 全文</a>';
-var sec=function(h,x){return x?'<h3>'+h+'</h3><p>'+x+'</p>':''};
-var rel=PAPERS.filter(function(q,j){return q.g===p.g&&j!==i}).slice(0,5);
+var sec=function(h,arr,anchor){return arr&&arr.length?'<h3 id="'+anchor+'">'+h+'</h3>'+arr.map(function(x){return '<p>'+x+'</p>'}).join(''):''};
+var TOC=[['bg','背景与脉络'],['me','方法详解'],['rs','关键结果'],['lm','局限与未解问题'],['db','争议与后续'],['tk','情报点评']];
+var toc='<nav class="dtoc"><span>本文导读</span>'+TOC.map(function(t){return '<a href="#'+t[0]+'">'+t[1]+'</a>'}).join('')+'</nav>';
+var byId=function(fid){for(var j=0;j<PAPERS.length;j++){if(PAPERS[j].id===fid)return PAPERS[j]}return null};
+var fw=(p.further||[]).map(function(fid){var q=byId(fid);return q?'<li><a href="/paper?id='+q.id+'">'+q.t+'</a><span>'+q.v+'</span></li>':''}).join('');
 var html='<article class="detail">'
 +'<div class="dbadge">'+G[p.g]+' · '+p.v+' · '+p.d+'</div>'
 +'<h1>'+p.t+'</h1>'
 +'<div class="dauth">'+p.a+'</div>'
 +'<div class="dlinks">'+links+'</div>'
 +'<div class="dsum">'+p.summary+'</div>'
-+sec('它解决什么问题',p.problem)
-+sec('方法',p.method)
-+sec('结果与数据',p.findings)
-+sec('局限与争议',p.limits)
-+sec('情报点评',p.takeaway)
++toc
++sec('背景与脉络',p.background,'bg')
++sec('方法详解',p.method,'me')
++sec('关键结果',p.results,'rs')
++sec('局限与未解问题',p.limits,'lm')
++sec('争议与后续',p.debate,'db')
++sec('情报点评',p.takeaway,'tk')
 +'</article>';
+if(fw){html+='<div class="drel"><h3>延伸阅读</h3><ul>'+fw+'</ul></div>'}
+var rel=PAPERS.filter(function(q,j){return q.g===p.g&&j!==i}).slice(0,5);
 if(rel.length){html+='<div class="drel"><h3>同组相关文献</h3><ul>'+rel.map(function(q){return '<li><a href="/paper?id='+q.id+'">'+q.t+'</a><span>'+q.v+' · '+q.d+'</span></li>'}).join('')+'</ul></div>'}
 var prev=PAPERS[i-1],next=PAPERS[i+1];
 html+='<div class="dpn">'+(prev?'<a href="/paper?id='+prev.id+'">← 上一篇：'+prev.t.slice(0,30)+'…</a>':'<span></span>')+(next?'<a href="/paper?id='+next.id+'">下一篇：'+next.t.slice(0,30)+'… →</a>':'<span></span>')+'</div>';

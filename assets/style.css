@@ -279,6 +279,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .dbtn{font-size:13px;font-weight:600;color:var(--accent);border:1px solid var(--accent);border-radius:3px;padding:6px 14px}
 .dbtn:hover{background:var(--accent);color:#fff;text-decoration:none}
 .dsum{font-family:var(--serif);font-size:16.5px;line-height:1.75;color:var(--ink);background:var(--accent-soft);border-left:3px solid var(--accent);padding:14px 18px;border-radius:0 3px 3px 0;margin-bottom:8px}
+.dtoc{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 4px;font-size:13px}
+.dtoc span{color:var(--dim);margin-right:2px}
+.dtoc a{color:var(--accent);border:1px solid var(--line);border-radius:2px;padding:3px 10px;background:#fff}
+.dtoc a:hover{border-color:var(--accent);text-decoration:none}
 .detail h3{font-family:var(--serif);font-size:17px;color:var(--ink);margin:26px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
 .detail p{font-size:15px;line-height:1.85;color:var(--body);margin-bottom:4px}
 .drel{margin-top:34px;border-top:1px solid var(--line);padding-top:20px}
