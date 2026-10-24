@@ -57,6 +57,11 @@ h3.g{font-family:var(--serif);font-size:16.5px;color:var(--accent);margin:26px 0
 .paper .c{font-size:13.5px;color:var(--body)}
 .paper .c::before{content:"要点：";color:var(--accent);font-weight:600;font-size:12.5px}
 a.doi{font-size:12px;font-family: Georgia,serif}
+a.pdf{font-size:12px;font-weight:600;margin-left:10px;border:1px solid var(--accent);color:var(--accent);border-radius:2px;padding:1px 8px;white-space:nowrap}
+a.pdf:hover{background:var(--accent);color:#fff;text-decoration:none}
+.submitbox{margin:18px 0 0;padding:16px 20px;background:var(--accent-soft);border:1px solid #d3e2e3;border-radius:3px;font-size:13.5px;color:var(--sub)}
+.submitbox b{color:var(--ink)}
+.submitbox a{font-weight:600}
 
 /* ===== 企业档案 ===== */
 .co{background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:28px 30px;margin-bottom:24px}
