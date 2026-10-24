@@ -98,9 +98,19 @@ section.tight{padding-top:0}
 
 /* ===== 深度解读 ===== */
 .article{max-width:760px}
+.article h2{font-family:var(--serif);font-size:25px;color:var(--ink);line-height:1.4;margin:2px 0 6px}
 .article h3{font-family:var(--serif);font-size:17.5px;color:var(--ink);margin:30px 0 8px}
 .article p{font-size:15px;margin-bottom:10px}
 .article blockquote{border-left:3px solid var(--accent);padding:4px 18px;margin:16px 0;color:var(--sub);background:var(--accent-soft);font-size:14px}
+.b-edit{background:var(--accent);color:#fff}
+.sig{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);color:var(--dim);font-size:13.5px;line-height:1.8}
+.ftable{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px}
+.ftable th{font-family:var(--sans);font-size:12px;color:var(--dim);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);font-weight:600;letter-spacing:.5px}
+.ftable td{padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--body);line-height:1.7}
+.ftable td:first-child{font-family:var(--serif);color:var(--accent);font-weight:700;white-space:nowrap}
+.ftable td:last-child{white-space:nowrap;color:var(--sub);font-size:13px}
+.ftable tr:last-child td{border-bottom:none}
+.arch{margin-top:8px;border-top:2px solid var(--line);padding-top:6px}
 
 /* ===== 首页 ===== */
 .hero{border-bottom:1px solid var(--line);padding:56px 0 44px;background:var(--paper)}
@@ -361,4 +371,4 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .reflist .doi{color:var(--dim);font-size:12px}
 .unc{border:1px dashed #ccc4b0;background:#fdfcf8;padding:14px 18px;margin:20px 0;font-size:13.5px;color:var(--sub);border-radius:3px}
 .unc b{color:var(--amber)}
-@media(max-width:720px){.ftab{font-size:12.5px}.ftab td,.ftab th{padding:7px 8px}}
+@media(max-width:720px){.ftab{font-size:12.5px;table-layout:fixed;width:100%}.ftab td,.ftab th{padding:7px 8px}.ftab .k{white-space:normal}.ftab .src{word-break:break-all}.ftab .st{white-space:nowrap}}
