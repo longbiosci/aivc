@@ -245,7 +245,7 @@ debate:[
 "GREmLN vs X-Cell 是 2026 年最大的技术路线辩论：一边是「1030 万参数 + 好结构」，一边是「49 亿参数 + 大数据」。公允的解读是两者最优解不同：数据密集、结构未知的任务（如癌细胞系扰动）利于规模，数据稀疏、结构清晰的任务（如特定通路扰动）利于结构。但叙事上，规模派声音更大——这也是 GREmLN 类工作的价值：它让领域不得不解释「为什么不用小模型」。"],
 takeaway:["「小模型 + 强结构」路线的代表，与 X-Cell 的「大模型 + scaling」路线形成鲜明对照——这是 AIVC 的路线分岔口。做技术尽调时，用这篇追问规模叙事的边界。"],
 further:["p18","p26","p12","p44"]},
-{id:"p15",g:"g2",t:"Cell2Sentence: Teaching Large Language Models the Language of Biology",a:"Levine 等；通讯：David van Dijk（耶鲁）",v:"ICML 2024",d:"2024",
+{id:"p15",g:"g2",t:"Cell2Sentence: Teaching Large Language Models the Language of Biology",a:"Levine 等；通讯：David van Dijk（耶鲁）",v:"ICML 2024",d:"2024",doi:"10.1101/2023.09.11.557287",
 summary:"将细胞写成「基因名句子」使现成 LLM 直接对细胞做自然语言推理，打通单细胞数据与通用语言模型的接口。",
 background:[
 "单细胞模型与通用 LLM 长期是两个世界：前者操作高维数值向量，后者操作离散符号。耶鲁 van Dijk 组问了一个跨界的傻问题——如果直接把细胞「翻译」成自然语言，通用 LLM 能不能不训练就对细胞做推理？",
@@ -366,7 +366,7 @@ debate:[
 "更深的争议在概念层面：「世界模型」在 RL 领域有明确含义（模型可用于规划），AIVC 借用这个词时，规划能力（反向搜索最优干预方案）尚未被证明——现在的 AIDO.Cell 更像高保真仿真器而非可规划的世界模型。"],
 takeaway:["2026 年 AIVC 旗舰论文。无论你是否信「世界模型」叙事，这篇都是必读——它把「虚拟细胞」从快照预测推向动态仿真，也把领域对「什么叫理解细胞」的标准抬高了一档。本站企业解剖栏目对 GenBio 的跟踪以其交付进度为核心指标。"],
 further:["p03","p19","p20","p01"]},
-{id:"p22",g:"g2",t:"LangCell: Language-Cell Pre-training for Cell Identity Understanding",a:"清华 AIR 聂再清团队",v:"ICML 2024",d:"2024",pdf:"https://arxiv.org/pdf/2405.06708",
+{id:"p22",g:"g2",t:"LangCell: Language-Cell Pre-training for Cell Identity Understanding",a:"清华 AIR 聂再清团队",v:"ICML 2024",d:"2024",doi:"10.48550/arXiv.2405.06708",pdf:"https://arxiv.org/pdf/2405.06708",
 summary:"单细胞数据与自然语言描述联合预训练，实现文本-细胞跨模态检索与零样本注释。",
 background:[
 "细胞注释依赖离散标签（「T cell」「B cell」），但自然语言描述（「表达 IL7R 的初始 T 细胞，高表达 CCR7」）蕴含更丰富的语义，且与文献中的表达方式一致。清华 AIR 聂再清团队的问题：能不能直接用自然语言作为监督信号？",
@@ -662,7 +662,7 @@ limits:["不否定其他可解释性方法（概念激活、探针等仍有价�
 debate:["这篇论文的争议不在结论而在杀伤范围：整个「scFM 注意力图 → 调控发现」的支线（包括若干高影响力论文的核心 claim）都受到波及。辩护者认为「不优于简单特征」不等于「没有信息」，但举证责任已经转移——现在需要 attention 派自己证明增益。它与 D-SPIN 的显式网络路线形成合流：可解释性可能要回到显式结构。"],
 takeaway:["对「用注意力图讲故事」的当头棒喝。做机制解读时引用需谨慎——引用前先问：这个 claim 过了这篇的检验没有？"],
 further:["p33","p36","p09","p39"]},
-{id:"p40",g:"g4",t:"Rethinking Perturbation Discrimination Metrics: Lessons from the Virtual Cell Challenge（TransPert 团队复盘）",a:"Du, Wang 等（芝加哥大学 / 达特茅斯 / 港大）",v:"arXiv",d:"2025",
+{id:"p40",g:"g4",t:"Rethinking Perturbation Discrimination Metrics: Lessons from the Virtual Cell Challenge（TransPert 团队复盘）",a:"Du, Wang 等（芝加哥大学 / 达特茅斯 / 港大）",v:"arXiv",d:"2025",pdf:"https://arxiv.org/pdf/2511.16954",
 summary:"VCC 季军团队对 PDS 等指标的技术复盘，揭示当前评测指标的盲区。",
 background:[
 "VCC 2025 最富戏剧性的结果不是百图生科夺冠，而是一个纯统计框架（TransPert）拿了季军——一个「不懂生物学」的框架，靠对指标的深刻理解击败了大量生物学动机的模型。",
