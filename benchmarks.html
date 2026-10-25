@@ -62,7 +62,8 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 <section style="padding-top:0"><div class="wrap">
   <h2 class="sec">评测体系<small>BENCHMARKS</small></h2>
   <div class="grid c3">
-    <div class="card"><span class="badge b-paper">基准 · 2026 升级</span><h3>Virtual Cell Challenge（VCC）2026</h3><p>任务从「语境内预测」升级为<b>零样本跨情境泛化</b>：不提供赛事专属训练集，只给非靶向对照基线表达谱 + 待敲低基因 ID。数据为 6 条不同组织来源癌细胞系 CRISPRi + 10x Flex，验证集 3 条（实时排行榜）、测试集另 3 条（完全独立、真值保密），每条 300 扰动 × 约 400 细胞。评分改为 <b>6 项指标参考归一化聚合</b>（Cell-Eval），以抑制针对单一指标刷分。</p><div class="date">Cell 2026 · DOI 10.1016/j.cell.2026.08.004 · 赛事方自述报名 1,800+</div></div>
+    <div class="card"><span class="badge b-paper">基准 · 2026 升级</span><h3>Virtual Cell Challenge（VCC）2026</h3><p>任务从「语境内预测」升级为<b>零样本跨情境泛化</b>：不提供赛事专属训练集，只给非靶向对照基线表达谱 + 待敲低基因 ID。数据为 6 条不同组织来源癌细胞系 CRISPRi + 10x Flex，验证集 3 条（实时排行榜）、测试集另 3 条（完全独立、真值保密），每条 300 扰动 × 约 400 细胞。评分改为 <b>6 项指标参考归一化聚合</b>（Cell-Eval），以抑制针对单一指标刷分。。<b>投稿截止 2026-11-05</b>；报名规模存在口径分歧——赛事方自述 1,800+，另有「1,082 支队伍」的说法（本刊标注待核实）。</p><div class="date">Cell 2026 · DOI 10.1016/j.cell.2026.08.004 · 赛事方自述报名 1,800+</div></div>
+    <div class="card"><span class="badge b-paper">基准</span><h3>空间转录组细胞分割基准（Nature Methods 2026）</h3><p>11 种分割方法 × 15 个数据集 × 5 个平台 × 12 种组织，15 项 CellSPA 指标：等权总分 SAM 0.58 居首，覆盖度调整后 SCS 0.34 反超；分割选择会改写细胞类型特异性、转录本污染与配体-受体推断。附统一 Nextflow 流程。</p><div class="date">2026-10-23 · Nature Methods 10.1038/s41592-026-03272-x</div></div>
     <div class="card"><span class="badge b-crit">批评性基准</span><h3>EL-PERTURB（分层 OOD）</h3><p>对 6 类架构、20 个扰动预测模型做压力测试，用按转录空间功能分区的<b>分层 OOD 划分</b>替代随机划分。结论：OOD 下性能显著退化，架构复杂度（含单细胞基础模型嵌入）相对调参良好的简单基线<b>无可靠优势</b>。</p><div class="date">2026-10 · bioRxiv 10.64898/2026.10.16.759604（预印本）</div></div>
     <div class="card"><span class="badge b-crit">批评性基准</span><h3>Context, Not Just Scale</h3><p>Biohub / 芝加哥大学 / 西北大学：差异表达基因恢复率随<b>每个扰动的训练情境数</b>上升，与训练细胞数<b>仅弱相关（r = 0.11）</b>。与 X-Cell 的规模清扫（约 16 亿参数后测试损失几乎不再下降）同向。</p><div class="date">2026 · bioRxiv 10.64898/2026.02.04.703804（预印本）</div></div>
     <div class="card"><span class="badge b-paper">基准</span><h3>sigRecon（跨情境签名重定位）</h3><p>把「某扰动在 A 情境的签名迁移到 B 情境」定义为独立任务，按目标情境数据可用度分三档（仅对照 / 低覆盖 / 高覆盖）。评测投影法 projectCor、网络传播 netProp 与 scGPT、STACK 等基础模型 + 统计基线：投影与网络传播在多类扰动与情境上<b>匹配甚至超过</b>深度学习与基础模型。开源 R 包。</p><div class="date">2026 · bioRxiv（预印本）</div></div>
@@ -85,15 +86,6 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
     <div class="card"><span class="badge b-crit">批评性基准</span><h3>零样本评测（Genome Biology 2025）</h3><p>Microsoft Research 团队的严格零样本协议：Geneformer / scGPT 在聚类与批次校正上常不如高变基因 + scVI / Harmony 传统流程。</p><div class="date">2025-04 · Genome Biology</div></div>
     <div class="card"><span class="badge b-crit">批评性基准</span><h3>基准平均化掩盖扰动强度</h3><p>Rutgers 团队以深度校正的 guide 丰度作扰动强度代理，发现强度越高响应越可重复；但检索测试显示 STATE 与 Cell2Sentence 的预测<b>无法可靠恢复扰动身份</b>，因此"扰动内部强度"根本无从评估。</p><div class="date">2026-10-23 · bioRxiv 10.64898/2026.10.20.760537（预印本）</div></div>
     <div class="card"><span class="badge b-paper">观察</span><h3>75% 阈值说</h3><p>Arc CTO David Burke：扰动预测准确率约 75% 才能让生物学家免于湿实验验证；当前 STATE 约 40–60%——"阈值在接近但尚未到达"。<b>今日补注（2026-10-25）：</b>该区间本身也是在<b>未经对照校准</b>的常用指标上测得的，参照上述 Nature Biotechnology 的指标校准框架，真实位置有可能被低估，也可能被高估——在重复读数之前，应把它当作量级而非定点。</p><div class="date">Arc Institute 官方复盘 · 本站 2026-10-25 补注</div></div>
-  </div>
-</div></section>
-
-<section style="padding-top:0"><div class="wrap">
-  <h2 class="sec">进行中的赛事<small>ONGOING CHALLENGES</small></h2>
-  <div class="grid c3">
-    <div class="card"><span class="badge b-paper">赛事</span><h3>Virtual Cell Challenge 2026</h3><p>Arc Institute 主办，对标 CASP。零样本跨情境任务：6 条癌细胞系（3 验证 + 3 测试），300 扰动 × 约 400 细胞/系，Cell-Eval 六指标聚合。奖金与报名数为赛事方自述，实时变动。</p><div class="date">Arc Institute · 每年一届 · 奖金口径 10 万 / 17.5 万美元（待核实）</div></div>
-    <div class="card"><span class="badge b-paper">赛事</span><h3>NeurIPS Virtual Embryo Challenge</h3><p>测试期 2026-10-20 开启，12-02 截止；设人类赛道与智能体赛道。</p><div class="date">NeurIPS 2026 · 以官方页面为准</div></div>
-    <div class="card"><span class="badge b-paper">赛事</span><h3>VCC 2025（上届复盘）</h3><p>首届：H1 人胚胎干细胞 300 个 CRISPRi 扰动，指标 DES / PDS / MAE；114 国 1200+ 团队提交。官方复盘承认无模型在所有指标上稳定超越基线，优胜方案多为"深度学习 + 统计特征"混合。</p><div class="date">2025-12 揭晓 · 百图生科夺冠</div></div>
   </div>
 </div></section>
 
