@@ -43,7 +43,7 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 <div class="pagehead"><div class="wrap">
   <div class="crumb">栏目 05 · ANALYSIS</div>
   <h1>深度解读</h1>
-  <p class="lede">本栏目刊载两类文章：<b>社论</b>——编辑部对 AI 虚拟细胞领域的整体判断，长期有效，接受时间检验；<b>每日观察</b>——当日事实的记录与解读，严格区分事实与观点。两篇置顶文章均发表于 2026 年 10 月 24 日。</p>
+  <p class="lede">本栏目刊载两类文章：<b>社论</b>——编辑部对 AI 虚拟细胞领域的整体判断，长期有效，接受时间检验；<b>每日观察</b>——当日事实的记录与解读，严格区分事实与观点。社论发表于 2026 年 10 月 24 日；最新一篇每日观察发表于 2026 年 10 月 25 日（<a href="#obs-2026-10-25">跳转</a>）。</p>
 </div></div>
 
 <section><div class="wrap">
@@ -101,7 +101,125 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 
 <div style="border-top:2px solid var(--line);margin:52px 0 44px"></div>
 
-<div class="article">
+<div class="article" id="obs-2026-10-25">
+  <div class="ameta">
+    <span>期次 2026-10-25</span><span>栏目 每日观察</span><span>信源 9 条</span><span>更新 2026-10-25</span>
+  </div>
+
+  <h2>反向审计：一把校准过的尺子，把模型的优势还了回来</h2>
+  <p class="lede" style="margin-bottom:26px">主编观察 · 2026 年 10 月 25 日。本文严格区分<b>事实</b>与<b>观点</b>：第一、二节为可核验的事实记录与事实性归纳，第三节起为编辑部判断，文末列出全部信源与待核实项。本文包含对本站昨日结论的一次<b>自我修正</b>，见第三节第 1 条。</p>
+
+<div class="abstract">
+    <b>摘要。</b>本站 10-24 的判断是「<b>模型排名应当被打折</b>」，理由是恒等预测器能在某一评测框架里拿到 1.0 的扰动效应相关。今天要记录的反校准证据来自一篇<b>已同行评审</b>的 Nature Biotechnology 文章：作者给基准补上了长期缺失的<b>阳性对照</b>，在 14 个数据集 × 18 项指标上测出 MSE、Pearson(Δctrl) 等常用指标本身<b>对真实性能不敏感</b>，换用校准后的指标，九个深度模型稳定胜过无信息基线。两条线索并不矛盾——它们指向同一个更深的问题：<b>一个缺少双对照的基准，会同时产生假阳性（给无信息的预测器发高分）和假阴性（埋没有信息的模型）</b>。同期到达的三项工作把这个结论推向新边界：SubcellPert 把被预测对象从「基因计数」换成「分子坐标」；一份冻结表征评测则提醒我们，连「规模无用」这个结论本身，也可能是评测协议的函数。
+  </div>
+
+  <h3>一、事实记录<span style="font-size:12px;color:var(--dim);font-weight:400"> · FACTS</span></h3>
+  <p>下表为截至 2026-10-25 可核验的事实条目。信源类型按<b>期刊</b>（已同行评审）、<b>预印本</b>（未经同行评审）、<b>公告/报道</b>（机构、公司或媒体发布）三类区分，读者应据此判断证据强度。凡本站只能经第三方简报获得的数字，均在文末「待核实」中标注。</p>
+
+  <table class="ftab">
+    <thead><tr><th>条目</th><th>关键事实（数字与结论）</th><th>信源类型</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="k">度量校准框架<br><span class="src">Nature Biotechnology</span></td>
+        <td>提出「<b>插值式重复（interpolated duplicate）</b>」阳性对照——按每个基因 DEG 显著性在「技术重复」与「均值基线」之间插值（强效应基因偏向前者）——并以<b>动态范围分数 DRF</b> 量化指标校准度：DRF 是阳性对照实现的分数提升，占理论可达到提升的比例。在 <b>14 个数据集 × 18 项指标</b>上，MSE 与 Pearson(Δctrl) <b>频繁失准</b>；作者归因于<b>信号稀释</b>——Replogle22 K562 全基因组筛查平均每个扰动只有 <b>3.25 个 DEG</b>（Norman19 为 102.09），误差指标被未受影响基因摊薄。换用 WMSE 后，<b>9 个模型</b>（scGPT、GEARS、PRESAGE、scLambda、CellFlow 及 4 种基础模型嵌入探针）在 Replogle22 K562 上均显著优于均值基线。<b>数据集设计效应</b>：Norman19 训练仅覆盖 0.63% 的可能基因组合时加性基线难被超越，Wessels23 覆盖 10.3% 时 PRESAGE 在 18 项指标中的 15 项胜过加性基线。</td>
+        <td><span class="st st-j">期刊</span><br><span class="src">Nature Biotechnology 2026 · DOI <a href="https://doi.org/10.1038/s41587-026-03307-w" target="_blank">10.1038/s41587-026-03307-w</a></span></td>
+      </tr>
+      <tr>
+        <td class="k">Systema<br><span class="src">对照偏差的量化</span></td>
+        <td>EPFL / 剑桥 / 希伯来大学等团队在 <b>10 个数据集</b>（3 种技术、5 种细胞系）上量化「<b>系统性变异</b>」——扰动细胞与对照细胞之间由选择偏倚或混杂生物因素造成的<b>恒定</b>转录差异。标准指标下，「扰动均值」这类不含扰动特异信息的基线即可与 CPA、GEARS、scGPT <b>打平</b>。解法是把参照点从<b>对照细胞质心</b>换成<b>各扰动质心的平均</b>，并用质心准确度衡量能否重建扰动图谱。结论：预测未见扰动「<b>比标准指标所显示的困难得多</b>」，但部分方法<b>可部分恢复功能一致基因群</b>的效应。上述 Nature Biotechnology 新论文将其现象命名为 <b>control bias</b>，并列为自身佐证之一。</td>
+        <td><span class="st st-j">期刊</span><br><span class="src">Nat. Biotechnol. 44, 1050–1059 · DOI <a href="https://doi.org/10.1038/s41587-025-02777-8" target="_blank">10.1038/s41587-025-02777-8</a></span></td>
+      </tr>
+      <tr>
+        <td class="k">13 方法 × 25 数据集<br><span class="src">同行评审系统比较</span></td>
+        <td>中国团队把 <b>13 种</b>代表性方法与基线放进同一考场：<b>25 个数据集</b>（23 公开 + 2 自建的原代免疫细胞药物响应）、覆盖 CRISPR-KO/i/a、ORF 过表达、药物、IFN-β、LPS 等模态与小鼠、大鼠物种，用 <b>24 项指标</b>评估三项任务——未见单基因扰动、组合相互作用、跨细胞类型迁移。结论：性能<b>强烈依赖扰动效应量与评测视角</b>；表达量一致性在弱效应（接近对照）的扰动上最高，Δ 与 DE 类指标随效应增大才给出清晰信号；所有模型共有<b>保守偏差</b>，<b>微调后的基础模型压缩方差、低估协同效应</b>；PerturbNet 在任务 1、2 的 DE 签名恢复最好；<b>任务 3 无方法稳定泛化</b>，结果由生物一致性主导。作者明确结论：不同指标探测的是<b>不同的生物信号</b>，而非同一问题的冗余摘要。</td>
+        <td><span class="st st-j">期刊</span><br><span class="src">Science Advances 12(37), 2026-09-09 · DOI <a href="https://doi.org/10.1126/sciadv.aed3414" target="_blank">10.1126/sciadv.aed3414</a></span></td>
+      </tr>
+      <tr>
+        <td class="k">SubcellPert<br><span class="src">从基因计数到分子坐标</span></td>
+        <td>香港中文大学联合浙江大学、Duke 大学：把扰动响应的被预测对象从 RNA <b>丰度</b>扩展到<b>亚细胞定位</b>，规模为 <b>14 套成像数据集、1388 万个细胞、36.5 亿条 RNA 分子</b>，模型需在归一化二维坐标下生成目标 RNA 群体。Oracle（给定精确目标计数预测坐标）与 Joint（同时预测二者）双任务，8 种基线覆盖源重采样、经典传输与冻结基础模型适配器，留出方式为固定扰动与细胞背景。结果：<b>11 个背景 OOD 数据集中的 8 个，Oracle 空间误差最低值由高斯传输取得</b>；自带审计发现——<b>更高的质心准确度可能与更差的径向分布并存</b>，190 次 Joint 适配器拟合中有 19 次在验证后仍保留源计数。</td>
+        <td><span class="st st-p">预印本</span><br><span class="src">posted 2026-10-17 · DOI <a href="https://doi.org/10.64898/2026.10.11.758305" target="_blank">10.64898/2026.10.11.758305</a></span></td>
+      </tr>
+      <tr>
+        <td class="k">冻结表征评测<br><span class="src">规模结论也许是协议的函数</span></td>
+        <td>针对「单细胞基础模型在接触一小部分预训练数据后即饱和」的结论，作者主张<b>常规微调本身会掩盖表征质量的提升</b>。在跨语料规模测试一代与二代模型后：<b>完全冻结</b>的评测设置下，训练数据的规模关系重新显现（二代模型尤其明显），零样本分析同样恢复了对预训练规模的依赖。结论：<b>常规基础模型评测存在根本性局限</b>，冻结表征基准应成为常规工具。</td>
+        <td><span class="st st-p">预印本</span><br><span class="src">bioRxiv（v3 修订稿）· DOI <a href="https://doi.org/10.64898/2026.06.04.730272" target="_blank">10.64898/2026.06.04.730272</a></span></td>
+      </tr>
+      <tr>
+        <td class="k">MRFlow<br><span class="src">技术侧的回应</span></td>
+        <td>把扰动预测改写为<b>分布到分布的条件传输</b>（条件流匹配 + 机制结构化字典 + 谱受控残差场），直接回应「均值漂移」建模丢失稀有转录状态与耐药亚群的问题。自述在 8 个基因与药物扰动基准上综合分最高，但 <b>raw DE 与分布类指标仅具竞争力而非支配</b>。</td>
+        <td><span class="st st-p">预印本</span><br><span class="src">arXiv:2610.13966</span></td>
+      </tr>
+      <tr>
+        <td class="k">商业动作<br><span class="src">同一篇文章的公司端</span></td>
+        <td>英国剑桥的 Shift Bioscience 宣布，将以该校准框架开展大规模体内外筛选，寻找兼具「<b>细胞年轻化</b>」与「<b>抗纤维化</b>」用途的抑制靶点，先从纤维化切入。</td>
+        <td><span class="st st-n">公司公告 / 媒体报道</span><br><span class="src">公司官宣与 GEN 采访口径</span></td>
+      </tr>
+      <tr>
+        <td class="k">前情 · 本站 10-24<br><span class="src">站内已记录</span></td>
+        <td>三条批评性线索：EL-PERTURB 的分层 OOD 基准指出架构复杂度（含单细胞基础模型嵌入）相对调参良好的简单基线<b>无可靠优势</b>；恒等预测器在某一功率/不确定性评测框架的全部 6 组划分上取得扰动效应相关 <b>1.0</b>；scButterfly-B 诊断出在真实表达基因位置填常数即可达 per-gene 相关 <b>0.996</b>。详见<a href="benchmarks.html">数据与基准</a>。</td>
+        <td><span class="st st-p">预印本</span><br><span class="src">DOI 10.64898/2026.10.16.759604；10.64898/2026.10.12.758706；arXiv:2610.28853</span></td>
+      </tr>
+      <tr>
+        <td class="k">更正 · 文献库条目 p72<br><span class="src">本站昨日更正</span></td>
+        <td>本站文献库此前把 Science Advances 的系统比较标注为「2025 年、10 种模型」。期刊页面显示为 <b>2026-09-09、第 12 卷第 37 期、13 种方法 + 基线、25 个数据集、24 项指标</b>。本次维护已一并更正数据与基准的引用口径。</td>
+        <td><span class="st st-j">期刊</span><br><span class="src">本站自查 · science.org 页面核验</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>二、事实性归纳：缺的不是对照的一端，而是两端<span style="font-size:12px;color:var(--dim);font-weight:400"> · SYNTHESIS</span></h3>
+
+  <h3 style="font-size:15.5px;color:var(--sub);margin-top:22px">2.1 同一个故障，两个方向：假阳性与假阴性</h3>
+  <p>把今天的事实记录与昨日并排看，会发现争的不是同一件事。恒等预测器拿满分、常数填充拿 0.996，说明的是<b>尺子太松</b>——无信息的预测器也能拿高分（假阳性）。DRF 接近于零、PRESAGE 只在组合覆盖率 10.3% 的数据集上才胜过加性基线，说明的是<b>尺子太钝</b>——有信息的模型也看不出差别（假阴性）。两者可以同时为真，而且可以同时发生在同一批指标上：MSE 既会因为「太多无关基因」而稀释信号，也会因为「预测训练均值即可逼近」而奖赏平凡解。真正缺位的不是更聪明的模型，而是实验科学里最基础的那件东西——<b>一套能同时回答「什么算成功」与「什么算失败」的对照</b>。</p>
+
+  <h3 style="font-size:15.5px;color:var(--sub);margin-top:22px">2.2 争论的真正受害者是「我们该买什么数据」</h3>
+  <p>如果只看「模型到底有没有赢」这条主轴，今天的几篇论文看起来互相打架。但把变量抽出来，它们的结论高度一致：<b>数据设计与评测协议决定了结论的方向</b>。同一个类别的模型在 Norman19（训练覆盖 0.63% 的可能基因组合）上打不过加性基线，在 Wessels23（10.3%）上就能打赢；同一些模型在被「效应量校正过的指标」下优于基线，在 MSE 下就被埋掉；同一批基础模型在常规微调下表现饱和，在冻结表征下就恢复规模依赖。把这些放在一起读，昨天「瓶颈是<b>扰动 × 情境配对数</b>」的判断得到了更精确的版本——真正稀缺的是<b>组合空间的覆盖率与每一种情境/效应量的分辨力</b>，而不只是细胞数与情境数的乘积。</p>
+
+  <h3 style="font-size:15.5px;color:var(--sub);margin-top:22px">2.3 一个反复出现的模式，和一个新战场</h3>
+  <p>值得写进领域编年史的是这个形状：<b>每当有人把评测做扎实，赢家往往不是最大的模型，而是最贴合任务结构的那一个</b>。基因表达预测里是线性与纯线性代理；染色质→表达预测里是双变分自编码器；今天的亚细胞坐标预测里是<b>经典高斯传输</b>。这个模式重复三次之后，就不太像巧合，更像一条关于「<b>当前可用的归纳偏置究竟储存在哪里</b>」的信息。新的战场则是<b>预测对象本身</b>：从「有多少 RNA」到「RNA 在哪儿」（1388 万细胞、36.5 亿分子的 SubcellPert）。同一时间抵达的还有把「<b>均值响应</b>」换成「<b>响应分布</b>」的技术路线（MRFlow）——后者正是对 Science Advances 观测到的「<b>基础模型压缩方差</b>」的直接反击。</p>
+
+  <div class="opbox">
+    <div class="oh">三、编辑部观点（以下为判断，非事实）</div>
+    <ol>
+      <li><b>本站昨日的表述需要修正：该被打折的是「未经双对照校准的排名」，不是模型本身。</b>10-24 我们写「模型排名的可信度应被打折」，今天这篇期刊文章说明这句话说过头了——它只在一个方向上校正了我们的误差。修订后的立场：<b>一份没有同时声明阳性对照与负性对照的排行榜，其任何方向的结论都不可信</b>；已声明双对照的结论可以相信，直到出现新的协议证据。这是自我修正，不是自我推翻。</li>
+      <li><b>「有没有阳性对照」应当取代「有没有简单基线」，成为判断一份评测可信度的新门槛。</b>过去两年社区做的事情本质上是同一件——给基准加负对照（均值、线性、PCA）。负对照只能证伪，不能证实：所有人都输给基线时，你无法区分「模型真的不行」与「尺子看不见真实差异」。补上 DRF 这样的正对照之后，评测才第一次有能力报告「我的指标能否检测到真实的改进」。</li>
+      <li><b>评测协议应当被当成超参数申报。</b>冻结还是微调、参照点是对照质心还是扰动质心、训练数据覆盖了多少比例的可能组合——这些选择在今天的事实里都被证明能翻转结论，却通常在论文里只占一行 Methods。我们倾向于建议：任何公开发布的榜单都应附一份「协议矩阵」，列出在至少两种协议下的排名变化；没有这份矩阵的榜单，读者只能自己打折扣。</li>
+      <li><b>给数据战略一个可操作的指标：组合空间的覆盖率。</b>继「扰动 × 情境配对数」之后，0.63% 与 10.3% 这组数字提供了更可执行的版本——真正决定模型能否学到互作结构的，是训练数据覆盖了多大比例的可能组合。<b>在 10% 量级的组合覆盖率上做少量情境，可能比在不足 1% 的覆盖率上堆更多情境更有价值</b>——这一条对做数据采购与实验设计的机构而言，比「多测几个细胞系」更具可执行性。</li>
+      <li><b>亚细胞是目前最诚实的一个新增长点——因为它一开始就带上了审计。</b>一个新任务在发布时即自曝两处缺陷（190 次 Joint 适配器拟合中有 19 次在验证后仍保留源计数；质心准确度改善可能与径向分布恶化并存），这在当下的发表环境里并不常见，也符合本站给「可信评测」设的门槛。但赢家又是经典方法：这条「一旦能被严格测量，简单方法就重新领先」的规律，我们预计会在下一次「史上最大多尺度模型」的宣发中被再次验证一次。</li>
+    </ol>
+  </div>
+
+  <h3>四、前情提要<span style="font-size:12px;color:var(--dim);font-weight:400"> · 本站既有立场（2026-10-24 及以前）</span></h3>
+  <p>本栏目此前的判断仍然成立，并可作为今日观察的背景：<b>「基准审计」是领域成熟的标志，不是唱衰</b>——批评的靶心从模型下沉到评测框架，说明领域开始有能力讨论「怎么测」；<b>相关 ≠ 因果</b>——观测性语料学到的是相关性，这正是扰动数据军备赛的动机；<b>75% 阈值说</b>——Arc CTO David Burke 提出的标尺（扰动预测准确率约 75% 才能让生物学家免于湿实验验证，STATE 当前约 40–60%）依然是最可操作的一把尺，只是今天要补一句：<b>这 40–60% 本身也是在未经校准的指标上测出来的</b>；<b>冷水与热钱同轨</b>——批评性基准最密集的一周，也是约 18 亿美元公共—产业联合体宣布的同一周。详见<a href="companies.html">企业解剖</a>与<a href="benchmarks.html">数据与基准</a>；昨日观察见<a href="#obs-2026-10-24">《当评测本身也需要被评测》</a>，编辑部完整立场见本页置顶社论<a href="#editorial">《虚拟细胞不是新工具，是生物技术的新「操作系统」》</a>。</p>
+
+  <div class="unc">
+    <b>待核实与不确定性（编辑部主动披露）：</b>
+    <br>· Nature Biotechnology 校准框架论文的<b>上线日期（据行业简报为 2026-10-01）</b>与部分图内数字（常用指标的 DRF 区间约 0.05–0.16、WMSE / 加权 R²Δ / NIR 约 0.30–0.32；Norman19 0.63% 与 Wessels23 10.3% 的覆盖率；PRESAGE 15/18 项）来自第三方中文简报与英文媒体转述，<b>本站未逐图核验原文图表</b>，按「第三方转述」处理。论文标题、摘要、DRF 定义、3.25 vs 102.09 个 DEG 等核心数据系从期刊正文直接核验。
+    <br>· 该论文的第一完成单位为 <b>Shift Bioscience</b>——一家正在推进自身「细胞年轻化 + 抗纤维化」靶点管线的商业公司，其结论方向与公司叙事方向一致。这不构成对结论的质疑（文章已同行评审且利益冲突已披露），但读者应将其视为<b>有利益相关方的证据</b>；公司对其应用前景的表态（如「可以更有信心地用于靶点发现」）属公司口径，非论文结论。
+    <br>· SubcellPert、MRFlow、冻结表征评测三项均为<b>预印本</b>，未经同行评审，亦未见第三方复现。
+    <br>· Systema 的日期口径不一致：Nature 期刊页面标注为 2026 年第 44 卷 1050–1059 页，而 DOI 编码（s41587-025-）指向 2025 年在线首发。本站按「2026 年卷 / 2025 年上线」同时标注，建议引用时以期刊页面为准。
+    <br>· 本站此次更正了文献库条目 p72（Science Advances 系统比较）的时间与规模标注，本站已按期刊页面更正为 13 种方法 + 基线、25 个数据集、24 项指标、2026-09-09。
+  </div>
+
+  <div class="reflist">
+    <div class="rh">参考文献 / References</div>
+    <ol>
+      <li>Miller HE, Mejia GM, Leblanc FJA, Swain B, Wang B, de Lima Camillo LP. <i>Deep learning perturbation models can outperform baselines on calibrated metrics</i>. Nature Biotechnology, 2026. <span class="doi">DOI: <a href="https://doi.org/10.1038/s41587-026-03307-w" target="_blank">10.1038/s41587-026-03307-w</a>（期刊，已同行评审）</span></li>
+      <li>Viñas Torné R, Wiatrak M, Piran Z, Fan S, Jiang L, Teichmann SA, Nitzan M, Brbić M. <i>Systema: a framework for evaluating genetic perturbation response prediction beyond systematic variation</i>. Nature Biotechnology, 44: 1050–1059, 2026. <span class="doi">DOI: <a href="https://doi.org/10.1038/s41587-025-02777-8" target="_blank">10.1038/s41587-025-02777-8</a>（期刊）</span></li>
+      <li>Li L, You Y, Fu Y, … Zheng S, Chen J, Liu X, Tian L. <i>A systematic comparison of single-cell perturbation response prediction models</i>. Science Advances, 12(37): eaed3414, 2026-09-09. <span class="doi">DOI: <a href="https://doi.org/10.1126/sciadv.aed3414" target="_blank">10.1126/sciadv.aed3414</a>（期刊）</span></li>
+      <li>Wang J, Cao H, Dang X, Zhou T, Zhao Y, Hsieh C-Y, Gu C, Heng PA. <i>SubcellPert: Benchmarking Subcellular Perturbation Prediction</i>. bioRxiv, 2026-10-17. <span class="doi">DOI: <a href="https://doi.org/10.64898/2026.10.11.758305" target="_blank">10.64898/2026.10.11.758305</a>（预印本）</span></li>
+      <li>Shakeel MH, et al. <i>Re-evaluating the benefit of training scale in cell foundation models</i>. bioRxiv, 2026（v3 修订稿）. <span class="doi">DOI: <a href="https://doi.org/10.64898/2026.06.04.730272" target="_blank">10.64898/2026.06.04.730272</a>（预印本）</span></li>
+      <li><i>MRFlow: Mechanism-Structured Residual Flow Matching for Virtual Cell Perturbation Prediction</i>. arXiv, 2026. <span class="doi">arXiv:2610.13966（预印本）</span></li>
+      <li>Tiwari K, Mahajan G, Bellad RP, Dhruw NK, Jha AK. <i>Genetic Perturbation Prediction Models Fail Out-of-Distribution: A Rigorous Benchmark and Systematic Evaluation</i> (EL-PERTURB). bioRxiv, 2026. <span class="doi">DOI: <a href="https://doi.org/10.64898/2026.10.16.759604" target="_blank">10.64898/2026.10.16.759604</a>（预印本）</span></li>
+      <li>Gallone M, Ravidath S, Madireddy S. <i>Auditing Confidence-Calibrated Benchmarking of Single-Cell Perturbation Models</i>. bioRxiv, 2026. <span class="doi">DOI: <a href="https://doi.org/10.64898/2026.10.12.758706" target="_blank">10.64898/2026.10.12.758706</a>（预印本）</span></li>
+      <li>Ahlmann-Eltze C, Huber W, Anders S. <i>Deep-learning-based gene perturbation effect prediction does not yet outperform simple linear baselines</i>. Nature Methods, 22: 1657–1661, 2025. <span class="doi">DOI: <a href="https://doi.org/10.1038/s41592-025-02772-6" target="_blank">10.1038/s41592-025-02772-6</a>（期刊 · 本站补录，作为本轮争论的起点）</span></li>
+    </ol>
+  </div>
+</div>
+
+<div style="border-top:2px solid var(--line);margin:52px 0 44px"></div>
+
+<div class="article" id="obs-2026-10-24">
   <div class="ameta">
     <span>期次 2026-10-24</span><span>栏目 每日观察</span><span>信源 8 条</span><span>更新 2026-10-24</span>
   </div>

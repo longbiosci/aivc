@@ -43,7 +43,7 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 <div class="pagehead"><div class="wrap">
   <div class="crumb">栏目 04 · DATA &amp; BENCHMARKS</div>
   <h1>数据与基准</h1>
-  <p class="lede">「观测数据学相关，干预数据学因果」——数据军备赛已全面转向大规模扰动数据；2026 年起，评测的重点从「哪个模型更好」下沉到「这个比较是否成立」。更新至 2026-10-24。</p>
+  <p class="lede">「观测数据学相关，干预数据学因果」——数据军备赛已全面转向大规模扰动数据；评测的重点已从「哪个模型更好」下沉到「这个比较是否成立」，而 2026-10 起出现新的转折：<b>缺少阳性对照的基准同样会犯「假阴性」，把真正有效的模型埋掉</b>。更新至 2026-10-25。</p>
 </div></div>
 
 <section><div class="wrap">
@@ -67,6 +67,8 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
     <div class="card"><span class="badge b-crit">批评性基准</span><h3>Context, Not Just Scale</h3><p>Biohub / 芝加哥大学 / 西北大学：差异表达基因恢复率随<b>每个扰动的训练情境数</b>上升，与训练细胞数<b>仅弱相关（r = 0.11）</b>。与 X-Cell 的规模清扫（约 16 亿参数后测试损失几乎不再下降）同向。</p><div class="date">2026 · bioRxiv 10.64898/2026.02.04.703804（预印本）</div></div>
     <div class="card"><span class="badge b-paper">基准</span><h3>sigRecon（跨情境签名重定位）</h3><p>把「某扰动在 A 情境的签名迁移到 B 情境」定义为独立任务，按目标情境数据可用度分三档（仅对照 / 低覆盖 / 高覆盖）。评测投影法 projectCor、网络传播 netProp 与 scGPT、STACK 等基础模型 + 统计基线：投影与网络传播在多类扰动与情境上<b>匹配甚至超过</b>深度学习与基础模型。开源 R 包。</p><div class="date">2026 · bioRxiv（预印本）</div></div>
     <div class="card"><span class="badge b-paper">基准</span><h3>PerturbQA</h3><p>衡量模型扰动知识推理能力的问答基准；CZI 推理模型 rbio1 达 F1 0.74–0.79，超越 SUMMER 等基线。</p><div class="date">2025 · CZI</div></div>
+    <div class="card"><span class="badge b-paper">基准 · 期刊</span><h3>13 方法 × 25 数据集系统比较</h3><p>迄今覆盖面最大的<b>同行评审</b>系统比较：13 种代表性方法与基线、25 个数据集（23 公开 + 2 自建原代免疫细胞药物响应）、24 项指标、三项任务（未见单基因扰动 / 组合相互作用 / 跨细胞类型迁移）。性能<b>强烈依赖效应量与评测视角</b>；模型普遍存在<b>保守偏差</b>，微调后的基础模型<b>压缩方差、低估协同</b>；PerturbNet 在任务 1、2 的 DE 签名恢复最好；<b>任务 3 无方法稳定泛化</b>。作者明确：<b>不同指标探测的是不同的生物信号</b>，而不是同一问题的冗余摘要。</p><div class="date">2026-09-09 · Science Advances 12(37) eaed3414 · DOI 10.1126/sciadv.aed3414</div></div>
+    <div class="card"><span class="badge b-paper">基准 · 新模态</span><h3>SubcellPert（亚细胞坐标）</h3><p>把被预测对象从 RNA <b>丰度</b>扩展到<b>亚细胞定位</b>：14 套成像数据集、<b>1388 万细胞、36.5 亿条 RNA 分子</b>，在归一化二维坐标下生成目标 RNA 群体；Oracle（给定精确计数预测坐标）与 Joint（同时预测二者）双任务，8 种基线。11 个背景 OOD 数据集中有 8 个，Oracle 空间误差最低值由<b>经典高斯传输</b>取得；自带审计：质心准确度改善可能与径向分布恶化并存，190 次 Joint 适配器拟合中 19 次验证后仍保留源计数。</p><div class="date">2026-10-17 · bioRxiv 10.64898/2026.10.11.758305（预印本）· 香港中文大学 / 浙江大学 / Duke</div></div>
     <div class="card"><span class="badge b-paper">基准</span><h3>Cell-Eval</h3><p>Arc 随 STATE 发布的生物学导向评估框架，强调以生物学家关心的指标（差异基因、通路、表达计数、扰动效应量）而非纯统计指标评判模型；2026 年起成为 VCC 的指标底座，并改为多指标参考归一化聚合。</p><div class="date">2025-06 起 · Arc Institute</div></div>
   </div>
 </div></section>
@@ -75,11 +77,23 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
   <h2 class="sec">评测陷阱与方法论警示<small>EVALUATION AUDIT</small></h2>
   <div class="grid c3">
     <div class="card"><span class="badge b-crit">基准审计</span><h3>评测框架的六类失效模式</h3><p>作者复现一套「性能 + 不确定性校准」评测框架后，用它从未纳入的零假设基线审计自身：把测试细胞本身喂给模型再打分，<b>恒等预测器即可在全部 6 组划分上取得扰动效应相关 1.0</b>；以常数训练均值为对照，scVI 在 Norman 99.7% 的细胞上胜出、在 Replogle 仅 0.2%。另记录批次划分错配、未见扰动被静默替换为阴性对照哨兵等失效模式。</p><div class="date">2026-10 · bioRxiv 10.64898/2026.10.12.758706（预印本）</div></div>
+    <div class="card"><span class="badge b-crit">反向失效</span><h3>假阴性：尺子太钝埋掉模型</h3><p><b>缺少阳性对照的基准只会证伪，不会证实。</b>该文引入「插值式重复」阳性对照与<b>动态范围分数 DRF</b>，在 <b>14 个数据集 × 18 项指标</b>上发现 MSE、Pearson(Δctrl) 频繁失准（信号稀释：Replogle22 K562 平均每个扰动仅 3.25 个 DEG，Norman19 为 102.09）；换 WMSE 后 9 个模型显著优于均值基线。同一批数据还显示<b>覆盖率的决定性</b>：Norman19 训练覆盖 0.63% 组合时加性基线难被超越，Wessels23 覆盖 10.3% 时 PRESAGE 在 18 项指标中 15 项胜出。</p><div class="date">2026-10 · Nature Biotechnology · DOI 10.1038/s41587-026-03307-w（期刊）</div></div>
+    <div class="card"><span class="badge b-crit">参照点陷阱</span><h3>Systema：对照偏差</h3><p>10 个数据集（3 种技术、5 种细胞系）上量化"<b>系统性变异</b>"——对照细胞与扰动细胞之间由选择偏倚与混杂因素造成的恒定差异，令常用指标<b>高估</b>性能，使"扰动均值"基线可与 CPA / GEARS / scGPT 打平。解法是把参照点<b>从对照细胞质心换成各扰动质心的平均</b>。结论：未见扰动的预测"比标准指标所显示的困难得多"。</p><div class="date">Nat. Biotechnol. 44, 1050–1059 · DOI 10.1038/s41587-025-02777-8（期刊）</div></div>
+    <div class="card"><span class="badge b-crit">评测协议</span><h3>冻结 vs 微调：结论会翻转</h3><p>针对"基础模型在少量预训练数据后即饱和"的结论，作者指出<b>常规微调会掩盖表征质量的提升</b>：改为<b>完全冻结</b>评测后，规模依赖重新显现（二代模型尤其明显），零样本分析同样恢复对预训练规模的依赖。这意味着——<b>连"规模无用"这条结论本身，也可能是评测协议的函数</b>。</p><div class="date">2026 · bioRxiv 10.64898/2026.06.04.730272（v3 修订稿 · 预印本）</div></div>
     <div class="card"><span class="badge b-crit">指标陷阱</span><h3>常数填充可达 per-gene 相关 0.996</h3><p>scButterfly-B 统一基准（126,604 配对单核 profile、19 项人类研究、70 次训练运行）的诊断结论：仅训练均值 profile 的 within-cell 相关即可达 0.314，在真实表达基因位置填常数即可达 per-gene 相关 0.996。作者因此只在诊断意义上报告 oracle-support 协议——<b>提醒任何 per-gene 类指标都必须先过这一关</b>。</p><div class="date">2026-10 · arXiv:2610.28853（预印本）</div></div>
     <div class="card"><span class="badge b-crit">批评性基准</span><h3>线性基线对照（Nature Methods 2025）</h3><p>EMBL 团队的基准设计：任何扰动预测模型必须先证明优于「预测训练集均值」与简单可加线性模型——目前无模型在所有指标上稳定达标。</p><div class="date">2025-08 · Nature Methods</div></div>
     <div class="card"><span class="badge b-crit">批评性基准</span><h3>零样本评测（Genome Biology 2025）</h3><p>Microsoft Research 团队的严格零样本协议：Geneformer / scGPT 在聚类与批次校正上常不如高变基因 + scVI / Harmony 传统流程。</p><div class="date">2025-04 · Genome Biology</div></div>
     <div class="card"><span class="badge b-crit">批评性基准</span><h3>基准平均化掩盖扰动强度</h3><p>Rutgers 团队以深度校正的 guide 丰度作扰动强度代理，发现强度越高响应越可重复；但检索测试显示 STATE 与 Cell2Sentence 的预测<b>无法可靠恢复扰动身份</b>，因此"扰动内部强度"根本无从评估。</p><div class="date">2026-10-23 · bioRxiv 10.64898/2026.10.20.760537（预印本）</div></div>
-    <div class="card"><span class="badge b-paper">观察</span><h3>75% 阈值说</h3><p>Arc CTO David Burke：扰动预测准确率约 75% 才能让生物学家免于湿实验验证；当前 STATE 约 40–60%——"阈值在接近但尚未到达"。</p><div class="date">Arc Institute 官方复盘</div></div>
+    <div class="card"><span class="badge b-paper">观察</span><h3>75% 阈值说</h3><p>Arc CTO David Burke：扰动预测准确率约 75% 才能让生物学家免于湿实验验证；当前 STATE 约 40–60%——"阈值在接近但尚未到达"。<b>今日补注（2026-10-25）：</b>该区间本身也是在<b>未经对照校准</b>的常用指标上测得的，参照上述 Nature Biotechnology 的指标校准框架，真实位置有可能被低估，也可能被高估——在重复读数之前，应把它当作量级而非定点。</p><div class="date">Arc Institute 官方复盘 · 本站 2026-10-25 补注</div></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <h2 class="sec">进行中的赛事<small>ONGOING CHALLENGES</small></h2>
+  <div class="grid c3">
+    <div class="card"><span class="badge b-paper">赛事</span><h3>Virtual Cell Challenge 2026</h3><p>Arc Institute 主办，对标 CASP。零样本跨情境任务：6 条癌细胞系（3 验证 + 3 测试），300 扰动 × 约 400 细胞/系，Cell-Eval 六指标聚合。奖金与报名数为赛事方自述，实时变动。</p><div class="date">Arc Institute · 每年一届 · 奖金口径 10 万 / 17.5 万美元（待核实）</div></div>
+    <div class="card"><span class="badge b-paper">赛事</span><h3>NeurIPS Virtual Embryo Challenge</h3><p>测试期 2026-10-20 开启，12-02 截止；设人类赛道与智能体赛道。</p><div class="date">NeurIPS 2026 · 以官方页面为准</div></div>
+    <div class="card"><span class="badge b-paper">赛事</span><h3>VCC 2025（上届复盘）</h3><p>首届：H1 人胚胎干细胞 300 个 CRISPRi 扰动，指标 DES / PDS / MAE；114 国 1200+ 团队提交。官方复盘承认无模型在所有指标上稳定超越基线，优胜方案多为"深度学习 + 统计特征"混合。</p><div class="date">2025-12 揭晓 · 百图生科夺冠</div></div>
   </div>
 </div></section>
 
