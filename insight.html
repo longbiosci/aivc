@@ -43,7 +43,7 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 <div class="pagehead"><div class="wrap">
   <div class="crumb">栏目 05 · ANALYSIS</div>
   <h1>深度解读</h1>
-  <p class="lede">本栏目刊载两类文章：<b>社论</b>——编辑部对 AI 虚拟细胞领域的整体判断，长期有效，接受时间检验；<b>每日观察</b>——当日事实的记录与解读，严格区分事实与观点。社论发表于 2026 年 10 月 24 日；最新一篇每日观察发表于 2026 年 10 月 25 日（<a href="#obs-2026-10-25">跳转</a>）。</p>
+  <p class="lede">本栏目刊载两类文章：<b>社论</b>——编辑部对 AI 虚拟细胞领域的整体判断，长期有效，接受时间检验；<b>每日观察</b>——当日事实的记录与解读，严格区分事实与观点。社论发表于 2026 年 10 月 24 日；最新一篇每日观察发表于 2026 年 10 月 26 日（<a href="#obs-2026-10-26">跳转</a>）。</p>
 </div></div>
 
 <section><div class="wrap">
@@ -97,6 +97,119 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
   <p>这个领域每天产生大量信息，但被准确理解的信息很少。发布会模式奖励 confidently wrong，科学模式奖励 patiently right——而读者需要的是后者。AIVC Insight 的存在意义，就是在两者之间做校准：每一篇文献都可追溯，每一个数字都有出处，每一次争议都呈现两边。</p>
   <p>虚拟细胞最终会不会成功，我们不替它担保。但我们担保：这个领域发生的一切，会被这里准确地记录。</p>
   <div class="sig">—— AIVC Insight 编辑部 · 2026 年 10 月 24 日<br>本文观点基于本站文献库与企业解剖的公开信息。在本站，批评性文献与模型发布新闻具有同等地位。</div>
+</div>
+
+<div style="border-top:2px solid var(--line);margin:52px 0 44px"></div>
+
+<div class="article" id="obs-2026-10-26">
+  <div class="ameta">
+    <span>期次 2026-10-26</span><span>栏目 每日观察</span><span>信源 8 条</span><span>更新 2026-10-26</span>
+  </div>
+
+  <h2>智能体下场：本周三条证据链交汇于「AI 自己造虚拟细胞」</h2>
+  <p class="lede" style="margin-bottom:26px">主编观察 · 2026 年 10 月 26 日。本文严格区分<b>事实</b>与<b>观点</b>：第一、二节为可核验的事实记录与事实性归纳，第三节起为编辑部判断，文末列出全部信源与待核实项。本文包含对本站此前记录的一处<b>日期更正</b>（Virtual Embryo Challenge 测试期开启日），见第一节第 6 条。</p>
+
+<div class="abstract">
+    <b>摘要。</b>本站此前把「智能体做科研」当作企业叙事（X-Automate、PerturbAI、VCHarness）。本周到达的三条独立证据链把这件事从叙事推向了可检验：一，NeurIPS 2026 Virtual Embryo Challenge 设立<b>人类赛道与智能体赛道</b>，同一隐藏测试集、同一指标、分开颁奖——「智能体能否做科研」第一次被设计成对照实验；验证榜当前人类领先（5 队超 190 分 vs 智能体 4 队超 170），差距存在但不是数量级。二，Gerstein 实验室的 <b>CellForge</b> 用多智能体团队端到端自主设计扰动预测模型——架构即假说，无人指定设计、损失或训练协议——在 6 个数据集上「与人工 SOTA 竞争」。三，强生团队的 <b>VCLMU</b> 把扰动建模为「对潜在机制单元的动作」，走机制先验世界模型路线，被 NeurIPS 2026 AI for Drug Discovery workshop 接收。同期还有一份<b>层级探针</b>评测提醒：连「用哪一层表征」都是能翻转结论的协议选择。另有本站对 Virtual Embryo Challenge 时间线的一处更正。
+  </div>
+
+  <h3>一、事实记录<span style="font-size:12px;color:var(--dim);font-weight:400"> · FACTS</span></h3>
+  <p>下表为截至 2026-10-26 可核验的事实条目。信源类型按<b>期刊</b>（已同行评审）、<b>预印本</b>（未经同行评审）、<b>公告/报道</b>（机构、公司或媒体发布）三类区分，读者应据此判断证据强度。凡本站只能经社交媒体获得的数字，均在文末「待核实」中标注。</p>
+
+  <table class="ftab">
+    <thead><tr><th>条目</th><th>关键事实（数字与结论）</th><th>信源类型</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="k">Virtual Embryo Challenge<br><span class="src">双赛道对照实验</span></td>
+        <td>Stanford Qiu Lab 主办的 NeurIPS 2026 Competition Track 赛事（论文已被接收）：约 <b>100 万细胞、11 个发育时间点</b>，三任务——T1 时序（E8.5/E9.5 训练 → E10.5 验证 → 隐藏 E12.5 排名）、T2 时空联合（胚胎插值 + 心脏外推）、T3 <b>突变扰动预测</b>（Mab21l2 敲除供训练、Gata4 为验证目标、β-catenin 为隐藏测试）。赛制核心：<b>人类赛道与智能体赛道</b>面对同一隐藏测试集与同一指标，分开颁奖；智能体赛道要求人只可写初始提示，此后运行必须由智能体自主完成，获奖需提交<b>轨迹、提示词与 harness 代码</b>作为证据，「无法验证的不能获奖」。官方时间线：P3 测试阶段 <b>2026-10-27 开启</b>，12-02 最终提交截止，12-11 于 NeurIPS 公布获奖者。总奖金 <b>11.2 万美元</b>（Laude Institute Moonshots Seed Grant 支持），含跨任务通用性奖 8 千与社区贡献奖 2 万。</td>
+        <td><span class="st st-n">官方赛事页 / 赛事论文</span><br><span class="src">virtualembryo.ai · NeurIPS 2026 Competition Track</span></td>
+      </tr>
+      <tr>
+        <td class="k">验证榜战况<br><span class="src">人类 vs 智能体</span></td>
+        <td>主办方（邱肖杰）与参赛方于约 10-21 报告的验证榜进度：人类队最高分<b>首次突破 200</b>（量表下限 151.7、上限 300），<b>5 个人类队超过 190</b>；<b>4 个智能体队超过 170</b>。主办方原话大意：「人类仍在赢，但智能体正在追上」。整体榜约 <b>329 支队伍</b>。另：协作平台 Yukon（Eigen Labs 成员创立）与 Qiu Lab 合作入场，24 小时内排名从约 170 升至第 9（分数 190 → 222.7），10-21 时点为总榜 11/329、T1 第 10/200、T2 第 8/228、T3 第 20/200。</td>
+        <td><span class="st st-n">主办方与参赛方社交媒体战报</span><br><span class="src">X（推特）· 未经赛事官网二次核实</span></td>
+      </tr>
+      <tr>
+        <td class="k">CellForge<br><span class="src">智能体自主设计扰动模型</span></td>
+        <td>耶鲁 Gerstein 实验室等 15 位作者（含 Theis、Krishnaswamy、Lin、Cohan）：给定数据集与任务，多智能体团队<b>检索文献（46 篇固定库 + 实时 PubMed）、解析数据、识别基线，经批评中介的专家讨论形成模型假说，再写训练代码、跑实验、返回训练好的预测器</b>——架构本身即假说，无人指定设计、损失函数或训练协议。在 6 个扰动数据集（转录 / 表观 / 蛋白三模态）上产出<b>与人工 SOTA 竞争</b>的模型；盲评中人类评审认为其研究计划比单一 LLM 或 deep-research 系统<b>更科学可靠、更具创新性</b>。代码已开源（gersteinlab/CellForge）。arXiv v3 于 2026-10-14 更新。第三方摘要口径：单张 GPU 端到端约 4–8 GPU 小时；Adamson CRISPRi 上 PCC 0.9883；14/15 个任务-标准组合盲评排名第一。</td>
+        <td><span class="st st-p">预印本</span><br><span class="src">arXiv:2508.02276（v3，2026-10-14）</span></td>
+      </tr>
+      <tr>
+        <td class="k">VCLMU<br><span class="src">机制先验世界模型（产业侧）</span></td>
+        <td>强生（Johnson &amp; Johnson）与得克萨斯大学阿灵顿分校团队：把细胞状态表示为一组<b>潜在机制单元（LMU）</b>，遗传扰动被建模为「对潜态的动作」，触发机制特异的随机转移后再解码转录响应；每个 LMU 的可复用身份由<b>多模态生物证据锚定</b>。两阶段预训练：先约 <b>20 万 pseudo-bulk 扰动 profile</b>，后基因对齐的单细胞扰动数据。在 <b>6 个扰动不相交基准</b>上持续改善扰动特异响应恢复，同时保持全局响应准确率；富集分析显示 LMU 基因集捕获结构化的生物响应程序。已被 <b>NeurIPS 2026 AI for Drug Discovery workshop</b> 接收。</td>
+        <td><span class="st st-p">预印本</span><br><span class="src">arXiv:2610.04475（2026-10-03）</span></td>
+      </tr>
+      <tr>
+        <td class="k">VCC 2026 官方时间线<br><span class="src">Arc Institute</span></td>
+        <td>Virtual Cell Challenge 2026 的<b>最终测试集已于 10-22 发布</b>；<b>11-05 最终提交截止</b>（UTC 23:59），11 月中下旬公布获奖者。奖金为官方口径 <b>10 万 / 5 万 / 2.5 万美元</b>（现金 + NVIDIA Brev credits，此前「17.5 万」口径不确，已按官方页更正）。NVIDIA 团队直接参与 cell-eval 评测指标的加速与比较；最终排名用 6 项指标聚合评分。赛事方明言：「我们瞄准的是细胞建模的 AlphaFold / ImageNet 时刻；若 2026 年有人达到我们会很惊喜——衡量距离的唯一方式是公开测量。」</td>
+        <td><span class="st st-n">官方公告</span><br><span class="src">arcinstitute.org · 2026-10-26 核验</span></td>
+      </tr>
+      <tr>
+        <td class="k">层级探针评测<br><span class="src">「用哪一层」也是协议</span></td>
+        <td>对 Geneformer、scBERT、scGPT、scFoundation 四个基础模型作<b>冻结特征提取器</b>的层级探针评测（LODO 选择、读出控制、CKA、检索/坍缩检查）：<b>中间层在若干设置下显著改善</b> scGPT 与 scBERT 的细胞类型准确率（另两个模型与末层相当）；扰动预测上 LODO 在四个模型中一致选出<b>第 1 层</b>为「最早持平」候选。配对分析显示 readout 方式（CLS vs 均值池化）影响最优深度。作者建议任何此类评测报告<b>提取深度、readout、选择协议与任务诊断</b>。</td>
+        <td><span class="st st-p">预印本</span><br><span class="src">bioRxiv · DOI <a href="https://doi.org/10.64898/2026.10.05.756880" target="_blank">10.64898/2026.10.05.756880</a></span></td>
+      </tr>
+      <tr>
+        <td class="k">前情 · 本站既有记录<br><span class="src">站内已记录</span></td>
+        <td>本站已收录的智能体线索：OpenAI × PerturbAI 近 2000 个智能体 32 分钟读完小鼠全脑扰动图谱（10-16 预印本 / 10-21 官宣）；GenBio AIDO.Cell 配套 VCHarness 自主建模智能体（2026-08）；Xaira X-Automate 实验室机器人（10-23）。批评性基准侧：昨日「评测协议应当被当成超参数申报」的编辑部观点，本日层级探针一条为其新增证据。见<a href="news.html">前沿速递</a>与<a href="benchmarks.html">数据与基准</a>。</td>
+        <td><span class="st st-j">站内</span><br><span class="src">本站 2026-10-16 至 10-25 各期记录</span></td>
+      </tr>
+      <tr>
+        <td class="k">更正 · VEC 测试期日期<br><span class="src">本站今日更正</span></td>
+        <td>本站数据与基准页此前记录 Virtual Embryo Challenge「测试期 2026-10-20 开启」。经查赛事官方 timeline 页，测试阶段（P3）为 <b>2026-10-27 开启</b>（验证集真值届时全部发布供重训，测试集真值保密，每榜最多 2 次正式提交）。本次维护已按官方口径更正；日期差异或为赛事方计划变更，本站未复核历史版本。</td>
+        <td><span class="st st-j">本站自查</span><br><span class="src">virtualembryo.ai/challenge/timeline 核验</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>二、事实性归纳：从「智能体叙事」到「智能体对照实验」<span style="font-size:12px;color:var(--dim);font-weight:400"> · SYNTHESIS</span></h3>
+
+  <h3 style="font-size:15.5px;color:var(--sub);margin-top:22px">2.1 三条证据链指向同一件事：扰动建模的边际成本正在塌缩</h3>
+  <p>把三条线索并排放，它们测的是同一个问题的三个侧面。Virtual Embryo Challenge 的双赛道把「智能体设计的模型」放进<b>与人类设计的模型同一张隐藏测试榜</b>；CellForge 把「从数据集到训练好的模型」压缩成一条<b>无人指定架构的命令行</b>，单卡 4–8 GPU 小时；VCLMU 则证明产业界（强生）愿意把研究预算押在「机制先验 + 世界模型形式」上。三者共享一个隐含判断：<b>扰动建模这件事本身正在变得便宜，瓶颈正在向「问题选择」与「数据设计」上移</b>——这与本站社论对「操作系统」层的判断、以及本周批评性基准反复证实的「数据与协议决定结论」形成了同一枚硬币的两面。</p>
+
+  <h3 style="font-size:15.5px;color:var(--sub);margin-top:22px">2.2 双赛道是关键设计：第一次把「智能体能否做科研」变成可测问题</h3>
+  <p>此前所有「AI 科学家」证据——包括 CellForge 的盲评、PerturbAI 的分布式报告——评估者都是人或 LLM 裁判，评分对象是<b>研究过程的质量</b>。Virtual Embryo Challenge 的设计不同：两轨<b>同题、同卷、同尺子、分开颁奖</b>，智能体赛道还要求提交完整运行轨迹作证据、禁止人工中途介入。这把问题从「智能体的计划听起来如何」改写成「智能体的模型在隐藏测试集上排第几」。当前比分（人类 5 队 &gt;190，智能体 4 队 &gt;170，量表 151.7–300）给出了第一个数据点：差距真实存在，但已进入同一量级区间。值得注意的是 Yukon 案例的性质——24 小时从 170 名冲进前十，是<b>人类科学家与智能体协作</b>的成绩，并非纯智能体赛道；它落在两轨之间的地带，恰好提示真实的对照组其实有三组：纯人类、纯智能体、人机协作。</p>
+
+  <h3 style="font-size:15.5px;color:var(--sub);margin-top:22px">2.3 机制先验路线在本周第三次出现，且第一次来自产业</h3>
+  <p>VCLMU 的「扰动 = 对潜在机制单元的动作」并非孤例：同一周内 MRFlow 用机制结构化字典 + 谱受控残差场建模分布传输，此前 GREmLN 以 1030 万参数 + 调控网络先验以小博大。本站在 10-25 观察中记录的规律——<b>每当评测做扎实，赢家往往不是最大的模型，而是最贴合任务结构的那个</b>——在产业侧得到了回声：强生选择的不是「更大的语料」，而是「机制显式化的潜态转移」。结合 SubcellPert 里经典高斯传输夺冠的第三次重复，「当前可用的归纳偏置储存在哪里」这个问题的答案越来越清晰：不在参数量里，在结构与机制里。VCLMU 同时是本周证据中<b>唯一来自药企一线</b>的，这使它对「产业押注什么」的指示意义强于学术预印本。</p>
+
+  <div class="opbox">
+    <div class="oh">三、编辑部观点（以下为判断，非事实）</div>
+    <ol>
+      <li><b>双赛道榜单是本领域迄今最诚实的一份「AI 科学家」评估，值得所有 lab-in-the-loop 叙事对标。</b>「competitive with SOTA」这类声明最大的问题是尺子可能失效（本周批评性基准的核心教训）；双赛道设计不依赖任何单方尺子，靠隐藏测试集与分开颁奖把争议变成了实验。我们预计：若智能体赛道在 12-11 决赛日进入总榜前十，将成为「智能体科研能力」的标志性数据点；若仍停留在「过 170」区间，则说明差距是结构性的而非算力性的。<b>这是一个可证伪的预测。</b></li>
+      <li><b>对 CellForge 的「与 SOTA 竞争」应保持本领域应有的折扣。</b>它自家基准上的竞争性声明，恰好落在本周批评性基准火力覆盖范围内——「打平 SOTA」在扰动预测语境里可能本身就是尺子的函数（见 10-24/10-25 两期）。真正硬的部分不是「智能体写的模型分数不错」，而是它把一个需要数月的专家循环压缩到单卡 4–8 小时。<b>我们押注的方向是：CellForge 的价值最终会被证明在「长尾问题的边际成本」上，而不是「击败 SOTA」上</b>——每个数据集一个专门模型从此变得可承受，这件事对领域的改变比榜上名次大。</li>
+      <li><b>Yukon 的爬升证明的是协作放大，不是智能体自主性——但两者经常被有意混同。</b>24 小时 170 → 9 名的叙事非常适合传播，但它是人类设定目标、智能体执行的混合成绩，与赛事智能体赛道「人只写初始提示」的严格定义不是一回事。我们认为三组对照（纯人类 / 纯智能体 / 人机协作）应该分开计分、分开叙事；任何把人机协作成绩用于论证「智能体自主科研」的传播，都应被打折。</li>
+      <li><b>评测协议矩阵再添一行：提取深度与 readout。</b>昨日我们主张「协议应当被当成超参数申报」，今天的层级探针直接补上具体条目——同一模型，用第 1 层还是末层、CLS 还是均值池化，结论可以翻转。加上此前证据（冻结 vs 微调、参照点选择、划分方式），协议矩阵至少应有五列。我们重申并扩充：<b>没有协议矩阵的榜单，读者只能自行打折。</b></li>
+      <li><b>药企入场机制先验路线，是对「规模叙事」的第三次也是最重要的一次反向投票。</b>学术预印本质疑规模可以解释为学风谨慎，非营利机构转向结构可以被解释为资源约束；强生以真金白银选择「机制显式化的世界模型」则没有这些解释可用。把它与 VCC 2026「公开测量距离」的立场合读，本周的全景是：评测端在收紧尺子，产业端在押注结构，叙事端（更大的模型）暂时没有新证据。<b>规模叙事的举证责任，现在明确地落在下一批带双对照的榜单上。</b></li>
+    </ol>
+  </div>
+
+  <h3>四、前情提要<span style="font-size:12px;color:var(--dim);font-weight:400"> · 本站既有立场（2026-10-25 及以前）</span></h3>
+  <p>本栏目此前的判断仍然成立，并可作为今日观察的背景：<b>一把没有阳性对照的尺子会同时放出假阳性与假阴性</b>，该打折的是未经双对照校准的排名而非模型本身（10-25）；<b>评测协议应当被当成超参数申报</b>（10-25，今日新增「层深度」条目）；<b>「基准审计」是领域成熟的标志</b>（10-24）；<b>75% 阈值说</b>——扰动预测准确率越过约 75% 才能让生物学家免于湿实验验证（Arc CTO 口径，STATE 当前约 40–60%，且该区间本身在未经校准的指标上测得）；编辑部完整立场见本页置顶社论<a href="#editorial">《虚拟细胞不是新工具，是生物技术的新「操作系统」》</a>；昨日观察见<a href="#obs-2026-10-25">《反向审计》</a>。</p>
+
+  <div class="unc">
+    <b>待核实与不确定性（编辑部主动披露）：</b>
+    <br>· Virtual Embryo Challenge 验证榜全部赛况数字（量表下限 151.7 / 上限 300、5 个人类队超 190、4 个智能体队超 170、总榜约 329 队、Yukon 190 → 222.7 与各分榜名次）来自<b>主办方与参赛方的社交媒体战报</b>，本站未能在赛事官网二次核实，按「社交媒体口径」处理；12-11 决赛结果出来前，验证榜名次不构成对任何赛道的结论。
+    <br>· 本站此前记录 VEC「测试期 2026-10-20 开启」与官方 timeline 页的 <b>2026-10-27</b> 不一致，已按官方更正，但未复核历史版本页面，差异原因（计划变更 vs 记录错误）不详。
+    <br>· Yukon 相关表述来自其创始人（Eigen Labs 成员）与主办方的推文，<b>与 Yukon 平台存在利益相关</b>；其「人机协作」属性为本站归纳，非官方口径。
+    <br>· CellForge 的 PCC 0.9883（Adamson）、14/15 盲评排一、4–8 GPU 小时等数字来自 arXiv 摘要与第三方摘要页转述，<b>本站未逐表核验原文</b>；其 v3 为预印本，未经同行评审，亦无第三方复现。「与人工 SOTA 竞争」为论文自述。
+    <br>· VCLMU 为预印本（workshop 接收不等于主会同行评审）；「6 个扰动不相交基准持续改善」为论文自述，未见第三方复现。
+    <br>· 层级探针评测（bioRxiv 10.64898/2026.10.05.756880）为预印本；「第 1 层最早持平」的表述跨四个模型一致但样本仍小，不排除数据集特异性。
+  </div>
+
+  <div class="reflist">
+    <div class="rh">参考文献 / References</div>
+    <ol>
+      <li>Ding J, Lu Y, Zhang Q, Zeng Z, Xu W, Fishman N, He Y, He S, Song L, Xing E, Zou J, Fox E, Zitnik M, Chi N, Qiu X. <i>The Virtual Embryo Challenge: Generative Modeling of Embryogenesis Across Space, Scale and Time</i>. NeurIPS 2026 Competition Track. <span class="doi">virtualembryo.ai/challenge（赛事官方页与 timeline 页，2026-10-26 核验）</span></li>
+      <li>Tang X, Chen J, Shao D, Yu Z, Cui Y, Wang W, Wu F, Zhuang Y, Shi W, Huang Z, Cohan A, Lin X, Theis F, Krishnaswamy S, Gerstein M. <i>AI Scientists for Building Virtual-Cell Models</i>. arXiv:2508.02276 (v3), 2026-10-14. <span class="doi">arXiv（预印本，代码开源 gersteinlab/CellForge）</span></li>
+      <li>Miao Y, Amirabad AD, Oloff S, Huang J, Cui T, Liao R. <i>VCLMU: Mechanism-Centric Virtual Cell World Modeling for Perturbation Response</i>. arXiv:2610.04475, 2026-10-03. <span class="doi">arXiv（预印本 · NeurIPS 2026 AI for Drug Discovery workshop 接收）</span></li>
+      <li>Arc Institute. <i>The 2026 Virtual Cell Challenge: predicting perturbation responses in cell contexts a model has never seen</i>. <span class="doi">arcinstitute.org/news/virtual-cell-challenge-2026（官方公告，2026-10-26 核验）</span></li>
+      <li>Wen MC, Lyu Y, Robbins A. <i>Beyond the Final Layer: Evaluating Single-Cell Foundation Model Representations for Molecular Prediction</i>. bioRxiv, 2026. <span class="doi">DOI: <a href="https://doi.org/10.64898/2026.10.05.756880" target="_blank">10.64898/2026.10.05.756880</a>（预印本）</span></li>
+      <li>邱肖杰（Qiu Lab）与 Yukon 团队社交媒体战报，2026-10-20/21. <span class="doi">X（推特）· 主办方与参赛方口径</span></li>
+      <li>Yang H, Su R. <i>MRFlow: Mechanism-Structured Residual Flow Matching for Virtual Cell Perturbation Prediction</i>. arXiv:2610.13966. <span class="doi">arXiv（预印本 · 本站 10-25 已收录）</span></li>
+      <li>Wang J, Cao H, Dang X, et al. <i>SubcellPert: Benchmarking Subcellular Perturbation Prediction</i>. bioRxiv, 2026-10-17. <span class="doi">DOI: <a href="https://doi.org/10.64898/2026.10.11.758305" target="_blank">10.64898/2026.10.11.758305</a>（预印本 · 本站 10-25 已收录，作 2.3 节对照）</span></li>
+    </ol>
+  </div>
 </div>
 
 <div style="border-top:2px solid var(--line);margin:52px 0 44px"></div>
