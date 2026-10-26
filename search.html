@@ -180,7 +180,15 @@ const IDX=[
 {s:"数据与基准",t:"PerturbQA",d:"衡量模型扰动知识推理能力的问答基准；CZI 推理模型 rbio1 达 F1 0.74–0.79，超越 SUMMER 等基线。",u:"benchmarks.html",k:"PerturbQA rbio1 F1 推理 问答基准 SUMMER"},
 {s:"数据与基准",t:"Cell-Eval",d:"Arc 随 STATE 发布的生物学导向评估框架，强调以差异基因、通路等生物学家关心的指标评判模型。",u:"benchmarks.html",k:"Cell-Eval Arc STATE 评估框架 差异基因 通路"},
 {s:"数据与基准",t:"线性基线对照（Nature Methods 2025）",d:"EMBL 团队基准设计：任何扰动预测模型须先证明优于预测训练集均值与简单可加线性模型。",u:"benchmarks.html",k:"线性基线 EMBL Nature Methods 对照 可加模型"},
-{s:"数据与基准",t:"零样本评测（Genome Biology 2025）",d:"Microsoft Research 严格零样本协议：Geneformer / scGPT 在聚类与批次校正上常不如高变基因 + scVI / Harmony。",u:"benchmarks.html",k:"零样本 Genome Biology Microsoft Geneformer scGPT scVI Harmony"}
+{s:"数据与基准",t:"零样本评测（Genome Biology 2025）",d:"Microsoft Research 严格零样本协议：Geneformer / scGPT 在聚类与批次校正上常不如高变基因 + scVI / Harmony。",u:"benchmarks.html",k:"零样本 Genome Biology Microsoft Geneformer scGPT scVI Harmony"},
+// —— 10-25 日更补录（编辑部合并 PR #5 内容索引）——
+{s:"深度解读",t:"反向审计：一把校准过的尺子，把模型的优势还了回来",d:"主编观察 2026-10-25：Nature Biotechnology 给基准补上阳性对照，14 数据集 × 18 指标上常用指标对真实性能不敏感；本站据此对 10-24 结论作自我修正。",u:"insight.html#obs-2026-10-25",k:"反向审计 校准 DRF 假阴性 阳性对照 Nature Biotechnology 自我修正 观察"},
+{s:"数据与基准",t:"假阴性：尺子太钝埋掉模型（Nature Biotechnology 度量校准）",d:"插值式重复阳性对照 + 动态范围分数 DRF：MSE / Pearson(Δctrl) 频繁失准，换 WMSE 后 9 个模型稳定胜过均值基线。",u:"benchmarks.html",k:"假阴性 DRF 动态范围分数 WMSE Nature Biotechnology 度量校准 阳性对照"},
+{s:"数据与基准",t:"Systema：对照偏差让常用指标高估性能",d:"10 个数据集量化系统性变异：扰动均值基线可与 CPA / GEARS / scGPT 打平；解法是把参照点换成各扰动质心的平均。",u:"benchmarks.html",k:"Systema 对照偏差 control bias 系统性变异 参照点 质心"},
+{s:"数据与基准",t:"冻结 vs 微调：评测协议会翻转结论",d:"完全冻结评测下训练规模依赖重新显现——连「规模无用」这个结论本身，也可能是评测协议的函数。",u:"benchmarks.html",k:"冻结 微调 评测协议 规模 表征 预训练"},
+{s:"数据与基准",t:"SubcellPert：从基因计数到分子坐标的新基准",d:"14 套成像数据集、1388 万细胞、36.5 亿 RNA 分子；11 个背景 OOD 数据集中 8 个的 Oracle 空间误差最低值由经典高斯传输取得。",u:"benchmarks.html",k:"SubcellPert 亚细胞 定位 坐标 高斯传输 OOD 新基准"},
+{s:"数据与基准",t:"13 方法 × 25 数据集系统比较（Science Advances，本站 p72 已更正）",d:"迄今覆盖面最大的同行评审系统比较：25 个数据集、24 项指标、3 项任务；任务 3 无方法稳定泛化。本站 2026-10-25 更正其日期与规模口径。",u:"paper.html?id=p72",k:"13 方法 25 数据集 24 指标 系统比较 p72 更正 Science Advances"},
+{s:"数据与基准",t:"进行中的赛事：VCC 2026 与 NeurIPS Virtual Embryo",d:"VCC 2026 零样本跨情境（6 条癌细胞系、6 指标参考归一化聚合）；NeurIPS Virtual Embryo Challenge 测试期 2026-10-20 开启、12-02 截止。",u:"benchmarks.html",k:"VCC 2026 NeurIPS Virtual Embryo 赛事 挑战赛 进行中"},
 ];
 const q=document.getElementById('q'),box=document.getElementById('results'),hint=document.getElementById('hint');
 function render(){
