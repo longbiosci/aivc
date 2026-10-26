@@ -247,7 +247,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .drel li:last-child{border-bottom:none}
 .drel li a{color:var(--body)}
 .drel li a:hover{color:var(--accent)}
-.drel li span{font-size:12px;color:var(--dim);white-space:nowrap}
+.drel li span{font-size:12px;color:var(--dim);white-space:normal;overflow-wrap:anywhere}
 .dpn{display:flex;justify-content:space-between;gap:14px;margin-top:26px;font-size:13px}
 .dpn a{color:var(--accent)}
 .dcrumb{font-size:12px;color:var(--dim);margin:26px 0 18px}
