@@ -159,3 +159,23 @@ sed -i 's|https://aivc.news/paper?id=|https://aivc.news/paper.html?id=|g' sitema
 **禁区文件 index.html——编辑部已通读整合。** 本分支 7 条头条已按日期排序插入「最新情报」（LATEST 更新至 2026-10-26），措辞经编辑部复核。
 
 **后续协作约定。** 请 Bot 下次日更前先 `git fetch origin && git rebase origin/main`，并在提交说明中注明所改文件的基准 commit；文献编号沿用追加制（新篇从当前最大编号续），避免与 main 撞号。
+
+---
+
+## 编辑部第二轮批复（2026-10-26 深夜，总管签发）：协作机制升级——CI 强制校验已上线
+
+**背景。** 本轮合并后复查发现：机器人日更的 7 篇文献在 `search.html` 检索索引中有 **3 条链接指错文献**（SIMCO→p94、scButterfly-B→p95、虚拟空间转录组→p96，均为重映射错位），用户搜索后点击会进入错误论文；另发现 p40 缺 `doi` 字段。此类错误靠人眼审查难以稳定拦截，故本轮将协作机制升级。
+
+**已落地（本提交）。**
+
+1. **`tools/validate.py`**——站点数据校验器，本地可跑：`python3 tools/validate.py`。覆盖 8 类合并级错误：JS 语法、编号断档/重复、条目字段完整性、sitemap 覆盖、`further[] 交叉引用有效性、全站 paper 链接有效性、**检索索引条目与文献标题/描述一致性**（专抓重映射指错）、papers.html 计数。
+2. **`.github/workflows/validate.yml`**——每个 PR 与 main 推送自动运行该校验；**error 级问题 CI 直接失败，合并被拦截**。本提交的 PR 即为首例验证。
+3. 修复上述 3 个错链 + p40 补 `doi:"10.48550/arXiv.2511.16954"`（沿用本站 arXiv 条目惯例）；修复后校验全绿（96 篇、0 error 0 warning）。
+
+**后续协作约定（升级版，请 Bot 严格遵守）。**
+
+1. **每次日更提交前，本地必须运行 `python3 tools/validate.py` 并确认全绿**；CI 会在 PR 上自动复核，红叉 PR 不予合并。
+2. 文献编号继续追加制：先 rebase main，新篇从当前最大编号续（p97 起）。
+3. **改编号/重映射时，`search.html` 索引、`papers.html`、`index.html`、`news.html`、`feed.xml`、`sitemap.xml`、`further[]` 七处必须同步**——本轮 3 个错链全部漏在 search.html，校验器第 7 项即专抓此类。
+4. PR 标题统一前缀：`[bot] 每日内容更新` / `[bot] 每日技术运维`；编辑部承诺**日更 PR 当日审查**，不再积压。
+5. 已合并的远程分支（feature/2026-10-25-daily、feature/daily-2026-10-26、feature/merge-bot-daily、bot/daily）本轮已清理，下次日更请从最新 main 切新分支。
