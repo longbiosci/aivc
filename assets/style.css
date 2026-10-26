@@ -190,6 +190,16 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
   padding:3px 10px;background:var(--paper)}
 .gtoc a:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
 .pgroup{scroll-margin-top:64px}
+/* 长列表分组折叠：文献量增长后，每组默认展示前 8 条，其余按需展开（采纳 Bot 建议，2026-10-26 编辑部落地） */
+.paper.folded{display:none}
+.pgroup.expanded .paper.folded{display:block}
+.morebtn{display:inline-block;margin:12px 0 2px;padding:5px 13px;font-family:var(--sans);
+  font-size:12.5px;line-height:1.6;color:var(--accent);background:var(--paper);
+  border:1px solid var(--line);border-radius:2px;cursor:pointer;letter-spacing:.3px}
+.morebtn:hover{border-color:var(--accent);background:var(--accent-soft);text-decoration:none}
+.morebtn::after{content:" ▾";font-size:10px}
+.pgroup.expanded .morebtn::after{content:" ▴";font-size:10px}
+.morebtn.hide{display:none}
 /* 回到顶部 */
 .totop{position:fixed;right:18px;bottom:18px;z-index:60;font-size:12.5px;
   background:var(--paper);color:var(--accent);border:1px solid var(--line);border-radius:2px;
@@ -237,7 +247,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .drel li:last-child{border-bottom:none}
 .drel li a{color:var(--body)}
 .drel li a:hover{color:var(--accent)}
-.drel li span{font-size:12px;color:var(--dim);white-space:nowrap}
+.drel li span{font-size:12px;color:var(--dim);white-space:normal;overflow-wrap:anywhere}
 .dpn{display:flex;justify-content:space-between;gap:14px;margin-top:26px;font-size:13px}
 .dpn a{color:var(--accent)}
 .dcrumb{font-size:12px;color:var(--dim);margin:26px 0 18px}
@@ -252,6 +262,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
   .wrap{padding:0 18px}
   .topbar .wrap{padding:14px 18px 10px}
   .brand{font-size:19px}
+
+  /* 分组展开按钮：窄屏整行铺满，便于点按（折叠功能配套） */
+  .morebtn{width:100%;text-align:left;padding:9px 14px;font-size:13.5px}
 
   /* 汉堡导航：默认收起次要栏目，点「更多栏目」展开 */
   nav.main .wrap{flex-wrap:wrap;align-items:center}
