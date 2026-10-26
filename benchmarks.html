@@ -43,7 +43,7 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 <div class="pagehead"><div class="wrap">
   <div class="crumb">栏目 04 · DATA &amp; BENCHMARKS</div>
   <h1>数据与基准</h1>
-  <p class="lede">「观测数据学相关，干预数据学因果」——数据军备赛已全面转向大规模扰动数据；评测的重点已从「哪个模型更好」下沉到「这个比较是否成立」，而 2026-10 起出现新的转折：<b>缺少阳性对照的基准同样会犯「假阴性」，把真正有效的模型埋掉</b>。更新至 2026-10-25。</p>
+  <p class="lede">「观测数据学相关，干预数据学因果」——数据军备赛已全面转向大规模扰动数据；评测的重点已从「哪个模型更好」下沉到「这个比较是否成立」，而 2026-10 起出现新的转折：<b>缺少阳性对照的基准同样会犯「假阴性」，把真正有效的模型埋掉</b>。更新至 2026-10-26。</p>
 </div></div>
 
 <section><div class="wrap">
@@ -84,6 +84,7 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
     <div class="card"><span class="badge b-crit">指标陷阱</span><h3>常数填充可达 per-gene 相关 0.996</h3><p>scButterfly-B 统一基准（126,604 配对单核 profile、19 项人类研究、70 次训练运行）的诊断结论：仅训练均值 profile 的 within-cell 相关即可达 0.314，在真实表达基因位置填常数即可达 per-gene 相关 0.996。作者因此只在诊断意义上报告 oracle-support 协议——<b>提醒任何 per-gene 类指标都必须先过这一关</b>。</p><div class="date">2026-10 · arXiv:2610.28853（预印本）</div></div>
     <div class="card"><span class="badge b-crit">批评性基准</span><h3>线性基线对照（Nature Methods 2025）</h3><p>EMBL 团队的基准设计：任何扰动预测模型必须先证明优于「预测训练集均值」与简单可加线性模型——目前无模型在所有指标上稳定达标。</p><div class="date">2025-08 · Nature Methods</div></div>
     <div class="card"><span class="badge b-crit">批评性基准</span><h3>零样本评测（Genome Biology 2025）</h3><p>Microsoft Research 团队的严格零样本协议：Geneformer / scGPT 在聚类与批次校正上常不如高变基因 + scVI / Harmony 传统流程。</p><div class="date">2025-04 · Genome Biology</div></div>
+    <div class="card"><span class="badge b-crit">评测协议</span><h3>层深度也是超参数：冻结探针的层级差异</h3><p>用层级探针评测 Geneformer、scBERT、scGPT、scFoundation 四个基础模型作冻结特征提取器：中间层在若干设置下<b>显著改善</b> scGPT 与 scBERT 的细胞类型准确率（Geneformer 与 scFoundation 则与末层相当）；扰动预测上，留一数据集选择（LODO）在四个模型中一致选出<b>第 1 层</b>为「最早持平」候选。作者建议：报告提取深度、readout、选择协议与任务诊断——<b>层深度与读出方式是评测协议的一部分，会改变结论</b>。</p><div class="date">2026-10 · bioRxiv 10.64898/2026.10.05.756880（预印本）</div></div>
     <div class="card"><span class="badge b-crit">批评性基准</span><h3>基准平均化掩盖扰动强度</h3><p>Rutgers 团队以深度校正的 guide 丰度作扰动强度代理，发现强度越高响应越可重复；但检索测试显示 STATE 与 Cell2Sentence 的预测<b>无法可靠恢复扰动身份</b>，因此"扰动内部强度"根本无从评估。</p><div class="date">2026-10-23 · bioRxiv 10.64898/2026.10.20.760537（预印本）</div></div>
     <div class="card"><span class="badge b-paper">观察</span><h3>75% 阈值说</h3><p>Arc CTO David Burke：扰动预测准确率约 75% 才能让生物学家免于湿实验验证；当前 STATE 约 40–60%——"阈值在接近但尚未到达"。<b>今日补注（2026-10-25）：</b>该区间本身也是在<b>未经对照校准</b>的常用指标上测得的，参照上述 Nature Biotechnology 的指标校准框架，真实位置有可能被低估，也可能被高估——在重复读数之前，应把它当作量级而非定点。</p><div class="date">Arc Institute 官方复盘 · 本站 2026-10-25 补注</div></div>
   </div>
@@ -92,8 +93,8 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 <section style="padding-top:0"><div class="wrap">
   <h2 class="sec">进行中的赛事<small>ONGOING CHALLENGES</small></h2>
   <div class="grid c3">
-    <div class="card"><span class="badge b-paper">赛事</span><h3>Virtual Cell Challenge 2026</h3><p>Arc Institute 主办，对标 CASP。零样本跨情境任务：6 条癌细胞系（3 验证 + 3 测试），300 扰动 × 约 400 细胞/系，Cell-Eval 六指标聚合。奖金与报名数为赛事方自述，实时变动。</p><div class="date">Arc Institute · 每年一届 · 奖金口径 10 万 / 17.5 万美元（待核实）</div></div>
-    <div class="card"><span class="badge b-paper">赛事</span><h3>NeurIPS Virtual Embryo Challenge</h3><p>测试期 2026-10-20 开启，12-02 截止；设人类赛道与智能体赛道。</p><div class="date">NeurIPS 2026 · 以官方页面为准</div></div>
+    <div class="card"><span class="badge b-paper">赛事</span><h3>Virtual Cell Challenge 2026</h3><p>Arc Institute 主办，对标 CASP。零样本跨情境任务：6 条癌细胞系（3 验证 + 3 测试），300 扰动 × 约 400 细胞/系，Cell-Eval 六指标聚合。<b>关键节点：</b>10-22 最终测试集已发布，11-05 最终提交截止（11:59 pm UTC），11 月中下旬公布获奖者。最终排名用 6 指标聚合评分。奖金为官方口径（现金 + NVIDIA Brev credits），NVIDIA 团队直接参与 cell-eval 指标加速与比较。</p><div class="date">Arc Institute · 每年一届 · 奖金 10 万 / 5 万 / 2.5 万美元（官方口径，2026-10-26 核验）</div></div>
+    <div class="card"><span class="badge b-paper">赛事</span><h3>NeurIPS Virtual Embryo Challenge</h3><p>Stanford Qiu Lab 主办，约 100 万细胞 × 11 个发育时间点 × 3 任务（时序 / 时空 / 突变扰动）。设<b>人类赛道与智能体赛道</b>：同一 hidden test、同一指标、分开颁奖；智能体赛道要求提交轨迹、提示词与 harness 代码作证。<b>测试阶段（P3）2026-10-27 开启</b>，12-02 截止，12-11 于 NeurIPS 公布获奖者。总奖金 11.2 万美元（Laude Institute Moonshots Seed Grant 支持）。验证榜战况（主办方口径，约 10-21）：人类队最高分首破 200（量表下限 151.7 / 上限 300），5 个人类队超 190，4 个智能体队超 170——<b>人类仍领先，智能体在追赶</b>。</p><div class="date">NeurIPS 2026 Competition Track · 以官方页面为准</div></div>
     <div class="card"><span class="badge b-paper">赛事</span><h3>VCC 2025（上届复盘）</h3><p>首届：H1 人胚胎干细胞 300 个 CRISPRi 扰动，指标 DES / PDS / MAE；114 国 1200+ 团队提交。官方复盘承认无模型在所有指标上稳定超越基线，优胜方案多为"深度学习 + 统计特征"混合。</p><div class="date">2025-12 揭晓 · 百图生科夺冠</div></div>
   </div>
 </div></section>
