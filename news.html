@@ -43,11 +43,15 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 <div class="pagehead"><div class="wrap">
   <div class="crumb">栏目 03 · NEWSWIRE</div>
   <h1>前沿速递</h1>
-  <p class="lede">更新至 2026-10-24。本期新增 6 条：批评性基准从「模型不如基线」推进到「评测框架本身失效」，叠加约 18 亿美元的数据基础设施扩容与 VCC 2026 零样本升级。</p>
+  <p class="lede">更新至 2026-10-26。本期新增 4 条：Arc 发布「知识接地」模型 PIE、GenBio 创始人提出虚拟细胞世界模型纲领、1.31 亿细胞的跨物种 Speciesformer、中南大学 × 腾讯打通遗传与化学筛选。</p>
 </div></div>
 
 <section><div class="wrap">
   <div class="grid c3">
+    <div class="card"><span class="badge b-model">模型</span><h3>Arc Institute 发布 PIE：把人类整理的生物学知识直接变成模型输入</h3><p>State 之后 Arc 虚拟细胞系列的第三款模型：用 Cellosaurus、NCBI Gene、Gene Ontology、DepMap、PubChem 等人工整理知识 token 化作为输入（Perceiver IO 架构），直接预测筛选实验真正读取的<strong>群体水平读数</strong>——差异表达基因、方向与幅度，而非单细胞表达。Replogle–Nadig 上 DE 分类 AUPRC 达最强基线 <strong>1.2–3.2 倍</strong>，「情境与扰动双未见」设置仍有意义预测。代码与权重在 GitHub / Hugging Face 开放。</p><div class="date">2026-10-05 · bioRxiv 10.64898/2026.10.02.756297（预印本）</div></div>
+    <div class="card"><span class="badge b-paper">论文</span><h3>GenBio 创始人的 Cell 纲领文章：虚拟细胞世界模型（VCWM）</h3><p>Eric P. Xing 与 Le Song 提出：虚拟细胞不该只是「预测扰动后表达谱」的专用工具，而应是<strong>多模态、多尺度、动态、有状态</strong>的计算系统——结构化编码器维护统一的细胞隐状态流形，干预作为「动作」更新状态，解码器强制跨模态一致。文章呼吁共建「虚拟细胞竞技场」，并警示癌细胞系数据可能让模型学到培养特异反应。所在 Cell 189(19) 期为「Focus on AI in biology」专刊。</p><div class="date">2026-09-17 · Cell，DOI 10.1016/j.cell.2026.08.042</div></div>
+    <div class="card"><span class="badge b-model">模型</span><h3>Speciesformer：1.31 亿细胞、11 物种的跨物种生成式虚拟细胞</h3><p>KAUST 高欣团队 × 联川生物：SpeciesCorpus（1.31 亿细胞、11 物种、154 组织、923+ 细胞类型）预训练，<strong>宏基因策略</strong>突破同源基因映射局限，在进化感知的共享基因空间里整合表达程序。统一生成架构支持转录组与生物文本双向生成、以及未见细胞情境的扰动预测；零样本泛化媲美微调基线，扰动区分 AUPRC 0.588。</p><div class="date">2026-09-22 · bioRxiv 10.64898/2026.09.22.752128（预印本）</div></div>
+    <div class="card"><span class="badge b-paper">论文</span><h3>中南大学 × 腾讯 Cell 论文：遗传筛选的知识，迁移给化学筛选</h3><p>UniPert-G2CP 两阶段框架：UniPert 用对比学习把蛋白质序列与小分子 SMILES 对齐到共享语义空间（无需人工标注即捕获 MoA）；G2CP 采「基因预训练 + 化学微调」范式。<strong>仅 20% 化学训练数据实现 375.4% 性能提升</strong>，大幅降低化学扰动建模对大规模实验数据的依赖；统一扰动因果空间支持药物机制解析与耐药研究。</p><div class="date">2026-08-06 · Cell，DOI 10.1016/j.cell.2026.06.005</div></div>
     <div class="card"><span class="badge b-crit">基准</span><h3>EL-PERTURB：20 个扰动预测模型的分层 OOD 压力测试</h3><p>用按转录空间功能分区的<strong>分层 OOD 划分</strong>替代随机划分，检验 6 类架构的 20 个模型。结论：OOD 条件下性能显著退化，且架构复杂度——包括单细胞基础模型嵌入——相对调参良好的简单基线没有可靠优势。作者主张，要成为湿实验筛选的 in silico 替代品，先得跨过这道泛化梯度。</p><div class="date">2026-10-24 收录 · bioRxiv 10.64898/2026.10.16.759604（预印本）</div></div>
     <div class="card"><span class="badge b-crit">基准审计</span><h3>评测框架的六类失效模式：恒等预测器可拿满分</h3><p>先复现一套「性能 + 不确定性校准」评测框架，再用它从未纳入的零假设基线审计它自身：<strong>把测试细胞本身喂给模型再打分，恒等预测器即可在全部 6 组划分上取得扰动效应相关 1.0</strong>；以常数训练均值为对照，scVI 在 Norman 99.7% 的细胞上胜出、在 Replogle 上仅 0.2%。作者为每类失效模式给出机制、诊断与可迁移的检测流程。</p><div class="date">2026-10-24 收录 · bioRxiv 10.64898/2026.10.12.758706（预印本）</div></div>
     <div class="card"><span class="badge b-crit">批评</span><h3>Virtual Cells Need Context, Not Just Scale</h3><p>Biohub、芝加哥大学与西北大学团队从评测侧给出结论：差异表达基因的恢复率随<strong>每个扰动的训练情境数</strong>上升，与训练细胞数仅弱相关（r = 0.11）。与 X-Cell 的规模清扫同向——后者显示测试损失在约 16 亿参数之后变化很小。</p><div class="date">2026-10-24 收录 · bioRxiv 10.64898/2026.02.04.703804（预印本）</div></div>
