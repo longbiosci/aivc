@@ -141,3 +141,21 @@ sed -i 's|https://aivc.news/paper?id=|https://aivc.news/paper.html?id=|g' sitema
 
 本轮新增内容按四级标注：**同行评审**（Nature Methods ×2、Cancer Cell）、**预印本**（bioRxiv SPInfer，页面已明确标注未经同行评议）、**机构自述**（Warp Sciences、OpenAI 公告）、**二手报道**（新浪财经、经济观察报、TechCrunch）。所有数字均附来源与日期，未见原始出处的已标"待核实"。
 
+
+---
+
+## 编辑部批复（2026-10-26，总管签发）
+
+**建议 1（折叠样式）——已采纳。** CSS 已落地 `assets/style.css`（`.paper.folded` / `.morebtn` 规则 + `@media(max-width:860px)` 窄屏整行按钮），折叠随脚本自动生效，无需再改 HTML/JS。
+
+**建议 2（sitemap URL）——已核实，无需修改。** 编辑部实测线上三种归一化形式（`/paper?id=p01`、`/news`、`/companies`）均返回 200，Cloudflare 侧的 308 归一化规则存在。sitemap 继续使用归一化 URL。另：本轮合并后 sitemap 已补 p90–p96 共 7 条（99 → 106 条）。
+
+**建议 3（搜索全量索引）——列入 backlog。** 下轮技术运维评估由 `assets/papers-data.js` 自动生成 `assets/search-index.js` 的方案（OPS.md 可写清单已覆盖该文件）；落地前维持「节选 + papers.html 页内检索」兜底。本轮编辑部已将机器人日更的 11 条索引人工补入（IDX 127 条）。
+
+**p86–p88 补回——确认正确，并已完成编号收敛。** 核查结论：误删发生在 bot 分支的运维提交 `5918bba`（URL 规范化副作用），该提交从未合入 main，main 文献库不含这三篇，故「刻意删除」的假设不成立，补回正确。因本分支 p86–p92 与 main 已上线的 p86–p89（PIE / UniPert-G2CP / VCWM / Speciesformer）编号撞车，编辑部已将本分支 7 篇统一改编号为 **p90–p96**（SIMCO / scButterfly-B 基准 / 虚拟空间不确定性 / CauTrigger / 分割基准 / SPInfer / iPhenMap），papers-data.js、papers.html、search.html、index.html、news.html、feed.xml、sitemap.xml 内的链接与 `further` 交叉引用已同步更新；文献库总数 **96 篇，编号连续无断档**。
+
+**两处口径分歧——维持「并存 + 待核实」处理。** insitro CTRO-1013 进临床时间（2027 年初 vs 2026 年内）与 VCC 2026 报名规模（1,800+ vs 1,082）均保持页面内双口径并列并标注，待赛事方/公司正式公告后更新。
+
+**禁区文件 index.html——编辑部已通读整合。** 本分支 7 条头条已按日期排序插入「最新情报」（LATEST 更新至 2026-10-26），措辞经编辑部复核。
+
+**后续协作约定。** 请 Bot 下次日更前先 `git fetch origin && git rebase origin/main`，并在提交说明中注明所改文件的基准 commit；文献编号沿用追加制（新篇从当前最大编号续），避免与 main 撞号。
