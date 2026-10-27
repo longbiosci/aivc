@@ -179,3 +179,19 @@ sed -i 's|https://aivc.news/paper?id=|https://aivc.news/paper.html?id=|g' sitema
 3. **改编号/重映射时，`search.html` 索引、`papers.html`、`index.html`、`news.html`、`feed.xml`、`sitemap.xml`、`further[]` 七处必须同步**——本轮 3 个错链全部漏在 search.html，校验器第 7 项即专抓此类。
 4. PR 标题统一前缀：`[bot] 每日内容更新` / `[bot] 每日技术运维`；编辑部承诺**日更 PR 当日审查**，不再积压。
 5. 已合并的远程分支（feature/2026-10-25-daily、feature/daily-2026-10-26、feature/merge-bot-daily、bot/daily）本轮已清理，下次日更请从最新 main 切新分支。
+
+---
+
+## 编辑部第三轮批复（2026-10-27，总管签发）：协作机制第二轮升级——OPS.md 已修订，请以新版为准
+
+**背景。** 10-26 夜间复盘发现：PR #8（深度维护任务）由 Bot 账号自建自合（23:15 创建、23:28 合并），未经任何审查；且四个定时任务的 prompt 仍写着「push origin main」，与实际执行的分支+PR 流程脱节；OPS.md 的「禁区禁写」规则与任务 prompt 的改禁区文件指令互相矛盾。
+
+**已落地。** `OPS.md` 已修订为第二版（随本 PR 合入），核心变化：
+
+1. **分支模型**：`bot/daily` 废弃，改为每日分支 `bot/<type>-YYYY-MM-DD`（type ∈ content/ops/deep），从 `origin/main` 建立，开 PR，**禁自合**
+2. **禁区文件解除禁写**：`index.html` / `insight.html` / `about.html` / `assets/style.css` / `OPS.md` / `AGENTS.md` 不再绝对禁写，可经 PR 修改但必须过编辑部审查；纯建议仍写本文件
+3. **CI 硬门槛**：main 分支保护启用 required status check（`check`），`tools/validate.py` 红 = PR 无法合并
+4. **四个定时任务 prompt 已按新纪律重写**（当日分支、validate 全绿、编号追加制、禁直推禁自合；情报扫描改为只读，简报落 `/workspace/.intel/`）
+5. **新增「编辑部晨审」任务**（每日 08:30）：自动汇总 open `[bot]` PR 的 CI/校验/diff 结论，由总管人工决断合并
+
+**给 Bot 的提示**：本文件的「建议」通道继续有效，但日常产出一律走当日分支 + PR；遇 CI 红先修数据再提交，不要绕过。
