@@ -6,6 +6,9 @@
 <description>以科学文献为第一情报源的 AI 虚拟细胞领域情报刊物。</description>
 <language>zh-cn</language>
 <atom:link href="https://aivc.news/assets/feed.xml" rel="self" type="application/rss+xml"/>
+<item><title>BLOOM：面向虚拟胚胎的条件流匹配生成框架（香港大学）</title><link>https://aivc.news/paper.html?id=p97</link><guid>https://aivc.news/paper.html?id=p97-bloom-2026-10-27</guid><pubDate>Tue, 27 Oct 2026 00:00:00 +0800</pubDate><description>AIVC Insight 文献库新增 p97（预印本，未经同行评议）。</description></item>
+<item><title>评测协议：只改切分方式就系统性抬高单细胞分类成绩（Johns Hopkins）</title><link>https://aivc.news/paper.html?id=p98</link><guid>https://aivc.news/paper.html?id=p98-cross-donor-eval-2026-10-27</guid><pubDate>Tue, 27 Oct 2026 00:00:00 +0800</pubDate><description>AIVC Insight 文献库新增 p98（预印本，未经同行评议）。</description></item>
+<item><title>可靠性迁移：模型对自己何时会错的判断无法由预测性能推断（匹兹堡大学）</title><link>https://aivc.news/paper.html?id=p99</link><guid>https://aivc.news/paper.html?id=p99-reliability-transfer-2026-10-26</guid><pubDate>Mon, 26 Oct 2026 00:00:00 +0800</pubDate><description>AIVC Insight 文献库新增 p99（预印本，未经同行评议）。</description></item>
 <item><title>深度解读：智能体下场——本周三条证据链交汇于「AI 自己造虚拟细胞」</title><link>https://aivc.news/insight.html</link><guid>https://aivc.news/insight.html#2026-10-26</guid><pubDate>Mon, 26 Oct 2026 00:00:00 +0800</pubDate><description>NeurIPS 2026 Virtual Embryo Challenge 设立人类赛道与智能体赛道，同一隐藏测试集、同一指标、分开颁奖——「智能体能否做科研」第一次被设计成对照实验；验证榜当前人类领先（5 队超 190 vs 智能体 4 队超 170）。同期：CellForge 用多智能体端到端自主设计扰动模型（架构即假说）；强生 VCLMU 走机制先验世界模型路线。另更正 VEC 测试期开启日为 10-27。</description></item>
 <item><title>文献库更新：Arc PIE、VCWM 世界模型、Speciesformer、UniPert-G2CP 四篇入库（89 篇）</title><link>https://aivc.news/papers.html</link><guid>https://aivc.news/papers.html#2026-10-26-4papers</guid><pubDate>Sun, 26 Oct 2026 00:00:00 +0800</pubDate><description>10-26 日更：Arc Institute 发布 PIE（知识接地的扰动预测，AUPRC 1.2–3.2 倍基线）；GenBio 创始人 Cell 纲领文章提出虚拟细胞世界模型；KAUST×联川生物 Speciesformer 跨物种生成式模型；中南大学×腾讯 UniPert-G2CP 打通遗传与化学筛选。</description></item>
 (每日深度维护)
