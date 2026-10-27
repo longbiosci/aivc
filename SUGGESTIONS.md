@@ -195,3 +195,21 @@ sed -i 's|https://aivc.news/paper?id=|https://aivc.news/paper.html?id=|g' sitema
 5. **新增「编辑部晨审」任务**（每日 08:30）：自动汇总 open `[bot]` PR 的 CI/校验/diff 结论，由总管人工决断合并
 
 **给 Bot 的提示**：本文件的「建议」通道继续有效，但日常产出一律走当日分支 + PR；遇 CI 红先修数据再提交，不要绕过。
+
+---
+
+## Bot 建议（2026-10-28 · 深度维护分支 `bot/deep-2026-10-28`）：三条协作/工具建议，请编辑部批复
+
+**背景。** 本分支执行每日深度维护时发现三处「规范与实现打架」或「工具缺位」的情况，均不属 Bot 写入边界（OPS §3.1 未列 `tools/` 与 `_redirects`），故不在当日 PR 内自行落地，按 §3.3 走本建议通道。
+
+**建议 1（工具）：新增「站点级」扩展自检，作为官方 CI 之外的第二道本地关卡。**
+现行 `tools/validate.py`（编辑部 2026-10-27 落地，174 行，8 类检查）专注**文献数据一致性**，不覆盖**页面结构**。Bot 侧另有一份 537 行的扩展自检（本次临时使用，副本留存 `/workspace/.intel/tools/validate-extended.py`），额外覆盖 6 类：必需文件存在性、HTML 骨架（doctype/charset/viewport/lang/canonical + 标签配对）、**全站导航栏目覆盖与 active 唯一性**、**内部链接与页内锚点可达性**、静态资产引用、DOI 字面格式、声明计数与实际一致性。本次在 96 篇口径下实测：导航 11 页全覆盖、内链 427 条 0 断链、DOI 格式 0 非法、计数一致。
+建议：由编辑部以 `feature/*` 分支评估合入（可拆为 `tools/validate-site.py`，CI 再加一步），避免与现行校验器抢占同一文件名。
+
+**建议 2（规范冲突）：`sitemap.xml` 的 `/paper?id=` 写法维持现状，勿改。**
+本站此前建议（本文件建议 2）提出把 sitemap 内 `https://aivc.news/paper?id=pNN` 改为 `paper.html?id=pNN`。本次复核结论是**该建议应撤回**：（a）站点部署在 Cloudflare Pages，无扩展名路径会自动解析到同名 `.html`，`/paper?id=pNN` 线上实际可达；（b）现行 `tools/validate.py` 第 4 项以 `f"paper?id={i}"` 硬匹配 sitemap，一旦改成 `paper.html?` 会**全量撞红、CI 拦截合并**。
+若编辑部仍希望统一为显式 `.html`，请**三处同步**并经 `feature/*` 分支一次提交：改 sitemap 全量 URL、改 `tools/validate.py` 第 4 项匹配式、补 `_redirects`（`/paper?id=:id → /paper.html?id=:id 308`）。单改任何一处都会产生断链或 CI 红。Bot 本次已回退该改动，并同步撤回 `_redirects` 的新建。
+
+**建议 3（方法）：DOI 可用性抽查请改用 Handle API，不要用 `https://doi.org/<doi>` 直连。**
+`https://doi.org/<doi>` 的 HEAD/GET 在多数出版商处返回 **403（反爬）**，与「DOI 不存在」无法区分，据此做出的「DOI 失效」判断不可靠。正确信号是 DOI Handle API：`https://doi.org/api/handles/<doi>`（请求头 `Accept: application/json`），读 `responseCode`——**1 = 已注册，100 = 未找到**；doi 内含 `/` 需按 `safe="/"` 转义。
+实测：本站静态 DOI 链接 104 个，其中 103 个 responseCode=1；唯一例外是本期新引的 **AI Agent 综述 DOI `10.20517/aiagent.2026.16`（查询返回 404 / 未注册）**。该文在出版商页面可正常打开（收稿 2026-05-12、接受 2026-10-15、发表 2026-10-27），属新刊 DOI 注册滞后，非伪引；本站已在 10-28 期观察的「待核实」与信源列表中如实标注。
