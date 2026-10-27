@@ -1,0 +1,21 @@
+name: validate
+
+# 站点数据校验：每个 PR 与 main 推送自动运行。
+# 目的：在合并前拦截合并级错误（JS 语法、编号断档/重复、指错文献的链接、
+# sitemap 缺漏、计数不符等），把「人眼审查」升级为「机器强制」。
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: 运行站点数据校验
+        run: python3 tools/validate.py

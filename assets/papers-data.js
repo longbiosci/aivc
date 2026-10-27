@@ -662,7 +662,7 @@ limits:["不否定其他可解释性方法（概念激活、探针等仍有价�
 debate:["这篇论文的争议不在结论而在杀伤范围：整个「scFM 注意力图 → 调控发现」的支线（包括若干高影响力论文的核心 claim）都受到波及。辩护者认为「不优于简单特征」不等于「没有信息」，但举证责任已经转移——现在需要 attention 派自己证明增益。它与 D-SPIN 的显式网络路线形成合流：可解释性可能要回到显式结构。"],
 takeaway:["对「用注意力图讲故事」的当头棒喝。做机制解读时引用需谨慎——引用前先问：这个 claim 过了这篇的检验没有？"],
 further:["p33","p36","p09","p39"]},
-{id:"p40",g:"g4",t:"Rethinking Perturbation Discrimination Metrics: Lessons from the Virtual Cell Challenge（TransPert 团队复盘）",a:"Du, Wang 等（芝加哥大学 / 达特茅斯 / 港大）",v:"arXiv",d:"2025",pdf:"https://arxiv.org/pdf/2511.16954",
+{id:"p40",g:"g4",t:"Rethinking Perturbation Discrimination Metrics: Lessons from the Virtual Cell Challenge（TransPert 团队复盘）",a:"Du, Wang 等（芝加哥大学 / 达特茅斯 / 港大）",v:"arXiv",d:"2025",pdf:"https://arxiv.org/pdf/2511.16954",doi:"10.48550/arXiv.2511.16954",
 summary:"VCC 季军团队对 PDS 等指标的技术复盘，揭示当前评测指标的盲区。",
 background:[
 "VCC 2025 最富戏剧性的结果不是百图生科夺冠，而是一个纯统计框架（TransPert）拿了季军——一个「不懂生物学」的框架，靠对指标的深刻理解击败了大量生物学动机的模型。",
