@@ -45,7 +45,7 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 <div class="pagehead"><div class="wrap">
   <div class="crumb">栏目 05 · ANALYSIS</div>
   <h1>深度解读</h1>
-  <p class="lede">本栏目刊载两类文章：<b>社论</b>——编辑部对 AI 虚拟细胞领域的整体判断，长期有效，接受时间检验；<b>每日观察</b>——当日事实的记录与解读，严格区分事实与观点。社论发表于 2026 年 10 月 24 日；最新一篇每日观察发表于 2026 年 10 月 28 日（<a href="#obs-2026-10-28">跳转</a>）。2026-10-27 当日未出现足以支撑独立成篇的新趋势或争议，按本站纪律<b>未硬写</b>，故无 10-27 期；本期观察覆盖 10-27 → 10-28 窗口。</p>
+  <p class="lede">本栏目刊载两类文章：<b>社论</b>——编辑部对 AI 虚拟细胞领域的整体判断，长期有效，接受时间检验；<b>每日观察</b>——当日事实的记录与解读，严格区分事实与观点。社论发表于 2026 年 10 月 24 日；最新一篇每日观察发表于 2026 年 10 月 29 日（<a href="#obs-2026-10-29">跳转</a>）。本期覆盖 10-28 → 10-29 窗口，主题为<b>「靶子之问」</b>——评测的尺子之外，被评测的那个量是否选对了。历史上 2026-10-27 当日未出现足以支撑独立成篇的新趋势或争议，按本站纪律<b>未硬写</b>，故无 10-27 期。</p>
 </div></div>
 
 <section><div class="wrap">
@@ -99,6 +99,122 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
   <p>这个领域每天产生大量信息，但被准确理解的信息很少。发布会模式奖励 confidently wrong，科学模式奖励 patiently right——而读者需要的是后者。AIVC Insight 的存在意义，就是在两者之间做校准：每一篇文献都可追溯，每一个数字都有出处，每一次争议都呈现两边。</p>
   <p>虚拟细胞最终会不会成功，我们不替它担保。但我们担保：这个领域发生的一切，会被这里准确地记录。</p>
   <div class="sig">—— AIVC Insight 编辑部 · 2026 年 10 月 24 日<br>本文观点基于本站文献库与企业解剖的公开信息。在本站，批评性文献与模型发布新闻具有同等地位。</div>
+</div>
+
+<div style="border-top:2px solid var(--line);margin:52px 0 44px"></div>
+
+<div class="article" id="obs-2026-10-29">
+  <div class="ameta">
+    <span>期次 2026-10-29</span><span>栏目 每日观察</span><span>信源 7 条</span><span>更新 2026-10-29</span>
+  </div>
+
+  <h2>靶子之问：当上届通用奖得主所在机构说「这个基准测错了东西」</h2>
+  <p class="lede" style="margin-bottom:26px">主编观察 · 2026 年 10 月 29 日。本文严格区分<b>事实</b>与<b>观点</b>：第一、二节为可核验的事实记录与事实性归纳，第三节起为编辑部判断，文末列出全部信源与待核实项。本期沿用 10-28 期新增的「证据层级」列，但对其中一条给出<b>降级处理</b>——会议演讲经媒体转述者，不按期刊主张层计，见第二节 2.3。本期含一处<b>对本站既有事实的更正</b>（VCC 2025 参赛规模），见第一节第 6 条。</p>
+
+<div class="abstract">
+    <b>摘要。</b>本期最值得记录的不是新模型，也不是新赛事，而是一次<b>来自内部的靶子质疑</b>：Morgan Levine（Altos Labs 前 PI）在 ARDD 2026 上公开表示，<b>「扰动响应预测、特别是 RNA-seq，在我看来不是虚拟细胞的正确基准」</b>，理由是生成原始数据「仍然缺乏可解释性」，每种模态都只是被真正关心的潜在状态的不完整投影。使这句话有分量的不是身份，而是一个可核验的巧合——<b>VCC 2025 通用奖（10 万美元）得主正是 Altos Labs 团队</b> Cleopatra / go-with-the-flow（赛事官方一手）。同一天可以核到的第二件事，把「指标可被尺度操纵」从框架缺陷坐实为<b>赛制层的已知性质</b>：赛事官方复盘白纸黑字记载，第三名 Outlier 队的方案最后一步是<b>「全局线性缩放以优化 PDS 指标」</b>，且该队另发评论自述此举「使预测更像加权符号余弦相似度打分」——<b>合法、公开、由主办方主动披露</b>，正因如此它才成立为证据。资本端同日两笔（北京百奥几何 A+ 轮、巴黎 Rivercell 种子轮补收）与智能体端一个负面数据点（30 个无引导智能体分裂为 18 条互不兼容流程）共同指向同一处：<b>这个领域正在从「量得准不准」转向「该量什么」</b>。
+  </div>
+
+  <h3>一、事实记录<span style="font-size:12px;color:var(--dim);font-weight:400"> · FACTS</span></h3>
+  <p>下表为截至 2026-10-29 可核验的事实条目。「<b>信源类型</b>」回答「谁说的」；「<b>证据层级</b>」回答「说到了哪一步」，其分级办法沿用 10-28 期试点（一手 / 期刊·同行评审 / 预印本 / 主张层），本期对会议演讲类新增一档说明。凡本站未能从一手来源取得或未能逐条核对原文的数字，均在文末「待核实」中标注。</p>
+
+  <table class="ftab">
+    <thead><tr><th>条目</th><th>关键事实（数字与结论）</th><th>信源类型</th><th style="width:96px">证据层级</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="k">靶子质疑<br><span class="src">ARDD 2026 · Morgan Levine</span></td>
+        <td>Morgan Levine（前耶鲁病理学副教授、Altos Labs 前 PI；据会议报道约两个月前离职，领导一家 stealth startup）在 ARDD 2026 上谈虚拟细胞。可核验的四点：（1）她以 Virtual Cell Challenge 为例，指出<b>某项指标对预测尺度敏感，使参赛队能在没有实际生物学改进的情况下提高分数</b>；（2）原话判断——<b>「扰动响应预测、特别是 RNA-seq，在我看来不是虚拟细胞的正确基准」</b>；（3）理由——「我不认为生成原始数据有那么有用，因为你仍然缺乏可解释性」；生物数据本身很吵，生成原始数据时连噪声一起生成了，因此生成式 AI 未必是虚拟细胞模型的最佳选择；（4）她的替代主张——每种模态都只是<b>潜在状态</b>的不完整投影，「我们关心的是如何感知这个潜在状态并解释它的含义，而不是如何完美地生成数据」，据此她正转向生物学的<b>「感知层」与世界模型</b>。她还给出规模论证：仅约 2 万个蛋白编码基因的上调/下调就需要约 4 万种条件，叠加细胞类型、环境、遗传背景、时间点与测量方式后达数十亿量级，类药小分子约 10<sup>60</sup> 种，实验上不可行。</td>
+        <td><span class="st st-n">会议报道</span><br><span class="src">Lifespan.io · 2026-10-27 发稿 · <b>演讲转述，非同行评审文献</b></span></td>
+        <td><span class="src">二手·主张层（<b>本期降级</b>）</span></td>
+      </tr>
+      <tr>
+        <td class="k">上届通用奖归属<br><span class="src">VCC 2025 官方结果</span></td>
+        <td>Virtual Cell Challenge 2025 官方结果页与 Arc Institute 官方复盘：<b>通用奖（Generalist Prize，10 万美元）授予 Altos Labs 团队 Cleopatra，模型名 go-with-the-flow</b>，成员 Chaitra Agrahar、Ridvan Eksi、Marcel Nassar、Mehrshad Sadria、Vladimir Trifonov、Esther Wershof、Yan Wu、Zichao Yan，来自 <b>Altos Labs Institute of Computation</b>。方案为<b>流匹配生成模型</b>，直接在基因表达空间操作，以定制 U-Net 参数化随时间变化的动态来更新基因表达向量；在<b>约 700 万</b>精选高质量单细胞（公开数据 + 赛事训练数据 + Altos 内部扰动筛选，<b>无 H1 细胞</b>）上预训练，再针对 h1ESC 与赛事测试集扰动微调。获奖理由：在赛事三项指标 + STATE 论文四项指标共<b>七项</b>上平均排名最高（取赛事指标得分最高的 50 份提交中计算），体现稳健泛化而非针对单一目标优化。总分前三为 BioMap 百图生科 BM_xTVC（34.0）、XLearning Lab（32.8）、Outlier（32.6）。</td>
+        <td><span class="st st-n">赛事官方</span><br><span class="src">virtualcellchallenge.org/2025 + Arc 官方复盘 · 一手</span></td>
+        <td><span class="src">赛事官方（一手）</span></td>
+      </tr>
+      <tr>
+        <td class="k">指标尺度敏感性<br><span class="src">VCC 2025 第三名方案自述</span></td>
+        <td>Outlier 队（芝加哥大学 / 达特茅斯学院 / 香港大学）模型 <b>TransPert</b> 是<b>纯统计框架</b>：仅用汇总级数据（伪批量扰动谱 + Wilcoxon 检验的差异分析结果），先按相似性感知聚合多个参考细胞系的基因级扰动摘要，再预测目标细胞系中可能显著受影响的基因以精调估计；官方复盘明确记载其最后一步为<b>「全局线性缩放以优化 PDS 指标表现，缩放因子通过赛事训练数据的交叉验证选定」</b>。该队另发表 arXiv 评论 <i>Effects of Distance Metrics and Scaling on the Perturbation Discrimination Score</i>，自述这种缩放「使预测行为更像基于加权符号余弦相似度的打分，从而提升区分度」。<b>关键性质：</b>这是赛事规则允许的合法优化，且由主办方主动公开披露——<b>正因为它合法且被公开，它才证明「指标对预测尺度敏感」是赛制层的已知性质，而非个别队伍的越界行为。</b></td>
+        <td><span class="st st-n">赛事官方复盘</span><br><span class="src">Arc VCC 2025 Wrap-Up + 队方 arXiv 评论 · 一手/自述</span></td>
+        <td><span class="src">赛事官方（一手）+ 队方自述</span></td>
+      </tr>
+      <tr>
+        <td class="k">赛事方自认<br><span class="src">Arc 官方复盘「我们学到了什么」</span></td>
+        <td>Arc Institute 官方复盘自述：<b>「单一指标无法刻画『模型质量』，我们观察到明确的权衡关系——优化某一指标有时会以牺牲其他指标为代价」</b>；正研究本年度提交以改进指标，<b>可能包括 norm-matched PDS 变体与新的生物学相关性准则</b>。另两条官方结论与本站既有记录一致：混合模型（深度学习 + 统计特征）优于纯神经网络，策略性损失函数设计与架构同等重要，多模态特征（尤其蛋白质嵌入）为头部团队带来增益；赛事吸引了机器学习专家与计算生物学家两个群体，官方希望未来版本让两种视角「变得不可或缺且相互依赖」。</td>
+        <td><span class="st st-n">赛事官方</span><br><span class="src">Arc VCC 2025 Wrap-Up · 一手</span></td>
+        <td><span class="src">赛事官方（一手）</span></td>
+      </tr>
+      <tr>
+        <td class="k">智能体的负面测度<br><span class="src">Galaxy Project</span></td>
+        <td>Dannon Baker（Galaxy Project）<i>Verifiable Agentic Science on Public Infrastructure</i>，bioRxiv（2026-10-26）。核心对照：<b>30 个无引导的本地编码智能体在同一数据集上分裂出 18 条互不兼容的分析流程</b>。作者主张把智能体科研搬到公共基础设施上，使每个动作留下可审计溯源（workflow、history、中间数据集全部公开），并在此之上开展大规模智能体复现与发现研究；完整溯源随后暴露出已发表研究中的<b>未申明的建模选择、参考序列错配、教程输入被子采样</b>等问题。</td>
+        <td><span class="st st-p">预印本</span><br><span class="src">bioRxiv 10.64898/2026.10.26.761864 · 未经同行评审</span></td>
+        <td><span class="src">预印本</span></td>
+      </tr>
+      <tr>
+        <td class="k">更正 · VCC 2025 规模<br><span class="src">本站 2026-10-29 自查</span></td>
+        <td>本站<a href="benchmarks.html">数据与基准</a>页此前记 VCC 2025 为「114 国 1200+ 团队提交」。对照赛事官方页：<b>5,121 注册、4,325 支队伍、1,265 支验证期参赛队、338 支决赛队、114 国、13,781 次提交</b>。本站旧值「1200+」实际对应<b>验证期参赛队（1,265）</b>，<b>决赛规模应为 338 支</b>——属口径取错，非捏造，<b>本次已更正</b>并同步补入总分名次与通用奖归属。</td>
+        <td><span class="st st-j">站内自查</span><br><span class="src">本站旧记录 vs 赛事官方页 2026-10-29</span></td>
+        <td><span class="src">站内自查（一手复核）</span></td>
+      </tr>
+      <tr>
+        <td class="k">资本端同期两笔<br><span class="src">10-28 中文创投日报 + 机构公告</span></td>
+        <td>（1）<b>百奥几何（BioGeometry，北京）</b>：10-28 投资界首发，宣布完成 A+ 轮，A 轮系列累计超 <b>1 亿美元</b>，国寿资本领投，上海生物医药基金等老股东加码；资金投向 GeoFlow（分子水平全原子世界模型）与 <b>GeoCell</b>（细胞水平，以生成式 AI 建模基因/药物及其组合扰动下的转录组响应）两大模型、高通量自动化实验室扩建与自研管线商业化。（2）<b>Rivercell（巴黎）</b>：<b>2,200 万欧元</b>（约 2,500 万美元）种子轮，HV Capital 领投，HCVC / Alven / Bpifrance Digital Venture 跟投；自建自动化湿实验室产出「干预性、时间分辨、多模态」单细胞扰动数据以训练其 AIVC 世界模型；CEO Yann Fleureau（Cardiologs 联创，2021 年被飞利浦收购）、CSO Eric Durand（前诺华肿瘤数据科学负责人、Owkin 前首席数据科学官、Bioptimus 联创），科学顾问委员会含 <b>Charlotte Bunne（EPFL）与 Fabian Theis（Helmholtz Munich）</b>。<b>本站日期订正：</b>Rivercell 出 stealth 的<b>原始发布为 2026-10-07（Business Wire）</b>，10-26 经聚合页二次传播、10-28 中文创投日报再列——<b>本站按纪律还原为原始日期，不按「当日新闻」计</b>，本期作补收处理。两笔公告均<b>未披露任何基准分数或第三方验证结果</b>。</td>
+        <td><span class="st st-n">二手报道 / 机构自述</span><br><span class="src">投资界 10-28 · Business Wire 10-07 · 中文创投日报 10-28</span></td>
+        <td><span class="src">机构自述 + 二手报道</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>二、事实性归纳：质疑的分量来自身份，而不是措辞<span style="font-size:12px;color:var(--dim);font-weight:400"> · SYNTHESIS</span></h3>
+
+  <h3 style="font-size:15.5px;color:var(--sub);margin-top:22px">2.1 这不是旁观者的批评，是赢家圈内的问题</h3>
+  <p>「基准选错了」这类话，领域里每周都有人说，通常不值得记。本期值得记，是因为它同时满足三个可核验条件：<b>批评者是上届通用奖得主所在机构的人</b>（Altos Labs Institute of Computation）、<b>被批评的现象赛事方自己已经写过</b>（Arc 复盘自述指标间存在权衡、正研究 norm-matched PDS）、<b>且赛事内存在一条白纸黑字的实例</b>（第三名 TransPert 的全局线性缩放优化 PDS，由官方复盘主动披露）。三者互相独立，却落在同一句话上：<b>当前这套靶子允许「改尺度而不改进生物学」的收益。</b>这使 Levine 的话从个人观点升级为一个<b>可被证伪的命题</b>——如果 2026 年的 norm-matched PDS 变体落地后，头部方案的排名发生显著重排，那么「尺度操纵空间确实存在」即被证实；如果排名纹丝不动，则该质疑在赛事层面被削弱。</p>
+
+  <h3 style="font-size:15.5px;color:var(--sub);margin-top:22px">2.2 同期三条回应路径，没有一条是「把 RNA 预测得更准」</h3>
+  <p>把本期事实并排看，会发现所有新动作都在<b>绕开</b>而不是<b>优化</b>当前靶子：Levine 转向「潜在状态的感知层」，即放弃以生成为目标；Rivercell 与百奥几何都把钱投在<b>自建自动化湿实验闭环</b>上，赌的是「别人没有的实验数据」而非模型规模——Rivercell CEO 的原话是「细胞的世界模型是医学界百年一遇的机会，<b>缺的那一块是数据</b>」；Galaxy Project 则不碰靶子，去解决<b>智能体产出不可复现</b>的问题（30 个智能体 → 18 条流程）。三条路径的共同点是：<b>它们都不认为「在现有读数上再涨几个点」是瓶颈。</b>这与本站 10-24 起记录的「钱正在流向数据基础设施，而不是模型层」是同一判断的延续，但本期第一次出现了来自<b>靶子层</b>的明确理由。</p>
+
+  <h3 style="font-size:15.5px;color:var(--sub);margin-top:22px">2.3 本站的分级采信，本期新增一档降级</h3>
+  <p>10-28 期试点的「证据层级」列把两篇期刊综述标为<b>主张层</b>——值得采信的规范建议，不是可当作实验结果引用的证据。本期出现了一个更弱的情形：<b>会议演讲经媒体转述</b>。它有署名、有场合、有具体引语，但没有稿件、没有同行评审、没有可复核的原始记录。本期处理为<b>「二手·主张层」</b>，并在事实表中显式写明「演讲转述，非同行评审文献」。<b>规则如下：凡会议演讲、播客、访谈类内容，一律按二手主张处理，不得与期刊综述同级采信</b>；其价值是提示方向与值得追的线索，不是证据本身。这条规则本期生效，暂不回溯往期。</p>
+
+  <div class="opbox">
+    <div class="oh">三、编辑部观点（以下为判断，非事实）</div>
+    <ol>
+      <li><b>我们部分不同意「RNA-seq 不是正确基准」，但完全同意「RNA-seq 不应该是唯一基准」。</b>RNA-seq 之所以成为靶子，不是因为它最对，而是因为它是<b>目前唯一同时具备规模、公开基础设施与跨实验室可比性</b>的读数。换成「潜在状态」或「感知层」的主张，本站目前看不到任何可复现的度量办法——一个无法被独立测量的靶子，做不了基准。<b>本站立场：保留 RNA-seq 作为靶子，但拒绝把它当作终点</b>，并把 TiPS 的三级验证（10-28 期）理解为「在现有靶子上尽量逼近决策级」的过渡方案。</li>
+      <li><b>「指标对预测尺度敏感」这一条，本站认为已经从怀疑变成事实，且证据是赛事方自己提供的。</b>Outlier 队的缩放是<b>合法且被公开披露</b>的——这一点至关重要：它说明问题不在任何队伍的操守，而在<b>赛制允许这种收益存在</b>。本站 10-25 记录的「指标校准缺失」、10-28 记的「证据门槛」，都是同一病灶的不同切面；本期第一次拿到了来自赛事内部的书面实例。<b>本站后续对任何赛事榜单的默认追问增加一条：这个分数里，有多少来自生物学改进，有多少来自尺度与归一化选择？</b></li>
+      <li><b>最值得盯的下一条硬证据，是 VCC 2026 是否真的落地 norm-matched PDS。</b>Arc 官方说「正在研究，可能包括」。若 2026 赛事采用，且头部排名相对 2025 明显重排，则 Levine 的质疑在赛事层面被证实；若照旧，则该议题将被推迟到 2027。<b>本站把这一条记为可证伪的观察项，列入跟踪</b>，不在结果出现前下结论。</li>
+      <li><b>智能体的第一个负面数据点出现了，而它比榜单更重要。</b>本站自 10-26 起追踪「智能体能否做科研」，此前只有正面测度（VEC 智能体赛道分数）。Galaxy Project 的「30 个智能体 → 18 条互不兼容流程」给出了另一半：<b>在没有约束的环境里，智能体的产出不可复现</b>。这不是能力问题，是<b>溯源问题</b>——而溯源恰恰是「证据」的定义要件。<b>本站据此调整措辞：讨论智能体科研时，从「它做得好不好」改为「它的产出能不能被第三方沿着同一条路径复现」。</b>12-11 VEC 决赛结果出来时，这两个问题应当分开回答。</li>
+      <li><b>本站不会因为一条会议质疑就改变对任何赛事的收录口径，但会因此改变记录方式。</b>VCC 与 VEC 仍是本站追踪的核心赛事；变化在于：从本期起，本站记录任何赛事成绩时，<b>同时记录其指标的可操纵空间</b>——包括是否存在尺度/归一化自由、是否设独立隐藏测试集、是否限制提交次数。<b>赛制本身是结果的一部分，这个判断自 10-28 期「两次提交 + 零反馈」起建立，本期扩展到指标层。</b></li>
+      <li><b>关于「赢家质疑赛道」的读法，本站保留一层警惕。</b>Levine 已离开 Altos Labs 并正在创办新公司，其公开主张与新方向（感知层 / 世界模型）存在利益相关性——这不构成不当，但构成<b>应当被披露的语境</b>。本站据此不对她的替代方案作采信，只记录其质疑中<b>可被独立证据支撑的那一部分</b>（即尺度敏感性，已由赛事方自述与获奖方案自述双重印证）。</li>
+    </ol>
+  </div>
+
+  <h3>四、前情提要<span style="font-size:12px;color:var(--dim);font-weight:400"> · 本站既有立场（2026-10-28 及以前）</span></h3>
+  <p>本栏目此前的判断仍然成立，并可作为今日观察的背景：<b>竞争维度已第三次迁移至「什么证据才算数」</b>（10-28）——TiPS 三级验证与 AI Agent 证据边界，本期的问题是它的<b>前置问题</b>（该测什么）；<b>赛事赛制本身即结果的一部分</b>（10-28，VEC 两次提交 + 零反馈）；<b>缺少阳性对照的基准只会证伪不会证实</b>（10-25）；<b>协议是超参数</b>（10-25，层深度与读出方式改变结论）；<b>基准审计是领域成熟的标志</b>（10-24）；<b>钱流向数据基础设施而非模型层</b>（10-24，本期由 Rivercell 与百奥几何再次印证）。编辑部完整立场见本页置顶社论<a href="#editorial">《虚拟细胞不是新工具，是生物技术的新「操作系统」》</a>；往期观察见<a href="#obs-2026-10-28">《证据门槛》</a>与<a href="#obs-2026-10-26">《智能体下场》</a>。</p>
+
+  <div class="unc">
+    <b>待核实与不确定性（编辑部主动披露）：</b>
+    <br>· <b>Levine 发言的全部内容来自单一媒体转述（Lifespan.io，2026-10-27 发稿）</b>，无演讲稿、无会议录像链接可回查；本站已按「二手·主张层」降级处理。ARDD 2026 会议的<b>具体举办日期本站未取得</b>，仅能确认报道发稿日为 10-27。
+    <br>· <b>Levine 本人是否参与 VCC 2025 通用奖获奖团队（Cleopatra / go-with-the-flow），本站未取得任何证据，不作断言。</b>本期仅陈述「她所在机构（Altos Labs）为该奖得主」这一赛事官方事实，读者不应读作「获奖者本人质疑赛道」。
+    <br>· <b>「某项指标对预测尺度敏感」中的「某项」具体指 DES / PDS / MAE 中的哪一个，转述稿未指明</b>，本站不代为指定；可独立核验的对应事实是 Outlier 队针对 <b>PDS</b> 的全局线性缩放（赛事官方复记载）与 Arc 对 norm-matched PDS 的研究意向。
+    <br>· 百奥几何融资的<b>具体轮次金额与投后估值未披露</b>（仅称 A 轮系列累计超 1 亿美元）；Rivercell 公告<b>未披露估值、数据集规模、基准或任何第三方验证结果</b>，其「世界模型」目前仅为机构自述。
+    <br>· <b>Rivercell 的原始发布日为 2026-10-07</b>，本站按纪律还原原始日期、作补收处理，不按当日新闻计；若编辑部已在前序期次收录，本期条目请视为复核而非新增。
+    <br>· <b>AI Agent 综述 DOI 10.20517/aiagent.2026.16 于 2026-10-29 复核仍为未注册</b>（Handle API responseCode=100），为 10-28 记录以来<b>连续第二日</b>；文章在出版方页面可访问（收稿/接受/发表日期齐全），本站维持「新刊 DOI 注册滞后、非伪引」的判断，继续跟踪。本期全站 DOI 抽查共 <b>107 个，106 个 responseCode=1</b>，唯一例外即此条。
+    <br>· 本期「会议演讲类按二手主张处理」为<b>本站自定试点规则，非行业标准</b>；暂不回溯至往期观察。
+  </div>
+
+  <div class="reflist">
+    <div class="rh">参考文献 / References</div>
+    <ol>
+      <li>Lifespan Research Institute（记者报道）. <i>ARDD 2026: Traditional Biology to AI-Driven Breakthroughs</i>（含 Morgan Levine 专场小节 <i>Morgan Levine on Why Virtual Cells Alone Won't Solve Aging</i>）. <span class="doi">lifespan.io · 2026-10-27 发稿（<b>会议演讲转述 · 二手</b>）</span></li>
+      <li>Arc Institute. <i>Virtual Cell Challenge 2025</i> 官方结果页. <span class="doi">virtualcellchallenge.org/2025（赛事官方 · 一手 · 2026-10-29 核验）</span></li>
+      <li>Arc Institute. <i>Virtual Cell Challenge 2025 Wrap-Up: Winners and Reflections</i>. <span class="doi">arcinstitute.org/news/virtual-cell-challenge-2025-wrap-up（赛事官方复盘 · 一手）</span></li>
+      <li>Liu Q, Zhang Q, Du JH, Zhao S, Wang J（Team Outlier）. <i>Effects of Distance Metrics and Scaling on the Perturbation Discrimination Score</i>. arXiv 评论. <span class="doi">队方 arXiv 评论（TransPert 方案的尺度缩放自述）</span></li>
+      <li>Baker D. <i>Verifiable Agentic Science on Public Infrastructure</i>. bioRxiv, 2026. <span class="doi">DOI: <a href="https://doi.org/10.64898/2026.10.26.761864" target="_blank">10.64898/2026.10.26.761864</a>（预印本 · 未经同行评审）</span></li>
+      <li>投资界. <i>【首发】1 亿美元！百奥几何完成 A+ 轮融资</i>；新浪创投日报（2026-10-28）. <span class="doi">二手报道 · 金额与估值口径以公司公告为准</span></li>
+      <li>Business Wire（2026-10-07 原始发布）；pomegra 聚合页（10-26 二次传播）；DoNews / 腾讯新闻（10-26/10-27）. <i>Rivercell 完成 2,200 万欧元种子轮</i>. <span class="doi">机构自述（Business Wire）+ 二手报道 · <b>原始日期 2026-10-07，本期补收还原</b></span></li>
+    </ol>
+  </div>
 </div>
 
 <div style="border-top:2px solid var(--line);margin:52px 0 44px"></div>
