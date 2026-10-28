@@ -385,3 +385,36 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .unc{border:1px dashed #ccc4b0;background:#fdfcf8;padding:14px 18px;margin:20px 0;font-size:13.5px;color:var(--sub);border-radius:3px}
 .unc b{color:var(--amber)}
 @media(max-width:720px){.ftab{font-size:12.5px;table-layout:fixed;width:100%}.ftab td,.ftab th{padding:7px 8px}.ftab .k{white-space:normal}.ftab .src{word-break:break-all}.ftab .st{white-space:nowrap}}
+
+/* ===== 术语表 glossary ===== */
+.galpha{display:flex;flex-wrap:wrap;gap:3px;align-items:center;margin:0 0 22px;padding:10px 12px;border:1px solid var(--line);background:var(--paper);border-radius:3px}
+.galpha .lb{font-size:11.5px;color:var(--dim);letter-spacing:1px;margin-right:6px}
+.galpha a{font-size:12.5px;min-width:25px;height:25px;line-height:23px;text-align:center;border:1px solid var(--line);border-radius:2px;color:var(--body)}
+.galpha a:hover{border-color:var(--accent);color:var(--accent);text-decoration:none;background:var(--accent-soft)}
+.galpha a.dim{color:#ccd0d6;border-color:#eee;pointer-events:none;background:#faf9f6}
+.gsec{font-family:var(--serif);font-size:14px;color:var(--ink);letter-spacing:1.5px;padding:14px 0 7px;border-bottom:1px solid var(--line);margin:0 0 12px}
+.ggrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:28px}
+.gcard{background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:15px 17px;display:flex;flex-direction:column}
+.gcard:hover{border-color:#c8c4ba}
+.ghead{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap;margin-bottom:9px}
+.gname{font-family:var(--serif);font-size:15.5px;color:var(--ink);line-height:1.45;overflow-wrap:anywhere}
+.gz{font-size:13px;color:var(--sub);font-family:var(--serif)}
+.gabbr{font-size:11px;padding:1px 7px;border-radius:2px;background:var(--accent-soft);color:var(--accent);font-weight:600;letter-spacing:.5px;white-space:nowrap}
+.gdef{font-size:13.5px;color:var(--body);line-height:1.75}
+.gmore{margin-top:10px;font-size:12.5px;color:var(--accent);cursor:pointer;user-select:none;display:inline-flex;align-items:center;gap:3px;border:none;background:none;padding:0;font-family:inherit}
+.gmore::after{content:" ▾";font-size:10px}
+.gcard.open .gmore::after{content:" ▴"}
+.gbody{display:none;font-size:13.5px;color:var(--body);line-height:1.88;margin-top:9px;padding-top:11px;border-top:1px dashed var(--line)}
+.gcard.open .gbody{display:block}
+.grefs{margin-top:11px;font-size:12px;color:var(--dim);line-height:1.7}
+.grefs a{color:var(--accent);margin:0 12px 5px 0;display:inline-block;max-width:100%;overflow-wrap:anywhere}
+.gempty{text-align:center;padding:46px 20px;color:var(--dim);font-size:14px;border:1px dashed var(--line);border-radius:3px;background:var(--paper)}
+.gc-core{background:#e4efef;color:#0f5e68}
+.gc-model{background:#e6eff0;color:#0f5e68}
+.gc-task{background:#eef2f7;color:#33587a}
+.gc-metric{background:#f7f0e0;color:#8d6119}
+.gc-data{background:#f1eef7;color:#5d4e8a}
+.gc-bio{background:#e9f2e9;color:#3d6b3f}
+.gc-org{background:#f8ecec;color:#a03d3d}
+@media(max-width:760px){.ggrid{grid-template-columns:1fr}}
+@media(max-width:860px){.galpha a{min-width:28px;height:28px;line-height:26px;font-size:13px}.galpha{padding:9px 10px}}

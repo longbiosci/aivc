@@ -32,6 +32,7 @@
   <a href="news.html">前沿速递</a>
   <a href="benchmarks.html" class="x">数据与基准</a>
   <a href="insight.html" class="x">深度解读</a>
+  <a href="glossary.html">术语表</a>
   <a href="search.html" class="active">搜索</a>
   <a href="about.html" class="x">关于</a></div>
 </div></nav>
@@ -54,7 +55,7 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 </div></section>
 
 <footer><div class="wrap">
-  <div class="fnav"><a href="index.html">首页</a><a href="papers.html">文献库</a><a href="models.html">模型谱系</a><a href="companies.html">企业解剖</a><a href="china.html">中国生态</a><a href="news.html">前沿速递</a><a href="benchmarks.html">数据与基准</a><a href="insight.html">深度解读</a><a href="search.html">搜索</a><a href="about.html">关于</a></div>
+  <div class="fnav"><a href="index.html">首页</a><a href="papers.html">文献库</a><a href="models.html">模型谱系</a><a href="companies.html">企业解剖</a><a href="china.html">中国生态</a><a href="news.html">前沿速递</a><a href="benchmarks.html">数据与基准</a><a href="insight.html">深度解读</a><a href="glossary.html">术语表</a><a href="search.html">搜索</a><a href="about.html">关于</a></div>
   <div>AIVC Insight · 客户端检索，索引随站点更新</div>
   <div>aivc.news · <a href="assets/feed.xml">RSS 订阅</a> · © 2026 AIVC Insight Team</div>
 </div></footer>
@@ -199,6 +200,63 @@ const IDX=[
 {s:"数据与基准",t:"SubcellPert：从基因计数到分子坐标的新基准",d:"14 套成像数据集、1388 万细胞、36.5 亿 RNA 分子；11 个背景 OOD 数据集中 8 个的 Oracle 空间误差最低值由经典高斯传输取得。",u:"benchmarks.html",k:"SubcellPert 亚细胞 定位 坐标 高斯传输 OOD 新基准"},
 {s:"数据与基准",t:"13 方法 × 25 数据集系统比较（Science Advances，本站 p72 已更正）",d:"迄今覆盖面最大的同行评审系统比较：25 个数据集、24 项指标、3 项任务；任务 3 无方法稳定泛化。本站 2026-10-25 更正其日期与规模口径。",u:"paper.html?id=p72",k:"13 方法 25 数据集 24 指标 系统比较 p72 更正 Science Advances"},
 {s:"数据与基准",t:"进行中的赛事：VCC 2026 与 NeurIPS Virtual Embryo",d:"VCC 2026 零样本跨情境（6 条癌细胞系、6 指标参考归一化聚合）；NeurIPS Virtual Embryo Challenge 测试期 2026-10-20 开启、12-02 截止。",u:"benchmarks.html",k:"VCC 2026 NeurIPS Virtual Embryo 赛事 挑战赛 进行中"},
+{s:"术语表",t:"Virtual Cell",d:"用 AI 建模的细胞级数字副本，能对细胞状态及其对外干预的响应做出可解释预测。",u:"glossary.html?q=Virtual%20Cell",k:"Virtual Cell 虚拟细胞 VC digital cell 数字细胞"},
+{s:"术语表",t:"AIVC",d:"Virtual Cell 概念加上 AI 方法论的完整研究纲领，涵盖表示、预测、生成三条技术…",u:"glossary.html?q=AIVC",k:"AIVC AI 虚拟细胞 Virtual Cell 纲领"},
+{s:"术语表",t:"World Model",d:"在给定当前状态与动作后，预测系统未来状态的可微分内部模拟器。",u:"glossary.html?q=World%20Model",k:"World Model 世界模型 world model 生成式模拟 预演"},
+{s:"术语表",t:"Cell State Space",d:"把细胞的各种可测状态组织成的一个连续、可比较、可操作的坐标空间。",u:"glossary.html?q=Cell%20State%20Space",k:"Cell State Space 细胞状态空间 state space 表征 嵌入"},
+{s:"术语表",t:"Cell Embedding",d:"用一个低维向量代表一个细胞，使细胞之间的相似性可在向量空间中度量。",u:"glossary.html?q=Cell%20Embedding",k:"Cell Embedding 细胞嵌入 cell embedding 表征空间"},
+{s:"术语表",t:"Perturbation",d:"对细胞施加的一次有计划的干预：改基因、加药物、换环境、施加胁迫。",u:"glossary.html?q=Perturbation",k:"Perturbation 扰动 perturbation 干预 敲除 药物"},
+{s:"术语表",t:"In Silico Experiment",d:"在不接触真实细胞的前提下，用模型在计算机里完成一次可复现的「实验」。",u:"glossary.html?q=In%20Silico%20Experiment",k:"In Silico Experiment 计算机模拟实验 in silico 模拟实验 虚拟仪器 干实验"},
+{s:"术语表",t:"Virtual Instrument",d:"像实验室仪器一样被使用的细胞模拟系统：给输入、出读数，可被反复操作与标定。",u:"glossary.html?q=Virtual%20Instrument",k:"Virtual Instrument 虚拟仪器 virtual instrument 闭环 lab-in-the-loop"},
+{s:"术语表",t:"Closed-loop Learning",d:"模型预测 → 湿实验验证 → 数据回流 → 模型更新的迭代循环。",u:"glossary.html?q=Closed-loop%20Learning",k:"Closed-loop Learning 闭环学习 闭环 closed loop lab-in-the-loop 迭代"},
+{s:"术语表",t:"Generative Simulation",d:"直接合成一份完整的细胞状态（而非只预测某个量的变化）。",u:"glossary.html?q=Generative%20Simulation",k:"Generative Simulation 生成式模拟 generative 反事实 合成细胞状态"},
+{s:"术语表",t:"Multimodality",d:"同一次实验中联合测量多种生物分子层面（表达、染色质、蛋白、形态）。",u:"glossary.html?q=Multimodality",k:"Multimodality 多模态 multimodal 联合测量 交叉验证"},
+{s:"术语表",t:"Multi-omics",d:"把基因表达、染色质可及性、蛋白丰度、代谢等多层分子信息放在同一研究框架里。",u:"glossary.html?q=Multi-omics",k:"Multi-omics 多组学 multi-omics 组学 蛋白 染色质"},
+{s:"术语表",t:"Foundation Model",d:"在海量无标注数据上预训练、可通过微调适配多种下游任务的通用模型。",u:"glossary.html?q=Foundation%20Model",k:"Foundation Model 基础模型 foundation model 预训练 通用"},
+{s:"术语表",t:"Zero-shot",d:"模型在没有见过该任务、该细胞类型或该扰动类型的前提下直接给出预测。",u:"glossary.html?q=Zero-shot",k:"Zero-shot 零样本 zero-shot 泛化 未见细胞类型"},
+{s:"术语表",t:"Transfer Learning",d:"把在一个数据集上学到的知识复用到另一个相关但不同的数据集上。",u:"glossary.html?q=Transfer%20Learning",k:"Transfer Learning 迁移学习 transfer 跨物种 跨数据集"},
+{s:"术语表",t:"Scale-up",d:"把数据、模型、算力同时放大以换取能力的跃迁。",u:"glossary.html?q=Scale-up",k:"Scale-up 规模化 scale up 放大 数据规模 参数量"},
+{s:"术语表",t:"Label-free Prediction",d:"在没有实验测量真值的情况下，仅凭模型内部知识给出预测。",u:"glossary.html?q=Label-free%20Prediction",k:"Label-free Prediction 无标签预测 无标签 label-free 预测 无真值"},
+{s:"术语表",t:"Abstraction",d:"用低维表示替代真实生物系统，以换取可计算性与泛化能力。",u:"glossary.html?q=Abstraction",k:"Abstraction 抽象 abstraction 表示 归纳 失真"},
+{s:"术语表",t:"Counterfactual",d:"「如果当初做了另一个选择」这类问题的答案，即对未发生路径的推断。",u:"glossary.html?q=Counterfactual",k:"Counterfactual 反事实 counterfactual 因果 干预推理"},
+{s:"术语表",t:"Hallucination",d:"模型输出统计上合理、生物学上不成立的内容。",u:"glossary.html?q=Hallucination",k:"Hallucination 幻觉 hallucination 统计合理 生物学错误"},
+{s:"术语表",t:"Out-of-distribution",d:"测试样本的分布与训练数据显著不同，因而模型行为不可靠。",u:"glossary.html?q=Out-of-distribution",k:"Out-of-distribution 分布外 OOD 泛化 域外"},
+{s:"术语表",t:"Uncertainty Quantification",d:"为预测结果给出可信区间或置信度，而不仅是一个点估计。",u:"glossary.html?q=Uncertainty%20Quantification",k:"Uncertainty Quantification 不确定性量化 UQ 不确定性 置信区间 误差"},
+{s:"术语表",t:"Latent Space",d:"模型内部用于表示数据的隐变量空间，通常比原始观测维度低得多。",u:"glossary.html?q=Latent%20Space",k:"Latent Space 潜在空间 latent space 表示 隐变量"},
+{s:"术语表",t:"Dual Encoder",d:"用两个独立编码器分别处理查询与候选，再在共享空间比对。",u:"glossary.html?q=Dual%20Encoder",k:"Dual Encoder 双塔编码器 双塔 dual encoder 检索 向量 相似"},
+{s:"术语表",t:"Graph Neural Network",d:"直接在图结构（节点为基因或细胞，边为调控或相似关系）上做信息传播的神经网络。",u:"glossary.html?q=Graph%20Neural%20Network",k:"Graph Neural Network 图神经网络 GNN 图 先验 调控网络"},
+{s:"术语表",t:"Batch Effect",d:"因实验批次、测序平台、供体不同而产生的系统性技术偏差。",u:"glossary.html?q=Batch%20Effect",k:"Batch Effect 批次效应 batch effect 对齐 整合 nuisance"},
+{s:"术语表",t:"Cell Type Annotation",d:"给无标签的单细胞簇指定其对应的生物细胞类型。",u:"glossary.html?q=Cell%20Type%20Annotation",k:"Cell Type Annotation 细胞类型注释 annotation 聚类 标签"},
+{s:"术语表",t:"Gene Regulatory Network",d:"描述基因之间调控关系的网络：谁激活谁、谁抑制谁。",u:"glossary.html?q=Gene%20Regulatory%20Network",k:"Gene Regulatory Network 基因调控网络 GRN 因果 干预推断"},
+{s:"术语表",t:"Virtual Lineage",d:"在单细胞与空间数据上反推细胞发育轨迹的技术。",u:"glossary.html?q=Virtual%20Lineage",k:"Virtual Lineage 虚拟谱系 lineage 轨迹 拟时序 分化"},
+{s:"术语表",t:"Molspect",d:"把分子（尤其药物）表示为可比较的数值向量。",u:"glossary.html?q=Molspect",k:"Molspect 分子光谱 molspect 分子表示 SMILES 化学"},
+{s:"术语表",t:"Conformal Prediction",d:"给出带有限定覆盖保证的预测区间，区间宽度随模型自身的不确定性伸缩。",u:"glossary.html?q=Conformal%20Prediction",k:"Conformal Prediction 保形预测 保形 conformal 预测区间 校准"},
+{s:"术语表",t:"Digital Twin",d:"针对具体个体（而非总体平均）建立的、可随现实状态更新的动态数字副本。",u:"glossary.html?q=Digital%20Twin",k:"Digital Twin 数字孪生 digital twin 个体化 临床"},
+{s:"术语表",t:"Scientific Discovery",d:"模型输出能产生可被实验验证的新知识，而不仅是复现已知结论。",u:"glossary.html?q=Scientific%20Discovery",k:"Scientific Discovery 科学发现 discovery 假说 湿实验验证"},
+{s:"术语表",t:"Geneformer",d:"2023 年的单细胞基础模型，用「基因 token 排名」而非表达量来构造输入。",u:"glossary.html?q=Geneformer",k:"Geneformer 排序 token 迁移 网络生物学"},
+{s:"术语表",t:"scGPT",d:"2024 年问世的非参数生成式单细胞基础模型，支持细胞嵌入与条件生成。",u:"glossary.html?q=scGPT",k:"scGPT 生成式 条件生成 非参数"},
+{s:"术语表",t:"scFoundation",d:"2024 年的大规模转录组基础模型，主打在百万级细胞上预训练。",u:"glossary.html?q=scFoundation",k:"scFoundation 规模化 大规模 预训练数据"},
+{s:"术语表",t:"UCE",d:"以对比学习在跨物种数据上训练的无监督细胞嵌入模型。",u:"glossary.html?q=UCE",k:"UCE 通用细胞嵌入 Universal Cell Embeddings 对比学习 跨物种 无监督"},
+{s:"术语表",t:"AIDO",d:"GenBio 主导的生物基础模型家族，覆盖从 RNA 表征到细胞世界模型。",u:"glossary.html?q=AIDO",k:"AIDO GenBio GB.Cell AIDO.RNA 世界模型 家族"},
+{s:"术语表",t:"Cell2Sentence",d:"把细胞嵌入翻译成自然语言描述的模型，让「用语言描述细胞」成为可能。",u:"glossary.html?q=Cell2Sentence",k:"Cell2Sentence C2S 语言描述 翻译"},
+{s:"术语表",t:"STATE",d:"微软提出的「原生转录组」基础模型，以自回归方式建模表达值本身。",u:"glossary.html?q=STATE",k:"STATE 微软 转录组 原生 自回归 表达值"},
+{s:"术语表",t:"GREmLN",d:"把细胞图结构显式纳入预训练的单细胞转录组基础模型。",u:"glossary.html?q=GREmLN",k:"GREmLN 图结构 细胞图 邻接 预训练"},
+{s:"术语表",t:"X-Cell",d:"在多种细胞上下文中扩展因果扰动预测能力的模型，强调「跨上下文」泛化。",u:"glossary.html?q=X-Cell",k:"X-Cell 上下文 因果 扰动预测 泛化"},
+{s:"术语表",t:"Speciesformer",d:"学习跨物种保守细胞状态并支持跨物种生成的模型。",u:"glossary.html?q=Speciesformer",k:"Speciesformer 跨物种 保守状态 迁移"},
+{s:"术语表",t:"PIE",d:"把扰动效应泛化到未见过的扰动上的预测模型。",u:"glossary.html?q=PIE",k:"PIE 未见扰动 泛化 扰动表示 外推"},
+{s:"术语表",t:"UniPert-G2CP",d:"用共享的分子表示作为中间层，连接遗传筛选与化学筛选的模型。",u:"glossary.html?q=UniPert-G2CP",k:"UniPert-G2CP 遗传筛选 化学筛选 中间表示 跨扰动"},
+{s:"术语表",t:"scVI",d:"用于单细胞数据降维、批次校正与多样本推断的深度生成模型。",u:"glossary.html?q=scVI",k:"scVI 单细胞变分自编码器 变分自编码器 降维 批次校正 VAE"},
+{s:"术语表",t:"Harmony",d:"基于迭代软聚类与线性校正的多数据集整合方法。",u:"glossary.html?q=Harmony",k:"Harmony 整合 批次 软聚类 线性校正"},
+{s:"术语表",t:"BLOOM",d:"用流匹配做转录组虚拟胚胎生成的模型，面向发育轨迹模拟。",u:"glossary.html?q=BLOOM",k:"BLOOM 流匹配 虚拟胚胎 发育 轨迹生成"},
+{s:"术语表",t:"Perturbation Response Prediction",d:"给定一次干预，预测细胞在干预后的分子状态如何变化。",u:"glossary.html?q=Perturbation%20Response%20Prediction",k:"Perturbation Response Prediction 扰动响应预测 PRP 任务 核心任务"},
+{s:"术语表",t:"MAE",d:"预测值与真值之差的绝对值取平均，是最直观的回归误差指标。",u:"glossary.html?q=MAE",k:"MAE 平均绝对误差 Mean Absolute Error 指标 回归"},
+{s:"术语表",t:"Pearson Correlation",d:"衡量预测值与真值线性相关程度的指标，取值 -1 到 1。",u:"glossary.html?q=Pearson%20Correlation",k:"Pearson Correlation 皮尔逊相关系数 Pearson's r 相关系数 线性 相关 指标"},
+{s:"术语表",t:"EVA",d:"衡量扰动前后细胞嵌入变化的幅度与方向是否与真实一致。",u:"glossary.html?q=EVA",k:"EVA 扰动嵌入差异 Embedding Variation After perturbation 嵌入 扰动位移 空间 评分"},
+{s:"术语表",t:"Perturb-seq",d:"把 CRISPR 扰动与单细胞测序结合的技术，一次实验同时得到扰动身份与细胞状态。",u:"glossary.html?q=Perturb-seq",k:"Perturb-seq CRISPR 扰动 测序 配对 数据"},
+{s:"术语表",t:"scRNA-seq",d:"把单个细胞的 RNA 全部测序，得到「每个细胞一份表达谱」的技术。",u:"glossary.html?q=scRNA-seq",k:"scRNA-seq 单细胞转录组测序 单细胞 转录组 测序 稀疏"},
+{s:"术语表",t:"Spatial Transcriptomics",d:"在保留组织空间位置信息的前提下测量基因表达的技术。",u:"glossary.html?q=Spatial%20Transcriptomics",k:"Spatial Transcriptomics 空间转录组 spatial 位置 邻居 命运 组织"},
+{s:"术语表",t:"Cell Senescence",d:"细胞在应激后进入的一种永久性增殖停滞状态，具有独特分泌表型。",u:"glossary.html?q=Cell%20Senescence",k:"Cell Senescence 细胞衰老 senescence 停滞 SASP 衰老细胞"},
+{s:"术语表",t:"Aging Clock",d:"用一组分子特征估计个体生物年龄的算法。",u:"glossary.html?q=Aging%20Clock",k:"Aging Clock 衰老时钟 aging clock 生物年龄 估计"},
 ];
 const q=document.getElementById('q'),box=document.getElementById('results'),hint=document.getElementById('hint');
 function render(){
