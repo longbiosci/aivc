@@ -418,3 +418,25 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .gc-org{background:#f8ecec;color:#a03d3d}
 @media(max-width:760px){.ggrid{grid-template-columns:1fr}}
 @media(max-width:860px){.galpha a{min-width:28px;height:28px;line-height:26px;font-size:13px}.galpha{padding:9px 10px}}
+
+/* ===== 术语海报 posters ===== */
+.ptoolbar{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1px solid var(--line);padding:12px 0 10px;margin-bottom:20px}
+.ptoolbar input[type=search]{width:100%;max-width:420px;padding:8px 13px;border:1px solid var(--line);border-radius:3px;font-size:14.5px;font-family:inherit;background:var(--bg);color:var(--body)}
+.ptoolbar input[type=search]:focus{outline:none;border-color:var(--accent)}
+.pcats{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.pcats button{font-size:12.5px;padding:4px 11px;border:1px solid var(--line);background:var(--bg);border-radius:2px;cursor:pointer;color:var(--sub);font-family:inherit;line-height:1.6}
+.pcats button:hover{border-color:var(--accent);color:var(--accent)}
+.pcats button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.pmeta{margin-top:8px;font-size:12.5px;color:var(--dim)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px;margin-bottom:30px}
+.pcard{margin:0;background:var(--paper);border:1px solid var(--line);border-radius:3px;overflow:hidden;display:flex;flex-direction:column}
+.pcard:hover{border-color:#c8c4ba}
+.pimg{display:block;line-height:0;background:var(--bg)}
+.pimg img{width:100%;height:auto;display:block}
+.pcard figcaption{padding:10px 12px 12px;display:flex;flex-direction:column;gap:4px}
+.pt{font-family:var(--serif);font-size:14px;color:var(--ink);line-height:1.45;overflow-wrap:anywhere}
+.pt:hover{color:var(--accent)}
+.pz{font-size:12px;color:var(--sub);font-family:var(--serif)}
+.pdl{display:flex;gap:10px;margin-top:5px;font-size:11.5px}
+.pdl a{color:var(--accent);white-space:nowrap}
+@media(max-width:600px){.pgrid{grid-template-columns:repeat(2,1fr);gap:10px}.pcard figcaption{padding:8px 9px 10px}.pt{font-size:12.5px}.pz{font-size:11px}.pdl{font-size:11px;gap:7px}}

@@ -23,6 +23,7 @@ aivc.news 站点数据校验器
 import re
 import subprocess
 import sys
+import urllib.parse
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -207,7 +208,7 @@ if "glossary.html" not in sitemap:
 NAV_EXPECT = [
     "index.html", "papers.html", "models.html", "companies.html", "china.html",
     "news.html", "benchmarks.html", "insight.html", "glossary.html",
-    "search.html", "about.html",
+    "posters.html", "search.html", "about.html",
 ]
 for f in sorted(ROOT.glob("*.html")):
     txt = f.read_text(encoding="utf-8")
@@ -250,11 +251,70 @@ if titles_js.exists():
 else:
     err("缺少 assets/paper-titles.js")
 
+# ---------- 14. 术语海报清单 ----------
+manifest_js = ROOT / "assets" / "posters-manifest.js"
+poster_count = 0
+if manifest_js.exists():
+    r = subprocess.run(["node", "--check", str(manifest_js)], capture_output=True, text=True)
+    if r.returncode != 0:
+        err(f"posters-manifest.js 语法错误: {r.stderr.strip()[:200]}")
+    msrc = manifest_js.read_text(encoding="utf-8")
+    mm = re.search(r"window\.POSTER_MANIFEST=(\[.*?\]);", msrc, re.S)
+    if not mm:
+        err("posters-manifest.js 未解析到 POSTER_MANIFEST 数组")
+    else:
+        import json as _json
+        try:
+            manifest = _json.loads(mm.group(1))
+        except Exception as e:
+            manifest = []
+            err(f"posters-manifest.js 解析失败: {e}")
+        poster_count = len(manifest)
+        if poster_count != len(glossary_terms):
+            err(f"海报清单 {poster_count} 条，与术语数 {len(glossary_terms)} 不符")
+        tnames = {x["t"] for x in glossary_terms}
+        for p in manifest:
+            if p.get("t") not in tnames:
+                err(f"海报清单条目「{p.get('t')}」在 glossary-data.js 中不存在")
+            for key in ("f", "u"):
+                if not p.get(key):
+                    err(f"海报清单条目「{p.get('t')}」缺字段 {key}")
+        # 清单中的文件必须真实存在
+        missing_files = []
+        for p in manifest:
+            for key in ("f",):
+                fp = ROOT / p[key]
+                if not fp.exists():
+                    missing_files.append(p[key])
+        if missing_files:
+            err(f"海报清单引用的文件缺失（{len(missing_files)} 个）: {missing_files[:5]}")
+        # 海报页与术语页链接必须一致
+        for p in manifest:
+            expect = "glossary.html?q=" + urllib.parse.quote(p["t"])
+            if p.get("u") != expect:
+                err(f"海报「{p.get('t')}」的词条链接不正确: {p.get('u')}")
+else:
+    err("缺少 assets/posters-manifest.js")
+
+# ---------- 15. 海报页面与术语数据一致性 ----------
+posters_html = ROOT / "posters.html"
+if not posters_html.exists():
+    err("缺少 posters.html（术语海报墙页面）")
+else:
+    ph = posters_html.read_text(encoding="utf-8")
+    if "assets/posters-manifest.js" not in ph:
+        err("posters.html 未加载 posters-manifest.js")
+    if poster_count:
+        mm2 = re.search(r"共\s*<b>(\d+)</b>\s*张", ph)
+        if mm2 and int(mm2.group(1)) != poster_count:
+            err(f"posters.html 声明海报数 {mm2.group(1)}，与清单 {poster_count} 不符")
+
 # ---------- 汇总 ----------
 print("=" * 56)
 print(
     f"文献总数: {len(entries)} | 术语总数: {len(glossary_terms)} | "
-    f"sitemap: {sitemap.count('paper?id=p')} 条 | 索引条目: {search.count(chr(123) + 's:')} 组"
+    f"海报: {poster_count} 张 | sitemap: {sitemap.count('paper?id=p')} 条 | "
+    f"索引条目: {search.count(chr(123) + 's:')} 组"
 )
 if warnings:
     print(f"\n⚠️  WARNINGS ({len(warnings)}):")
