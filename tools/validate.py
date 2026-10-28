@@ -245,6 +245,8 @@ if titles_js.exists():
     missing = [i for i in ids if i not in covered]
     if missing:
         err(f"paper-titles.js 未覆盖文献（术语表延伸阅读会显示编号而非标题）: {missing}")
+    if "var PAPER_TITLES=" not in tsrc:
+        err("paper-titles.js 必须用 var 声明（const 不会挂到 window，术语页取不到标题）")
 else:
     err("缺少 assets/paper-titles.js")
 
