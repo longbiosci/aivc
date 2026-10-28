@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>术语表 · AIVC Insight</title>
+<link rel="stylesheet" href="assets/style.css?v=4">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="AIVC Insight RSS" href="assets/feed.xml">
+<meta name="description" content="AI 虚拟细胞（LVC）领域专业术语表：171 条核心概念、模型架构、任务设定、评测指标与数据集的逐条解读，每条附站内延伸阅读。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AIVC Insight">
+<meta property="og:title" content="术语表 · AI 虚拟细胞情报站">
+<meta property="og:description" content="把 AI 虚拟细胞领域的专业术语逐条讲清楚：定义、背景、常见误解与延伸阅读。">
+<meta property="og:url" content="https://aivc.news/glossary.html">
+<link rel="canonical" href="https://aivc.news/glossary.html">
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <div class="brand"><img src="assets/logo.svg" alt="AIVC Insight"><div class="bt">AIVC <em>Insight</em><small>AI 虚拟细胞情报站</small></div></div>
+  </div></div>
+<nav class="main"><div class="wrap">
+  <button class="navtoggle" id="navt" aria-expanded="false" aria-controls="navl">更多栏目</button>
+  <div class="navlinks" id="navl">  <a href="index.html">首页</a>
+  <a href="papers.html">文献库</a>
+  <a href="models.html">模型谱系</a>
+  <a href="companies.html">企业解剖</a>
+  <a href="china.html" class="x">中国生态</a>
+  <a href="news.html">前沿速递</a>
+  <a href="benchmarks.html" class="x">数据与基准</a>
+  <a href="insight.html" class="x">深度解读</a>
+  <a href="glossary.html" class="active">术语表</a>
+  <a href="search.html">搜索</a>
+  <a href="about.html" class="x">关于</a></div>
+</div></nav>
+<script>
+(function(){var b=document.getElementById('navt'),n=document.getElementById('navl');
+if(b&&n){b.addEventListener('click',function(){n.classList.toggle('open');b.setAttribute('aria-expanded',n.classList.contains('open')?'true':'false')});
+n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.remove('open')}});}})();
+</script>
+
+<div class="pagehead" id="top"><div class="wrap">
+  <div class="crumb">栏目 08 · GLOSSARY</div>
+  <h1>术语表</h1>
+  <p class="lede">共收录 <b>171</b> 条 AI 虚拟细胞（Large Virtual Cell）领域的专业术语，覆盖核心概念、模型架构、任务设定、评测指标、数据集与基准、组学基础、机构与产业七类。每条给出中文译名、一句话定义、展开详解，并标注站内延伸阅读文献编号。术语取自本站 <b>99</b> 篇文献与基准赛事报道，随文献库同步维护（更新至 2026-10-28）。</p>
+</div></div>
+
+<section><div class="wrap">
+
+<div class="toolbar">
+  <input id="q" type="search" placeholder="检索术语 / 中文名 / 缩写 / 解释中的关键词，如：扰动、embedding、VAE、衰老时钟…" autocomplete="off">
+  <div class="filters" id="cats"></div>
+  <span class="count" id="cnt"></span>
+</div>
+
+<div class="galpha" id="alpha"><span class="lb">索引</span></div>
+
+<div id="list"></div>
+<div class="gempty" id="empty" style="display:none">没有匹配的术语。试试更短的关键词，或切换到「全部」分类。</div>
+
+</div></section>
+
+<footer><div class="wrap">
+  <div class="fnav"><a href="index.html">首页</a><a href="papers.html">文献库</a><a href="models.html">模型谱系</a><a href="companies.html">企业解剖</a><a href="china.html">中国生态</a><a href="news.html">前沿速递</a><a href="benchmarks.html">数据与基准</a><a href="insight.html">深度解读</a><a href="glossary.html">术语表</a><a href="search.html">搜索</a><a href="about.html">关于</a></div>
+  <div>AIVC Insight · DOI/arXiv 均经核对，待核实项已标注</div>
+  <div>aivc.news · <a href="assets/feed.xml">RSS 订阅</a> · © 2026 AIVC Insight Team</div>
+</div></footer>
+
+<script src="assets/paper-titles.js"></script>
+<script src="assets/glossary-data.js"></script>
+<script>
+(function(){
+var G=(window.GLOSSARY||[]).slice();
+var CATS={core:'核心概念',model:'模型与架构',task:'任务与设定',metric:'评测与指标',data:'数据集与基准',bio:'组学与基础',org:'机构与产业'};
+var ORDER=['core','model','task','metric','data','bio','org'];
+var q=document.getElementById('q'),cats=document.getElementById('cats'),
+    list=document.getElementById('list'),cnt=document.getElementById('cnt'),
+    empty=document.getElementById('empty'),alpha=document.getElementById('alpha');
+var cur='all';
+
+/* 搜索索引：把所有可检索字段压成一条小写串 */
+G.forEach(function(t){
+  t._h=(t.t+' '+(t.z||'')+' '+(t.a||'')+' '+(t.s||'')+' '+(t.b||'')+' '+(t.k||'')).toLowerCase();
+  t._l=(t.t||'?').charAt(0).toUpperCase();
+});
+
+/* 分类按钮（带计数） */
+function buildCats(){
+  var n={all:G.length};
+  ORDER.forEach(function(c){n[c]=G.filter(function(t){return t.c===c}).length;});
+  var h='<button data-c="all" class="on">全部</button>';
+  ORDER.forEach(function(c){ if(n[c]) h+='<button data-c="'+c+'">'+CATS[c]+' '+n[c]+'</button>'; });
+  cats.innerHTML=h;
+  Array.prototype.forEach.call(cats.querySelectorAll('button'),function(b){
+    b.addEventListener('click',function(){
+      Array.prototype.forEach.call(cats.querySelectorAll('button'),function(x){x.classList.remove('on')});
+      b.classList.add('on');cur=b.dataset.c;render();
+    });
+  });
+}
+
+/* 字母索引 */
+var LETTERS='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+function buildAlpha(active){
+  var used={};
+  G.forEach(function(t){if(t._l>='A'&&t._l<='Z')used[t._l]=1;});
+  var h='<span class="lb">索引</span>';
+  LETTERS.forEach(function(L){
+    var dis=used[L]?'':' dim';
+    h+='<a href="#g'+L+'" data-l="'+L+'" class="'+dis.trim()+'">'+L+'</a>';
+  });
+  alpha.innerHTML=h;
+  Array.prototype.forEach.call(alpha.querySelectorAll('a'),function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var el=document.getElementById('g'+a.dataset.l);
+      if(el)window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-60,behavior:'smooth'});
+    });
+  });
+}
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+/* 延伸阅读：显示编号 + 论文短标题 + 期刊日期 */
+var TITLES=window.PAPER_TITLES||{};
+function refLink(p){
+  var o=TITLES[p];
+  if(!o)return '<a href="paper.html?id='+p+'">'+esc(p)+'</a>';
+  var short=o.t.length>38?o.t.slice(0,38)+'…':o.t;
+  var tip=o.v+' · '+o.d+' · '+o.t;
+  return '<a href="paper.html?id='+p+'" title="'+esc(tip)+'">'+esc(p)+' · '+esc(short)
+         +' <span style="color:var(--dim)">（'+esc(o.v)+' '+esc(o.d)+'）</span></a>';
+}
+
+function card(t){
+  var abbr=t.a?'<span class="gabbr">'+esc(t.a)+'</span>':'';
+  var zh=t.z?' <span class="gz">'+esc(t.z)+'</span>':'';
+  var refs=(t.r&&t.r.length)?'<div class="grefs">延伸阅读：'+t.r.map(refLink).join('')+'</div>':'';
+  return '<div class="gcard">'
+    +'<div class="ghead"><span class="badge gc-'+t.c+'">'+CATS[t.c]+'</span>'+abbr+'</div>'
+    +'<div class="gname">'+esc(t.t)+zh+'</div>'
+    +'<div class="gdef">'+esc(t.s)+'</div>'
+    +'<button class="gmore" type="button">展开详解</button>'
+    +'<div class="gbody"><p style="margin-bottom:8px">'+esc(t.b)+'</p>'+refs+'</div>'
+    +'</div>';
+}
+
+function render(){
+  var kw=(q.value||'').trim().toLowerCase();
+  var list2=G.filter(function(t){
+    if(cur!=='all'&&t.c!==cur)return false;
+    if(kw&&t._h.indexOf(kw)<0)return false;
+    return true;
+  });
+  /* 按字母分组渲染 */
+  var groups={},order=[];
+  list2.forEach(function(t){
+    var L=(t._l>='A'&&t._l<='Z')?t._l:'#';
+    if(!groups[L]){groups[L]=[];order.push(L);}
+    groups[L].push(t);
+  });
+  order.sort(function(a,b){return (a==='#'?1:0)-(b==='#'?1:0)||a.localeCompare(b);});
+  var h='';
+  order.forEach(function(L){
+    h+='<h2 class="gsec" id="g'+L+'">'+L+'</h2><div class="ggrid">';
+    groups[L].forEach(function(t){h+=card(t);});
+    h+='</div>';
+  });
+  list.innerHTML=h;
+  cnt.textContent='显示 '+list2.length+' / '+G.length+' 条';
+  empty.style.display=list2.length?'none':'block';
+
+  /* 展开按钮 */
+  Array.prototype.forEach.call(list.querySelectorAll('.gmore'),function(b){
+    b.addEventListener('click',function(){
+      var c=b.closest('.gcard');if(c)c.classList.toggle('open');
+      b.textContent=c.classList.contains('open')?'收起':'展开详解';
+    });
+  });
+  /* 字母索引可用性同步 */
+  var used={};
+  list2.forEach(function(t){if(t._l>='A'&&t._l<='Z')used[t._l]=1;});
+  Array.prototype.forEach.call(alpha.querySelectorAll('a'),function(a){
+    a.classList.toggle('dim',!used[a.dataset.l]);
+  });
+}
+
+buildCats();buildAlpha();
+/* 支持从站内搜索带 ?q= 关键词直达 */
+try{var qs=new URLSearchParams(location.search).get('q');if(qs){q.value=qs;}}catch(e){}
+render();
+q.addEventListener('input',render);
+})();
+</script>
+
+<a class="totop" id="totop" href="#top">↑ 回到顶部</a>
+<script>
+(function(){var t=document.getElementById('totop');
+if(!t)return;
+var on=function(){t.classList.toggle('show',window.scrollY>700);};
+window.addEventListener('scroll',on,{passive:true});on();
+t.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});})();
+</script>
+</body>
+</html>
