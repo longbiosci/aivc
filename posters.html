@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>术语海报 · AIVC Insight</title>
+<link rel="stylesheet" href="assets/style.css?v=4">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="AIVC Insight RSS" href="assets/feed.xml">
+<meta name="description" content="AI 虚拟细胞领域 171 条术语的分享海报：每张含中文译名、一句话定义、详细解释与延伸阅读，附站点二维码，可直接下载分享至朋友圈。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AIVC Insight">
+<meta property="og:title" content="术语海报 · AI 虚拟细胞情报站">
+<meta property="og:description" content="171 张术语卡：把 AI 虚拟细胞的专业术语讲清楚，带二维码可直接分享。">
+<meta property="og:url" content="https://aivc.news/posters.html">
+<link rel="canonical" href="https://aivc.news/posters.html">
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <div class="brand"><img src="assets/logo.svg" alt="AIVC Insight"><div class="bt">AIVC <em>Insight</em><small>AI 虚拟细胞情报站</small></div></div>
+  </div></div>
+<nav class="main"><div class="wrap">
+  <button class="navtoggle" id="navt" aria-expanded="false" aria-controls="navl">更多栏目</button>
+  <div class="navlinks" id="navl">  <a href="index.html">首页</a>
+  <a href="papers.html">文献库</a>
+  <a href="models.html">模型谱系</a>
+  <a href="companies.html">企业解剖</a>
+  <a href="china.html" class="x">中国生态</a>
+  <a href="news.html">前沿速递</a>
+  <a href="benchmarks.html" class="x">数据与基准</a>
+  <a href="insight.html" class="x">深度解读</a>
+  <a href="glossary.html">术语表</a>
+  <a href="posters.html" class="active">术语海报</a>
+  <a href="search.html">搜索</a>
+  <a href="about.html" class="x">关于</a></div>
+</div></nav>
+<script>
+(function(){var b=document.getElementById('navt'),n=document.getElementById('navl');
+if(b&&n){b.addEventListener('click',function(){n.classList.toggle('open');b.setAttribute('aria-expanded',n.classList.contains('open')?'true':'false')});
+n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.remove('open')}});}})();
+</script>
+
+<div class="wrap">
+<section class="page-head">
+  <div class="crumb">栏目 09 · POSTERS</div>
+  <h1>术语海报</h1>
+  <p class="lede">把术语表里的 <b>171</b> 条专业术语做成分享海报——每张含中文译名、一句话定义、<b>完整详细解释</b>、延伸阅读文献与站点二维码，<b>点开大图即可下载</b>，直接发朋友圈或社群。共 <b>171</b> 张，更新至 2026-10-28。</p>
+</section>
+
+<div class="ptoolbar">
+  <input type="search" id="pq" placeholder="搜索术语名 / 中文名 / 缩写…" aria-label="搜索海报">
+  <div class="pcats" id="pcats"></div>
+  <div class="pmeta"><span id="pcount">—</span></div>
+</div>
+
+<div class="pgrid" id="pgrid"></div>
+<div class="gempty" id="pempty" style="display:none">没有匹配的海报，换个关键词试试</div>
+</div>
+
+<footer>
+  <div class="fnav"><a href="index.html">首页</a><a href="papers.html">文献库</a><a href="models.html">模型谱系</a><a href="companies.html">企业解剖</a><a href="china.html">中国生态</a><a href="news.html">前沿速递</a><a href="benchmarks.html">数据与基准</a><a href="insight.html">深度解读</a><a href="glossary.html">术语表</a><a href="posters.html">术语海报</a><a href="search.html">搜索</a><a href="about.html">关于</a></div>
+  <div>AIVC Insight · DOI/arXiv 均经核对，待核实项已标注</div>
+  <div>aivc.news · <a href="assets/feed.xml">RSS 订阅</a> · © 2026 AIVC Insight Team</div>
+</footer>
+
+<script src="assets/posters-manifest.js"></script>
+<script>
+(function(){
+var M=window.POSTER_MANIFEST||[];
+var CATS={core:'核心概念',model:'模型与架构',task:'任务与设定',metric:'评测与指标',data:'数据集与基准',bio:'组学与基础',org:'机构与产业'};
+var ORDER=['core','model','task','metric','data','bio','org'];
+var q=document.getElementById('pq'),grid=document.getElementById('pgrid'),
+    cats=document.getElementById('pcats'),cnt=document.getElementById('pcount'),
+    empty=document.getElementById('pempty');
+var cur='all';
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+// 分类按钮
+function buildCats(){
+  var n={};M.forEach(function(p){n[p.c]=(n[p.c]||0)+1;});
+  var h='<button data-c="all" class="on">全部 '+M.length+'</button>';
+  ORDER.forEach(function(c){ if(n[c]) h+='<button data-c="'+c+'">'+CATS[c]+' '+n[c]+'</button>'; });
+  cats.innerHTML=h;
+  cats.addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    cats.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+    b.classList.add('on'); cur=b.getAttribute('data-c'); render();
+  });
+}
+
+function match(p,kw){
+  if(cur!=='all' && p.c!==cur) return false;
+  if(!kw) return true;
+  var hay=(p.t+' '+(p.z||'')+' '+(p.a||'')+' '+CATS[p.c]).toLowerCase();
+  return kw.split(/\s+/).every(function(w){return hay.indexOf(w)>=0;});
+}
+
+function render(){
+  var kw=q.value.trim().toLowerCase();
+  var list=M.filter(function(p){return match(p,kw);});
+  cnt.textContent=list.length+' 张';
+  empty.style.display=list.length?'none':'block';
+  var h='';
+  list.forEach(function(p){
+    h+='<figure class="pcard">'
+      +'<a class="pimg" href="'+p.f+'" target="_blank" rel="noopener" title="点击查看大图">'
+      +'<img src="'+p.f+'" alt="'+esc(p.t)+' 术语海报" loading="lazy" width="1080" height="1440">'
+      +'</a>'
+      +'<figcaption>'
+      +'<a class="pt" href="'+p.u+'" target="_blank" rel="noopener">'+esc(p.t)+'</a>'
+      +(p.z?'<span class="pz">'+esc(p.z)+'</span>':'')
+      +'<span class="badge gc-'+p.c+'">'+CATS[p.c]+'</span>'
+      +'<span class="pdl"><a href="'+p.f+'" download>下载 JPG</a><a href="'+p.u+'" target="_blank" rel="noopener">查看词条</a></span>'
+      +'</figcaption></figure>';
+  });
+  grid.innerHTML=h;
+}
+
+buildCats();
+render();
+q.addEventListener('input',render);
+
+// 支持 ?q= 直达（从术语表或站内搜索跳转过来）
+try{
+  var qs=new URLSearchParams(location.search).get('q');
+  if(qs){q.value=qs;render();
+    var first=document.querySelector('.pcard');
+    if(first) first.scrollIntoView({block:'center'});}
+}catch(e){}
+})();
+</script>
+</body>
+</html>
