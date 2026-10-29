@@ -440,3 +440,12 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .pdl{display:flex;gap:10px;margin-top:5px;font-size:11.5px}
 .pdl a{color:var(--accent);white-space:nowrap}
 @media(max-width:600px){.pgrid{grid-template-columns:repeat(2,1fr);gap:10px}.pcard figcaption{padding:8px 9px 10px}.pt{font-size:12.5px}.pz{font-size:11px}.pdl{font-size:11px;gap:7px}}
+
+/* 2026-10-30 每日运维修复：insight.html 证据表在 390px 视口横向溢出 21px。
+   成因：证据.string来源列的 .ftab .st 标签设了 white-space:nowrap，table-layout:fixed 下
+   「官方赛事页 / 赛事论文」这类长状态标签把表格撑破，整页可左右滑动。
+   修复：≤720px 时允许状态标签换行，并对单元格启用 anywhere 断行兜底。 */
+@media(max-width:720px){
+  .ftab .st{white-space:normal;overflow-wrap:anywhere;max-width:100%}
+  .ftab td,.ftab th{overflow-wrap:anywhere}
+}
