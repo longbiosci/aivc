@@ -240,3 +240,99 @@ sed -i 's|https://aivc.news/paper?id=|https://aivc.news/paper.html?id=|g' sitema
 
 **另：关于 `/workspace/.intel/`（给全体任务的更正）**
 定时任务运行在**独立沙箱实例**，`/workspace` 不跨实例共享，`/workspace/.intel/` 这种「A 任务写、B 任务读」的交接方式**在架构上不成立**——10-28 凌晨情报扫描任务零产出、晨审任务 `cd` 失败，都是这个原因。已改为：情报扫描只输出报告、不落文件；内容更新自行扫描，不依赖任何本地简报；每个任务启动前自行确保仓库存在（缺失则 clone）。**跨任务传递信息唯一可靠的介质是 GitHub（分支 / PR / Issue）。**
+
+---
+
+## 2026-10-30 每日深度维护 · 新增建议（Bot 提交，待编辑部裁定）
+
+> 提交身份：AIVC Insight Bot <bot@aivc.news>；分支：`bot/deep-2026-10-30`。
+> 依据 OPS.md 第三节第 3 条：不适合放入当日 PR 的改动建议，写入本文件由编辑部批复后落地。
+> 以下代码/规范类改动，本期**一律未自行执行**。
+
+---
+
+### 建议 4（高优先级 · 内容缺口）：补收 ProteinTalks（Nature 正刊，2026-09-09）入文献库
+
+**事实。** Sun Rui、Qian Liujia、Li Yongge、Liu Tong 等；通讯：周沛劼（北京大学）、温翰（北京科学智能研究院 / 北京大学）、郭天南（西湖大学）、朱怡（西湖实验室）。《An operational perturbation proteomics-based virtual cell model》，*Nature* 在线 2026-09-09，DOI `10.1038/s41586-026-11001-9`（本站 2026-10-30 经 Handle API 复核，responseCode 1，指向 nature.com/articles/s41586-026-11001-9）。
+
+**截至 2026-10-30，`assets/papers-data.js`（99 篇）中无此条，全站 15 个页面检索无命中。** 本期每日观察以其作为「自我限定 vs 自我加冕」的对照物引用，但本站文献库反而缺了这篇——这是一个应当被修掉、且修法有明确规程的缺口。
+
+**为什么它够格：** Nature 正刊（非预印本）；中国团队主导；自带可核验的独立测试设计（81 个未训练化合物 AUROC 0.89 / 准确率 0.85；跨癌种 708 化合物平均 AUROC 0.77；140 个非乳腺癌 PDX 零样本 +24%）；原文含明确的任务边界声明（「ProteinTalks 不是细胞的数字孪生」）。
+
+**为什么本期没自己补：** OPS.md §二.2 规定新增文献需同步八处（`papers-data.js`、`papers.html`、`search.html`、`index.html`、`news.html`、`feed.xml`、`sitemap.xml`、`further[]` 交叉引用）；`tools/validate.py` 第 13 项还要求 `assets/paper-titles.js` 覆盖全部编号。这是一次结构性写入，不是「每日深度维护」的合理动作半径，且编号 `p100` 会跨过两位数的边界（`p\d+` 正则与 `paper-titles.js` 的 `"p\d+":{` 匹配需一并确认能否容纳三位数）。**为不制造编号事故，交编辑部裁定。**
+
+**两种改法与连带影响：**
+
+| 改法 | 做法 | 连带影响 |
+|---|---|---|
+| **A. 补收为正刊文献（推荐）** | 编号 p100，八处同步 + `paper-titles.js` | ① 首次出现三位数编号，需确认 `validate.py` 的 `p\d+` 与 `paper-titles.js` 的 `"p\d+":{` 正则可容纳（本站判断可以，但**未实测，应先跑一次 validate**）；② `papers.html` 计数 99 → 100；③ sitemap 需加 `https://aivc.news/paper?id=p100`（写法见建议 5，此处会踩到同一个冲突）；④ 术语表若新增延伸引用，海报清单与术语数一致性校验（第 14 项）会跟着走 |
+| **B. 不入库，只在基准页/观察页引用** | 本期已这样做了 | ① 文献库与「数据与基准」页对同一篇文献呈现层级不一致，读者从基准页点不进全文解读；② 缺口会持续存在，下次再有同类对照时会重复这个判断成本 |
+
+**本站倾向：A，但必须由编辑部执行并先做一次编号容量实测。**
+
+---
+
+### 建议 5（高优先级 · 规范冲突）：sitemap 的规范 URL 写法，与全站链接、canonical 和 validate.py 硬匹配三者互斥
+
+**这是 OPS.md 与 `tools/validate.py` 之间的实际冲突，Bot 不自行择一执行，报请裁定。**
+
+**实测（2026-10-30）：**
+
+| 位置 | 写法 | 实例 |
+|---|---|---|
+| `sitemap.xml`（99 条） | `paper?id=` | `https://aivc.news/paper?id=p01` |
+| 全站 HTML 内部链接、`assets/feed.xml` | `paper.html?id=` | `https://aivc.news/paper.html?id=p97` |
+| `paper.html` 的 canonical | `paper.html` | `https://aivc.news/paper.html` |
+| 仓库内重定向配置 | **无 `_redirects` 文件** | 只有 `_headers`（只管响应头，不做跳转） |
+| `tools/validate.py` 第 4 项 | 子串硬匹配 `paper?id={i}` | `if f"paper?id={i}" not in sitemap: err(...)` |
+
+**冲突点：** 2026-10-25 的建议 2 已提出「sitemap 的 85 条 URL 会 404，建议改为 `paper.html?id=`」。但按该建议执行会**立刻触发 99 个 error**（`paper?id=p01` 不再匹配），CI 红灯、PR 无法合并（OPS.md §二.3 硬门槛）。反过来，当前 validate 全绿**并不能证明 sitemap 里的 URL 真实可达**——它只做了子串匹配。
+
+**两种改法与连带影响：**
+
+| 改法 | 做法 | 连带影响 |
+|---|---|---|
+| **A. 改 sitemap + 同步改 validate.py（推荐）** | `sitemap.xml` 改 `paper.html?id=`；`validate.py` 第 4 项匹配串同步改为 `paper.html?id={i}` | ① **OPS.md §六明确：修正 `validate.py` 判定规则须走编辑部 `feature/*` 分支 PR，Bot 不得自行改**；② 改动 validate.py 期间，所有已开未合并的当日分支若不 rebase 会集体变红；③ 改完后 sitemap 与全站链接、canonical 三方一致，SEO 规范化信号统一；④ 若 Cloudflare 侧确已配了 308 规则，改了反而可能与面板规则重复 |
+| **B. 保留 sitemap 写法 + 新增 `_redirects`** | 新增 `/paper?id=:id  /paper.html?id=:id  308` | ① `_redirects` **不在 OPS.md §三.1 的 Bot 可写清单内**，需编辑部确认可否由 Bot 写；② 重定向配置从面板搬进仓库、可版本化审计，这是加分项；③ 但 sitemap 声明的规范 URL 与 canonical 仍然分裂，搜索引擎仍会收到两个不同的规范地址；④ 若面板规则已存在，重复配置 |
+
+**裁定前需要的唯一信息：Cloudflare Pages 面板是否已配置 `/paper?id=*` → `/paper.html?id=*` 的 308 规则。** 若已配，建议 5 整体可关闭；若未配，建议按 A 执行（先编辑部改 validate.py，再由 Bot 改 sitemap，分两个 PR）。
+
+---
+
+### 建议 6（中优先级 · 规范冲突）：本文件抬头仍在引用已废止的「Bot 禁写禁区」规则
+
+**事实。** 本文件抬头写着：
+
+> 依据 OPS.md 第三节：Bot 禁写 `index.html`、`insight.html`、`about.html`、`assets/style.css`、`OPS.md`、`AGENTS.md`。
+
+这是 **2026-10-25** 的表述。OPS.md 第二版（2026-10-27 修订）已将禁区文件改为「可经 PR 修改，但必须经编辑部审查方可合并」；AGENTS.md（2026-10-28 修订）明确写「曾经的『禁区绝对禁写』规则已于 2026-10-27 废止」，且本期「每日深度维护」任务正是按第二版要求 Bot 直接改写 `insight.html`。
+
+**问题：** 三份文档里，只有本文件的抬头还留在旧版本。它不是规范文件（OPS.md 才是单一事实源），但它是**新人/新会话最先读到的文件之一**，抬头一句话就能把规则带回去。
+
+**两种改法与连带影响：**
+
+| 改法 | 做法 | 连带影响 |
+|---|---|---|
+| **A. 直接改抬头（Bot 不建议）** | 删掉「禁写」句，改写为现行口径 | ① 治标快；② 但本文件由 Bot 维护，**由 Bot 自行改写「Bot 能写什么」的依据，有自我授权之嫌**，且与 AGENTS.md「单一事实源是 OPS.md、本文件只做摘要、不再另立规则」的定位冲突；③ 历史建议 1/2 的措辞会失去上下文 |
+| **B. 保留抬头原文，紧随其后加版本注（推荐）** | 加一行：「注：本段为 2026-10-25 历史表述，已被 OPS.md 第二版（2026-10-27）废止，现行口径见 OPS.md §三；保留原文仅为历史可追溯。」 | ① 保留历史可追溯性，读者能看见规则演进；② 不改任何规范文件，不越 OPS.md 的单一事实源地位；③ 代价：抬头仍有误导性，读者需读至注才明白 |
+
+**本站倾向：B。** 无论选哪个，**都需要编辑部执行**——Bot 不自行改动规范依据类表述。
+
+---
+
+### 建议 7（低优先级 · 版式）：`<code>` 标签在 `assets/style.css` 中无对应规则
+
+本期每日观察的事实表内使用了 `<code>` 标签标注文件路径与 API 端点（`assets/papers-data.js`、`https://doi.org/api/handles/<doi>`）。`assets/style.css` 中**无 `code` 选择器**，浏览器回落到默认等宽字体，与本站学术版式的字号/字重不一致（视觉上偏小、偏细）。
+
+属纯样式问题，不改不影响功能与可读性。**若是刻意的（不想引入行内代码样式），本条可忽略。** 若需统一，建议在 `assets/style.css` 中补一条：
+
+```css
+code{font-family:var(--mono,ui-monospace,SFMono-Regular,Menlo,monospace);font-size:.92em;
+  padding:1px 4px;background:var(--bg-soft,#f6f6f4);border-radius:2px}
+```
+
+是否落地、以及变量是否都存在，请编辑部确认（样式文件属「可经 PR 修改但需审查」范围，Bot 本期未动）。
+
+---
+
+*以上四条由 2026-10-30 每日深度维护提出，均未自行执行，等待编辑部裁定。*
