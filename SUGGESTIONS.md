@@ -240,3 +240,18 @@ sed -i 's|https://aivc.news/paper?id=|https://aivc.news/paper.html?id=|g' sitema
 
 **另：关于 `/workspace/.intel/`（给全体任务的更正）**
 定时任务运行在**独立沙箱实例**，`/workspace` 不跨实例共享，`/workspace/.intel/` 这种「A 任务写、B 任务读」的交接方式**在架构上不成立**——10-28 凌晨情报扫描任务零产出、晨审任务 `cd` 失败，都是这个原因。已改为：情报扫描只输出报告、不落文件；内容更新自行扫描，不依赖任何本地简报；每个任务启动前自行确保仓库存在（缺失则 clone）。**跨任务传递信息唯一可靠的介质是 GitHub（分支 / PR / Issue）。**
+
+---
+
+## 建议 4（2026-10-30 · 低优先级）：search.html 剩余 22 条「指向文献库整页」的主题型索引条目，宜由编辑部人工精确化
+
+### 背景（2026-10-30 每日技术运维实测）
+`const IDX` 的「文献库」分组长期是人工节选，且其中 32 条只指向 `papers.html`（文献库整页）而非具体详情页，导致用户搜到标题后仍需自己在长列表里二次定位。本次运维已做两件事：
+
+1. 新增 `tools/build_search_index.py`（幂等），自动补齐缺失文献的精确索引条目，**99/99 篇现已都能从搜索直达详情页**；
+2. 人工核验后，把其中 10 条唯一命中的单模型条目（`scBERT / Geneformer / scFoundation / GeneCompass / TranscriptFormer / GREmLN / rbio1 / Nicheformer / DunedinPACE / Smer-Barreto 2023`）改为精确指向。
+
+**剩余 22 条不动，原因是不适合自动判定**：它们多为合集型或主题型条目，一条对应多篇文献，例如「GEARS / CPA / scGen / STATE」「scVI / Harmony / totalVI / Mixscape」「Xing & Song：虚拟细胞世界模型（Cell 2026）」。脚本若按关键词硬匹配，会把「线性基线批评（Nature Methods 2025）」误配到 `p80`、「零样本评测（Genome Biology 2025）」误配到 `p49`（实测均误命中），**宁可不改**。
+
+### 建议处置
+由编辑部在后续内容维护中逐条拆分：合集型拆为多条单一文献条目，主题型改为指向精确详情页并保留主题词。交付标准：`python3 tools/validate.py` 保持 0 error 且 0 warning（同一 `paper.html?id=` 被两条以上条目引用会触发第 7 项 warning）。
