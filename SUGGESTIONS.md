@@ -243,6 +243,21 @@ sed -i 's|https://aivc.news/paper?id=|https://aivc.news/paper.html?id=|g' sitema
 
 ---
 
+## 建议 4（2026-10-30 · 低优先级）：search.html 剩余 22 条「指向文献库整页」的主题型索引条目，宜由编辑部人工精确化
+
+### 背景（2026-10-30 每日技术运维实测）
+`const IDX` 的「文献库」分组长期是人工节选，且其中 32 条只指向 `papers.html`（文献库整页）而非具体详情页，导致用户搜到标题后仍需自己在长列表里二次定位。本次运维已做两件事：
+
+1. 新增 `tools/build_search_index.py`（幂等），自动补齐缺失文献的精确索引条目，**99/99 篇现已都能从搜索直达详情页**；
+2. 人工核验后，把其中 10 条唯一命中的单模型条目（`scBERT / Geneformer / scFoundation / GeneCompass / TranscriptFormer / GREmLN / rbio1 / Nicheformer / DunedinPACE / Smer-Barreto 2023`）改为精确指向。
+
+**剩余 22 条不动，原因是不适合自动判定**：它们多为合集型或主题型条目，一条对应多篇文献，例如「GEARS / CPA / scGen / STATE」「scVI / Harmony / totalVI / Mixscape」「Xing & Song：虚拟细胞世界模型（Cell 2026）」。脚本若按关键词硬匹配，会把「线性基线批评（Nature Methods 2025）」误配到 `p80`、「零样本评测（Genome Biology 2025）」误配到 `p49`（实测均误命中），**宁可不改**。
+
+### 建议处置
+由编辑部在后续内容维护中逐条拆分：合集型拆为多条单一文献条目，主题型改为指向精确详情页并保留主题词。交付标准：`python3 tools/validate.py` 保持 0 error 且 0 warning（同一 `paper.html?id=` 被两条以上条目引用会触发第 7 项 warning）。
+
+---
+
 ## 2026-10-30 每日深度维护 · 新增建议（Bot 提交，待编辑部裁定）
 
 > 提交身份：AIVC Insight Bot <bot@aivc.news>；分支：`bot/deep-2026-10-30`。
@@ -251,7 +266,7 @@ sed -i 's|https://aivc.news/paper?id=|https://aivc.news/paper.html?id=|g' sitema
 
 ---
 
-### 建议 4（高优先级 · 内容缺口）：补收 ProteinTalks（Nature 正刊，2026-09-09）入文献库
+### 建议 5（高优先级 · 内容缺口）：补收 ProteinTalks（Nature 正刊，2026-09-09）入文献库
 
 **事实。** Sun Rui、Qian Liujia、Li Yongge、Liu Tong 等；通讯：周沛劼（北京大学）、温翰（北京科学智能研究院 / 北京大学）、郭天南（西湖大学）、朱怡（西湖实验室）。《An operational perturbation proteomics-based virtual cell model》，*Nature* 在线 2026-09-09，DOI `10.1038/s41586-026-11001-9`（本站 2026-10-30 经 Handle API 复核，responseCode 1，指向 nature.com/articles/s41586-026-11001-9）。
 
@@ -272,7 +287,7 @@ sed -i 's|https://aivc.news/paper?id=|https://aivc.news/paper.html?id=|g' sitema
 
 ---
 
-### 建议 5（高优先级 · 规范冲突）：sitemap 的规范 URL 写法，与全站链接、canonical 和 validate.py 硬匹配三者互斥
+### 建议 6（高优先级 · 规范冲突）：sitemap 的规范 URL 写法，与全站链接、canonical 和 validate.py 硬匹配三者互斥
 
 **这是 OPS.md 与 `tools/validate.py` 之间的实际冲突，Bot 不自行择一执行，报请裁定。**
 
@@ -299,7 +314,7 @@ sed -i 's|https://aivc.news/paper?id=|https://aivc.news/paper.html?id=|g' sitema
 
 ---
 
-### 建议 6（中优先级 · 规范冲突）：本文件抬头仍在引用已废止的「Bot 禁写禁区」规则
+### 建议 7（中优先级 · 规范冲突）：本文件抬头仍在引用已废止的「Bot 禁写禁区」规则
 
 **事实。** 本文件抬头写着：
 
@@ -320,7 +335,7 @@ sed -i 's|https://aivc.news/paper?id=|https://aivc.news/paper.html?id=|g' sitema
 
 ---
 
-### 建议 7（低优先级 · 版式）：`<code>` 标签在 `assets/style.css` 中无对应规则
+### 建议 8（低优先级 · 版式）：`<code>` 标签在 `assets/style.css` 中无对应规则
 
 本期每日观察的事实表内使用了 `<code>` 标签标注文件路径与 API 端点（`assets/papers-data.js`、`https://doi.org/api/handles/<doi>`）。`assets/style.css` 中**无 `code` 选择器**，浏览器回落到默认等宽字体，与本站学术版式的字号/字重不一致（视觉上偏小、偏细）。
 
