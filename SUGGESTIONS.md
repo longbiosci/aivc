@@ -293,3 +293,18 @@ scan_files = sorted(ROOT.glob("*.html")) + [ROOT / "feed.xml", ROOT / "sitemap.x
 
 - **sitemap 的 `/paper?id=` 写法维持不变。** 依 2026-10-28 裁定（Cloudflare 归一化兜住可达性 + `validate.py` 第 4 项硬匹配，单改必红），本次复核无变化，未动 sitemap。
 - **DOI 抽查方法已按裁定执行 Handle API。** 本次全站 107 个 DOI，106 个 `responseCode=1`；唯一例外 `10.20517/aiagent.2026.16` 仍为 `responseCode=100`（未注册），为 10-28 记录以来连续第二日，已在 10-29 期观察「待核实」与 benchmarks 条目内如实标注，维持「新刊 DOI 注册滞后、非伪引」判断。
+
+---
+
+## 建议 4（2026-10-30 · 低优先级）：search.html 剩余 22 条「指向文献库整页」的主题型索引条目，宜由编辑部人工精确化
+
+### 背景（2026-10-30 每日技术运维实测）
+`const IDX` 的「文献库」分组长期是人工节选，且其中 32 条只指向 `papers.html`（文献库整页）而非具体详情页，导致用户搜到标题后仍需自己在长列表里二次定位。本次运维已做两件事：
+
+1. 新增 `tools/build_search_index.py`（幂等），自动补齐缺失文献的精确索引条目，**99/99 篇现已都能从搜索直达详情页**；
+2. 人工核验后，把其中 10 条唯一命中的单模型条目（`scBERT / Geneformer / scFoundation / GeneCompass / TranscriptFormer / GREmLN / rbio1 / Nicheformer / DunedinPACE / Smer-Barreto 2023`）改为精确指向。
+
+**剩余 22 条不动，原因是不适合自动判定**：它们多为合集型或主题型条目，一条对应多篇文献，例如「GEARS / CPA / scGen / STATE」「scVI / Harmony / totalVI / Mixscape」「Xing & Song：虚拟细胞世界模型（Cell 2026）」。脚本若按关键词硬匹配，会把「线性基线批评（Nature Methods 2025）」误配到 `p80`、「零样本评测（Genome Biology 2025）」误配到 `p49`（实测均误命中），**宁可不改**。
+
+### 建议处置
+由编辑部在后续内容维护中逐条拆分：合集型拆为多条单一文献条目，主题型改为指向精确详情页并保留主题词。交付标准：`python3 tools/validate.py` 保持 0 error 且 0 warning（同一 `paper.html?id=` 被两条以上条目引用会触发第 7 项 warning）。
