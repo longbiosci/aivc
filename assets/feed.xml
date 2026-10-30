@@ -5,7 +5,7 @@
 <link>https://aivc.news/</link>
 <description>以科学文献为第一情报源的 AI 虚拟细胞领域情报刊物。</description>
 <language>zh-cn</language>
-<lastBuildDate>Tue, 27 Oct 2026 00:00:00 +0800</lastBuildDate>
+<lastBuildDate>Wed, 28 Oct 2026 00:00:00 +0800</lastBuildDate>
 <atom:link href="https://aivc.news/assets/feed.xml" rel="self" type="application/rss+xml"/>
 <item><title>CellCompass：让虚拟细胞的动力学公式随新测量自己长出来（北京大学）</title><link>https://aivc.news/paper.html?id=p100</link><guid>https://aivc.news/paper.html?id=p100-cellcompass-dynbench-2026-10-27</guid><pubDate>Tue, 27 Oct 2026 00:00:00 +0800</pubDate><description>AIVC Insight 文献库新增 p100（预印本，未经同行评议）。北大团队把科学智能体与可扩展动力学引擎耦合，复用优先地让动力学形式随新测量演进；配套 DynBench100（100 个隐藏真值模拟场景）。DOI 10.64898/2026.10.23.761350。</description></item>
 <item><title>ProtCell：首个单细胞蛋白质组基础模型（清华大学）</title><link>https://aivc.news/paper.html?id=p101</link><guid>https://aivc.news/paper.html?id=p101-protcell-2026-10-27</guid><pubDate>Tue, 27 Oct 2026 00:00:00 +0800</pubDate><description>AIVC Insight 文献库新增 p101（预印本，未经同行评议）。约 3.8 亿细胞、98 个数据集预训练，蛋白质身份 + 连续丰度双通道嵌入，掩码丰度建模；可跨面板整合、外推未测蛋白并指导选板。DOI 10.64898/2026.10.22.760932。</description></item>
