@@ -88,7 +88,10 @@ def load_reports():
     for f in sorted((ROOT / "inbox").glob("*/report.json")):
         try:
             out.append(json.loads(f.read_text(encoding="utf-8")))
-        except Exception:
+        except Exception as e:
+            # 2026-11-01（ops）：原为静默 continue。回执读不出来时，投稿人既收不到
+            # 结果、后台也看不出少了一份——失败必须留痕。
+            print(f"[warn] 回执 {f.name} 解析失败，已跳过: {e}", file=sys.stderr)
             continue
     return out
 
