@@ -63,6 +63,12 @@
 <script>
 const IDX=[
 // 文献（节选关键条目，文献库页内另有精细检索）
+{s:"文献库",t:"HD 多模态空间转录组",d:"UCSD Cleveland 组：同一细胞同时读转录程序、体细胞 CAG 重复长度与 8 个病理标志物，L5-6 近投射神经元丢失超 50%",u:"paper.html?id=p111",k:"Huntington MERFISH CAG 重复扩增 包涵体 皮层 空间转录组 多模态 选择性易损"},
+{s:"文献库",t:"HD 皮层与纹状体体细胞重复扩增",d:"Broad McCarroll 组：皮层与纹状体病理阶段类似但表达改变不同，扩增程度由分子身份决定而非脑区或层次",u:"paper.html?id=p112",k:"Huntington somatic CAG repeat cortex striatum McCarroll 锥体神经元 包涵体"},
+{s:"文献库",t:"Cell Painting 自监督表征横评",d:"在 JUMP-CP 上系统评测 DINO MAE iTPN DINOv2：DINO 系列 MoA 检索 mAP 比 CellProfiler 高 31-37%，掩码生成式全面落后",u:"paper.html?id=p113",k:"Cell Painting JUMP-CP CellProfiler DINO DINOv2 MAE 自监督 形态学剖析 高内涵"},
+{s:"文献库",t:"STRATA 强化学习主动采样 3D 空间转录组",d:"RL 智能体在预算约束下挑信息量最大的体素，再用检索回归跨层插补三范式融合重建稠密图谱",u:"paper.html?id=p114",k:"STRATA 主动采样 强化学习 3D 空间转录组 预算 稀疏重建 imputation"},
+{s:"文献库",t:"DCAF 单细胞扰动模拟统一框架",d:"华大研究院：同时处理数据有效性与评测有效性，最优传输重建前后状态，JEPA 加调控动力学建模",u:"paper.html?id=p115",k:"DCAF JEPA 扰动模拟 评测 最优传输 log fold change BGI 华大研究院 泛化"},
+{s:"文献库",t:"AlphaCell 虚拟细胞世界模型",d:"同济大学 DELTA Lab：隐流形矫正加最优传输条件流匹配，把扰动建模为连续向量场以零样本推演未见情境",u:"paper.html?id=p116",k:"AlphaCell world model 流匹配 隐流形 扰动动力学 同济 PerturbMind 零样本"},
 {s:"文献库",t:"UPM 统一扰动建模",d:"港中深 You 组：三个统一化模块把异质 Perturb-seq 数据集塞进一个预测器，Tahoe-100M 留出细胞系上优于 STATE",u:"paper.html?id=p104",k:"UPM 统一 Perturb-seq 扰动建模 STATE Stack Tahoe 情境 异构"},
 {s:"文献库",t:"稀疏自编码器 SAE 特征真值评估",d:"德黑兰医科大学：可复现的 SAE 特征未必有意义，旋转类方法覆盖最少；应对照同稀疏度的稀疏化 varimax",u:"paper.html?id=p105",k:"sparse autoencoder SAE varimax 可复现 覆盖 纯度 Geneformer 可解释性"},
 {s:"文献库",t:"FICTURE2 分子级转录程序推断",d:"密歇根大学 Kang 组：不做分割不分箱，直接推断每个 RNA 分子来自哪个转录程序",u:"paper.html?id=p106",k:"FICTURE2 分子 转录程序 空间转录组 分割 亚细胞 密歇根"},
