@@ -5,7 +5,7 @@
 <link>https://aivc.news/</link>
 <description>以科学文献为第一情报源的 AI 虚拟细胞领域情报刊物。</description>
 <language>zh-cn</language>
-<lastBuildDate>Wed, 28 Oct 2026 00:00:00 +0800</lastBuildDate>
+<lastBuildDate>Fri, 30 Oct 2026 00:00:00 +0800</lastBuildDate>
 <atom:link href="https://aivc.news/assets/feed.xml" rel="self" type="application/rss+xml"/>
 <item><title>UPM：统一扰动建模能把异质 Perturb-seq 数据换回多少增益（港中深）</title><link>https://aivc.news/paper.html?id=p104</link><guid>https://aivc.news/paper.html?id=p104-upm-unified-perturbational-modeling-2026-10-27</guid><pubDate>Tue, 27 Oct 2026 00:00:00 +0800</pubDate><description>AIVC Insight 文献库新增 p104（预印本）。三个统一化模块（基因通道对齐、共享扰动编码、表达与身份联合嵌入）把基因集、扰动类型、细胞情境都不同的 Perturb-seq 数据合并进一个 VAE 预测器。1.1 亿细胞 / 76 个情境语料，8970 万细胞 / 71 情境训练，参数超十亿；Tahoe-100M 留出 5 条细胞系上四项指标全面优于 STATE，细胞因子基准上全面优于 Stack，HSC 应用准确率 +40.0%。代码开源。 DOI 10.64898/2026.10.25.761625。</description></item>
 <item><title>SAE 特征真值评估：可复现不等于有意义（德黑兰医科大学）</title><link>https://aivc.news/paper.html?id=p105</link><guid>https://aivc.news/paper.html?id=p105-sae-ground-truth-eval-2026-10-29</guid><pubDate>Thu, 29 Oct 2026 00:00:00 +0800</pubDate><description>AIVC Insight 文献库新增 p105（预印本）。用概念已知的嵌入给稀疏自编码器特征打分。旋转类方法几乎完全可复现，却最多只覆盖七个谱系中的三个；单次 SAE 拟合覆盖多数概念但仅 27-46% 可复现；五次取共识可兼得（78-98% 可复现），代价是漏掉弱植入状态且用更长训练或在残差上再训都找不回来。建议报告时给出覆盖概念数与基因程序纯度，对照组为同稀疏度稀疏化的 varimax。 DOI 10.64898/2026.10.27.762296。</description></item>
