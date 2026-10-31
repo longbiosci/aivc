@@ -233,28 +233,35 @@ def _nav_links(html_txt, cls):
     m = re.search(r'<div class="%s"[^>]*>(.*?)</div>' % cls, html_txt, re.S)
     if not m:
         return None
-    return re.findall(r'href="([^"#]+\.html)"', m.group(1))
+    # kb/ 等子目录页用 ../ 相对路径引用根目录页面，归一化后再与标准列表比对；
+    # 不做这一步，把检查范围扩到子目录就等于制造满屏误报。
+    return [re.sub(r"^(?:\.\./)+", "", h)
+            for h in re.findall(r'href="([^"#]+\.html)"', m.group(1))]
 
-for f in sorted(ROOT.glob("*.html")):
+# 2026-11-01 加固（ops）：原先只扫根目录 13 页，kb/ 下 111 个页面（含全文库首页）
+# 的导航没有任何机器护栏。它们现在同样带两层导航，理应受同一约束。
+for f in sorted(p for p in ROOT.rglob("*.html") if ".git" not in p.parts):
     txt = f.read_text(encoding="utf-8")
+    # 报错用仓库相对路径：子目录页与根页面可能同名（如 kb/index.html），只写文件名无法定位
+    _loc = f.relative_to(ROOT)
     links = _nav_links(txt, "navlinks")
     if links is None:
-        err(f"{f.name} 未找到主导航块（.navlinks）")
+        err(f"{_loc} 未找到主导航块（.navlinks）")
     elif links != NAV_EXPECT:
-        err(f"{f.name} 主栏目导航与站点标准不一致: {links}")
+        err(f"{_loc} 主栏目导航与站点标准不一致: {links}")
     sublinks = _nav_links(txt, "navsub")
     if sublinks is None:
-        err(f"{f.name} 未找到工具导航块（.navsub）")
+        err(f"{_loc} 未找到工具导航块（.navsub）")
     elif sublinks != NAVSUB_EXPECT:
-        err(f"{f.name} 工具导航与站点标准不一致: {sublinks}")
-    # 页脚导航顺序不设限（常按工具/栏目混排），但 12 项必须一个不缺
+        err(f"{_loc} 工具导航与站点标准不一致: {sublinks}")
+    # 页脚导航顺序不设限（常按工具/栏目混排），但 13 项（8 主栏目 + 5 工具）必须一个不缺
     flinks = _nav_links(txt, "fnav")
     if flinks is None:
-        err(f"{f.name} 缺少页脚导航（fnav）")
+        err(f"{_loc} 缺少页脚导航（fnav）")
     elif sorted(flinks) != sorted(NAV_ALL):
         miss = [x for x in NAV_ALL if x not in flinks]
         extra = [x for x in flinks if x not in NAV_ALL]
-        err(f"{f.name} 页脚导航与站点标准不一致（缺 {miss}，多 {extra}）")
+        err(f"{_loc} 页脚导航与站点标准不一致（缺 {miss}，多 {extra}）")
 
 # ---------- 12. 检索索引中的术语条目指向真实术语 ----------
 if glossary_terms:
@@ -341,9 +348,14 @@ else:
 # 背景（2026-10-31 事故根因）：search.html 的 `const IDX=[...]` 在新增 p100–p103 条目时
 # 漏写分隔逗号，整个内联脚本抛 SyntaxError，搜索页功能完全瘫痪；而旧版校验器只检查
 # .js 文件、从不检查内联 <script>，该错误一路通过 CI 上了生产。故补此道防线。
+#
+# 2026-11-01 加固（ops）：原写作 ROOT.glob("*.html")，只覆盖仓库根目录的 13 个页面，
+# kb/ 下 111 个全文库页面全部落在扫描范围之外——其中 kb/index.html 带 617 字符的
+# 内联检索脚本，一旦语法出错，全文库检索整个失效而 CI 依然放行。改为全站 rglob
+# 并排除 .git，与「内联脚本即代码」的判断保持一致：凡是页面里执行的脚本都要查。
 import tempfile
 
-for _f in sorted(ROOT.glob("*.html")):
+for _f in sorted(p for p in ROOT.rglob("*.html") if ".git" not in p.parts):
     _txt = _f.read_text(encoding="utf-8")
     for _i, _body in enumerate(re.findall(r"<script[^>]*>(.*?)</script>", _txt, re.S)):
         if not _body.strip():
@@ -360,7 +372,7 @@ for _f in sorted(ROOT.glob("*.html")):
         if _r2.returncode != 0:
             _detail = [ln for ln in _r2.stderr.strip().split("\n") if ln.strip()][:3]
             err(
-                f"{_f.name} 内联 <script>[{_i}] 存在 JS 语法错误"
+                f"{_f.relative_to(ROOT)} 内联 <script>[{_i}] 存在 JS 语法错误"
                 f"（会导致整段页面脚本静默失效）: {' | '.join(_detail)}"
             )
 
@@ -386,6 +398,12 @@ if _feed_path.exists():
                 )
         except (TypeError, ValueError):
             warn("assets/feed.xml 日期格式无法解析，跳过 lastBuildDate 一致性检查")
+else:
+    # 与第 6 项同一类防线：文件不在就必须报错。此前该分支只写 `if exists():` 没有
+    # else，路径一旦写错（2026-10-31 实况：写成 ROOT/"feed.xml"）整段检查即退化为
+    # 死代码，且不会有任何提示——第 6 项当时恰好也扫 feed.xml 才兜住，属侥幸。
+    # 两道防线各自独立报警，任何一道失效都不能静默。
+    err("缺少 assets/feed.xml，订阅源一致性检查无法执行")
 
 # ---------- 18. 全文可达性数据（assets/fulltext-data.js） ----------
 # 由 tools/fulltext.py 自动生成。这里只校验「数据自洽 + 链接形态合法」，

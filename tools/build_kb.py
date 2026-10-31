@@ -135,7 +135,11 @@ def load_uploads():
     for f in KB.glob("*.src.json"):
         try:
             d = json.loads(f.read_text(encoding="utf-8"))
-        except Exception:
+        except Exception as e:
+            # 2026-11-01（ops）：原为静默 continue。投稿中间表示坏了等于这篇全文
+            # 凭空消失，而生成日志仍显示成功——这类「悄悄少一篇」最难被发现。
+            print(f"[warn] 投稿中间表示 {f.name} 解析失败，该篇不会入全文库: {e}",
+                  file=sys.stderr)
             continue
         out[f.name.split(".")[0]] = d
     return out
@@ -161,8 +165,11 @@ def all_parsed():
         if f.exists():
             try:
                 out[p["id"]] = parse_xml(f)
-            except Exception:
-                pass
+            except Exception as e:
+                # 2026-11-01（ops）：原为静默 pass。缓存 XML 解析失败时该篇静默缺席，
+                # 与「这篇本来就没有全文」无法区分，排查时极易误判为抓取问题。
+                print(f"[warn] {p['id']} 的缓存 XML 解析失败，不会生成站内全文: {e}",
+                      file=sys.stderr)
     for pid, d in load_uploads().items():
         # 投稿版优先：它是人工确认过许可与归属的
         if d.get("full", {}).get("chars", 0) > 500:
