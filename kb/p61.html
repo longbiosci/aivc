@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DNA Methylation Aging Clocks: Challenges and Recommendations · 全文 · AIVC Insight</title>
+<link rel="stylesheet" href="../assets/style.css?v=6">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://aivc.news/kb/p61.html">
+</head>
+<body>
+<nav class="main"><div class="wrap">
+  <div class="navlinks">
+  <a href="../index.html">首页</a>
+  <a href="../papers.html" class="active">文献库</a>
+  <a href="../models.html">模型谱系</a>
+  <a href="../companies.html">企业解剖</a>
+  <a href="../china.html">中国生态</a>
+  <a href="../news.html">前沿速递</a>
+  <a href="../benchmarks.html">数据与基准</a>
+  <a href="../insight.html">深度解读</a>
+  </div>
+  <div class="navsub">
+  <a href="../glossary.html">术语表</a>
+  <a href="../posters.html">术语海报</a>
+  <a href="../kb/index.html" class="active">全文库</a>
+  <a href="../search.html">搜索</a>
+  <a href="../about.html">关于</a>
+  </div>
+</div></nav>
+
+<div class="pagehead"><div class="wrap">
+  <div class="crumb"><a href="index.html">全文库</a> / 衰老交叉</div>
+  <h1>DNA Methylation Aging Clocks: Challenges and Recommendations</h1>
+  <div class="kbauth">Bell, Lowe 等</div>
+  <div class="kbven">Genome Biology · p61 · DOI <a href="https://doi.org/10.1186/s13059-019-1824-y" target="_blank" rel="noopener">10.1186/s13059-019-1824-y</a></div>
+</div></div>
+
+<section><div class="wrap">
+  <div class="kbmeta"><span class="kbpill ok">CC BY</span><span>开放获取全文 · 站内转录自 Genome Biology（Europe PMC），仅做格式转换，未改动原文文字</span></div>
+  <div class="kblayout">
+    <aside class="kbside"><nav class="kbtoc"><b>本文目录</b><ol><li><a href="#s0">Introduction</a></li><li><a href="#s8">Conclusion</a></li></ol></nav></aside>
+    <article class="kbmain">
+      <div class="kbsum"><b>本站解读要点</b><p>被引 1026：DNAm 衰老时钟的权威综述，确立该分支方法学框架。</p></div><div class="kbsum"><b>原文摘要</b><p>Epigenetic clocks comprise a set of CpG sites whose DNA methylation levels measure subject age. These clocks are acknowledged as a highly accurate molecular correlate of chronological age in humans and other vertebrates. Also, extensive research is aimed at their potential to quantify biological aging rates and test longevity or rejuvenating interventions. Here, we discuss key challenges to understand clock mechanisms and biomarker utility. This requires dissecting the drivers and regulators of age-related changes in single-cell, tissue- and disease-specific models, as well as exploring other epigenomic marks, longitudinal and diverse population studies, and non-human models. We also highlight important ethical issues in forensic age determination and predicting the trajectory of biological aging in an individual.</p></div>
+      
+      <div class="kbtext"><h2 id="s0">Introduction</h2><p id="s0p0">A key question in biology is to understand why and how we age. Alongside this, the unprecedented gain in the average lifespan in humans, since the mid-twentieth century, has dramatically increased both the number of older people and their proportion in the population. This demographic phenomenon is changing our societal make-up, from only ~130 million being 65 years or older (~5% of the world population) in 1950, to a predicted ~1.6 billion people (~17%) by 2050 []. However, the success in reducing mortality has not been matched with a reduction in chronic disease []. This leads to the undesirable outcome of many years of this prolonged lifespan being spent in ill health, with an associated massive health care burden. Increasing the productivity and reducing the disease affliction in these extended years7 would be clearly beneficial for both the individual and society [, ]. This aim of maximizing the “healthspan” [] makes obtaining accurate measures of aging-related pathology essential, to gauge its speed, decipher the changes that occur, and potentially unlock how aging acts as a disease risk factor []. There is considerable population variation in the rate at which people visibly age [] as well as become impaired by age-related frailty and disease []. Measurement of this relative “biological” aging [] may allow pre-emptive targeted health-promoting interventions, perhaps in a personalized and disease-specific fashion. It would also aid in testing interventions that attempt to modulate the aging process [].</p><p id="s0p1">The cellular and molecular hallmarks of aging include changes associated with cell senescence, dysregulated nutrient sensing, and stem cell exhaustion, among others []. Therefore, many biological measures, such as p16ink4a tissue levels, circulating CRP, creatinine, and fasting glucose, as well as telomere length all correlate with aging [–]. In this decade, we have discovered the remarkable power of epigenetic changes to estimate an individual’s age [, ]. Epigenetics encapsulates the chemical modifications and packaging of the genome that influence or indicate its activity [], with strict definitions requiring inheritance through mitotic cell division []. Observations of age impacting on this mechanism have been reported for more than 50 years [–] and suggested a role in age-related disease []. However, the association between epigenetic modifications and age became most starkly apparent with the arrival of the first high-throughput arrays measuring DNA methylation [–]. These high-resolution data enabled the construction of extremely accurate age estimators, termed “Epigenetic” or “DNA methylation clocks” [–]. Subsequently, these clocks were reported to capture aspects of biological aging and its associated morbidity and mortality [–]. DNA methylation (5′methylcytosine, 5mC) is the most common DNA modification and predominantly occurs at cytosines in a CpG dinucleotide context in differentiated mammalian cells. The stability of 5mC in biological samples, even from long-term stored DNA, brings large-scale data availability, for use in subsequent high-throughput analysis.</p><p id="s0p2">In this paper, we discuss the scientific challenges that the fascinating discovery of “DNA methylation clocks” has brought into focus. We provide recommendations and suggest future experiments required to dissect the strengths and weaknesses of this important biomarker, in order to probe its biological significance, cellular mechanics, and epidemiological potential. We do not review in depth the background history and current state of the clocks themselves; we refer readers to recent excellent reviews for this information [, ]. Instead, the purpose is forward-focused, i.e., to define the current issues, to suggest what will aid unlocking future potential, and to further explore and define any functionality, with the hopeful long-term benefit of increasing the “healthspan.”</p><p id="s0p3">Here, we define a “DNA methylation clock” as an estimator built from epigenetic DNA methylation marks that are strongly correlated (r ≥ 0.8 []) with chronological age or time, which can accurately quantify an age-related phenotype or outcome, or both. These DNA methylation clocks are generally built with a supervised machine learning method, such as a penalized regression (e.g., lasso or elastic net) trained against chronological age to identify an informative and sparse predictive set of CpGs [, ]. The residual, or error from chronological age, is used as a marker for biological age of an individual [, ]. The age-related phenotype or outcome may be disease, mortality, clinical measures of “frailty,” or cellular phenotypes, including the mitotic age (the total number of lifetime cell divisions of a tissue [, ]).</p><p id="s0p4">It is evident, even from our initial observations so far, that the aging-related epigenetic modifications captured by DNA methylation clocks are pervasive and indicative of genomic, cell biology, and tissue changes occurring over the life-course. These molecular alterations may bring a high-resolution and precise understanding of age-related pathology and physiology.</p><h2 id="s8">Conclusion</h2><p id="s8p0">With this perspective, we have detailed seven challenges alongside the experiments and recommendations to explore these (summarized in Table ), which we hope will help to further the fascinating biological discoveries that have accompanied DNA methylation clocks. These detailed strengths, weaknesses, and areas of inquiry should stimulate new discussion and experimentation. Table 2Summary of recommendations arising from the challenges of studying DNA methylation clocks in the context of agingChallenges and recommendations 1. Delineation of the chronological and biological components of DNA methylation clocks • Quantify the accuracy and robustness of “forensic” age estimates from different DNA sources • Isolate pan-tissue “biological” aging changes for novel insights into aging 2. Functional characterization of tissue-specific and disease-specific clocks • Refine tissue- and disease-specific clocks for disease-specific measures • Deeper understanding of the pathogenesis of specific age-related diseases • All published clock algorithms should be transparent and publicly available 3. Integration of epigenetics into large and diverse longitudinal population studies • For predictive biomarkers of clinical utility • Understand the cause and consequences of clock measures and any rate change on aging-related disease and longevity 4. Genome-wide analyses of aging and exploration of additional epigenomic marks • Identity novel and potentially more sensitive chronological or disease-specific clock-like mechanisms 5. Single-cell analysis of aging changes and disease • Explore functionality of clock-like and other aging-related epigenetic changes • Define the components of tissue-specific changes 6. Generation of robust non-human data of aging • Explore fundamental biology of aging using DNA methylation clocks in model organisms • Expand and standardize the application of DNA methylation clocks to test longevity interventions in mice 7. Inclusion of epigenetics within current genetic ethical and legal frameworks • To educate and protect the public from misinformation and misuse</p><p id="s8p1">The power of epigenomic analysis is clearly displayed by these precise aging-related changes. Detailed evaluation of DNA methylation clocks may reveal unique insights into the aging process itself, as well as act as a biomarker of biological age and inform on age-related common disease risk. While we have highlighted some caveats regarding the potential misuse of clocks, more detailed experiments should help to alleviate these. We have only begun to reap all of the insights that study of the epigenome will bring in deciphering physiology and pathology, and there is much promise for both improved human and animal health.</p></div>
+      <div class="kbcite"><b>引用格式</b><p>Bell, Lowe 等（p61）. DNA Methylation Aging Clocks: Challenges and Recommendations. Genome Biology. https://doi.org/10.1186/s13059-019-1824-y</p></div>
+      <div class="kbfoot">
+        <a href="../paper.html?id=p61">← 回到本站七层解读</a>
+        <a href="https://doi.org/10.1186/s13059-019-1824-y" target="_blank" rel="noopener">原文地址 →</a>
+      </div>
+    </article>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="fnav"><a href="../index.html">首页</a><a href="../papers.html">文献库</a><a href="../models.html">模型谱系</a><a href="../companies.html">企业解剖</a><a href="../china.html">中国生态</a><a href="../news.html">前沿速递</a><a href="../benchmarks.html">数据与基准</a><a href="../insight.html">深度解读</a><a href="../glossary.html">术语表</a><a href="../posters.html">术语海报</a><a href="../kb/index.html">全文库</a><a href="../search.html">搜索</a><a href="../about.html">关于</a></div>
+  <div>AIVC Insight · 全文库只收录许可明确的开放获取文献，格式转换未改动原文文字</div>
+  <div>aivc.news · <a href="../assets/feed.xml">RSS 订阅</a> · © 2026 AIVC Insight Team</div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,3 @@
+# 全文库的 JATS 源文件缓存：7.6MB 原始 XML，属于原文副本，不入库；
+# 需要重建时跑 tools/build_kb.py 会重新抓取。
+tools/.kb-cache/

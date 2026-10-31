@@ -225,7 +225,7 @@ NAV_EXPECT = [
     "index.html", "papers.html", "models.html", "companies.html", "china.html",
     "news.html", "benchmarks.html", "insight.html",
 ]
-NAVSUB_EXPECT = ["glossary.html", "posters.html", "search.html", "about.html"]
+NAVSUB_EXPECT = ["glossary.html", "posters.html", "kb/index.html", "search.html", "about.html"]
 NAV_ALL = NAV_EXPECT + NAVSUB_EXPECT
 
 def _nav_links(html_txt, cls):
@@ -438,6 +438,41 @@ else:
     for _pg in ("paper.html", "papers.html"):
         if "fulltext-data.js" not in (ROOT / _pg).read_text(encoding="utf-8"):
             err(f"{_pg} 未引入 assets/fulltext-data.js，全文入口/角标不会显示")
+
+# ---------- 19. 全文库（kb/）自洽 ----------
+# kb/ 下每篇必须有对应的文献条目，索引与页面必须一一对应——否则站内会出现
+# 「点进去 404」或「索引里有、页面没有」这类只有读者才会踩到的问题。
+_kb_dir = ROOT / "kb"
+_kb_idx = ROOT / "assets" / "kb-index.js"
+if not _kb_dir.exists() or not (_kb_dir / "index.html").exists():
+    err("缺少 kb/index.html（运行 python3 tools/build_kb.py 生成全文库）")
+else:
+    _kbpages = {p.stem for p in _kb_dir.glob("p*.html") if re.fullmatch(r"p\d+", p.stem)}
+    _paperids = set(ids)
+    if _kbpages - _paperids:
+        err(f"kb/ 下存在无对应文献的页面: {sorted(_kbpages - _paperids)}")
+    if not _kb_idx.exists():
+        err("缺少 assets/kb-index.js（全文库索引，由 build_kb.py 生成）")
+    else:
+        r = subprocess.run(["node", "--check", str(_kb_idx)], capture_output=True, text=True)
+        if r.returncode != 0:
+            err(f"kb-index.js 语法错误: {r.stderr.strip()[:200]}")
+        _kbsrc = _kb_idx.read_text(encoding="utf-8")
+        _kbids = set(re.findall(r'"id":\s*"(p\d+)"', _kbsrc))
+        if _kbids - _paperids:
+            err(f"kb-index.js 含不存在的文献 id: {sorted(_kbids - _paperids)}")
+        _missing_page = {i for i in _kbids if not (_kb_dir / f"{i}.html").exists()}
+        if _missing_page:
+            err(f"kb-index.js 引用的页面不存在: {sorted(_missing_page)}")
+    # 每篇 kb 页必须能回到解读页与原文
+    _bad_back = []
+    for _f in _kb_dir.glob("p*.html"):
+        _t = _f.read_text(encoding="utf-8")
+        if "../paper.html?id=" not in _t:
+            _bad_back.append(_f.name)
+    if _bad_back:
+        err(f"kb 页面缺少返回解读页的链接: {_bad_back[:5]}")
+    # 导航入口由第 11 项（NAVSUB_EXPECT）统一强制，此处不重复校验
 
 # ---------- 汇总 ----------
 print("=" * 56)
