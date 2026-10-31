@@ -219,28 +219,41 @@ if "glossary.html" not in sitemap:
     err("sitemap.xml 缺少 glossary.html 条目")
 
 # ---------- 11. 全站导航一致性 ----------
+# 导航拆成两层：主栏目行（.navlinks）+ 工具行（.navsub）。
+# 两个列表都必须按上表顺序出现，页脚仍要求 12 项齐全（.fnav）。
 NAV_EXPECT = [
     "index.html", "papers.html", "models.html", "companies.html", "china.html",
-    "news.html", "benchmarks.html", "insight.html", "glossary.html",
-    "posters.html", "search.html", "about.html",
+    "news.html", "benchmarks.html", "insight.html",
 ]
+NAVSUB_EXPECT = ["glossary.html", "posters.html", "search.html", "about.html"]
+NAV_ALL = NAV_EXPECT + NAVSUB_EXPECT
+
+def _nav_links(html_txt, cls):
+    m = re.search(r'<div class="%s"[^>]*>(.*?)</div>' % cls, html_txt, re.S)
+    if not m:
+        return None
+    return re.findall(r'href="([^"#]+\.html)"', m.group(1))
+
 for f in sorted(ROOT.glob("*.html")):
     txt = f.read_text(encoding="utf-8")
-    nm = re.search(r'<div class="navlinks"[^>]*>(.*?)</div>', txt, re.S)
-    if not nm:
-        err(f"{f.name} 未找到主导航块")
-        continue
-    links = re.findall(r'href="([^"#]+\.html)"', nm.group(1))
-    if links != NAV_EXPECT:
-        err(f"{f.name} 主导航与站点标准不一致: {links}")
-    # 页脚导航同样必须完整（新增栏目时最容易漏掉页脚）
-    fm = re.search(r'<div class="fnav">(.*?)</div>', txt, re.S)
-    if not fm:
+    links = _nav_links(txt, "navlinks")
+    if links is None:
+        err(f"{f.name} 未找到主导航块（.navlinks）")
+    elif links != NAV_EXPECT:
+        err(f"{f.name} 主栏目导航与站点标准不一致: {links}")
+    sublinks = _nav_links(txt, "navsub")
+    if sublinks is None:
+        err(f"{f.name} 未找到工具导航块（.navsub）")
+    elif sublinks != NAVSUB_EXPECT:
+        err(f"{f.name} 工具导航与站点标准不一致: {sublinks}")
+    # 页脚导航顺序不设限（常按工具/栏目混排），但 12 项必须一个不缺
+    flinks = _nav_links(txt, "fnav")
+    if flinks is None:
         err(f"{f.name} 缺少页脚导航（fnav）")
-    else:
-        flinks = re.findall(r'href="([^"#]+\.html)"', fm.group(1))
-        if flinks != NAV_EXPECT:
-            err(f"{f.name} 页脚导航与站点标准不一致: {flinks}")
+    elif sorted(flinks) != sorted(NAV_ALL):
+        miss = [x for x in NAV_ALL if x not in flinks]
+        extra = [x for x in flinks if x not in NAV_ALL]
+        err(f"{f.name} 页脚导航与站点标准不一致（缺 {miss}，多 {extra}）")
 
 # ---------- 12. 检索索引中的术语条目指向真实术语 ----------
 if glossary_terms:

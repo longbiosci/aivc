@@ -30,11 +30,16 @@ a:hover{text-decoration:underline}
 .brand em{font-style:normal;color:var(--accent)}
 .brand small{display:block;font-family:var(--sans);font-size:11.5px;color:var(--dim);letter-spacing:2px;margin-top:2px}
 nav.main{border-bottom:2px solid var(--ink);background:var(--paper);position:sticky;top:0;z-index:50}
-nav.main .wrap{display:flex;gap:2px;align-items:center}
+nav.main .wrap{display:flex;flex-direction:column;gap:0}
 .navlinks{display:flex;gap:2px;flex-wrap:wrap}
-nav.main a{font-size:14px;color:var(--body);padding:10px 18px;border-bottom:2px solid transparent;margin-bottom:-2px}
+nav.main .navlinks a{font-size:13.5px;color:var(--body);padding:9px 12px;border-bottom:2px solid transparent;margin-bottom:-2px}
 nav.main a:hover{color:var(--accent);text-decoration:none}
 nav.main a.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+/* 工具行（术语表/海报/搜索/关于）：常显副导航，小字弱化，与主行视觉分层 */
+.navsub{display:flex;gap:2px;flex-wrap:wrap;border-top:1px solid var(--line)}
+.navsub a{font-size:12px;color:var(--dim);padding:5px 10px}
+.navsub a:hover{color:var(--accent);text-decoration:none}
+.navsub a.active{color:var(--accent);font-weight:600}
 
 /* ===== 页头 ===== */
 .pagehead{border-bottom:1px solid var(--line);padding:44px 0 30px}
@@ -144,13 +149,6 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .fnav{display:flex;flex-wrap:wrap;gap:6px 22px;width:100%;padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid var(--line)}
 .fnav a{font-size:13.5px;color:var(--body)}
 .fnav a:hover{color:var(--accent);text-decoration:none}
-/* ===== 汉堡按钮（桌面隐藏，移动端由末尾媒体查询启用） ===== */
-.navtoggle{display:none;font-family:var(--sans);font-size:13px;color:var(--accent);
-  background:var(--paper);border:1px solid var(--line);border-radius:2px;
-  padding:7px 14px;margin:8px 0;cursor:pointer;letter-spacing:.5px}
-.navtoggle:hover{border-color:var(--accent)}
-.navtoggle::after{content:" ▾";font-size:11px}
-.navtoggle[aria-expanded="true"]::after{content:" ▴"}
 
 /* ===== models 专用样式 ===== */
 
@@ -266,15 +264,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
   /* 分组展开按钮：窄屏整行铺满，便于点按（折叠功能配套） */
   .morebtn{width:100%;text-align:left;padding:9px 14px;font-size:13.5px}
 
-  /* 汉堡导航：默认收起次要栏目，点「更多栏目」展开 */
-  nav.main .wrap{flex-wrap:wrap;align-items:center}
-  .navtoggle{display:inline-flex}
-  .navlinks{display:flex;flex-wrap:wrap;width:100%}
-  .navlinks a{padding:11px 13px 11px 0;border-bottom:none;margin-bottom:0;font-size:14.5px}
-  .navlinks a.active{color:var(--accent);font-weight:600}
-  /* 次要栏目（.x）默认隐藏，展开后可见——保证 10 项全部可达 */
-  .navlinks a.x{display:none}
-  .navlinks.open a.x{display:inline-block}
+  /* 窄屏导航：两行全量铺开，不折叠——所有栏目一屏可达，无需点按钮 */
+  .navlinks{gap:0;padding:2px 0 0}
+  nav.main .navlinks a{padding:10px 10px 9px;font-size:13px}
+  .navsub{gap:0;padding:2px 0 4px}
+  .navsub a{padding:6px 10px;font-size:11.5px}
 
   /* 标题与正文 */
   .hero{padding:34px 0 28px}
