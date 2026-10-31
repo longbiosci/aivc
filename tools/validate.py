@@ -386,6 +386,59 @@ if _feed_path.exists():
         except (TypeError, ValueError):
             warn("assets/feed.xml 日期格式无法解析，跳过 lastBuildDate 一致性检查")
 
+# ---------- 18. 全文可达性数据（assets/fulltext-data.js） ----------
+# 由 tools/fulltext.py 自动生成。这里只校验「数据自洽 + 链接形态合法」，
+# 不做联网探测（联网巡检由 tools/fulltext.py --check 承担）。
+_ft_js = ROOT / "assets" / "fulltext-data.js"
+if not _ft_js.exists():
+    err("缺少 assets/fulltext-data.js（运行 python3 tools/fulltext.py 生成）")
+else:
+    r = subprocess.run(["node", "--check", str(_ft_js)], capture_output=True, text=True)
+    if r.returncode != 0:
+        err(f"fulltext-data.js 语法错误: {r.stderr.strip()[:200]}")
+    _ftsrc = _ft_js.read_text(encoding="utf-8")
+    _ftrec = {
+        m.group(1): m.group(2)
+        for m in re.finditer(r"(p\d+):\s*\{(.*?)\},", _ftsrc, re.S)
+    }
+    _ftids = set(_ftrec)
+    _paperids = set(ids)
+    if _ftids - _paperids:
+        err(f"fulltext-data.js 含不存在的文献 id: {sorted(_ftids - _paperids)}")
+    if _paperids - _ftids:
+        err(f"fulltext-data.js 漏掉文献: {sorted(_paperids - _ftids)}")
+    _KINDS = {"pdf", "page", "closed"}
+    _HOSTS = (
+        "biorxiv.org", "medrxiv.org", "arxiv.org", "europepmc.org", "ncbi.nlm.nih.gov",
+        "nature.com", "cell.com", "sciencedirect.com", "science.org", "springer.com",
+        "wiley.com", "acs.org", "nih.gov", "escholarship.org", "elifesciences.org",
+        "biomedcentral.com", "oup.com", "jci.org", "pnas.org", "plos.org", "doi.org",
+    )
+    for _pid, _body in sorted(_ftrec.items()):
+        _k = re.search(r'k:"([^"]*)"', _body)
+        _u = re.search(r'u:"([^"]*)"', _body)
+        _t = re.search(r't:"([^"]*)"', _body)
+        _k = _k.group(1) if _k else ""
+        _u = _u.group(1) if _u else ""
+        _t = _t.group(1) if _t else ""
+        if _k not in _KINDS:
+            err(f"fulltext-data.js {_pid} 的 k 值非法: {_k!r}（只允许 pdf/page/closed）")
+        if _k == "closed":
+            if _u:
+                err(f"fulltext-data.js {_pid} 标为 closed 却又给了链接，语义矛盾")
+        else:
+            if not _u:
+                err(f"fulltext-data.js {_pid} 标为 {_k} 但缺少 u 链接")
+            elif not _u.startswith("https://"):
+                err(f"fulltext-data.js {_pid} 链接非 https: {_u[:40]}")
+            elif not any(h in _u for h in _HOSTS):
+                err(f"fulltext-data.js {_pid} 链接域名不在白名单: {_u[:60]}")
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", _t or ""):
+            err(f"fulltext-data.js {_pid} 的核验日期格式应为 YYYY-MM-DD，实为 {_t!r}")
+    for _pg in ("paper.html", "papers.html"):
+        if "fulltext-data.js" not in (ROOT / _pg).read_text(encoding="utf-8"):
+            err(f"{_pg} 未引入 assets/fulltext-data.js，全文入口/角标不会显示")
+
 # ---------- 汇总 ----------
 print("=" * 56)
 print(

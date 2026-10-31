@@ -43,6 +43,7 @@
 | 文件 | 唯一写者 | 其他岗位只能做 |
 |---|---|---|
 | `assets/papers-data.js`、`papers.html` | content | 只读 |
+| `assets/fulltext-data.js`（全文可达性） | content，且**只能用 `python3 tools/fulltext.py` 生成，禁止手改** | ops/deep 只跑 `--check` 巡检并报告失效项，不改文件 |
 | `assets/feed.xml`、`search.html`（IDX 索引）、`sitemap.xml`、`index.html` 最新情报、`news.html` | content | 只读 |
 | `companies.html` | content | 只读 |
 | `insight.html`（每日观察） | deep | 只读 |
@@ -60,6 +61,20 @@ content 00:30 → ops 02:00 → deep 03:30，三者**串行**。后一岗从 `or
 ### 3.2.3 并行写入门禁（机器强制）
 
 `tools/preflight_conflicts.py` 在 CI 中比对「本 PR 改动文件」与「其余 open PR 改动文件」，重叠即红。归位后正常情况不应再红；**红了说明归位规则被违反或有新文件加入，按 3.2.1 认领后再动手**。
+
+### 3.2.4 新增文献的连带动作（漏一步 CI 就红）
+
+`assets/papers-data.js` 加一篇文献后，**必须同一次提交里**跑一遍：
+
+```bash
+python3 tools/fulltext.py     # 重新生成 assets/fulltext-data.js
+```
+
+`validate.py` 第 18 项会校验两侧 id 集合完全一致——漏生成会直接报「fulltext-data.js 漏掉文献」，PR 过不了门禁。这是有意的硬约束：宁可提交时被拦，不要让新文献在站点上「点进去发现没有全文入口」。
+
+### 3.2.5 全文不托管原则（2026-10-31 定）
+
+本站**不存放、不镜像任何论文 PDF**，只把作者/出版方提供的免费地址接出来并标明可得性。理由：① 6 篇为订阅闭源，托管即侵权；② 110 篇 PDF 累计数百 MB，仓库与 Pages 带宽都不划算；③ 原文权威地址是 DOI，由出版方永久解析，比我们的副本更可靠。全文三态定义见 `.intel/README.md` 与 `assets/fulltext-data.js` 头部注释。
 
 
 ## 四、合并流程（2026-10-30 修订：新增自动合并通道，消除上线卡点）
