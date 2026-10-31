@@ -231,6 +231,14 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .dbtn:hover{background:var(--accent);color:#fff;text-decoration:none}
 .dbtn.off{color:var(--dim);border-color:var(--line);cursor:default;font-weight:400}
 .dbtn.off:hover{background:none;color:var(--dim)}
+/* 全文可得性分级：免费 PDF 为实心主按钮，免费全文页为强调描边，订阅为灰置 */
+.dbtn.pdf{background:var(--accent);color:#fff;border-color:var(--accent)}
+.dbtn.pdf:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+.dbtn.free{background:var(--accent-soft);border-color:var(--accent)}
+.dft{font-size:12.5px;color:var(--dim);margin:-12px 0 24px}
+/* 列表页角标：全文可得性一眼可辨 */
+.fmark{font-size:10.5px;font-weight:600;padding:1px 6px;margin-left:6px;border-radius:3px;background:var(--accent);color:#fff;white-space:nowrap;vertical-align:1px}
+.fmark.free{background:var(--accent-soft);color:var(--accent)}
 .dsum{font-family:var(--serif);font-size:16.5px;line-height:1.75;color:var(--ink);background:var(--accent-soft);border-left:3px solid var(--accent);padding:14px 18px;border-radius:0 3px 3px 0;margin-bottom:8px}
 .dtoc{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 4px;font-size:13px}
 .dtoc span{color:var(--dim);margin-right:2px}

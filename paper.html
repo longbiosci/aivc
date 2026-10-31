@@ -44,6 +44,7 @@
 </div></footer>
 
 <script src="assets/papers-data.js"></script>
+<script src="assets/fulltext-data.js"></script>
 <script>
 (function(){
 var G={g1:'纲领与路线图',g2:'单细胞基础模型',g3:'扰动响应预测',g4:'批评与基准',g5:'关键数据集',g6:'经典基线方法',g7:'空间与多组学',g8:'衰老交叉'};
@@ -54,8 +55,19 @@ if(i<0){app.innerHTML='<h1>未找到该文献</h1><p><a href="papers.html">返�
 var p=PAPERS[i];
 document.getElementById('gname').textContent=G[p.g]||'';
 document.title=p.t+' · 文献解读 · AIVC Insight';
-var links=p.doi?'<a class="dbtn" href="https://doi.org/'+p.doi+'" target="_blank">DOI 原文</a>':'<span class="dbtn off">DOI 待核实</span>';
-if(p.pdf)links+='<a class="dbtn" href="'+p.pdf+'" target="_blank">PDF 全文</a>';
+/* 全文入口按可得性分级：免费 PDF 给实心主按钮，免费全文页给描边按钮，
+   订阅期刊如实标注并引导到 DOI 页找机构入口。数据来自 tools/fulltext.py 自动核验。 */
+var ft=(typeof FULLTEXT!=='undefined'&&FULLTEXT[p.id])||null;
+var links='';
+if(ft&&ft.k==='pdf'&&ft.u){links+='<a class="dbtn pdf" href="'+ft.u+'" target="_blank" rel="noopener">全文 PDF</a>'}
+else if(ft&&ft.k==='page'&&ft.u){links+='<a class="dbtn free" href="'+ft.u+'" target="_blank" rel="noopener">免费全文</a>'}
+links+=p.doi?'<a class="dbtn" href="https://doi.org/'+p.doi+'" target="_blank" rel="noopener">DOI 原文</a>':'<span class="dbtn off">DOI 待核实</span>';
+if(ft&&ft.k==='closed'){links+='<span class="dbtn off">需订阅</span>'}
+var ftnote='';
+if(ft&&ft.k==='pdf'){ftnote='全文来源：'+ft.s+'（开放获取，可直接下载）'}
+else if(ft&&ft.k==='page'){ftnote='全文来源：'+ft.s+'（免费阅读，无需订阅）'}
+else if(ft&&ft.k==='closed'){ftnote='该刊为订阅制；经 DOI 页可用所在机构订阅或作者自存稿获取'}
+if(ftnote){ftnote+=' · 核验于 '+ft.t}
 var sec=function(h,arr,anchor){return arr&&arr.length?'<h3 id="'+anchor+'">'+h+'</h3>'+arr.map(function(x){return '<p>'+x+'</p>'}).join(''):''};
 var TOC=[['bg','背景与脉络'],['me','方法详解'],['rs','关键结果'],['lm','局限与未解问题'],['db','争议与后续'],['tk','情报点评']];
 var toc='<nav class="dtoc"><span>本文导读</span>'+TOC.map(function(t){return '<a href="#'+t[0]+'">'+t[1]+'</a>'}).join('')+'</nav>';
@@ -66,6 +78,7 @@ var html='<article class="detail">'
 +'<h1>'+p.t+'</h1>'
 +'<div class="dauth">'+p.a+'</div>'
 +'<div class="dlinks">'+links+'</div>'
++(ftnote?'<div class="dft">'+ftnote+'</div>':'')
 +'<div class="dsum">'+p.summary+'</div>'
 +toc
 +sec('背景与脉络',p.background,'bg')

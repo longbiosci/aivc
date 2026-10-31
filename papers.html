@@ -44,7 +44,7 @@
 <div class="pagehead" id="top"><div class="wrap">
   <div class="crumb">栏目 01 · LIBRARY</div>
   <h1>文献库</h1>
-  <p class="lede">共收录 <b>110</b> 篇（更新至 2026-10-31）。点击标识直达原文；未经同行评议的预印本与待核实项已如实标注。</p>
+  <p class="lede">共收录 <b>110</b> 篇（更新至 2026-10-31）。其中 <b id="ft-free">—</b> 篇可免费获取全文（<span id="ft-pdf">—</span> 篇有 PDF 直链），余 <span id="ft-closed">—</span> 篇为订阅期刊。每篇详情页标注全文来源与核验日期；未经同行评议的预印本已如实标注。</p>
 </div></div>
 
 <section><div class="wrap">
@@ -233,6 +233,31 @@
   <div>aivc.news · <a href="assets/feed.xml">RSS 订阅</a> · © 2026 AIVC Insight Team</div>
 </div></footer>
 
+<script src="assets/fulltext-data.js"></script>
+<script>
+/* 全文可达性角标与计数：数据来自 assets/fulltext-data.js（tools/fulltext.py 自动生成），
+   静态列表无需逐条改写；新增文献后重跑生成脚本即自动生效。 */
+(function(){
+  if(typeof FULLTEXT==='undefined')return;
+  var st={pdf:0,page:0,closed:0};
+  for(var k in FULLTEXT){var f=FULLTEXT[k];if(st[f.k]!==undefined)st[f.k]++}
+  var fe=document.getElementById('ft-free'),fp=document.getElementById('ft-pdf'),fc=document.getElementById('ft-closed');
+  if(fe)fe.textContent=st.pdf+st.page;
+  if(fp)fp.textContent=st.pdf;
+  if(fc)fc.textContent=st.closed;
+  document.querySelectorAll('a.doi').forEach(function(a){
+    var box=a.closest('.paper');if(!box)return;
+    var l=box.querySelector('a[href*="paper.html?id="]');if(!l)return;
+    var m=/id=(p\d+)/.exec(l.getAttribute('href')||'');if(!m)return;
+    var f=FULLTEXT[m[1]];if(!f||(f.k!=='pdf'&&f.k!=='page'))return;
+    var s=document.createElement('span');
+    s.className='fmark'+(f.k==='page'?' free':'');
+    s.textContent=f.k==='pdf'?'PDF 全文':'免费全文';
+    s.title='全文来源：'+(f.s||'')+'（核验于 '+(f.t||'')+'）';
+    a.parentNode.insertBefore(s,a.nextSibling);
+  });
+})();
+</script>
 <script>
 const q=document.getElementById('q'),btns=document.querySelectorAll('.filters button');
 let g='all';
