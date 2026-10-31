@@ -2251,7 +2251,7 @@ takeaway:[
 "情报视角：本站第一篇 Cell Painting / 形态学表征的系统基准，且结论带跨模态启示——图像模态上对比式优于掩码式，与转录组领域的经验相反。",
 "分组提示：本文既有新表征也有系统横评，本刊暂归入扰动响应预测；若编辑部认为应归批评与基准，需全网同步改分组。"],
 further:["p98","p104"]},
-{id:"p114",g:"g7",t:"STRATA: Reinforcement-driven Active Sampling with Tri-paradigm Adaptation for Efficient 3D Spatial Transcriptomics",a:"Zhu, Deng, Qu, Lu, Zhu, Yang, Wang, Zhao, Yang, Huo",v:"arXiv（预印本，未经同行评议）",d:"2026-10-29",doi:"10.48550/arXiv.2610.39151",
+{id:"p114",g:"g7",t:"STRATA: Reinforcement-driven Active Sampling with Tri-paradigm Adaptation for Efficient 3D Spatial Transcriptomics",a:"Zhu J., Deng R., Qu C., Lu Z., Zhu Y., Yang Y., Wang Y., Zhao S., Yang H., Huo Y.（Vanderbilt University / Weill Cornell Medicine / Vanderbilt University Medical Center；通讯：Yuankai Huo）",v:"arXiv（预印本，未经同行评议；主分类 cs.CV）",d:"2026-10-29",doi:"10.48550/arXiv.2610.39151",
 summary:"3D 体积空间转录组的获取极其昂贵，AI 驱动的替代方案便宜但精度不足，而按 2D 切片逐层获取又依赖密集网格采样——既产生大量冗余测量，又漏采真正有生物学信息的区域。STRATA 把「采样哪些体素」本身变成一个可优化问题：构建融合 H&E 形态与单细胞先验的 3D 图，用强化学习智能体估计每个位置的形态稀疏度与转录信息量，在预算约束下挑点；拿到稀疏测量后，再用检索、回归、跨层插补三种范式自适应加权融合，重建稠密的 3D 转录图谱。低预算设置下的效率与精度优势尤其明显。",
 background:[
 "空间转录组能同时刻画组织形态与基因表达，但真正在三维体积上做，成本随层数线性上升，实际项目几乎都退回为取若干张二维切片。",
@@ -2279,7 +2279,7 @@ takeaway:[
 "情报视角：把主动采样与实验设计引入空间转录组，与本报关注的「AI 介入数据生产」议题直接呼应；其技术路线（强化学习挑点 + 多范式融合重建）也便于迁移到其他昂贵成像模态。",
 "提醒：arXiv 预印本，无 Crossref DOI，全文以 arXiv:2610.39151 为准；量化结论待正文核实。"],
 further:["p107","p102","p106"]},
-{id:"p115",g:"g3",t:"DCAF: Unifying Data Validity, Evaluation Validity and Predictive Modeling for Single-cell Perturbation Simulation",a:"Xia, Lei, Chen, Hou, Gong, Zhang, Qin, Hu, Wang, Li, Zhang, Fang, Li（BGI Research, Wuhan；通讯：Yuxiang Li）",v:"bioRxiv（预印本，未经同行评议）",d:"2026-10-31",doi:"10.64898/2026.10.13.758713",
+{id:"p115",g:"g3",t:"DCAF: Unifying Data Validity, Evaluation Validity and Predictive Modeling for Single-cell Perturbation Simulation",a:"Xia, Lei, Chen, Hou, Gong, Zhang, Qin, Hu, Wang, Li, Zhang, Fang, Li（BGI Research, Wuhan；通讯：Yuxiang Li）",v:"bioRxiv v3（预印本，未经同行评议；v1 posted 2026-10-19，v3 上线 2026-10-31）",d:"2026-10-31",doi:"10.64898/2026.10.13.758713",
 summary:"单细胞扰动谱受成本与通量限制，而计算方法又受制于评测口径不一致、以及打不过简单基线这两件事。华大研究院团队提出 DCAF 统一框架，同时处理数据有效性、评测有效性与预测建模三层：DCAF-data 用熵正则化最优传输从「只测一次」的实验里重建扰动前与扰动后的状态；DCAF-criterion 改为评估未被沉默基因的 log fold change，提高对模型误差的敏感度、同时更抗零膨胀噪声；DCAF-model 把 JEPA 与显式调控动力学建模结合，做可解释预测。跨基准上，DCAF 在跨基因、跨细胞类型、跨区域三类泛化设置中都超过了当前最优深度学习方法，以及均值基线与线性基线；在成年小鼠脑中，Dgcr8 敲低的已知细胞类型特异调控异质性在细胞类型与基因两个层面均被复现。",
 background:[
 "单细胞扰动谱（Perturb-seq 一类）能同时给出扰动与转录响应，但成本与通量决定了可做的组合数远小于真实的生物学组合空间。",
