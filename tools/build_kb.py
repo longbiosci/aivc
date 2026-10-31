@@ -125,6 +125,69 @@ def load_route():
     return json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
 
 
+def load_uploads():
+    """投稿口入库的结果（kb/<id>.src.json，由 tools/inbox.py 写出）。
+
+    外链抓不到的文献（bioRxiv 全站 403 的那批）、以及订阅期刊但作者/读者提供了
+    合法全文的，走这条路进库。结构直接是 build_kb 的中间表示，渲染完全共用。
+    """
+    out = {}
+    for f in KB.glob("*.src.json"):
+        try:
+            d = json.loads(f.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        out[f.name.split(".")[0]] = d
+    return out
+
+
+def write_uploaded(pid):
+    """把一篇投稿入库落到 kb/ 与索引，不动其他文件。"""
+    ups = load_uploads()
+    if pid not in ups:
+        return False
+    d = ups[pid]
+    meta, full = d["meta"], d["full"]
+    (KB / f"{pid}.html").write_text(paper_page(meta, meta, full), encoding="utf-8")
+    idx_page(load_papers(), all_parsed(), load_route())
+    return True
+
+
+def all_parsed():
+    """已入库全文的统一视图：外链抓取的缓存 + 投稿口送来的。"""
+    out = {}
+    for p in load_papers():
+        f = CACHE / f"{p['id']}.xml"
+        if f.exists():
+            try:
+                out[p["id"]] = parse_xml(f)
+            except Exception:
+                pass
+    for pid, d in load_uploads().items():
+        # 投稿版优先：它是人工确认过许可与归属的
+        if d.get("full", {}).get("chars", 0) > 500:
+            out[pid] = d["full"]
+    return out
+
+
+def idx_page(papers, parsed, route):
+    """写 assets/kb-index.js（文献页据此显示「读站内全文」）。"""
+    idx = []
+    for p in papers:
+        f = parsed.get(p["id"])
+        if not (f and f.get("lic") in ALLOW_LIC and f.get("chars", 0) > 500):
+            continue
+        idx.append({
+            "id": p["id"], "t": p["t"], "a": p["a"], "v": p["v"], "d": p["d"],
+            "g": GROUP.get(p["g"], ""), "n": f["chars"],
+            "s": [s["h"] for s in f["secs"] if s["h"]],
+        })
+    (ASSETS / "kb-index.js").write_text(
+        "// 全文库索引 —— 由 tools/build_kb.py 生成\nconst KBINDEX = "
+        + json.dumps(idx, ensure_ascii=False, indent=0) + ";\n", encoding="utf-8")
+    return len(idx)
+
+
 def resolve_route(papers):
     """确定每篇的全文来源：epmc（PMC 全文）| arxiv | none。"""
     route = {}
@@ -361,6 +424,9 @@ def paper_page(p, d, full):
     lic = (full or {}).get("lic") or ""
     lic_url = (full or {}).get("licUrl") or ""
     has_text = bool(full and lic in ALLOW_LIC and full.get("chars", 0) > 500)
+    # 来源：投稿口送来的与境外抓取来的，版式一致、标注不同——读者有权知道谁说是开放获取的
+    src = (full or {}).get("src") or ""
+    chars_mark = f"<!-- kb-chars:{full.get('chars', 0)} -->" if has_text else ""
 
     # 目录
     toc = ""
@@ -385,10 +451,12 @@ def paper_page(p, d, full):
 
     # 许可条
     if has_text:
+        origin = (f'由读者投稿并经本刊核验许可（非转载自数据库），仅做格式转换，未改动原文文字'
+                  if src else
+                  f'站内转录自 {esc(full.get("journal") or d["v"])}（Europe PMC），仅做格式转换，未改动原文文字')
         licline = (f'<div class="kbmeta">'
                    f'<span class="kbpill ok">{esc(lic)}</span>'
-                   f'<span>开放获取全文 · 站内转录自 {esc(full.get("journal") or d["v"])}'
-                   f'（Europe PMC），仅做格式转换，未改动原文文字</span>'
+                   f'<span>开放获取全文 · {origin}</span>'
                    f'</div>')
     elif full and full.get("chars", 0) > 500 and lic not in ALLOW_LIC:
         licline = (f'<div class="kbmeta"><span class="kbpill warn">许可不明</span>'
@@ -421,11 +489,12 @@ def paper_page(p, d, full):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{esc(d["t"])} · 全文 · AIVC Insight</title>
-<link rel="stylesheet" href="../assets/style.css?v=6">
+<link rel="stylesheet" href="../assets/style.css?v=7">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://aivc.news/kb/{p['id']}.html">
 </head>
 <body>
+{chars_mark}
 {NAV.format(up="../")}
 
 <div class="pagehead"><div class="wrap">
@@ -447,6 +516,7 @@ def paper_page(p, d, full):
       <div class="kbfoot">
         <a href="../paper.html?id={p['id']}">← 回到本站七层解读</a>
         <a href="{esc(d.get("link") or "https://doi.org/" + d["doi"])}" target="_blank" rel="noopener">原文地址 →</a>
+        <a href="../paper.html?id={p['id']}&amp;upl=1#kv-upload">这篇的全文我也有 → 投稿口</a>
       </div>
     </article>
   </div>
@@ -487,7 +557,7 @@ def index_page(papers, parsed, route):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>全文库 · AIVC Insight</title>
-<link rel="stylesheet" href="../assets/style.css?v=6">
+<link rel="stylesheet" href="../assets/style.css?v=7">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://aivc.news/kb/index.html">
 <meta name="description" content="AIVC Insight 全文库：开放获取论文的站内可读全文，按主题分类，支持章节定位与引用。">
@@ -574,14 +644,7 @@ def main():
         if fails:
             print(f"  抓取失败 {len(fails)}: {fails[:6]}")
 
-    parsed = {}
-    for p in papers:
-        f = CACHE / f"{p['id']}.xml"
-        if f.exists():
-            try:
-                parsed[p["id"]] = parse_xml(f)
-            except Exception as e:
-                print(f"  解析失败 {p['id']}: {type(e).__name__}", file=sys.stderr)
+    parsed = all_parsed()
 
     n_full = 0
     for p in papers:
@@ -594,24 +657,12 @@ def main():
     (KB / "index.html").write_text(index_page(load_papers(), parsed, route), encoding="utf-8")
 
     # 检索索引：标题级（轻）
-    idx = []
-    for p in load_papers():
-        f = parsed.get(p["id"])
-        if not (f and f.get("lic") in ALLOW_LIC and f.get("chars", 0) > 500):
-            continue
-        idx.append({
-            "id": p["id"], "t": p["t"], "a": p["a"], "v": p["v"], "d": p["d"],
-            "g": GROUP.get(p["g"], ""), "n": f["chars"],
-            "s": [s["h"] for s in f["secs"] if s["h"]],
-        })
-    (ASSETS / "kb-index.js").write_text(
-        "// 全文库索引 —— 由 tools/build_kb.py 生成\nconst KBINDEX = "
-        + json.dumps(idx, ensure_ascii=False, indent=0) + ";\n", encoding="utf-8")
+    idx = idx_page(load_papers(), parsed, route)
 
     print(f"\n生成 {len(papers)} 个页面 → kb/")
     print(f"  站内可读全文 : {n_full}")
     print(f"  仅摘要/大纲  : {len(papers) - n_full}")
-    print(f"  索引条目     : {len(idx)}")
+    print(f"  索引条目     : {idx}")
 
 
 if __name__ == "__main__":
