@@ -117,7 +117,18 @@ for i in ids:
         err(f"sitemap.xml 缺少文献 {i} 的 /paper?id={i} 条目")
 
 # ---------- 6. 全站 paper 链接有效性 ----------
-scan_files = sorted(ROOT.glob("*.html")) + [ROOT / "feed.xml", ROOT / "sitemap.xml"]
+# 2026-10-31 修复：此处原写作 ROOT / "feed.xml"（文件不存在，被下方 exists()
+# 判断静默跳过），导致 feed.xml 的链接检查自建立起就是死代码——旧版从未真正
+# 校验过订阅源。实际路径为 assets/feed.xml。
+scan_files = sorted(ROOT.glob("*.html")) + [
+    ROOT / "assets" / "feed.xml",
+    ROOT / "sitemap.xml",
+]
+_missing = [f for f in scan_files if not f.exists()]
+if _missing:
+    # 显式报错而非静默跳过：路径一旦写错必须立刻暴露，不得再次退化为死代码
+    for f in _missing:
+        err(f"待检文件不存在，链接校验无法执行: {f.relative_to(ROOT)}")
 for f in scan_files:
     if not f.exists():
         continue
@@ -338,6 +349,29 @@ for _f in sorted(ROOT.glob("*.html")):
                 f"{_f.name} 内联 <script>[{_i}] 存在 JS 语法错误"
                 f"（会导致整段页面脚本静默失效）: {' | '.join(_detail)}"
             )
+
+# ---------- 17. feed lastBuildDate 与最新条目一致 ----------
+# 背景（2026-10-31）：合并 #26 后 feed lastBuildDate 停在 10-28，而最新条目已是
+# 10-30。订阅端据此判断「有没有更新」，日期不前进等于新文章推不出去。此项原先
+# 靠人记得补（今日由总管手工发现），现改为机器强制。
+_feed_path = ROOT / "assets" / "feed.xml"
+if _feed_path.exists():
+    _ftxt = _feed_path.read_text(encoding="utf-8")
+    _lb = re.search(r"<lastBuildDate>([^<]+)</lastBuildDate>", _ftxt)
+    _pubs = re.findall(r"<pubDate>([^<]+)</pubDate>", _ftxt)
+    if _lb and _pubs:
+        try:
+            from email.utils import parsedate_to_datetime as _pdt
+
+            _lb_d = _pdt(_lb.group(1)).date()
+            _newest = max(_pdt(p).date() for p in _pubs)
+            if _lb_d < _newest:
+                err(
+                    f"assets/feed.xml lastBuildDate={_lb_d} 早于最新条目 {_newest}，"
+                    f"订阅端会认为无更新（请同步为 {_newest}）"
+                )
+        except (TypeError, ValueError):
+            warn("assets/feed.xml 日期格式无法解析，跳过 lastBuildDate 一致性检查")
 
 # ---------- 汇总 ----------
 print("=" * 56)
