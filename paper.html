@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>文献解读 · AIVC Insight</title>
-<link rel="stylesheet" href="assets/style.css?v=5">
+<link rel="stylesheet" href="assets/style.css?v=6">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://aivc.news/paper.html">
 </head>
@@ -27,6 +27,7 @@
   <div class="navsub">
   <a href="glossary.html">术语表</a>
   <a href="posters.html">术语海报</a>
+  <a href="kb/index.html">全文库</a>
   <a href="search.html">搜索</a>
   <a href="about.html">关于</a>
   </div>
@@ -38,13 +39,14 @@
 </div></section>
 
 <footer><div class="wrap">
-  <div class="fnav"><a href="index.html">首页</a><a href="papers.html">文献库</a><a href="models.html">模型谱系</a><a href="companies.html">企业解剖</a><a href="china.html">中国生态</a><a href="news.html">前沿速递</a><a href="benchmarks.html">数据与基准</a><a href="insight.html">深度解读</a><a href="glossary.html">术语表</a><a href="posters.html">术语海报</a><a href="search.html">搜索</a><a href="about.html">关于</a></div>
+  <div class="fnav"><a href="index.html">首页</a><a href="papers.html">文献库</a><a href="models.html">模型谱系</a><a href="companies.html">企业解剖</a><a href="china.html">中国生态</a><a href="news.html">前沿速递</a><a href="benchmarks.html">数据与基准</a><a href="insight.html">深度解读</a><a href="glossary.html">术语表</a><a href="posters.html">术语海报</a><a href="kb/index.html">全文库</a><a href="search.html">搜索</a><a href="about.html">关于</a></div>
   <div>AIVC Insight · 文献解读均为编辑部基于公开信息的整理，观点部分已注明</div>
   <div>aivc.news · <a href="assets/feed.xml">RSS 订阅</a> · © 2026 AIVC Insight Team</div>
 </div></footer>
 
 <script src="assets/papers-data.js"></script>
 <script src="assets/fulltext-data.js"></script>
+<script src="assets/kb-index.js"></script>
 <script>
 (function(){
 var G={g1:'纲领与路线图',g2:'单细胞基础模型',g3:'扰动响应预测',g4:'批评与基准',g5:'关键数据集',g6:'经典基线方法',g7:'空间与多组学',g8:'衰老交叉'};
@@ -59,12 +61,16 @@ document.title=p.t+' · 文献解读 · AIVC Insight';
    订阅期刊如实标注并引导到 DOI 页找机构入口。数据来自 tools/fulltext.py 自动核验。 */
 var ft=(typeof FULLTEXT!=='undefined'&&FULLTEXT[p.id])||null;
 var links='';
-if(ft&&ft.k==='pdf'&&ft.u){links+='<a class="dbtn pdf" href="'+ft.u+'" target="_blank" rel="noopener">全文 PDF</a>'}
-else if(ft&&ft.k==='page'&&ft.u){links+='<a class="dbtn free" href="'+ft.u+'" target="_blank" rel="noopener">免费全文</a>'}
+/* 站内全文优先：kb/ 下存在该篇就作为主入口，读者不必跳出站点 */
+var inKB=(typeof KBINDEX!=='undefined')&&KBINDEX.some(function(x){return x.id===p.id});
+if(inKB){links+='<a class="dbtn kb" href="kb/'+p.id+'.html">读站内全文</a>'}
+if(ft&&ft.k==='pdf'&&ft.u&&!inKB){links+='<a class="dbtn pdf" href="'+ft.u+'" target="_blank" rel="noopener">全文 PDF</a>'}
+else if(ft&&ft.k==='page'&&ft.u&&!inKB){links+='<a class="dbtn free" href="'+ft.u+'" target="_blank" rel="noopener">免费全文</a>'}
 links+=p.doi?'<a class="dbtn" href="https://doi.org/'+p.doi+'" target="_blank" rel="noopener">DOI 原文</a>':'<span class="dbtn off">DOI 待核实</span>';
-if(ft&&ft.k==='closed'){links+='<span class="dbtn off">需订阅</span>'}
+if(ft&&ft.k==='closed'&&!inKB){links+='<span class="dbtn off">需订阅</span>'}
 var ftnote='';
-if(ft&&ft.k==='pdf'){ftnote='全文来源：'+ft.s+'（开放获取，可直接下载）'}
+if(inKB){ftnote='本站已收录该文全文（开放获取，格式转换未改原文）· 可直接在站内阅读与检索'}
+else if(ft&&ft.k==='pdf'){ftnote='全文来源：'+ft.s+'（开放获取，可直接下载）'}
 else if(ft&&ft.k==='page'){ftnote='全文来源：'+ft.s+'（免费阅读，无需订阅）'}
 else if(ft&&ft.k==='closed'){ftnote='该刊为订阅制；经 DOI 页可用所在机构订阅或作者自存稿获取'}
 if(ftnote){ftnote+=' · 核验于 '+ft.t}

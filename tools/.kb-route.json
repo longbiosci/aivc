@@ -1,0 +1,751 @@
+{
+ "p01": {
+  "route": "epmc",
+  "pmcid": "PMC12148494",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p02": {
+  "route": "epmc",
+  "pmcid": "PMC11310084",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p03": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p04": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by-nc-nd",
+  "vex": null
+ },
+ "p05": {
+  "route": "epmc",
+  "pmcid": "PMC12012092",
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p06": {
+  "route": "epmc",
+  "pmcid": "PMC12967334",
+  "oa": "Y",
+  "license": "cc by-nc",
+  "vex": null
+ },
+ "p07": {
+  "route": "none"
+ },
+ "p08": {
+  "route": "epmc",
+  "pmcid": "PMC10949956",
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p09": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p10": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p11": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by-nc-nd",
+  "vex": null
+ },
+ "p12": {
+  "route": "epmc",
+  "pmcid": "PMC11615217",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p13": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by",
+  "vex": null
+ },
+ "p14": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by-nc",
+  "vex": null
+ },
+ "p15": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by-nc-nd",
+  "vex": null
+ },
+ "p16": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by-nc-nd",
+  "vex": null
+ },
+ "p17": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by",
+  "vex": null
+ },
+ "p18": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by-nc",
+  "vex": null
+ },
+ "p19": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by-nc-nd",
+  "vex": null
+ },
+ "p20": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by-nc-nd",
+  "vex": null
+ },
+ "p21": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p22": {
+  "route": "arxiv",
+  "ok": true
+ },
+ "p23": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by-nc-nd",
+  "vex": null
+ },
+ "p24": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p25": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by-nc-nd",
+  "vex": null
+ },
+ "p26": {
+  "route": "epmc",
+  "pmcid": "PMC13376892",
+  "oa": "Y",
+  "license": "cc by-nc-nd",
+  "vex": null
+ },
+ "p27": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p28": {
+  "route": "epmc",
+  "pmcid": "PMC12586647",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p29": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p30": {
+  "route": "epmc",
+  "pmcid": "PMC10258562",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p31": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p32": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by",
+  "vex": null
+ },
+ "p33": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by-nc",
+  "vex": null
+ },
+ "p34": {
+  "route": "none"
+ },
+ "p35": {
+  "route": "epmc",
+  "pmcid": "PMC13063516",
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p36": {
+  "route": "epmc",
+  "pmcid": "PMC12328236",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p37": {
+  "route": "epmc",
+  "pmcid": "PMC12007350",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p38": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p39": {
+  "route": "epmc",
+  "pmcid": "PMC13390336",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p40": {
+  "route": "arxiv",
+  "ok": true
+ },
+ "p41": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p42": {
+  "route": "none"
+ },
+ "p43": {
+  "route": "epmc",
+  "pmcid": "PMC12492631",
+  "oa": "Y",
+  "license": "cc by-nc-nd",
+  "vex": null
+ },
+ "p44": {
+  "route": "epmc",
+  "pmcid": "PMC13412022",
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p45": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by",
+  "vex": null
+ },
+ "p46": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "Y",
+  "license": "cc by-nc",
+  "vex": null
+ },
+ "p47": {
+  "route": "epmc",
+  "pmcid": "PMC12365531",
+  "oa": "Y",
+  "license": "cc by-nc-nd",
+  "vex": null
+ },
+ "p48": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p49": {
+  "route": "epmc",
+  "pmcid": "PMC9380471",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p50": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by",
+  "vex": null
+ },
+ "p51": {
+  "route": "epmc",
+  "pmcid": "PMC11701654",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p52": {
+  "route": "epmc",
+  "pmcid": "PMC6289068",
+  "oa": "Y",
+  "license": null,
+  "vex": null
+ },
+ "p53": {
+  "route": "epmc",
+  "pmcid": "PMC6884693",
+  "oa": "Y",
+  "license": null,
+  "vex": null
+ },
+ "p54": {
+  "route": "epmc",
+  "pmcid": "PMC7954949",
+  "oa": "Y",
+  "license": null,
+  "vex": null
+ },
+ "p55": {
+  "route": "epmc",
+  "pmcid": "PMC8011839",
+  "oa": "Y",
+  "license": null,
+  "vex": null
+ },
+ "p56": {
+  "route": "epmc",
+  "pmcid": "PMC12695652",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p57": {
+  "route": "epmc",
+  "pmcid": "PMC11798877",
+  "oa": "Y",
+  "license": "cc by-nc-nd",
+  "vex": null
+ },
+ "p58": {
+  "route": "epmc",
+  "pmcid": "PMC11578798",
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p59": {
+  "route": "epmc",
+  "pmcid": "PMC12802646",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p60": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p61": {
+  "route": "epmc",
+  "pmcid": "PMC6876109",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p62": {
+  "route": "epmc",
+  "pmcid": "PMC8654267",
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p63": {
+  "route": "epmc",
+  "pmcid": "PMC11405266",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p64": {
+  "route": "epmc",
+  "pmcid": "PMC7963339",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p65": {
+  "route": "epmc",
+  "pmcid": "PMC11070280",
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p66": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p67": {
+  "route": "epmc",
+  "pmcid": "PMC11291288",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p68": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p69": {
+  "route": "epmc",
+  "pmcid": "PMC9337830",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p70": {
+  "route": "epmc",
+  "pmcid": "PMC12037106",
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p71": {
+  "route": "epmc",
+  "pmcid": "PMC11180609",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p72": {
+  "route": "epmc",
+  "pmcid": "PMC13557097",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p73": {
+  "route": "epmc",
+  "pmcid": "PMC4015143",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p74": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p75": {
+  "route": "epmc",
+  "pmcid": "PMC8853656",
+  "oa": "Y",
+  "license": "cc0",
+  "vex": null
+ },
+ "p76": {
+  "route": "epmc",
+  "pmcid": "PMC4845101",
+  "oa": "Y",
+  "license": null,
+  "vex": null
+ },
+ "p77": {
+  "route": "epmc",
+  "pmcid": "PMC10257182",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p78": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p79": {
+  "route": "epmc",
+  "pmcid": "PMC10501909",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p80": {
+  "route": "epmc",
+  "pmcid": "PMC10700136",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p81": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p82": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by",
+  "vex": null
+ },
+ "p83": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by-nc-nd",
+  "vex": null
+ },
+ "p84": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p85": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by",
+  "vex": null
+ },
+ "p86": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p87": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by",
+  "vex": null
+ },
+ "p88": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p89": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p90": {
+  "route": "epmc",
+  "pmcid": "PMC13693830",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p91": {
+  "route": "arxiv",
+  "ok": true
+ },
+ "p92": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by",
+  "vex": null
+ },
+ "p93": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p94": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p95": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by",
+  "vex": null
+ },
+ "p96": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by",
+  "vex": null
+ },
+ "p97": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by",
+  "vex": null
+ },
+ "p98": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by",
+  "vex": null
+ },
+ "p99": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by",
+  "vex": null
+ },
+ "p100": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by-nc",
+  "vex": null
+ },
+ "p101": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by",
+  "vex": null
+ },
+ "p102": {
+  "route": "epmc",
+  "pmcid": "PMC13340176",
+  "oa": "Y",
+  "license": "cc by",
+  "vex": null
+ },
+ "p103": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p104": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by-nc",
+  "vex": null
+ },
+ "p105": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p106": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p107": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p108": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": "cc by-nc-nd",
+  "vex": null
+ },
+ "p109": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ },
+ "p110": {
+  "route": "none",
+  "pmcid": null,
+  "oa": "N",
+  "license": null,
+  "vex": null
+ }
+}
