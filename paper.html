@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>文献解读 · AIVC Insight</title>
-<link rel="stylesheet" href="assets/style.css?v=6">
+<link rel="stylesheet" href="assets/style.css?v=7">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://aivc.news/paper.html">
 </head>
@@ -47,6 +47,8 @@
 <script src="assets/papers-data.js"></script>
 <script src="assets/fulltext-data.js"></script>
 <script src="assets/kb-index.js"></script>
+<script src="assets/kb-inbox-cfg.js"></script>
+<script src="assets/kb-inbox-data.js"></script>
 <script>
 (function(){
 var G={g1:'纲领与路线图',g2:'单细胞基础模型',g3:'扰动响应预测',g4:'批评与基准',g5:'关键数据集',g6:'经典基线方法',g7:'空间与多组学',g8:'衰老交叉'};
@@ -68,6 +70,8 @@ if(ft&&ft.k==='pdf'&&ft.u&&!inKB){links+='<a class="dbtn pdf" href="'+ft.u+'" ta
 else if(ft&&ft.k==='page'&&ft.u&&!inKB){links+='<a class="dbtn free" href="'+ft.u+'" target="_blank" rel="noopener">免费全文</a>'}
 links+=p.doi?'<a class="dbtn" href="https://doi.org/'+p.doi+'" target="_blank" rel="noopener">DOI 原文</a>':'<span class="dbtn off">DOI 待核实</span>';
 if(ft&&ft.k==='closed'&&!inKB){links+='<span class="dbtn off">需订阅</span>'}
+/* 投稿口：不论全文是否可得都留着——已收录的也允许作者投更好的版本（如出版社排版版） */
+links+='<a class="dbtn upl" href="#kv-upload" id="upl-jump">我有全文 ↑</a>' 
 var ftnote='';
 if(inKB){ftnote='本站已收录该文全文（开放获取，格式转换未改原文）· 可直接在站内阅读与检索'}
 else if(ft&&ft.k==='pdf'){ftnote='全文来源：'+ft.s+'（开放获取，可直接下载）'}
@@ -94,6 +98,11 @@ var html='<article class="detail">'
 +sec('争议与后续',p.debate,'db')
 +sec('情报点评',p.takeaway,'tk')
 +'</article>';
+/* 投稿口挂载点：投稿是读者对这篇文献的动作，紧跟正文，不埋进页脚 */
+html+='<div class="kvsect"><div class="kvhead">全文投稿</div><div id="kv"></div>'
+    +'<div class="kvsect-note">为什么值得投：站内全文可被检索、可引用、可跨文献对照；'
+    +'投来的稿子由编辑部核许可与归属，通过后进入 <a href="kb/index.html">全文库</a>，'
+    +'作者署名会写在页首。我们<b>不会</b>把文件公开下载，只做站内转录。</div></div>';
 if(fw){html+='<div class="drel"><h3>延伸阅读</h3><ul>'+fw+'</ul></div>'}
 var rel=PAPERS.filter(function(q,j){return q.g===p.g&&j!==i}).slice(0,5);
 if(rel.length){html+='<div class="drel"><h3>同组相关文献</h3><ul>'+rel.map(function(q){return '<li><a href="paper.html?id='+q.id+'">'+q.t+'</a><span>'+q.v+' · '+q.d+'</span></li>'}).join('')+'</ul></div>'}
@@ -102,5 +111,6 @@ html+='<div class="dpn">'+(prev?'<a href="paper.html?id='+prev.id+'">← 上一�
 app.innerHTML=html;
 })();
 </script>
+<script src="assets/kb-inbox.js"></script>
 </body>
 </html>

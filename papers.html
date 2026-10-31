@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>文献库 · AIVC Insight</title>
-<link rel="stylesheet" href="assets/style.css?v=6">
+<link rel="stylesheet" href="assets/style.css?v=7">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="AIVC Insight RSS" href="assets/feed.xml">
 <meta name="description" content="AIVC Insight：AI 虚拟细胞领域情报刊物，以科学文献为第一情报源，追踪论文、模型、数据与产业动态。">
@@ -65,7 +65,20 @@
   </div>
 </div>
 
-<div class="submitbox">标有 <b>PDF 全文</b> 的文献可一键获取开放获取版本；其余文献受出版方版权限制。若您持有某篇的合法全文，欢迎发送至 <a href="mailto:editor@aivc.news">editor@aivc.news</a>，我们将做全文精读并升级该条目。</div>
+<div class="submitbox">标有 <b>站内全文</b> 的直接在站内读；标 <b>PDF 全文 / 免费全文</b> 的跳到开放获取版本。<b>其余文献受出版方版权限制，站内读不到正文。</b>若您手上有某篇的合法全文——自己投的稿、机构订阅下载的、作者自存稿——请进该篇详情页，页面下方有「<a href="#upl-help">这篇的全文我也有</a>」，投上来我们核完许可就做成站内全文。</div>
+
+<div class="uplhelp" id="upl-help">
+  <b>全文投稿怎么走</b>
+  <ol>
+    <li>打开任意一篇文献详情页，点「我有全文 ↑」，选文件、填许可、勾选确认，生成<strong>投递单</strong>。</li>
+    <li>页面会给你一封<b>已经写好主题和正文</b>的邮件（编号在里面，别改）。把文件加为附件、发出即可。
+        编辑部核<b>许可</b>与<b>归属</b>（文件里得有这篇的 DOI 或标题），
+        不符会写明原因退回，不会悄悄丢掉。</li>
+    <li>通过后该篇进入 <a href="kb/index.html">全文库</a>，详情页按钮变成「读站内全文」，作者署名写在页首；
+        回到原页面能看到处理状态。</li>
+  </ol>
+  <span class="uplnote">我们不公开托管 PDF、不做下载站；只把许可允许的正文转成站内可读页面。版权不明的稿件一律不入库。</span>
+</div>
 
 <div class="gtoc"><span class="lb">分组跳转</span>
   <a href="#g1">纲领与路线图</a>
@@ -236,6 +249,7 @@
 
 <script src="assets/fulltext-data.js"></script>
 <script src="assets/kb-index.js"></script>
+<script src="assets/kb-inbox-data.js"></script>
 <script>
 /* 全文可达性角标与计数：数据来自 assets/fulltext-data.js（tools/fulltext.py 自动生成），
    静态列表无需逐条改写；新增文献后重跑生成脚本即自动生效。 */
@@ -249,6 +263,22 @@
   if(fe)fe.textContent=st.pdf+st.page;
   if(fp)fp.textContent=st.pdf;
   if(fc)fc.textContent=st.closed;
+  /* 投稿状态角标：读者投过、编辑部已入库的，在列表上直接标出来（数据来自 kb-inbox-data.js，
+     由 tools/inbox.py 回写；静态 HTML 不动） */
+  if(typeof KBINBOX_STATUS!=='undefined'){
+    var done={};
+    KBINBOX_STATUS.forEach(function(x){if(x.s==='done')done[x.p]=1});
+    document.querySelectorAll('a[href*="paper.html?id="]').forEach(function(a){
+      var m=/id=(p\d+)/.exec(a.getAttribute('href')||'');
+      if(!m||!done[m[1]])return;
+      var box=a.closest('.paper');if(!box||box.querySelector('.fmark.upl'))return;
+      var em=box.querySelector('a.doi');if(!em)return;
+      var sp=document.createElement('span');
+      sp.className='fmark upl';sp.textContent='读者投稿';
+      sp.title='该篇全文由读者投稿并经编辑部核验许可';
+      em.parentNode.insertBefore(sp,em.nextSibling);
+    });
+  }
   document.querySelectorAll('a.doi').forEach(function(a){
     var box=a.closest('.paper');if(!box)return;
     var l=box.querySelector('a[href*="paper.html?id="]');if(!l)return;

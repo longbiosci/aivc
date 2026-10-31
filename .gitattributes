@@ -1,3 +1,16 @@
 *.jpg binary
 *.png binary
 *.zip binary
+
+# ---- 投稿口隔离（2026-10-31）----
+#
+# inbox/**（本地隔离区）只承载读者投来的原文，它不进仓库（.gitignore）、也不部署：
+# 原文存在 GitHub issue 附件里，取件时落到这里。但「不上线」不等于「进不了 HTML」——
+# 若哪天有人把收件箱内容拷进 kb/，原文里的 `<!--` 会提前闭合注释、`-->` 能越狱出注释。
+#
+# 这一行把它从「靠人小心」变成「Git 层面做不到」：
+#   -text            不做换行归一，字节原样进来（免得误伤 PDF）
+#   filter=kbscrub   checkout 时把注释定界符换成 ‹!‹‹ / ‹!‹‹-，由 tools/inbox.py 提供
+#   diff=inbox       不当代码 diff
+inbox/** -text filter=kbscrub diff=inbox
+

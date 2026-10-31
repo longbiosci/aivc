@@ -20,6 +20,7 @@ aivc.news 站点数据校验器
  13. 文献标题精简索引必须覆盖全部文献
  14–15. 术语海报清单与海报页一致性
  16. HTML 内联 <script> 的 JS 语法（2026-10-31 事故后新增：见下方说明）
+ 20. 投稿口（kb-inbox）自洽：配置无凭据、脚本引入顺序、挂载点、清道规则、CSP 放行
 
 退出码：有 error 返回 1（CI 失败），仅有 warning 返回 0。
 """
@@ -473,6 +474,112 @@ else:
     if _bad_back:
         err(f"kb 页面缺少返回解读页的链接: {_bad_back[:5]}")
     # 导航入口由第 11 项（NAVSUB_EXPECT）统一强制，此处不重复校验
+
+# ---------- 20. 投稿口（kb-inbox）自洽 ----------
+# 背景（2026-10-31）：文献页上线「这篇的全文我也有」上传口，读者投来的原件只落在
+# inbox/<批次>/ 分支（不部署），核验后由 tools/inbox.py 转成 kb/<id>.src.json 入库。
+# 这条链路上任何一环断了，页面会出现「投了没反应」或「点进去 404」——只有读者才会踩到。
+# 所以这里把四件事钉成机器检查：
+_C_CFG = ROOT / "assets" / "kb-inbox-cfg.js"
+_C_JS = ROOT / "assets" / "kb-inbox.js"
+_C_DATA = ROOT / "assets" / "kb-inbox-data.js"
+_C_PAPER = (ROOT / "paper.html").read_text(encoding="utf-8")
+
+if not _C_JS.exists():
+    err("缺少 assets/kb-inbox.js（文献页投稿口脚本）")
+if not _C_DATA.exists():
+    err("缺少 assets/kb-inbox-data.js（运行 python3 tools/publish_inbox.py 生成）")
+else:
+    r = subprocess.run(["node", "--check", str(_C_DATA)], capture_output=True, text=True)
+    if r.returncode != 0:
+        err(f"kb-inbox-data.js 语法错误: {r.stderr.strip()[:200]}")
+    _dsrc = _C_DATA.read_text(encoding="utf-8")
+    if "var KBINBOX_STATUS" not in _dsrc:
+        err("kb-inbox-data.js 必须用 var 声明（const 不会挂到 window，投稿状态条取不到）")
+    _paperids = set(ids)
+    for m in re.finditer(r'"p":\s*"(p\d+)"', _dsrc):
+        if m.group(1) not in _paperids:
+            err(f"kb-inbox-data.js 的回执指向不存在的文献: {m.group(1)}")
+    for m in re.finditer(r'"s":\s*"([^"]+)"', _dsrc):
+        if m.group(1) not in ("done", "wait", "blocked"):
+            err(f"kb-inbox-data.js 的状态值非法: {m.group(1)}（只允许 done/wait/blocked）")
+    for m in re.finditer(r'"r":\s*"([^"]+)"', _dsrc):
+        if not re.fullmatch(r"u\d{14}[a-z0-9]{0,4}", m.group(1)):
+            err(f"kb-inbox-data.js 的投稿编号格式不对: {m.group(1)}（应为 u+14 位时间戳[+4 位随机]）")
+
+if not _C_CFG.exists():
+    err("缺少 assets/kb-inbox-cfg.js（投稿口开关与仓库名）")
+else:
+    r = subprocess.run(["node", "--check", str(_C_CFG)], capture_output=True, text=True)
+    if r.returncode != 0:
+        err(f"kb-inbox-cfg.js 语法错误: {r.stderr.strip()[:200]}")
+    _csrc = _C_CFG.read_text(encoding="utf-8")
+    # 前端只能放公开信息：出现任何形似令牌的串都是事故，不是配置
+    if re.search(r"gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}", _csrc):
+        err("kb-inbox-cfg.js 含疑似 GitHub 令牌 —— 前端配置里不得出现任何凭据（见 OPS.md §3.2.6）")
+    if "enabled:" not in _csrc:
+        err("kb-inbox-cfg.js 缺 enabled 开关（关掉时页面应退回邮件模式）")
+    # 收件邮箱必须是真实地址——写错了读者点了发不出去，而页面上看不出来
+    _m = re.search(r'reviewer:\s*"([^"]+)"', _csrc)
+    if not _m:
+        err("kb-inbox-cfg.js 缺 reviewer（收件邮箱）")
+    elif not re.match(r"^[^@\s]+@[^@\s]+\.[A-Za-z]{2,}$", _m.group(1)):
+        err(f"kb-inbox-cfg.js 的 reviewer 不是合法邮箱：{_m.group(1)}")
+    # 邮箱通道不需要仓库名；留 `owner:` / `repo:` 说明旧通道没清干净
+    for _k in ("owner", "repo"):
+        if re.search(rf'{_k}:\s*"', _csrc):
+            err(f"kb-inbox-cfg.js 仍保留 {_k} —— 投稿口已改为邮件通道，仓库配置应删除")
+
+# paper.html 必须按序引入三件套并留挂载点，顺序错了脚本跑不起来（无报错的静默失效）
+if "kb-inbox-cfg.js" not in _C_PAPER:
+    err("paper.html 未引入 assets/kb-inbox-cfg.js（投稿口不会出现）")
+if "kb-inbox.js" not in _C_PAPER:
+    err("paper.html 未引入 assets/kb-inbox.js")
+if 'id="kv"' not in _C_PAPER:
+    err("paper.html 缺少投稿口挂载点 <div id=\"kv\">")
+_ord = [_C_PAPER.find("papers-data.js"), _C_PAPER.find("kb-inbox-cfg.js"),
+        _C_PAPER.find("kb-inbox-data.js"), _C_PAPER.find("kb-inbox.js")]
+if all(x >= 0 for x in _ord) and _ord != sorted(_ord):
+    err("paper.html 脚本引入顺序不对：需要 papers-data → kb-inbox-cfg → kb-inbox-data → kb-inbox")
+
+# 投稿口走邮件（mailto:），页面不该有任何跨域请求。CSP 里若还留着 API 域，
+# 说明代码里有旧通道的残留——那意味着又有人在往前端塞网络凭据的路子。
+_hdr = ROOT / "_headers"
+if _hdr.exists():
+    _htxt = _hdr.read_text(encoding="utf-8")
+    if "api.github.com" in _htxt:
+        err("_headers 仍放行 api.github.com —— 投稿口已改为邮件通道，页面不该发跨域请求")
+else:
+    err("缺少 _headers（安全响应头）")
+
+# 收件箱路径的 Git 层隔离：没有这条规则，原文里的注释定界符能随文件进工作区
+_ga = ROOT / ".gitattributes"
+if not _ga.exists() or "filter=kbscrub" not in _ga.read_text(encoding="utf-8"):
+    err(".gitattributes 缺少收件箱清道规则（inbox/** filter=kbscrub），原文可注入 HTML 注释")
+
+# 隔离区必须逐条在 .gitignore 里：原文只该存在于运维机器上，不该有机会被误提交
+_gi = ROOT / ".gitignore"
+_gi_lines = (_gi.read_text(encoding="utf-8").splitlines() if _gi.exists() else [])
+for _need in ("inbox/", "drops/"):
+    if _need not in _gi_lines:
+        err(f".gitignore 未忽略 {_need}（收件原文可能被误提交）")
+
+# 前端脚本里出现令牌 = 把写权限公开在网页源码里（本功能第一版正因此被密钥扫描拦下）
+_JS_TOK = re.compile(r"gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}")
+for _js in (ROOT / "assets").glob("kb-inbox*.js"):
+    _m = _JS_TOK.search(_js.read_text(encoding="utf-8"))
+    if _m:
+        err(f"{_js.name} 含 GitHub 令牌 —— 前端不得出现任何凭据（见 OPS.md §3.2.6）")
+
+# 投稿入库的页面必须与内联进来的正文一致：.src.json 存在的篇章，kb/ 页里得真有正文
+for _sf in (ROOT / "kb").glob("p*.src.json"):
+    _pid = _sf.name.split(".")[0]
+    if _pid not in _paperids:
+        err(f"kb/{_pid}.src.json 对应的文献不存在")
+    elif not (ROOT / "kb" / f"{_pid}.html").exists():
+        err(f"kb/{_pid}.src.json 存在但未生成 kb/{_pid}.html（重跑 tools/build_kb.py）")
+    elif "kb-chars:" not in (ROOT / "kb" / f"{_pid}.html").read_text(encoding="utf-8"):
+        err(f"kb/{_pid}.html 未渲染出正文（投稿已入库但页面为空）")
 
 # ---------- 汇总 ----------
 print("=" * 56)
