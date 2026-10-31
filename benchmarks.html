@@ -45,7 +45,7 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 <div class="pagehead"><div class="wrap">
   <div class="crumb">栏目 04 · DATA &amp; BENCHMARKS</div>
   <h1>数据与基准</h1>
-  <p class="lede">「观测数据学相关，干预数据学因果」——数据军备赛已全面转向大规模扰动数据；评测的重点已从「哪个模型更好」下沉到「这个比较是否成立」，2026-10 起又下潜了一层：先是<b>缺少阳性对照的基准同样会犯「假阴性」，把真正有效的模型埋掉</b>，接着是<b>两篇同期期刊综述把「什么证据才算数」本身写成了正文条款</b>——扰动特异 / 机制级 / 决策级三级验证，以及「仅有表征不等于能预测响应；留出集准确率不等于识别机制」两句证据边界判词；而 2026-10-29 起，问题又往前推了一层：<b>被评测的那个量本身，是不是该被评测的量</b>——上届通用奖得主所在机构的研究者公开质疑「RNA-seq 扰动预测不是虚拟细胞的正确基准」，同时赛事官方复盘中一条获奖方案的自述，为「指标对预测尺度敏感」提供了白纸黑字的内部证据。10-30 再记一层：<b>关于「模型要不要继续放大」的争论，第一次从批评性基准侧扩散到产业侧</b>，且两家公司在同一周给出了方向相反的公开主张（详见<a href="insight.html#obs-2026-10-30">本期每日观察</a>）。<b>本栏收录的任何「公司口径」性能数字均按机构自述处理，不作为证据引用。</b>更新至 2026-10-30。</p>
+  <p class="lede">「观测数据学相关，干预数据学因果」——数据军备赛已全面转向大规模扰动数据；评测的重点已从「哪个模型更好」下沉到「这个比较是否成立」，2026-10 起又下潜了一层：先是<b>缺少阳性对照的基准同样会犯「假阴性」，把真正有效的模型埋掉</b>，接着是<b>两篇同期期刊综述把「什么证据才算数」本身写成了正文条款</b>——扰动特异 / 机制级 / 决策级三级验证，以及「仅有表征不等于能预测响应；留出集准确率不等于识别机制」两句证据边界判词；而 2026-10-29 起，问题又往前推了一层：<b>被评测的那个量本身，是不是该被评测的量</b>——上届通用奖得主所在机构的研究者公开质疑「RNA-seq 扰动预测不是虚拟细胞的正确基准」，同时赛事官方复盘中一条获奖方案的自述，为「指标对预测尺度敏感」提供了白纸黑字的内部证据。10-30 再记一层：<b>关于「模型要不要继续放大」的争论，第一次从批评性基准侧扩散到产业侧</b>，且两家公司在同一周给出了方向相反的公开主张（详见<a href="insight.html#obs-2026-10-30">本期每日观察</a>）。<b>本栏收录的任何「公司口径」性能数字均按机构自述处理，不作为证据引用。</b>10-31 再补一条数据侧的动向：<b>「可授权」而非「开源」正在成为超大规模扰动数据的主流交付方式</b>（Cascade，见上方数据集卡片，数据生成中、尚未交付）。更新至 2026-10-31。</p>
 </div></div>
 
 <section><div class="wrap">
@@ -58,6 +58,8 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
     <div class="card"><span class="badge b-data">数据集</span><h3>Replogle Perturb-seq</h3><p>首个全基因组 CRISPRi Perturb-seq（&gt;250 万细胞），K562/RPE1 数据成为扰动预测模型事实标准评测集。</p><div class="date">2022-07 · Cell</div></div>
     <div class="card"><span class="badge b-data">数据集</span><h3>Emerald Bay</h3><p>Tahoe 2026-06 发布的约 200 万细胞表型 + 转录组联合数据集，配套 Rhaister 扰动响应模型。</p><div class="date">2026-06 · Tahoe</div></div>
     <div class="card"><span class="badge b-fund">数据基础设施</span><h3>Virtual Biology Initiative（扩容）</h3><p>Biohub 联合 DOE、NIH、Google DeepMind、Isomorphic Labs、Meta 与 NVIDIA，合计约 <b>18 亿美元</b>投向 AI-ready 开放生物数据：Biohub 5 亿（含冷冻电子断层扫描、可成像数百万至数十亿细胞的显微技术）、DOE 五年超 5 亿、NIH 协调既有超 5 亿联邦投资的数据集、三家科技企业合计 3 亿。目标约一年出首批大规模数据集、五年内建成预测模型；商业资助方设数据封锁窗口期，期满后全面公开。</p><div class="date">2026-10-07 · Biohub / DOE / NIH / DeepMind / Isomorphic / Meta</div></div>
+
+    <div class="card"><span class="badge b-data">数据集 · 可授权</span><h3>Cascade（免疫多模态扰动数据集）</h3><p>Parse Biosciences（QIAGEN 旗下）× Nomic Bio 于 <b>10-29</b> 宣布联合生成：<b>1 亿条单细胞 RNA-seq profile</b> 配 <b>超过 11,000 条分泌组蛋白 profile</b>，覆盖 <b>12 名健康供体</b> PBMC、<b>至少 14 种免疫细胞类型</b>、<b>超过 150,000 个</b>细胞因子 / 趋化因子 / 药物的单独与<b>组合</b>扰动条件，并在<b>多个时间点</b>上把转录组与分泌组按供体、扰动、时间三者对齐。scRNA-seq 由 Parse 的 GigaLab 完成，蛋白由 Nomic 的 Omni 1000 平台测（每样本 1,000+ 分泌蛋白）。设计上刻意做成可扩展框架：可按供体 / 扰动留出做泛化评测，也可检验细胞响应能否预测下游分泌蛋白谱。创始合作方包括 <b>GSK、Pfizer、Sanofi、Graph Therapeutics、Turbine</b>。<b>两个前提必须标清楚</b>：一是<b>数据生成尚在进行中、将以授权方式提供，目前尚未交付</b>；二是规模与设计全部为机构自述，未经同行评议或第三方核验。另值得记一句：这个量级的数据走的是<b>「可授权」而非「开源」</b>，与 Tahoe-100M、CZ CELLxGENE 的开放路线分道——若成为主流，模型侧的数据可及性会出现新的分层。</p><div class="date">2026-10-29 宣布 · Parse Biosciences × Nomic Bio · 机构自述，数据未交付</div></div>
   </div>
 </div></section>
 
