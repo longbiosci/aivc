@@ -64,13 +64,21 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 <script>
 const IDX=[
 // 文献（节选关键条目，文献库页内另有精细检索）
+{s:"文献库",t:"UPM 统一扰动建模",d:"港中深 You 组：三个统一化模块把异质 Perturb-seq 数据集塞进一个预测器，Tahoe-100M 留出细胞系上优于 STATE",u:"paper.html?id=p104",k:"UPM 统一 Perturb-seq 扰动建模 STATE Stack Tahoe 情境 异构"},
+{s:"文献库",t:"稀疏自编码器 SAE 特征真值评估",d:"德黑兰医科大学：可复现的 SAE 特征未必有意义，旋转类方法覆盖最少；应对照同稀疏度的稀疏化 varimax",u:"paper.html?id=p105",k:"sparse autoencoder SAE varimax 可复现 覆盖 纯度 Geneformer 可解释性"},
+{s:"文献库",t:"FICTURE2 分子级转录程序推断",d:"密歇根大学 Kang 组：不做分割不分箱，直接推断每个 RNA 分子来自哪个转录程序",u:"paper.html?id=p106",k:"FICTURE2 分子 转录程序 空间转录组 分割 亚细胞 密歇根"},
+{s:"文献库",t:"Live-ST 活体纵向空间转录组",d:"宾夕法尼亚大学 Ko 组：电转取样加空间条码，在同一块活组织上反复测带位置的 mRNA",u:"paper.html?id=p107",k:"Live-ST 纵向 活体 空间转录组 电转 黑色素瘤 宾夕法尼亚"},
+{s:"文献库",t:"SpaceDX 空间差异表达联合定位",d:"Helmholtz Munich：基因特异空间加权把差异表达检验与定位合成一步，慢应激模型多检出 45.8%",u:"paper.html?id=p108",k:"SpaceDX 差异表达 空间定位 DESeq2 多主体 Helmholtz 小鼠脑"},
+{s:"文献库",t:"NicheCorr 生态位共表达",d:"南卡罗来纳大学：识别生态位依赖的基因共表达变化，非线性均值下唯一控制一类错误",u:"paper.html?id=p109",k:"NicheCorr 生态位 共表达 配体受体 CosMx Xenium 南卡罗来纳"},
+{s:"文献库",t:"人类泌尿生殖系统共发育空间图谱",d:"中科院动物所与北大三院：Carnegie 15-23 期胚胎，跨器官信号促进性腺特化、三种类固醇生成谱系",u:"paper.html?id=p110",k:"urogenital Carnegie organogenesis 性腺 中肾 肾上腺 类固醇 Science 胚胎"},
+
 {s:"文献库",t:"BLOOM 虚拟胚胎条件流匹配",d:"香港大学 Lequan Yu 团队 2026-10-27 bioRxiv 预印本，三套小鼠图谱胜过 22 个时间序列基线",u:"paper.html?id=p97",k:"BLOOM 虚拟胚胎 发育 流匹配 香港大学"},
 {s:"文献库",t:"切分单位与跨供体泛化",d:"Johns Hopkins Battle 组，随机细胞级切分高估单细胞分类 macro F1",u:"paper.html?id=p98",k:"donor 供体 切分 泛化 评测 Battle"},
 {s:"文献库",t:"可靠性迁移 reliability transfer",d:"匹兹堡大学 Park 团队，10 个扰动预测系统，置信度与预测性能脱钩",u:"paper.html?id=p99",k:"reliability transfer 可靠性 迁移 置信度 SHAP"},
-{s:"文献库",t:"CellCompass 与 DynBench100",d:"北京大学团队，agentic AI 让虚拟细胞动力学随新测量演进，100 个隐藏真值模拟场景",u:"paper.html?id=p100",k:"CellCompass DynBench100 动力学 智能体 北京大学"}
-{s:"文献库",t:"ProtCell 单细胞蛋白质组基础模型",d:"清华大学 Jiang Rui 团队，3.8 亿细胞预训练，掩码丰度建模连接碎片化蛋白面板",u:"paper.html?id=p101",k:"ProtCell 蛋白质组 单细胞 基础模型 清华"}
-{s:"文献库",t:"CPS 空间转录组坐标映射",d:"同济大学 Broad 中科院数学院，多尺度上下文蒸馏，坐标到高保真表达，Bioinformatics",u:"paper.html?id=p102",k:"CPS 空间转录组 坐标 蒸馏 超分辨 DLPFC"}
-{s:"文献库",t:"JuloVelo RNA velocity 动力学模式",d:"阳明交通大学，模式匹配初始化改进 RNA velocity 与细胞命运预测，省 70% 计算时间",u:"paper.html?id=p103",k:"JuloVelo velocity 动力学 初始化 细胞命运"}
+{s:"文献库",t:"CellCompass 与 DynBench100",d:"北京大学团队，agentic AI 让虚拟细胞动力学随新测量演进，100 个隐藏真值模拟场景",u:"paper.html?id=p100",k:"CellCompass DynBench100 动力学 智能体 北京大学"},
+{s:"文献库",t:"ProtCell 单细胞蛋白质组基础模型",d:"清华大学 Jiang Rui 团队，3.8 亿细胞预训练，掩码丰度建模连接碎片化蛋白面板",u:"paper.html?id=p101",k:"ProtCell 蛋白质组 单细胞 基础模型 清华"},
+{s:"文献库",t:"CPS 空间转录组坐标映射",d:"同济大学 Broad 中科院数学院，多尺度上下文蒸馏，坐标到高保真表达，Bioinformatics",u:"paper.html?id=p102",k:"CPS 空间转录组 坐标 蒸馏 超分辨 DLPFC"},
+{s:"文献库",t:"JuloVelo RNA velocity 动力学模式",d:"阳明交通大学，模式匹配初始化改进 RNA velocity 与细胞命运预测，省 70% 计算时间",u:"paper.html?id=p103",k:"JuloVelo velocity 动力学 初始化 细胞命运"},
 {s:"文献库",t:"How to Build the Virtual Cell with Artificial Intelligence（AIVC 纲领）",d:"Cell 2024，Bunne/Regev/Quake/Leskovec 等 40+ 作者，确立 AIVC 愿景框架",u:"papers.html",k:"纲领 Cell Bunne Regev Quake Leskovec 虚拟细胞"},
 {s:"文献库",t:"scBERT",d:"腾讯 AI Lab，2022，Nature Machine Intelligence，首个 BERT 式单细胞模型",u:"paper.html?id=p07",k:"腾讯 scBERT 注释"},
 {s:"文献库",t:"Geneformer",d:"Broad/MGH，2023，Nature，3000 万细胞预训练，in silico 扰动发现心肌病靶点",u:"paper.html?id=p08",k:"Geneformer Theodoris 心肌病"},

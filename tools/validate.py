@@ -17,6 +17,9 @@ aivc.news 站点数据校验器
  10. sitemap.xml 未收录 glossary.html
  11. 全站页面主导航项与站点标准不一致（新增/漏改栏目）
  12. search.html 术语索引条目指向不存在的术语
+ 13. 文献标题精简索引必须覆盖全部文献
+ 14–15. 术语海报清单与海报页一致性
+ 16. HTML 内联 <script> 的 JS 语法（2026-10-31 事故后新增：见下方说明）
 
 退出码：有 error 返回 1（CI 失败），仅有 warning 返回 0。
 """
@@ -308,6 +311,33 @@ else:
         mm2 = re.search(r"共\s*<b>(\d+)</b>\s*张", ph)
         if mm2 and int(mm2.group(1)) != poster_count:
             err(f"posters.html 声明海报数 {mm2.group(1)}，与清单 {poster_count} 不符")
+
+# ---------- 16. HTML 内联脚本的 JS 语法 ----------
+# 背景（2026-10-31 事故根因）：search.html 的 `const IDX=[...]` 在新增 p100–p103 条目时
+# 漏写分隔逗号，整个内联脚本抛 SyntaxError，搜索页功能完全瘫痪；而旧版校验器只检查
+# .js 文件、从不检查内联 <script>，该错误一路通过 CI 上了生产。故补此道防线。
+import tempfile
+
+for _f in sorted(ROOT.glob("*.html")):
+    _txt = _f.read_text(encoding="utf-8")
+    for _i, _body in enumerate(re.findall(r"<script[^>]*>(.*?)</script>", _txt, re.S)):
+        if not _body.strip():
+            continue
+        with tempfile.NamedTemporaryFile(
+            "w", suffix=".js", encoding="utf-8", delete=False
+        ) as _tf:
+            _tf.write(_body)
+            _tmp = _tf.name
+        try:
+            _r2 = subprocess.run(["node", "--check", _tmp], capture_output=True, text=True)
+        finally:
+            Path(_tmp).unlink(missing_ok=True)
+        if _r2.returncode != 0:
+            _detail = [ln for ln in _r2.stderr.strip().split("\n") if ln.strip()][:3]
+            err(
+                f"{_f.name} 内联 <script>[{_i}] 存在 JS 语法错误"
+                f"（会导致整段页面脚本静默失效）: {' | '.join(_detail)}"
+            )
 
 # ---------- 汇总 ----------
 print("=" * 56)
