@@ -14,8 +14,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
       - name: 运行站点数据校验
         run: python3 tools/validate.py
+
+      # 2026-10-31 新增：并行写入冲突门禁。
+      # 当日 content 与 deep 各自改了 search.html 与 benchmarks.html，双方互不知情，
+      # 导致缺逗号故障被制造两遍、Cascade 卡片被重复收录。此步骤把撞车从
+      # 「合并时人工解冲突」提前到「建 PR 时机器拦截」。
+      # API 不可用时脚本降级放行（宁漏勿误伤），不会因网络问题误拦正常 PR。
+      - name: 并行写入冲突门禁
+        if: github.event_name == 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git fetch origin "${{ github.event.pull_request.base.ref }}" --depth=1
+          python3 tools/preflight_conflicts.py \
+            --base "origin/${{ github.event.pull_request.base.ref }}" \
+            --repo "${{ github.repository }}" \
+            --token "$GITHUB_TOKEN" \
+            --self-branch "${{ github.head_ref }}"
