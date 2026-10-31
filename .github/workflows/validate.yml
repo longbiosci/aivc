@@ -3,11 +3,19 @@ name: validate
 # 站点数据校验：每个 PR 与 main 推送自动运行。
 # 目的：在合并前拦截合并级错误（JS 语法、编号断档/重复、指错文献的链接、
 # sitemap 缺漏、计数不符等），把「人眼审查」升级为「机器强制」。
+# 2026-11-01（ops）：push 触发器原本只覆盖 main，而 main 有分支保护、Bot 推不进去，
+# 等于这条触发器形同虚设——Bot 当日分支推上去之后，校验要等到开出 PR 才第一次跑。
+# 故障因此总在「PR 已开、CI 已红」时才暴露，多绕一轮。补上 bot/** 让分支落地即校验。
 on:
   pull_request:
     branches: [main]
   push:
-    branches: [main]
+    branches: [main, 'bot/**']
+
+# 同一分支连续推送（修完再推是常态）时取消上一轮未跑完的校验，省机器也省排队。
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   check:

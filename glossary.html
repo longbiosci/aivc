@@ -57,7 +57,7 @@
 <div class="galpha" id="alpha"><span class="lb">索引</span></div>
 
 <div id="list"></div>
-<div class="gempty" id="empty" style="display:none">没有匹配的术语。试试更短的关键词，或切换到「全部」分类。</div>
+<div class="gempty is-hidden" id="empty">没有匹配的术语。试试更短的关键词，或切换到「全部」分类。</div>
 
 </div></section>
 
@@ -131,7 +131,7 @@ function refLink(p){
   var short=o.t.length>38?o.t.slice(0,38)+'…':o.t;
   var tip=o.v+' · '+o.d+' · '+o.t;
   return '<a href="paper.html?id='+p+'" title="'+esc(tip)+'">'+esc(p)+' · '+esc(short)
-         +' <span style="color:var(--dim)">（'+esc(o.v)+' '+esc(o.d)+'）</span></a>';
+         +' <span class="gmeta">（'+esc(o.v)+' '+esc(o.d)+'）</span></a>';
 }
 
 function card(t){
@@ -145,7 +145,7 @@ function card(t){
     +'<div class="gname">'+esc(t.t)+zh+'</div>'
     +'<div class="gdef">'+esc(t.s)+'</div>'
     +'<button class="gmore" type="button">展开详解</button>'
-    +'<div class="gbody"><p style="margin-bottom:8px">'+esc(t.b)+'</p>'+refs+poster+'</div>'
+    +'<div class="gbody"><p class="gb-p">'+esc(t.b)+'</p>'+refs+poster+'</div>'
     +'</div>';
 }
 

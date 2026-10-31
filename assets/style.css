@@ -411,6 +411,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .grefs{margin-top:11px;font-size:12px;color:var(--dim);line-height:1.7}
 .grefs a{color:var(--accent);margin:0 12px 5px 0;display:inline-block;max-width:100%;overflow-wrap:anywhere}
 .gempty{text-align:center;padding:46px 20px;color:var(--dim);font-size:14px;border:1px dashed var(--line);border-radius:3px;background:var(--paper)}
+/* 2026-11-01（ops）：原为页面内联 style="display:none"。初始隐藏态改由 class 承担，
+   展开/收起后由脚本的 inline style 接管（优先级更高），行为与原先一致。 */
+.gempty.is-hidden{display:none}
+.gmeta{color:var(--dim)}
+.gb-p{margin-bottom:8px}
 .gc-core{background:#e4efef;color:#0f5e68}
 .gc-model{background:#e6eff0;color:#0f5e68}
 .gc-task{background:#eef2f7;color:#33587a}
