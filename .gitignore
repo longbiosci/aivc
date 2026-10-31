@@ -7,3 +7,5 @@ tools/.kb-cache/
 # 这两处都只存在于运维机器上——读者原文不进仓库、不上站。
 drops/
 inbox/
+# tools/push_ima.py 生成的 Markdown 中间产物，进 IMA 的副本，不是站点内容。
+ima_out/
