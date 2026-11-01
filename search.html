@@ -62,6 +62,11 @@
 
 <script>
 const IDX=[
+{s:"文献库",t:"GRAFT：遗传扰动迁移 + 跨背景外推，无实测推断药物响应",d:"把遗传扰动响应迁移为化学扰动响应并跨背景外推，靶标背景无实测也能推断药物转录响应；GRAFT-Atlas 覆盖 13 背景 102,128 条预测",u:"paper.html?id=p117",k:"GRAFT 跨模态迁移 零样本 药物响应 跨细胞类型 LINCS 扰动预测 遗传扰动 化学扰动 清华大学 GRAFT-Atlas iPSC 供体差异"},
+{s:"文献库",t:"ImmuneTwins：用纵向观测把虚拟细胞养成个体数字孪生",d:"用个体纵向观测持续个性化共享虚拟细胞模型，免疫年龄误差降 32% 与 42%，方向预测准确率高 35%",u:"paper.html?id=p118",k:"ImmuneTwins 数字孪生 免疫轨迹 个体化 纵向 单细胞 免疫年龄 流感疫苗 北京大学 个性化虚拟细胞"},
+{s:"文献库",t:"CellPatch：把基因打包成 patch，压缩单细胞基础模型算力",d:"基因按启发式规则打包成 patch 压缩预训练与微调算力，多器官数据集上多项任务当前最优",u:"paper.html?id=p119",k:"CellPatch 基因 patch 启发式 交叉注意力 轻量 基础模型 计算复杂度 预训练 微调 Genome Biology 可解释性"},
+{s:"文献库",t:"Pycea：把谱系树写进 AnnData 生态",d:"TreeData 扩展让谱系树与细胞测量同存 AnnData，兼容 Scanpy 与 scverse 工具链，无需格式转换",u:"paper.html?id=p120",k:"Pycea TreeData AnnData 谱系追踪 lineage tracing scverse Scanpy 树可视化 支系识别 祖先状态推断 Weissman Yosef"},
+{s:"文献库",t:"跨 12 亿年进化距离：基础模型的「通用」卡在基因表示上",d:"零样本嵌入跨 12 亿年进化距离仍恢复发育顺序；UCE 能用 97% 基因，词汇型模型经同源映射不足五分之一",u:"paper.html?id=p121",k:"跨物种 迁移 进化距离 零样本 基础模型 评测 Geneformer scGPT UCE 蛋白序列 同源映射 网柄菌 线虫 PCA scVI"},
 // 文献（节选关键条目，文献库页内另有精细检索）
 {s:"文献库",t:"HD 多模态空间转录组",d:"UCSD Cleveland 组：同一细胞同时读转录程序、体细胞 CAG 重复长度与 8 个病理标志物，L5-6 近投射神经元丢失超 50%",u:"paper.html?id=p111",k:"Huntington MERFISH CAG 重复扩增 包涵体 皮层 空间转录组 多模态 选择性易损"},
 {s:"文献库",t:"HD 皮层与纹状体体细胞重复扩增",d:"Broad McCarroll 组：皮层与纹状体病理阶段类似但表达改变不同，扩增程度由分子身份决定而非脑区或层次",u:"paper.html?id=p112",k:"Huntington somatic CAG repeat cortex striatum McCarroll 锥体神经元 包涵体"},
