@@ -11,3 +11,4 @@ inbox/
 ima_out/
 # 从网盘取下来处理的原件临时落地区，归档完即清。
 archive/
+node_modules/

@@ -1,0 +1,128 @@
+/* AIVC Insight — 术语悬停释义样式
+ * 独立文件而非并入 style.css：样式体系属 ops 岗位（OPS.md §3.2.1），
+ * content 岗位只新增本功能自己的样式表，不改公共样式，避免跨岗冲突。
+ * 配色沿用 style.css 的 CSS 变量，主题切换自动跟随。
+ */
+
+.gterm {
+  position: relative;
+  cursor: help;
+  border-bottom: 1px dashed rgba(120, 120, 120, 0.45);
+  text-underline-offset: 3px;
+}
+
+.gterm .gterm-w {
+  /* 默认不改变文字外观，只加虚线下划线——提示「这里可查」，不打断阅读节奏 */
+  color: inherit;
+}
+
+.gterm .gterm-i {
+  display: inline-block;
+  font-size: 8px;
+  line-height: 1;
+  vertical-align: super;
+  color: #999;
+  background: rgba(0, 0, 0, 0.055);
+  border-radius: 50%;
+  width: 11px;
+  height: 11px;
+  text-align: center;
+  margin-left: 1px;
+  font-weight: 700;
+  transform: translateY(-1px);
+}
+
+.gterm:hover .gterm-w,
+.gterm.on .gterm-w,
+.gterm:focus .gterm-w {
+  border-bottom-color: var(--accent, #2f6b48);
+  color: var(--accent, #2f6b48);
+}
+
+.gterm:hover .gterm-i,
+.gterm.on .gterm-i {
+  background: var(--accent, #2f6b48);
+  color: #fff;
+}
+
+.gterm:focus {
+  outline: none;
+}
+
+/* ---------- 气泡 ---------- */
+
+.gterm-tip {
+  display: none;
+  position: absolute;
+  z-index: 9000;
+  max-width: 330px;
+  min-width: 200px;
+  background: #fff;
+  color: #333;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.13), 0 1px 3px rgba(0, 0, 0, 0.07);
+  padding: 12px 14px;
+  font-size: 13px;
+  line-height: 1.7;
+  text-align: left;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.gterm-tip .gt-head {
+  margin-bottom: 6px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.gterm-tip .gt-zh {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.gterm-tip .gt-en {
+  display: block;
+  font-size: 11.5px;
+  color: #8a8a8a;
+  margin-top: 2px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.gterm-tip .gt-body {
+  color: #444;
+  font-size: 13px;
+  line-height: 1.72;
+}
+
+.gterm-tip .gt-more {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--accent, #2f6b48);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.gterm-tip .gt-more:hover {
+  border-bottom-color: var(--accent, #2f6b48);
+}
+
+/* 移动端：气泡宽度收窄，避免超出屏幕 */
+@media (max-width: 640px) {
+  .gterm-tip {
+    max-width: calc(100vw - 32px);
+  }
+}
+
+/* 打印时隐藏所有提示标记，保持文档干净 */
+@media print {
+  .gterm-tip,
+  .gterm-i {
+    display: none !important;
+  }
+  .gterm {
+    border-bottom: none;
+  }
+}
