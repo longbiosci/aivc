@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>评论管理 · AIVC Insight</title>
+<link rel="stylesheet" href="assets/style.css?v=8">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <div class="brand"><img src="assets/logo.svg" alt="AIVC Insight"><div class="bt">AIVC <em>Insight</em><small>评论管理 · 原型</small></div></div>
+</div></div>
+
+<section><div class="wrap">
+  <div class="pagehead" style="border:none;padding-bottom:10px">
+    <div class="crumb">后台 · MODERATION</div>
+    <h1 style="font-size:26px">评论管理</h1>
+    <p class="lede">先发后审：游客发完立刻可见，这里负责把脏的删掉。删除为软删除，可恢复。
+      生产版会加：按文献筛选、举报队列、作者封禁、批量操作。</p>
+  </div>
+
+  <div id="login" class="cmlogin" style="display:none">
+    <div class="cmlogin-h">需要管理员身份</div>
+    <div class="cmlogin-row">
+      <input id="email" type="email" placeholder="邮箱">
+      <input id="pw" type="password" placeholder="密码">
+      <button class="cmbtn ghost" id="go" type="button">登录</button>
+    </div>
+    <div class="cmlogin-tip">原型账号：editor@aivc.news / proto123</div>
+  </div>
+
+  <div class="cmadmin" id="panel" style="display:none">
+    <h3>全部评论</h3>
+    <div class="sub" id="stat"></div>
+    <table>
+      <thead><tr><th style="width:52px">ID</th><th style="width:66px">文献</th><th style="width:96px">作者</th><th>内容</th><th style="width:78px">状态</th><th style="width:104px">时间</th><th style="width:52px">操作</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div>AIVC Insight · 评论管理原型页（不入 sitemap，不对外链接）</div>
+</div></footer>
+
+<script>
+(function(){
+  var API='';
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function api(p,o){return fetch(API+p,Object.assign({credentials:'same-origin'},o||{}))
+    .then(function(r){return r.json().then(function(j){return{ok:r.ok,data:j}})})
+    .catch(function(){return{ok:false,data:{error:'网络错误'}}})}
+
+  function render(items){
+    var pend=items.filter(function(x){return x.status==='pending'}).length;
+    var del=items.filter(function(x){return x.status==='deleted'}).length;
+    document.getElementById('stat').textContent='共 '+items.length+' 条 · 待审 '+pend+' · 已删除 '+del;
+    document.getElementById('rows').innerHTML=items.slice().reverse().map(function(c){
+      var lab={ok:'已发布',pending:'待审核',deleted:'已删除'}[c.status]||c.status;
+      var act=c.status==='deleted'
+        ? '<button class="cmlink" data-restore="'+c.id+'">恢复</button>'
+        : '<button class="cmlink danger" data-del="'+c.id+'">删除</button>';
+      return '<tr><td>'+c.id+'</td><td><a href="paper.html?id='+esc(c.pid)+'">'+esc(c.pid)+'</a></td>'
+        +'<td>'+esc(c.author)+(c.kind==='guest'?' <span style="color:var(--dim);font-size:11px">游客</span>':'')+'</td>'
+        +'<td>'+esc(c.content).replace(/\n/g,'<br>')
+        +(c.reason?'<div style="color:var(--amber);font-size:11.5px;margin-top:3px">'+esc(c.reason)+'</div>':'')+'</td>'
+        +'<td class="st-'+c.status+'">'+lab+'</td><td style="color:var(--dim)">'+esc(c.at)+'</td><td>'+act+'</td></tr>';
+    }).join('')||'<tr><td colspan="7" style="color:var(--dim);padding:20px;text-align:center">暂无评论</td></tr>';
+
+    document.querySelectorAll('[data-del]').forEach(function(b){
+      b.onclick=function(){
+        if(!confirm('确认删除？'))return;
+        api('/api/admin/moderate',{method:'POST',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({id:+b.getAttribute('data-del'),action:'delete'})}).then(load);
+      };
+    });
+    document.querySelectorAll('[data-restore]').forEach(function(b){
+      b.onclick=function(){
+        api('/api/admin/moderate',{method:'POST',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({id:+b.getAttribute('data-restore'),action:'restore'})}).then(load);
+      };
+    });
+  }
+
+  function load(){
+    api('/api/admin/comments').then(function(r){
+      if(!r.ok){
+        document.getElementById('login').style.display='block';
+        document.getElementById('panel').style.display='none';
+        return;
+      }
+      document.getElementById('login').style.display='none';
+      document.getElementById('panel').style.display='block';
+      render(r.data.items);
+    });
+  }
+
+  document.getElementById('go').onclick=function(){
+    api('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:document.getElementById('email').value,
+                           password:document.getElementById('pw').value})})
+    .then(function(r){ if(!r.ok){alert(r.data.error||'登录失败');return} load(); });
+  };
+  load();
+})();
+</script>
+</body>
+</html>

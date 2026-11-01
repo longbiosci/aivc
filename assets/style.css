@@ -590,3 +590,80 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
   .kvbtn,.kvbody{padding-left:15px;padding-right:15px}
   .uplhelp{padding:15px 16px}
 }
+
+/* ===== 讨论区（2026-11-01 新增，原型） =====
+   位置在投稿口之后、延伸阅读之前：读者读完正文 → 有话说 → 投全文或讨论，
+   两件事是并列的读者动作，不埋进页脚。 */
+.cmsect{margin:34px 0 8px;padding-top:26px;border-top:2px solid var(--line)}
+.cmhead{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.cmtitle{font-family:var(--serif);font-size:18px;color:var(--ink);font-weight:700}
+.cmtitle small{font-family:var(--sans);font-size:12.5px;color:var(--dim);font-weight:400;margin-left:6px}
+.cmwho{font-size:12.5px;color:var(--dim);display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.cm-chip{font-size:12px;padding:2px 9px;border-radius:2px;border:1px solid var(--line);background:var(--paper);color:var(--sub)}
+.cm-chip.guest{border-style:dashed;color:var(--dim)}
+.cm-chip.user{border-color:var(--accent);color:var(--accent);background:var(--accent-soft);font-weight:600}
+.cmlink{background:none;border:none;padding:0;font:inherit;font-size:12.5px;color:var(--accent);cursor:pointer;text-decoration:none}
+.cmlink:hover{text-decoration:underline}
+.cmlink.danger{color:var(--red)}
+
+.cmbox{background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:14px 16px;margin-bottom:8px}
+.cmbox-hint{font-size:12.5px;color:var(--accent);max-height:0;overflow:hidden;transition:max-height .2s,padding .2s}
+.cmbox-hint.show{max-height:60px;padding-bottom:9px}
+#cm-input{width:100%;border:1px solid var(--line);border-radius:3px;padding:10px 12px;font:inherit;
+  font-size:14px;line-height:1.75;color:var(--ink);background:var(--bg);resize:vertical;min-height:76px}
+#cm-input:focus{outline:none;border-color:var(--accent);background:var(--paper)}
+.cmbox-foot{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+.cm-grow{flex:1}
+.cm-context{font-size:11.5px;color:var(--dim)}
+.cm-replying{font-size:12px;color:var(--accent)}
+.cmbtn{font-size:13px;font-weight:600;color:#fff;background:var(--accent);border:1px solid var(--accent);
+  border-radius:3px;padding:6px 18px;cursor:pointer;font-family:inherit}
+.cmbtn:hover{background:var(--ink);border-color:var(--ink)}
+.cmbtn:disabled{opacity:.5;cursor:default}
+.cmbtn.ghost{background:transparent;color:var(--accent)}
+.cmbtn.ghost:hover{background:var(--accent);color:#fff}
+
+.cmlist{margin-top:16px}
+.cmitem{padding:13px 0 13px 0;border-bottom:1px solid var(--line)}
+.cmitem.child{border-bottom:none;padding:9px 0 9px 14px;border-left:2px solid var(--line);margin:2px 0}
+.cmthread{margin:2px 0 10px 6px}
+.cmm{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.cmname{font-size:13px;color:var(--ink);font-weight:600}
+.cmname.g{color:var(--sub);font-weight:500}
+.cm-tag{font-size:10.5px;padding:0 6px;border-radius:2px;border:1px solid currentColor;letter-spacing:.4px}
+.cm-tag.ed{color:var(--accent)}
+.cm-tag.usr{color:var(--amber)}
+.cmtime{font-size:11.5px;color:var(--dim);margin-left:auto}
+.cmbody{font-size:14px;color:var(--body);line-height:1.8;overflow-wrap:anywhere}
+.cmact{margin-top:5px;display:flex;gap:12px;align-items:center;font-size:12px}
+.cm-mine{font-size:10.5px;color:var(--dim);border:1px solid var(--line);padding:0 5px;border-radius:2px}
+.cmempty{padding:26px 20px;text-align:center;color:var(--dim);font-size:13.5px;
+  border:1px dashed var(--line);border-radius:3px;background:var(--paper)}
+
+.cmlogin{margin-top:12px;padding:13px 16px;border:1px solid var(--line);border-left:3px solid var(--dim);
+  background:#faf9f6;font-size:12.5px;color:var(--sub)}
+.cmlogin-h{font-weight:600;color:var(--ink);margin-bottom:9px}
+.cmlogin-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.cmlogin-row input{flex:1;min-width:130px;border:1px solid var(--line);border-radius:3px;
+  padding:6px 10px;font:inherit;font-size:13px;background:var(--paper);color:var(--ink)}
+.cmlogin-row input:focus{outline:none;border-color:var(--accent)}
+.cmlogin-tip{line-height:1.75;color:var(--dim)}
+
+/* 后台（原型：同页锚点，生产版独立页） */
+.cmadmin{margin-top:30px;border:1px solid var(--line);border-top:3px solid var(--ink);background:var(--paper);padding:18px 20px}
+.cmadmin h3{font-family:var(--serif);font-size:16px;color:var(--ink);margin-bottom:4px}
+.cmadmin .sub{font-size:12px;color:var(--dim);margin-bottom:12px}
+.cmadmin table{width:100%;border-collapse:collapse;font-size:12.5px}
+.cmadmin th{text-align:left;color:var(--dim);font-weight:500;padding:6px 8px;border-bottom:1px solid var(--line);
+  font-size:11.5px;letter-spacing:.5px}
+.cmadmin td{padding:7px 8px;border-bottom:1px solid #f0eee8;vertical-align:top;color:var(--body)}
+.cmadmin .st-pending{color:var(--amber);font-weight:600}
+.cmadmin .st-deleted{color:var(--red)}
+.cmadmin .st-ok{color:var(--accent)}
+
+@media(max-width:640px){
+  .cmbox{padding:12px 13px}
+  .cm-context{display:none}
+  .cmtime{margin-left:0}
+  .cmlogin-row input{min-width:100%}
+}

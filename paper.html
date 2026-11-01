@@ -103,6 +103,8 @@ html+='<div class="kvsect"><div class="kvhead">全文投稿</div><div id="kv"></
     +'<div class="kvsect-note">为什么值得投：站内全文可被检索、可引用、可跨文献对照；'
     +'投来的稿子由编辑部核许可与归属，通过后进入 <a href="kb/index.html">全文库</a>，'
     +'作者署名会写在页首。我们<b>不会</b>把文件公开下载，只做站内转录。</div></div>';
+/* 讨论区：挂在正文与投稿口之后。读者读完 → 有话说 → 投全文或讨论，两者并列 */
+html+='<section class="cmsect" id="discuss"><div id="comments"></div></section>';
 if(fw){html+='<div class="drel"><h3>延伸阅读</h3><ul>'+fw+'</ul></div>'}
 var rel=PAPERS.filter(function(q,j){return q.g===p.g&&j!==i}).slice(0,5);
 if(rel.length){html+='<div class="drel"><h3>同组相关文献</h3><ul>'+rel.map(function(q){return '<li><a href="paper.html?id='+q.id+'">'+q.t+'</a><span>'+q.v+' · '+q.d+'</span></li>'}).join('')+'</ul></div>'}
@@ -112,5 +114,6 @@ app.innerHTML=html;
 })();
 </script>
 <script src="assets/kb-inbox.js"></script>
+<script src="assets/comments.js"></script>
 </body>
 </html>

@@ -240,7 +240,10 @@ def _nav_links(html_txt, cls):
 
 # 2026-11-01 加固（ops）：原先只扫根目录 13 页，kb/ 下 111 个页面（含全文库首页）
 # 的导航没有任何机器护栏。它们现在同样带两层导航，理应受同一约束。
-for f in sorted(p for p in ROOT.rglob("*.html") if ".git" not in p.parts):
+# 2026-11-01 修订（编辑部，feature/comments）：admin-*.html 为后台管理页，
+# 有意不带公开导航（noindex、不对外链接），跳过导航检查；其内联脚本仍受第 17 项约束。
+for f in sorted(p for p in ROOT.rglob("*.html")
+                if ".git" not in p.parts and not p.name.startswith("admin-")):
     txt = f.read_text(encoding="utf-8")
     # 报错用仓库相对路径：子目录页与根页面可能同名（如 kb/index.html），只写文件名无法定位
     _loc = f.relative_to(ROOT)
