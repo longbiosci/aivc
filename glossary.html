@@ -140,7 +140,8 @@ function card(t){
   var refs=(t.r&&t.r.length)?'<div class="grefs">延伸阅读：'+t.r.map(refLink).join('')+'</div>':'';
   var slug=SLUG[t.t];
   var poster=slug?'<div class="grefs"><a href="posters/'+slug+'" download>下载分享海报 ▸</a></div>':'';
-  return '<div class="gcard">'
+  /* id 供站内术语悬停「术语表详解 →」定位到这一条；用英文原名，与 glossary-hover.js 的锚点一致 */
+  return '<div class="gcard" id="t-'+encodeURIComponent(t.t)+'">'
     +'<div class="ghead"><span class="badge gc-'+t.c+'">'+CATS[t.c]+'</span>'+abbr+'</div>'
     +'<div class="gname">'+esc(t.t)+zh+'</div>'
     +'<div class="gdef">'+esc(t.s)+'</div>'
@@ -193,6 +194,21 @@ buildCats();buildAlpha();
 /* 支持从站内搜索带 ?q= 关键词直达 */
 try{var qs=new URLSearchParams(location.search).get('q');if(qs){q.value=qs;}}catch(e){}
 render();
+
+/* 支持从正文术语悬停跳转过来：#t-<术语名>，定位并展开该条 */
+(function(){
+  var h='';
+  try{h=decodeURIComponent((location.hash||'').replace(/^#/,''));}catch(e){h=(location.hash||'').replace(/^#/,'');}
+  if(h.indexOf('t-')!==0)return;
+  var el=document.getElementById(h);
+  if(!el)return;
+  var card=el;card.classList.add('open');
+  var btn=card.querySelector('.gmore');
+  if(btn)btn.textContent='收起';
+  setTimeout(function(){
+    window.scrollTo({top:card.getBoundingClientRect().top+window.pageYOffset-70,behavior:'smooth'});
+  },60);
+})();
 q.addEventListener('input',render);
 })();
 </script>
