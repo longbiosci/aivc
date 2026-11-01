@@ -20,7 +20,17 @@ aivc.news 站点数据校验器
  13. 文献标题精简索引必须覆盖全部文献
  14–15. 术语海报清单与海报页一致性
  16. HTML 内联 <script> 的 JS 语法（2026-10-31 事故后新增：见下方说明）
+ 17. feed lastBuildDate 不得早于最新条目（2026-10-31 事故后新增）
+ 18–19. 全文可达性数据、全文库 kb/ 自洽
  20. 投稿口（kb-inbox）自洽：配置无凭据、脚本引入顺序、挂载点、清道规则、CSP 放行
+ 21. search.html 的 IDX 必须覆盖全部文献（2026-11-02 新增：见第 7 项说明）
+
+**校验器自身的防御原则（2026-11-02 确立）**：
+「定位不到检查目标」一律按 error 处理，绝不静默跳过。
+本文件历史上出过两次同类事故——第 6 项 feed.xml 路径写错（2026-10-31）、
+第 7 项 IDX 声明字符串硬匹配（2026-11-02 实测），两次的共同点是
+**校验器失明了却依然报绿灯**。新增检查项时，凡是用了 `if 目标存在:` 的写法，
+必须补 else 分支显式报错。
 
 退出码：有 error 返回 1（CI 失败），仅有 warning 返回 0。
 """
@@ -76,6 +86,11 @@ for m in re.finditer(
 ):
     entries.append({"id": m.group(1), "g": m.group(2), "t": m.group(3)})
 ids = [e["id"] for e in entries]
+# 2026-11-02（ops）：starts 原先只在「解析到文献」的分支里赋值，papers-data.js 一旦
+# 解析不出任何条目（文件被清空或结构整体改坏），第 7 项引用 starts 会直接 NameError
+# 崩溃——崩在半路意味着后面的检查项一条都没跑，CI 只看到一个 traceback 而不是
+# 「哪些项没过」。先给空默认值，保证校验器永远跑完全程。
+starts: list[int] = []
 
 if not ids:
     err("papers-data.js 未解析到任何文献条目")
@@ -121,7 +136,11 @@ for i in ids:
 # 2026-10-31 修复：此处原写作 ROOT / "feed.xml"（文件不存在，被下方 exists()
 # 判断静默跳过），导致 feed.xml 的链接检查自建立起就是死代码——旧版从未真正
 # 校验过订阅源。实际路径为 assets/feed.xml。
-scan_files = sorted(ROOT.glob("*.html")) + [
+# 2026-11-02（ops）：原写作 ROOT.glob("*.html")，只覆盖根目录页面。kb/ 下 111 个全文库
+# 页面同样带 `../paper.html?id=pNN` 返回链接，落在扫描之外意味着「全文库里指着一个
+# 已经不存在的文献」这类错误没有任何机器护栏——读者点进去才是第一个发现者。
+# 与第 11、16 项保持一致：凡是页面里的链接都要查。
+scan_files = sorted(p for p in ROOT.rglob("*.html") if ".git" not in p.parts) + [
     ROOT / "assets" / "feed.xml",
     ROOT / "sitemap.xml",
 ]
@@ -140,41 +159,125 @@ for f in scan_files:
 
 # ---------- 7. 检索索引条目 ↔ 文献一致性 ----------
 search = (ROOT / "search.html").read_text(encoding="utf-8")
-if "const IDX=[" in search:
-    blob = search[
-        search.index("const IDX=[") : search.index("];", search.index("const IDX=["))
-    ]
-    # 每篇文献的全文 haystack（用于标题/描述比对）
-    hay = {}
-    for i, s in enumerate(starts):
-        e = starts[i + 1] if i + 1 < len(starts) else len(src)
-        pid = re.search(r'id:\s*"(p\d+)"', src[s:e]).group(1)
-        hay[pid] = norm(src[s:e])
-    idx_links = re.findall(r'u:"(paper(?:\.html)?\?id=p\d+)"', blob)
-    for m in re.finditer(
-        r'\{s:"文献库",t:"([^"]+)",d:"([^"]*)",u:"paper(?:\.html)?\?id=(p\d+)"', blob
-    ):
-        t, d, pid = m.group(1), m.group(2), m.group(3)
-        probes = latin_probes(t + " " + d)
-        if not probes:
-            continue
-        hits = sum(1 for p in probes if p in hay.get(pid, ""))
-        need = max(1, (len(probes) + 2) // 3)
-        if hits < need:
-            err(
-                f"IDX 条目「{t[:36]}」指向 {pid}，但标题/描述关键词在该文献中几乎不存在"
-                f"（命中 {hits}/{len(probes)}）——疑似重映射指错文献"
+
+
+def _js_array_span(text: str, open_pos: int) -> int:
+    """从 text[open_pos] == '[' 起扫到配对的 ']'，返回其下标（找不到返回 -1）。
+
+    逐字符跳过字符串字面量、转义与注释，避免把数据里的括号算进深度——
+    正则 `];` 的旧写法遇到条目内含 `]` 就会提前截断，属于同一种「定位不可靠」。
+    """
+    depth = 0
+    i, n = open_pos, len(text)
+    while i < n:
+        c = text[i]
+        if c in "'\"`":
+            q = c
+            i += 1
+            while i < n:
+                if text[i] == "\\":
+                    i += 2
+                    continue
+                if text[i] == q:
+                    break
+                i += 1
+        elif c == "/" and i + 1 < n and text[i + 1] == "/":
+            j = text.find("\n", i)
+            i = n if j < 0 else j
+        elif c == "/" and i + 1 < n and text[i + 1] == "*":
+            j = text.find("*/", i + 2)
+            i = n if j < 0 else j + 2
+        elif c in "[{":
+            depth += 1
+        elif c in "]}":
+            depth -= 1
+            if depth == 0:
+                return i
+        i += 1
+    return -1
+
+
+# 2026-11-02 加固（ops）：此处原写作 `if "const IDX=[" in search:`，定位不到就整块跳过、
+# 不留任何痕迹。实测：把声明改一个字符（`const IDX =[`）后校验器照样全绿——这与
+# 2026-10-31 feed.xml 路径写错被 exists() 吃掉是同一类防御缺陷，属于「校验器自己
+# 失明了还报绿灯」。改为容差定位（const/var/let + 任意空白），定位不到即报错。
+_m_idx = re.search(r"(?:const|var|let)\s+IDX\s*=\s*\[", search)
+if not _m_idx:
+    err(
+        "search.html 未定位到检索索引 IDX 数组（应为 const/var/let IDX=[…]），"
+        "检索索引一致性检查无法执行 —— 定位不到检查目标必须报警，不得静默跳过"
+    )
+else:
+    _open = _m_idx.end() - 1
+    _close = _js_array_span(search, _open)
+    if _close < 0:
+        err("search.html 的 IDX 数组未找到配对的结束括号，索引校验无法执行")
+    else:
+        blob = search[_open : _close + 1]
+
+        # 每篇文献的全文 haystack（用于标题/描述比对）
+        hay = {}
+        for i, s in enumerate(starts):
+            e = starts[i + 1] if i + 1 < len(starts) else len(src)
+            pid = re.search(r'id:\s*"(p\d+)"', src[s:e]).group(1)
+            hay[pid] = norm(src[s:e])
+        idx_links = re.findall(r'u:"(paper(?:\.html)?\?id=p\d+)"', blob)
+        for m in re.finditer(
+            r'\{s:"文献库",t:"([^"]+)",d:"([^"]*)",u:"paper(?:\.html)?\?id=(p\d+)"', blob
+        ):
+            t, d, pid = m.group(1), m.group(2), m.group(3)
+            probes = latin_probes(t + " " + d)
+            if not probes:
+                continue
+            hits = sum(1 for p in probes if p in hay.get(pid, ""))
+            need = max(1, (len(probes) + 2) // 3)
+            if hits < need:
+                err(
+                    f"IDX 条目「{t[:36]}」指向 {pid}，但标题/描述关键词在该文献中几乎不存在"
+                    f"（命中 {hits}/{len(probes)}）——疑似重映射指错文献"
+                )
+            elif hits < len(probes):
+                warn(
+                    f"IDX 条目「{t[:36]}」→ {pid} 仅部分命中（{hits}/{len(probes)}），请人工确认"
+                )
+        for link in sorted(set(idx_links)):
+            if idx_links.count(link) > 1:
+                warn(
+                    f"IDX 中 {link} 被 {idx_links.count(link)} 条条目引用，请确认是否有重复条目"
+                )
+
+        # 覆盖度（2026-11-02 ops 新增）：上面的检查只保证「已有条目指得对」，
+        # 从不检查「有没有漏条目」。2026-11-02 实测 IDX 缺 p72——那篇文献在搜索页
+        # 根本检索不到，而校验器一直全绿。这个盲区必须补上。
+        # 定级说明：缺条目是 search.html 的数据欠账，按 OPS §3.2.1 该文件归属 content 岗，
+        # ops 不得代改内容文件；若定级为 error，ops 当日 PR 会被自己的新检查拦成红灯、
+        # 连带阻塞上线。故设为 warning——它不是「没问题」，而是「挂在 content 名下、
+        # 每次校验都会点名、必须次日补齐」的可见欠账。
+        idx_cover = {
+            m.group(1)
+            for m in re.finditer(
+                r'\{s:"文献库",t:"[^"]*",d:"[^"]*",u:"paper(?:\.html)?\?id=(p\d+)"', blob
             )
-        elif hits < len(probes):
-            warn(f"IDX 条目「{t[:36]}」→ {pid} 仅部分命中（{hits}/{len(probes)}），请人工确认")
-    for link in sorted(set(idx_links)):
-        if idx_links.count(link) > 1:
-            warn(f"IDX 中 {link} 被 {idx_links.count(link)} 条条目引用，请确认是否有重复条目")
+        }
+        idx_gap = sorted(set(ids) - idx_cover)
+        if idx_gap:
+            warn(
+                f"search.html 的 IDX 未覆盖 {len(idx_gap)} 篇文献: {idx_gap}"
+                f"（搜索页检索不到，需 content 岗补齐；归属见 OPS.md §3.2.1）"
+            )
 
 # ---------- 8. papers.html 计数 ----------
 papers_html = (ROOT / "papers.html").read_text(encoding="utf-8")
 cm = re.search(r"共收录\s*<b>(\d+)</b>\s*篇", papers_html)
-if cm and len(entries) and int(cm.group(1)) != len(entries):
+# 2026-11-02 加固（ops）：原写作 `if cm and ...`——计数文案一改（实测去掉 <b> 标签即可），
+# cm 变 None，整项静默跳过，页面写「共 99 篇」而实际 116 篇也不会有人知道。
+# 计数是读者第一眼看到的数字，标错了等于当众报错数，此项不得失明。
+if not cm:
+    err(
+        "papers.html 未匹配到「共收录 <b>N</b> 篇」计数标记，计数一致性检查无法执行"
+        " —— 定位不到计数目标必须报警，不得静默跳过"
+    )
+elif len(entries) and int(cm.group(1)) != len(entries):
     err(f"papers.html 计数为 {cm.group(1)}，与实际文献数 {len(entries)} 不符")
 
 # ---------- 9. 术语表数据 ----------
@@ -208,10 +311,21 @@ if glossary_js.exists():
                 err(f"术语「{t}」引用不存在的文献: {ref}")
     if not glossary_terms:
         err("glossary-data.js 未解析到任何术语条目")
-    gh = (ROOT / "glossary.html").read_text(encoding="utf-8") if (ROOT / "glossary.html").exists() else ""
-    gm = re.search(r"共收录\s*<b>(\d+)</b>\s*条", gh)
-    if gm and int(gm.group(1)) != len(glossary_terms):
-        err(f"glossary.html 声明 {gm.group(1)} 条术语，数据实际 {len(glossary_terms)} 条")
+    # 2026-11-02 加固（ops）：原写作 `... if exists() else ""`，页面一旦改名或缺失，
+    # gh 变空串 → gm 为 None → 术语计数检查静默跳过，与上面 papers.html 同型。
+    _gh_path = ROOT / "glossary.html"
+    if not _gh_path.exists():
+        err("缺少 glossary.html，术语计数一致性检查无法执行")
+    else:
+        gh = _gh_path.read_text(encoding="utf-8")
+        gm = re.search(r"共收录\s*<b>(\d+)</b>\s*条", gh)
+        if not gm:
+            err(
+                "glossary.html 未匹配到「共收录 <b>N</b> 条」计数标记，"
+                "术语计数一致性检查无法执行"
+            )
+        elif int(gm.group(1)) != len(glossary_terms):
+            err(f"glossary.html 声明 {gm.group(1)} 条术语，数据实际 {len(glossary_terms)} 条")
 else:
     err("缺少 assets/glossary-data.js")
 
